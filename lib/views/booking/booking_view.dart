@@ -1,0 +1,225 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:helmet_customer/generated/assets.dart';
+import 'package:helmet_customer/theme/app_size.dart';
+import 'package:helmet_customer/utils/colors/color1.dart';
+import 'package:helmet_customer/utils/constants.dart';
+import 'package:helmet_customer/utils/tools/tools.dart';
+import 'package:helmet_customer/views/widget/custom_text.dart';
+import 'package:helmet_customer/views/address_book/address_book_binding.dart';
+import 'package:helmet_customer/views/address_book/address_book_view.dart';
+import 'package:helmet_customer/views/booking/booking_controller.dart';
+import 'package:helmet_customer/views/booking/widget/buy_wash_items.dart';
+import 'package:helmet_customer/views/booking/widget/choose_car_widget.dart';
+import 'package:helmet_customer/views/booking/widget/date_builder.dart';
+import 'package:helmet_customer/views/booking/widget/payment_sheet.dart';
+import 'package:helmet_customer/views/booking/widget/time_of_day_timeline.dart';
+import 'package:helmet_customer/views/home/home_controller.dart';
+
+class BookingView extends StatelessWidget {
+  const BookingView({
+    super.key,
+    required this.newOrder,
+  });
+  final bool newOrder;
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<BookingController>(
+      builder: (ctrl) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('Booking'),
+            centerTitle: true,
+          ),
+          body: Stack(
+            children: [
+              SizedBox(
+                height: AppSize.height,
+                width: AppSize.width,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 200,
+                        width: double.infinity,
+                        child: GoogleMap(
+                          initialCameraPosition: CameraPosition(
+                            target: LatLng(currentAddress.value.latitude!,
+                                currentAddress.value.longitude!),
+                            zoom: 14,
+                          ),
+                          markers: {
+                            Marker(
+                                markerId: const MarkerId("1"),
+                                position: LatLng(currentAddress.value.latitude!,
+                                    currentAddress.value.longitude!))
+                          },
+                          myLocationEnabled: false,
+                          myLocationButtonEnabled: true,
+                          onMapCreated: (GoogleMapController controller) {
+                            ctrl.mapController = controller;
+                            // move camera to the selected address
+                            if (currentAddress.value.latitude != null &&
+                                currentAddress.value.longitude != null) {
+                              ctrl.mapController!.animateCamera(
+                                CameraUpdate.newCameraPosition(
+                                  CameraPosition(
+                                    target: LatLng(
+                                        currentAddress.value.latitude!,
+                                        currentAddress.value.longitude!),
+                                    zoom: 14,
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 8),
+                        child: Row(
+                          children: [
+                            Icon(Icons.location_on,
+                                color: primaryColor, size: 30),
+                            TextButton(
+                              onPressed: () async {
+                                await Get.to(() => const AddressBookView(),
+                                    binding: AddressBookBinding());
+                                // move camera to the selected address
+                                if (ctrl.mapController != null) {
+                                  ctrl.mapController!.animateCamera(
+                                    CameraUpdate.newCameraPosition(
+                                      CameraPosition(
+                                        target: LatLng(
+                                            currentAddress.value.latitude!,
+                                            currentAddress.value.longitude!),
+                                        zoom: 14,
+                                      ),
+                                    ),
+                                  );
+                                }
+                                ctrl.update();
+                              },
+                              child: CustomText(
+                                text: currentAddress.value.address ?? "",
+                                fontSize: 7,//14
+                                fontWeight: FontWeight.bold,
+                                maxLines: 5,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const ChooseCarsWidget(),
+                      const Divider(),
+                      if (ctrl.didUserSeletedCar) const DateBuilder(),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      if (ctrl.didUserSeletedDate) const TimeOfDayTimeline(),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      if (ctrl.didUserSeletedDateOfDay) const BuyWashItems(),
+                      if (ctrl.didUserSeletedDateOfDay)
+                        const SizedBox(
+                          height: 90,
+                        ),
+                    ],
+                  ),
+                ),
+              ),
+              if (ctrl.didUserSeletedDateOfDay)
+                Positioned(
+                  bottom: 0,
+                  child: Container(
+                    padding: const EdgeInsets.only(
+                        bottom: 32, top: 16, left: 16, right: 16),
+                    width: MediaQuery.sizeOf(context).width,
+                    decoration: BoxDecoration(
+                      color: primaryColor,
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        const Icon(Icons.receipt_long_outlined,
+                            color: Colors.white, size: 70),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const CustomText(
+                              text: "Total Price",
+                              fontSize: 14,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
+                            Row(
+                              children: [
+                                CustomText(
+                                  text: washDataTripModel.paymentMethod != null
+                                      ? ctrl.totalPrice.toString()
+                                      : ctrl.totalPrice.toString(),
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white,
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Image.asset(
+                                  Assets.reyal,
+                                  width: 25,
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                        const Spacer(),
+                        ElevatedButton(
+                          onPressed: () {
+                            // create order and send it to driver database for packages
+                            if (ctrl.totalPrice != 0 && newOrder) {
+                              appTools.showCustomBottomSheet(
+                                  context, const PaymentSheet(), true);
+                              return;
+                            }
+                            ctrl.createOrder();
+                          },
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(100, 60),
+                            backgroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                          child: CustomText(
+                            text: 'Continue',
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: primaryColor,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                )
+            ],
+          ),
+        );
+      },
+    );
+  }
+}

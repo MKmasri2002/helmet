@@ -1,0 +1,30 @@
+{
+    "bK5JJjGIA254lfH9vWEF": {
+        "address": "Abdul Aziz Ash Shumari 441, Amman, Jordan",
+        "addressType": null,
+        "areaId": "bK5JJjGIA254lfH9vsRY",
+        "contactPersonName": null,
+        "contactPersonNumber": null,
+        "defaultLocation": true,
+        "floor": null,
+        "house": null,
+        "id": "1",
+        "latitude": 31.9857025,
+        "longitude": 35.9583208,
+        "title": "Abdul Aziz Ash Shumari 441"
+    },
+    "bK5JJjGIA254lfH8KOdK": {
+        "address": "3V6C+5QJ, Amman, Jordan",
+        "addressType": null,
+        "areaId": "bK5JJjGIA254lfH9vsRY",
+        "contactPersonName": null,
+        "contactPersonNumber": null,
+        "defaultLocation": false,
+        "floor": null,
+        "house": null,
+        "id": "2",
+        "latitude": 32.0616018,
+        "longitude": 35.8716602,
+        "title": "دار ابو ميلاد"
+    }
+}

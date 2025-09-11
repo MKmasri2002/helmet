@@ -1,0 +1,29 @@
+{
+    "GtJXvNK3qLpWYdUfAeRm": {
+        "id": 1,
+        "nameEn": "Item 1",
+        "nameAr": "العنصر 1",
+        "descriptionAr": "وصف العنصر 1",
+        "descriptionEn": "Description for Item 1",
+        "price": 10.0,
+        "image": "https://img.freepik.com/free-photo/beautiful-car-washing-service_23-2149212221.jpg"
+    },
+    "ZuFQyEH7tMbCLvPdKsWx": {
+        "id": 2,
+        "nameEn": "Item 2",
+        "nameAr": "العنصر 2",
+        "descriptionAr": "وصف العنصر 2",
+        "descriptionEn": "Description for Item 2",
+        "price": 20.0,
+        "image": "https://img.freepik.com/free-photo/beautiful-car-washing-service_23-2149212221.jpg"
+    },
+    "YeKTpzRA4hNGMuXoVqSb": {
+        "id": 3,
+        "nameEn": "Item 3",
+        "nameAr": "العنصر 3",
+        "descriptionAr": "وصف العنصر 3",
+        "descriptionEn": "Description for Item 3",
+        "price": 30.0,
+        "image": "https://img.freepik.com/free-photo/beautiful-car-washing-service_23-2149212221.jpg"
+    }
+}

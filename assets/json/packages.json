@@ -1,0 +1,91 @@
+{
+    "oneTimePackages": [
+        {
+            "nameAr": "تلميع داخلي",
+            "descriptionAr": "هذه حزمة لمرة واحدة يمكن شراؤها مرة واحدة.",
+            "nameEn": "One-Time Wash",
+            "descriptionEn": "This is a one-time wash package that can be purchased once.",
+            "price": 199.99,
+            "salePrice": 149.99,
+            "sale": true,
+            "percentage": 25,
+            "type": "one_time",
+            "count": 1,
+            "currency": "SA",
+            "id": "one_time_package_001",
+            "image": "https://img.freepik.com/free-photo/beautiful-car-washing-service_23-2149212221.jpg",
+            "endDate": "2025-07-11T05:32:20.926Z",
+            "showInAdds": true
+        },
+        {
+            "nameAr": "تلميع خارجي و داخلي",
+            "descriptionAr": "هذه حزمة لمرة واحدة يمكن شراؤها مرة واحدة.",
+            "nameEn": "In and Out Polish",
+            "descriptionEn": "This is a one-time in and out polish package that can be purchased once.",
+            "price": 299.99,
+            "salePrice": 249.99,
+            "sale": true,
+            "percentage": 17,
+            "type": "one_time",
+            "count": 1,
+            "currency": "SA",
+            "id": "one_time_package_002",
+            "image": "https://img.freepik.com/free-photo/beautiful-car-washing-service_23-2149212221.jpg",
+            "endDate": "2025-07-11T05:32:20.926Z",
+            "showInAdds": true
+        },
+        {
+            "nameAr": "غسلة خارجي",
+            "descriptionAr": "هذه حزمة لمرة واحدة يمكن شراؤها مرة واحدة.",
+            "nameEn": "Outer Polish",
+            "descriptionEn": "This is a one-time outer polish package that can be purchased once.",
+            "price": 59.99,
+            "salePrice": 49.99,
+            "sale": true,
+            "percentage": 13,
+            "type": "one_time",
+            "count": 1,
+            "currency": "SA",
+            "id": "one_time_package_003",
+            "image": "https://img.freepik.com/free-photo/beautiful-car-washing-service_23-2149212221.jpg",
+            "endDate": "2025-07-11T05:32:20.926Z",
+            "showInAdds": false
+        }
+    ],
+    "subscriptionPackages": [
+        {
+            "nameAr": "اشتراك شهري",
+            "descriptionAr": "هذه حزمة اشتراك شهرية يمكن تجديدها شهريًا.",
+            "nameEn": "Monthly Subscription",
+            "descriptionEn": "This is a monthly subscription package that can be renewed monthly.",
+            "price": 499.99,
+            "salePrice": 399.99,
+            "sale": true,
+            "percentage": 20,
+            "type": "subscription",
+            "count": 4,
+            "currency": "SA",
+            "id": "subscription_package_001",
+            "image": "https://img.freepik.com/free-photo/beautiful-car-washing-service_23-2149212221.jpg",
+            "endDate": "2025-07-11T05:32:20.926Z",
+            "showInAdds": true
+        },
+        {
+            "nameAr": "اشتراك سنوي",
+            "descriptionAr": "هذه حزمة اشتراك سنوية يمكن تجديدها سنويًا.",
+            "nameEn": "Annual Subscription",
+            "descriptionEn": "This is an annual subscription package that can be renewed annually.",
+            "price": 499.99,
+            "salePrice": 399.99,
+            "sale": true,
+            "percentage": 20,
+            "type": "subscription",
+            "count": 10,
+            "currency": "SA",
+            "id": "subscription_package_002",
+            "image": "https://img.freepik.com/free-photo/beautiful-car-washing-service_23-2149212221.jpg",
+            "endDate": "2025-07-11T05:32:20.926Z",
+            "showInAdds": true
+        }
+    ]
+}

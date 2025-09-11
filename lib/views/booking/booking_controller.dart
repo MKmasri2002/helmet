@@ -1,0 +1,253 @@
+import 'dart:convert';
+import 'dart:developer';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:helmet_customer/models/car_sub_type_model.dart';
+import 'package:helmet_customer/models/car_type_model.dart';
+import 'package:helmet_customer/models/user_cars_list.dart';
+import 'package:helmet_customer/models/wash_models/wash_items.dart';
+import 'package:helmet_customer/utils/constants.dart';
+import 'package:helmet_customer/utils/tools/tools.dart';
+import 'package:helmet_customer/views/cart/cart_binding.dart';
+import 'package:helmet_customer/views/cart/cart_screen.dart';
+import 'package:helmet_customer/views/home/home_controller.dart';
+import 'package:helmet_customer/views/order_status/order_status_binding.dart';
+import 'package:helmet_customer/views/order_status/order_status_view.dart';
+import 'package:moyasar/moyasar.dart';
+
+class BookingController extends GetxController {
+  GoogleMapController? mapController;
+  int totalPrice = 0;
+  UserCarsList selectedCar = UserCarsList();
+  List<CarTypeModel> carTypes = [];
+  List<CarTypeModel> carTypesAfterFiltering = [];
+  List<CarSubTypeModel> carSubTypes = [];
+  List<CarSubTypeModel> carSubTypes2 = [];
+  List<CarSubTypeModel> carSubTypesAfterFiltering = [];
+
+  List<UserCarsList> myCars = [];
+  List<UserCarsList> selectedCarList = [];
+  TimeOfDay selectedTime = TimeOfDay.now();
+
+  DateTime selectedDateTime = DateTime.now();
+  List<int> timesDay = List.generate(24, (index) => index);
+  bool didUserSeletedDateOfDay = false;
+  bool didUserSeletedCar = false;
+  bool didUserSeletedDate = false;
+  List<WashItemsModel> washItems = [];
+
+  bool applePay = false;
+  bool creditCard = false;
+
+  @override
+  void onInit() async {
+    super.onInit();
+    if (washDataTripModel.paymentMethod == null) {
+      totalPrice = washDataTripModel.washPrice!.toInt();
+    }
+    await getMyCars();
+    await getWashItems();
+  }
+
+  Future<List<UserCarsList>> getMyCars() async {
+    List<UserCarsList> temp = [];
+    final DatabaseReference collectionReference3 =
+        FirebaseDatabase.instance.ref("Users");
+    await collectionReference3
+        .child(FirebaseAuth.instance.currentUser!.uid)
+        .child("cars")
+        .get()
+        .then(
+      (value) {
+        for (var d in value.children) {
+          final data = jsonDecode(jsonEncode(d.value));
+          temp.add(UserCarsList.fromJson(data));
+        }
+      },
+    );
+    myCars = temp;
+    update();
+    return temp;
+  }
+
+  String formatHour(BuildContext context, int hour) {
+    final time = TimeOfDay(hour: hour, minute: 0);
+    return time.format(context); // يرجع "2:00 PM" أو "14:00" حسب لغة الجهاز
+  }
+
+  bool checkTimeInList(int dates) {
+    for (var data in schedulesList) {
+      DateTime time = DateTime.parse(data.time!);
+      if (time.hour == dates && time.day == selectedDateTime.day) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  void createOrder() async {
+    if (washDataTripModel.paymentMethod != null) {
+      log("create order");
+      await setOrderAlreadyPayed();
+
+      return;
+    }
+    if (driverList.isEmpty) {
+      Get.snackbar("Error", "No drivers available in this area",
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red[400],
+          colorText: Colors.white);
+      return;
+    }
+    appTools.showLoading();
+    selectedDateTime = DateTime(
+      selectedDateTime.year,
+      selectedDateTime.month,
+      selectedDateTime.day,
+      selectedTime.hour,
+    );
+    washDataTripModel.areaId = currentAddress.value.areaId;
+    washDataTripModel.createdAt = DateTime.now().toString();
+    washDataTripModel.userName = userModel.name;
+    washDataTripModel.userId = userModel.uid;
+    washDataTripModel.washTimeDay = selectedTime.toString();
+    washDataTripModel.washTimeDate = selectedDateTime.toString();
+    washDataTripModel.userLat = currentAddress.value.latitude!;
+    washDataTripModel.userLng = currentAddress.value.longitude!;
+    washDataTripModel.driverName = driverList[0].fullName;
+    washDataTripModel.driverPhone = driverList[0].phoneNumber;
+    if (washDataTripModel.washCount! > 1) {
+      washDataTripModel.washCount = washDataTripModel.washCount! - 1;
+    }
+    Get.back();
+    Get.back();
+    Get.back();
+    Get.to(
+      () => const CartScreen(
+        showTime: true,
+      ),
+      binding: CartBinding(),
+    );
+  }
+
+  Future<void> setOrderAlreadyPayed() async {
+    if (driverList.isEmpty) {
+      Get.snackbar("Error", "No drivers available in this area");
+      return;
+    }
+
+    log("Order added to driver: ${driverList[0].orders!.length}");
+    if (driverList[0].orders!.contains(washDataTripModel.id!) &&
+        washDataTripModel.washCount! != 0 &&
+        totalPrice.toInt() == 0) {
+      Get.back();
+      Get.snackbar(
+        "Error",
+        "Order already exists for this driver",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red[400],
+        colorText: Colors.white,
+      );
+      Get.to(
+        () => const OrderStatusView(),
+        binding: OrderStatusBinding(),
+        arguments: washDataTripModel,
+      );
+      return;
+    }
+    washDataTripModel.carBrand = selectedCar.brand;
+    washDataTripModel.carType = selectedCar.model;
+    washDataTripModel.colorCode = selectedCar.color;
+    selectedDateTime = DateTime(
+      selectedDateTime.year,
+      selectedDateTime.month,
+      selectedDateTime.day,
+      selectedTime.hour,
+    );
+    washDataTripModel.areaId = currentAddress.value.areaId;
+    washDataTripModel.createdAt = DateTime.now().toString();
+    washDataTripModel.userName = userModel.name;
+    washDataTripModel.userId = userModel.uid;
+    washDataTripModel.washTimeDay = selectedTime.toString();
+    washDataTripModel.washTimeDate = selectedDateTime.toString();
+    washDataTripModel.userLat = currentAddress.value.latitude!;
+    washDataTripModel.userLng = currentAddress.value.longitude!;
+    if (washDataTripModel.washCount! > 1) {
+      washDataTripModel.washCount = washDataTripModel.washCount! - 1;
+    }
+    washDataTripModel.driverName = driverList[0].fullName;
+    washDataTripModel.driverPhone = driverList[0].phoneNumber;
+    DatabaseReference documentReference =
+        FirebaseDatabase.instance.ref("orders/${washDataTripModel.id}");
+    await documentReference.set(washDataTripModel.toJson());
+    driverList[0].orders!.add(washDataTripModel.id!);
+    FirebaseDatabase.instance
+        .ref("driver/${driverList[0].id}")
+        .set(driverList[0].toJson());
+
+    // Additional logic for setting the order can be added here
+    // update user order history
+    DatabaseReference userOrdersRef =
+        FirebaseDatabase.instance.ref("Users/${userModel.uid}/order");
+    washDataTripModel.washStatus = 'active';
+    await userOrdersRef
+        .child(washDataTripModel.id!)
+        .set(washDataTripModel.toJson());
+    for (WashItemsModel item in washItemsAfterFiltering) {
+      if (item.quantity! > 0) {
+        await userOrdersRef.child(item.id!).set(item.toJson());
+      }
+    }
+    Get.put(HomeController()).getAllDriverInArea();
+    Get.back();
+    Get.to(
+      () => const OrderStatusView(),
+      binding: OrderStatusBinding(),
+      arguments: washDataTripModel,
+    );
+  }
+
+  Future<void> getWashItems() async {
+    // TODO: Implement logic to fetch wash items from Firebase or any other source
+    final DatabaseReference collectionReference =
+        FirebaseDatabase.instance.ref("items");
+    await collectionReference.get().then((value) {
+      Map<String, dynamic> data = jsonDecode(jsonEncode(value.value));
+
+      for (var item in data.keys) {
+        washItems.add(WashItemsModel.fromJson(data[item]));
+      }
+      log("Wash items: ${washItems.length}");
+      update();
+    }).catchError((error) {
+      log("Error getting wash items: $error");
+    });
+  }
+
+  void onPaymentResult(result) async {
+    if (result is PaymentResponse) {
+      switch (result.status) {
+        case PaymentStatus.paid:
+          // handle success.
+          // save payment response to database
+
+          appTools.unFocusKeyboard(Get.context!);
+          await Get.put(HomeController()).getAllUserOrder();
+          createOrder();
+          break;
+        case PaymentStatus.failed:
+          // handle failure.
+          break;
+        case PaymentStatus.initiated:
+          break;
+        case PaymentStatus.authorized:
+          break;
+        case PaymentStatus.captured:
+          break;
+      }
+    }
+  }
+}
