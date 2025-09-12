@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/theme/app_colors.dart';
-import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/views/address_book/add_address.dart';
 import 'package:helmet_customer/views/address_book/address_book_controller.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
@@ -50,7 +49,7 @@ class AddressBookView extends StatelessWidget {
               : ListView.builder(
                   itemCount: userModel.userAddresses!.length,
                   itemBuilder: (context, index) {
-                    return  userModel.userAddresses!.length != 0
+                    return  userModel.userAddresses!.isNotEmpty
                         ? ListTile(
                             title: Text(userModel.userAddresses![index].title!),
                             subtitle: Text(userModel.userAddresses![index].address!),

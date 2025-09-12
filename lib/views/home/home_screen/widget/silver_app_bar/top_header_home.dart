@@ -28,7 +28,7 @@ class TopHeaderHome extends StatelessWidget {
     );
   }
 
-  Widget _buildAddressWidget() {
+  Widget buildAddressWidget() {
     return GestureDetector(
       onTap: _goToAddressBook,
       child: CustomText(

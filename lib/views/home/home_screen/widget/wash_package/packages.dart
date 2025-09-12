@@ -73,8 +73,6 @@ class Packages extends StatelessWidget {
                   washTitleAr: packages[index].nameAr,
                   washTitleEn: packages[index].nameEn,
                 );
-                print(washDataTripModel.toString());
-                print("end");
                 Get.to(() => const CartScreen(), binding: CartBinding());
               },
               child: Container(

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:helmet_customer/models/wash_models/package_model.dart';
 
@@ -17,14 +15,9 @@ class WashPackageRepository {
               PackageModel.fromJson(Map<String, dynamic>.from(entry.value));
           return package;
         }).toList();
-        log("mkmasri");
-        for (PackageModel s in packages) {
-          print(s.toString());
-        }
+
         return packages;
-      } catch (e) {
-        log('Error fetching wash packages: $e');
-      }
+      } catch (e) {}
     }
 
     return [];

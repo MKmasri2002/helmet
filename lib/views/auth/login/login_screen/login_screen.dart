@@ -6,7 +6,6 @@ import 'package:helmet_customer/utils/colors/color1.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
-import 'package:helmet_customer/views/widget/button.dart';
 import 'package:helmet_customer/views/auth/login/login_screen/login_screen_widget/login_screen_rich_text.dart';
 import 'package:helmet_customer/views/widget/field/field1.dart';
 import 'package:helmet_customer/views/widget/text/t1.dart';
@@ -66,7 +65,6 @@ class LoginScreen extends StatelessWidget {
                         children: [
                           TextFormField1(
                             onChanged: (val) {
-                              print(val);
                               controller.phone = val;
                               controller.update();
                             },

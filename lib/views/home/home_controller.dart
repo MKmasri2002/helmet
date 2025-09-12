@@ -39,7 +39,6 @@ class HomeController extends GetxController {
   void getAllData() async {
     if (FirebaseAuth.instance.currentUser != null) {
       userModel.uid = FirebaseAuth.instance.currentUser!.uid.toString();
-      print("user exist${FirebaseAuth.instance.currentUser!.uid.toString()}");
       log("uid : ${userModel.uid!}");
     }
     log("uid : ${userModel.uid!}");
@@ -108,12 +107,7 @@ class HomeController extends GetxController {
     userModel = await AuthRepository.getCurrentUserInfo(userModel.uid!);
     userModel.userAddresses =
         await AuthRepository.getCurrentUserAdresses(userModel.uid!);
-    if (userModel.uid == null) {
-      print("null");
-    } else {
-      log("here uid : ${userModel.uid!}");
-      print(userModel.toString());
-    }
+
   }
 
   void getAllAreas() {

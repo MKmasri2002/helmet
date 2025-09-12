@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/models/wash_models/package_model.dart';
 import 'package:helmet_customer/models/wash_models/wash_data_trip_model.dart';
-import 'package:helmet_customer/models/wash_models/wash_package_model.dart';
 import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/views/booking/booking_binding.dart';
@@ -62,7 +61,7 @@ class CaruselAdsHome extends StatelessWidget {
       onTap: _handleTap,
       child: Center(
         child: Image.network(
-          adsData.image!,
+          adsData.image,
           // height: 225,
           width: AppSize.width,
           fit: BoxFit.cover,

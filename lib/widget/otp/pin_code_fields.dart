@@ -8,8 +8,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:helmet_customer/theme/app_colors.dart';
-import 'package:helmet_customer/theme/gradient_box_border.dart';
 import 'package:helmet_customer/widget/otp/src/cursor_painter.dart';
 part 'src/models/haptic_feedback_type.dart';
 part 'src/models/animation_type.dart';

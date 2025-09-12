@@ -4,9 +4,9 @@ import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/views/home/home_screen/widget/silver/current_package_widget.dart';
 
 
-class HS_CarouselSliderBuilder extends StatelessWidget {
+class HomeScreenCarouselSliderBuilder extends StatelessWidget {
   final List userWashDataTripModel;
-  const HS_CarouselSliderBuilder({super.key, required this.userWashDataTripModel});
+  const HomeScreenCarouselSliderBuilder({super.key, required this.userWashDataTripModel});
 
   @override
   Widget build(BuildContext context) {

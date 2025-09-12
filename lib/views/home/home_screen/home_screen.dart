@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:helmet_customer/theme/app_colors.dart';
 import 'package:helmet_customer/utils/widgets/custom_nav_bar.dart';
 import 'package:helmet_customer/views/home/home_screen/widget/silver_app_bar/silver_app_bar.dart';
 import 'package:helmet_customer/views/home/home_screen/widget/silver/silvers.dart';

@@ -85,7 +85,7 @@ class CartController extends GetxController {
           washDataTripModel.userName = userModel.name;
           washDataTripModel.userId = userModel.uid;
           washDataTripModel.userPhone = userModel.phone;
-          if (driverList != null && driverList.isNotEmpty) {
+          if (driverList.isNotEmpty) {
             washDataTripModel.driverName = driverList[0].fullName;
             washDataTripModel.driverPhone = driverList[0].phoneNumber;
           } else {

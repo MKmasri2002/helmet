@@ -37,7 +37,7 @@ class Silvers extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                     const SizedBox(height: 16),
-                    HS_CarouselSliderBuilder(
+                    HomeScreenCarouselSliderBuilder(
                         userWashDataTripModel: ctrl.userWashDataTripModel),
                     const SizedBox(height: 24),
                   ],

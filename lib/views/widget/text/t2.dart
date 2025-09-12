@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:helmet_customer/theme/app_colors.dart';
 
 class T2 extends StatelessWidget {
   final String text;

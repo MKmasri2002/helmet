@@ -564,7 +564,7 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
     return relevantInActiveColor;
   }
 
-  bool _selectedGradiant(int index) {
+  bool selectedGradiant(int index) {
     if (((_selectedIndex == index) ||
             (_selectedIndex == index + 1 && index + 1 == widget.length)) &&
         _focusNode!.hasFocus) {
@@ -911,15 +911,7 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
       result.add(
         Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            border: GradientBoxBorder(
-              width: 2,
-              gradient: LinearGradient(
-                colors: _selectedGradiant(i)
-                    ? AppColors.mainGradiant
-                    : AppColors.greyGradiant,
-              ),
-            ),
+            borderRadius: BorderRadius.circular(8),
           ),
           padding: _pinTheme.fieldOuterPadding,
           child: AnimatedContainer(
@@ -938,7 +930,7 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
               shape: _pinTheme.shape == PinCodeFieldShape.circle
                   ? BoxShape.circle
                   : BoxShape.rectangle,
-              borderRadius: borderRadius,
+              borderRadius: BorderRadius.circular(8),
               border: _pinTheme.shape == PinCodeFieldShape.underline
                   ? Border(
                       bottom: BorderSide(

@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:helmet_customer/models/response_model.dart';
@@ -115,9 +113,7 @@ class AuthRepository {
         final Map<String, dynamic> data =
             Map<String, dynamic>.from(snapshot.value as Map);
         userModel = UserModel.fromJson(data);
-        if (userModel.uid != null) {
-          log("yesssssssssssssssssss");
-        }
+
       } else {
         FirebaseAuth.instance.signOut();
       }
@@ -140,13 +136,9 @@ class AuthRepository {
               UserAddresses.fromJson(Map<String, dynamic>.from(entry.value));
           return address;
         }).toList();
-        log("mkmasri");
-        for (UserAddresses s in addresses) {
-          print(s.toString());
-        }
+
         return addresses;
       } catch (e) {
-        log('Error fetching wash packages: $e');
       }
       }
     return [];

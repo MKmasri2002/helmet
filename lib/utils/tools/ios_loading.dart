@@ -13,7 +13,7 @@ class IosLoading extends StatelessWidget {
           width: 100,
           height: 100,
           decoration: BoxDecoration(
-            color: AppColors.black.withOpacity(0.8),
+            color: AppColors.black.withValues(alpha: 0.8),
             borderRadius: BorderRadius.circular(16),
           ),
           child: Center(

@@ -3,10 +3,8 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/views/auth/otp/otp_binding.dart';
 import 'package:helmet_customer/views/auth/otp/otp_view.dart';
-import 'package:helmet_customer/utils/widgets/custom_dialog.dart';
 import 'package:helmet_customer/utils/widgets/custom_snake_bar.dart';
 
 class LoginController extends GetxController {
