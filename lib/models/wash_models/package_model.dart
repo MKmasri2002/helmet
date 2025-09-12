@@ -1,35 +1,35 @@
 class PackageModel {
-  final int count;
-  final String currency;
-  final String descriptionAr;
-  final String descriptionEn;
-  final String endDate;
-  final String id;
-  final String image;
-  final String nameAr;
-  final String nameEn;
-  final double percentage;
-  final double price;
-  final bool sale;
-  final double salePrice;
-  final bool showInAdds;
-  final String type;
+  final int? count;
+  final String? currency;
+  final String? descriptionAr;
+  final String? descriptionEn;
+  final String? endDate;
+  final String? id;
+  final String? image;
+  final String? nameAr;
+  final String? nameEn;
+  final double? percentage;
+  final double? price;
+  final bool? sale;
+  final double? salePrice;
+  final bool? showInAdds;
+  final String? type;
   PackageModel(
-      {required this.count,
-      required this.currency,
-      required this.descriptionAr,
-      required this.descriptionEn,
-      required this.endDate,
-      required this.id,
-      required this.image,
-      required this.nameAr,
-      required this.nameEn,
-      required this.percentage,
-      required this.price,
-      required this.sale,
-      required this.salePrice,
-      required this.showInAdds,
-      required this.type});
+      {this.count,
+      this.currency,
+      this.descriptionAr,
+      this.descriptionEn,
+      this.endDate,
+      this.id,
+      this.image,
+      this.nameAr,
+      this.nameEn,
+      this.percentage,
+      this.price,
+      this.sale,
+      this.salePrice,
+      this.showInAdds,
+      this.type});
 
   factory PackageModel.fromJson(Map<String, dynamic> json) {
     return PackageModel(

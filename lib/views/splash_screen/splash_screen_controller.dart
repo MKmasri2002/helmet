@@ -13,11 +13,23 @@ import 'package:helmet_customer/utils/notificatio_manager.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:video_player/video_player.dart';
 
 class SplashScreenController extends GetxController {
+  late VideoPlayerController videoController;
+  bool videoInitialized = false;
+
   @override
   void onInit() async {
     super.onInit();
+    videoController =
+        VideoPlayerController.asset('assets/video/splash_vid.mp4');
+    await videoController.initialize();
+    videoController.setLooping(true);
+    videoController.setVolume(0.0); // Mute video on start
+    videoController.play();
+    videoInitialized = true;
+    update();
     //FirebaseAuth.instance.signOut();
     await checkConnectivity();
     await getCurrentPosition();
@@ -28,13 +40,19 @@ class SplashScreenController extends GetxController {
     }
   }
 
+  @override
+  void onClose() {
+    videoController.dispose();
+    super.onClose();
+  }
+
   Future<void> checkConnectivity() async {
     final List<ConnectivityResult> connectivityResult =
         await (Connectivity().checkConnectivity());
 
 // This condition is for demo purposes only to explain every connection type.
 // Use conditions which work for your requirements.
-    
+
     if (!connectivityResult.contains(ConnectivityResult.mobile) &&
         !connectivityResult.contains(ConnectivityResult.wifi)) {
       // Mobile network available.
@@ -56,7 +74,7 @@ class SplashScreenController extends GetxController {
     } catch (e) {
       Get.snackbar('error', e.toString());
     }
-
+    await Future.delayed(const Duration(seconds: 3));
     if (FirebaseAuth.instance.currentUser != null) {
       Get.offAllNamed(RoutesString.home);
       return;

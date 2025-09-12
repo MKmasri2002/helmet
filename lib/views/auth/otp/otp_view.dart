@@ -45,8 +45,8 @@ class OtpView extends GetView<OtpController> {
                   ),
                   Headline5(
                     // title: 'Create your account',
-                    title: "${TranslationData
-                            .pleaseEnterTheVerificationCodeSentTo.tr}\n05xxxxxxxxx",
+                    title:
+                        "${TranslationData.pleaseEnterTheVerificationCodeSentTo.tr}\n05xxxxxxxxx",
                     style: TextThemeStyle().headline5.copyWith(
                           color: const Color.fromARGB(255, 118, 118, 120),
                         ),
@@ -63,8 +63,8 @@ class OtpView extends GetView<OtpController> {
                     animationType: AnimationType.scale,
                     pinTheme: PinTheme(
                       shape: PinCodeFieldShape.box,
-                      fieldHeight: 60,
-                      fieldWidth: 60,
+                      fieldHeight: 50,
+                      fieldWidth: 50,
                       borderWidth: 1.5,
                       borderRadius: BorderRadius.circular(4),
                       selectedColor: Colors.red.withValues(alpha: 0),
@@ -86,7 +86,7 @@ class OtpView extends GetView<OtpController> {
                     beforeTextPaste: (String? text) => true,
                   ),
                   const SizedBox(
-                    height: 40,
+                    height: 16,
                   ),
                   ProgressButton(
                     borderRadius: BorderRadius.circular(8),

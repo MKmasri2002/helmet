@@ -61,7 +61,7 @@ class CaruselAdsHome extends StatelessWidget {
       onTap: _handleTap,
       child: Center(
         child: Image.network(
-          adsData.image,
+          adsData.image!,
           // height: 225,
           width: AppSize.width,
           fit: BoxFit.cover,

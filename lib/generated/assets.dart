@@ -89,4 +89,8 @@ class SvgAssets {
   static const String biker = 'assets/svg/biker.svg';
   static const String reyal = 'assets/svg/reyal_black.svg';
   static const String crown = 'assets/svg/crown.svg';
+  static const String logo = 'assets/svg/Frame 11.svg';
+  static const String oneWash = 'assets/svg/one_wash.svg';
+  static const String giveStar = 'assets/svg/give-star.svg';
+  static const String location = 'assets/svg/location.svg';
 }

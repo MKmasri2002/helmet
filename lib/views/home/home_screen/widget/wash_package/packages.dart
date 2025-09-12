@@ -14,10 +14,9 @@ import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/views/widget/custom_text.dart';
 
 class Packages extends StatelessWidget {
+  const Packages({super.key, required this.packages, required this.title});
   final List packages;
   final String title;
-  const Packages({super.key, required this.packages, required this.title});
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(builder: (ctrl) {
@@ -73,7 +72,7 @@ class Packages extends StatelessWidget {
                   washTitleAr: packages[index].nameAr,
                   washTitleEn: packages[index].nameEn,
                   userLat: userModel.userAddresses![0].latitude ?? 0,
-                  userLng:userModel.userAddresses![0].longitude ?? 0,
+                  userLng: userModel.userAddresses![0].longitude ?? 0,
                 );
                 Get.to(() => const CartScreen(), binding: CartBinding());
               },
