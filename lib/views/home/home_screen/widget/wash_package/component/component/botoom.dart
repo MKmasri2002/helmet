@@ -33,7 +33,7 @@ class Botoom extends StatelessWidget {
           SvgPicture.asset(
             SvgAssets.reyal,
             height: 20,
-            width: 20,
+            width: 16,
             colorFilter:
                 const ColorFilter.mode(AppColors.white, BlendMode.srcIn),
           ),

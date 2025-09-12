@@ -24,7 +24,7 @@ class Packages extends StatelessWidget {
         Row(
           children: [
             const SizedBox(
-              width: 20,
+              width: 16,
             ),
             CustomText(
               text: title.tr,

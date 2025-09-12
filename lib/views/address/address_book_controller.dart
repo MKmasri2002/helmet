@@ -127,7 +127,6 @@ class AddressBookController extends GetxController {
       }
       addressList.clear();
       Map<String, dynamic> data = jsonDecode(jsonEncode(snapshot.value));
-      log('Users Dataqqqqq: $data');
       for (var key in data.keys) {
         AddressModel addressModel = AddressModel.fromJson(data[key]);
         addressList.add(addressModel);

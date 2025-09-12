@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/views/home/home_screen/widget/silver/h_s_carousel_slider_builder.dart';
+import 'package:helmet_customer/views/home/home_screen/widget/wash_package/one_time_wash.dart';
 import 'package:helmet_customer/views/home/home_screen/widget/wash_package/packages.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/views/widget/custom_text.dart';
@@ -36,11 +37,13 @@ class Silvers extends StatelessWidget {
                     userWashDataTripModel: ctrl.userWashDataTripModel),
                 const SizedBox(height: 24),
               ],
-              if (ctrl.subscriptionPackages.isNotEmpty)
-                Packages(
-                  packages: ctrl.oneTimePackages,
-                  title: "One time wash",
-                ),
+
+              if (ctrl.oneTimePackages.isNotEmpty)
+              OneTimeWash(package: ctrl.oneTimePackages),
+              //   Packages(
+              //     packages: ctrl.oneTimePackages,
+              //     title: "One time wash",
+              //   ),
               if (ctrl.subscriptionPackages.isNotEmpty)
                 Packages(
                   packages: ctrl.subscriptionPackages,

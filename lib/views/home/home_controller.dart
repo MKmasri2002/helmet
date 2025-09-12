@@ -165,9 +165,7 @@ class HomeController extends GetxController {
       }
       try {
         Map<String, dynamic> data = jsonDecode(jsonEncode(value.value));
-        log("User orders data keys: ${data.keys}");
         for (var key in data.keys) {
-          log("Driver key: ${data[key]}");
           DriverModel driverModel = DriverModel.fromJson(data[key]);
           if (currentAddress.value.areaId == driverModel.areaId) {
             driverList.add(driverModel);

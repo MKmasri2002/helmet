@@ -128,7 +128,7 @@ class OrderStatusView extends StatelessWidget {
                             const SizedBox(width: 4),
                             Image.asset(
                               Assets.reyalBlack,
-                              width: 20,
+                              width: 16,
                               height: 20,
                             ),
                           ],

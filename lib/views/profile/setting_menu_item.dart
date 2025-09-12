@@ -33,7 +33,7 @@ class SettingsMenuItem extends StatelessWidget {
               width: 24,
             ),
             const SizedBox(
-              width: 20,
+              width: 16,
             ),
             CustomText(
               text: text,

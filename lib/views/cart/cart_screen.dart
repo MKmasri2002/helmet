@@ -161,7 +161,7 @@ class CartScreen extends StatelessWidget {
                           SvgPicture.asset(
                             SvgAssets.reyal,
                             height: 20,
-                            width: 20,
+                            width: 16,
                             colorFilter: const ColorFilter.mode(
                                 AppColors.primary, BlendMode.srcIn),
                           ),
@@ -199,7 +199,7 @@ class CartScreen extends StatelessWidget {
                           SvgPicture.asset(
                             SvgAssets.reyal,
                             height: 20,
-                            width: 20,
+                            width: 16,
                             colorFilter: const ColorFilter.mode(
                                 AppColors.primary, BlendMode.srcIn),
                           )
@@ -234,7 +234,7 @@ class CartScreen extends StatelessWidget {
                           SvgPicture.asset(
                             SvgAssets.reyal,
                             height: 20,
-                            width: 20,
+                            width: 16,
                             colorFilter: const ColorFilter.mode(
                                 AppColors.primary, BlendMode.srcIn),
                           )
