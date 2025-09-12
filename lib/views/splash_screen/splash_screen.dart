@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/theme/app_colors.dart';
+import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/views/splash_screen/splash_screen_controller.dart';
 import '../../generated/assets.dart';
 
@@ -14,12 +15,12 @@ class SplashScreen extends StatelessWidget {
         backgroundColor: AppColors.primary,
         body: Stack(
           children: [
-            // Image.asset(
-            //   Assets.imagesSplashPg,
-            //   width: AppSize.width,
-            //   height: AppSize.height,
-            //   fit: BoxFit.cover,
-            // ),
+            Image.asset(
+             Assets.imagesSplashPg,
+              width: AppSize.width,
+              height: AppSize.height,
+              fit: BoxFit.cover,
+            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

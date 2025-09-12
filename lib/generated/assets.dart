@@ -7,17 +7,24 @@ class Assets {
   static const String newLogo = 'assets/images/helmet_logo.png';
   static const String imagesApple = 'assets/images/apple.png';
   static const String imagesAr = 'assets/images/ar.png';
-  static const String imagesChangeProfileIcon = 'assets/images/change_profile_icon.png';
+  static const String imagesChangeProfileIcon =
+      'assets/images/change_profile_icon.png';
   static const String imagesChart = 'assets/images/chart.png';
-  static const String imagesChooselanguageimage = 'assets/images/chooselanguageimage.png';
-  static const String imagesChooselanguageimagear = 'assets/images/chooselanguageimagear.png';
+  static const String imagesChooselanguageimage =
+      'assets/images/chooselanguageimage.png';
+  static const String imagesChooselanguageimagear =
+      'assets/images/chooselanguageimagear.png';
   static const String imagesCoinsIcon = 'assets/images/coins_icon.png';
-  static const String imagesCoinsNotification = 'assets/images/coins_notification.png';
+  static const String imagesCoinsNotification =
+      'assets/images/coins_notification.png';
   static const String imagesCupStarIcon = 'assets/images/cup_star_icon.png';
-  static const String imagesElectricityPng = 'assets/images/electricity_png.png';
-  static const String imagesEllipseBackground = 'assets/images/ellipse_background.png';
+  static const String imagesElectricityPng =
+      'assets/images/electricity_png.png';
+  static const String imagesEllipseBackground =
+      'assets/images/ellipse_background.png';
   static const String imagesEmail = 'assets/images/email.png';
-  static const String imagesEmptybackgroungapplogo = 'assets/images/emptybackgroungapplogo.png';
+  static const String imagesEmptybackgroungapplogo =
+      'assets/images/emptybackgroungapplogo.png';
   static const String imagesEn = 'assets/images/en.png';
   static const String imagesFeetPng = 'assets/images/feet_png.png';
   static const String imagesFiltersIcon = 'assets/images/filters_icon.png';
@@ -25,7 +32,8 @@ class Assets {
   static const String imagesGoogle = 'assets/images/google.png';
   static const String imagesHarageLogo = 'assets/images/harage_logo.png';
   static const String imagesHomeIcon = 'assets/images/home_icon.png';
-  static const String imagesHomeProgressBackground = 'assets/images/home_progress_background.png';
+  static const String imagesHomeProgressBackground =
+      'assets/images/home_progress_background.png';
   static const String imagesImg1 = 'assets/images/img1.png';
   static const String imagesImg11 = 'assets/images/img11.png';
   static const String imagesImg111 = 'assets/images/img111.png';
@@ -38,11 +46,15 @@ class Assets {
   static const String imagesImg33 = 'assets/images/img33.png';
   static const String imagesImg333 = 'assets/images/img333.png';
   static const String imagesImg33Ar = 'assets/images/img33_ar.png';
-  static const String imagesInviteFriend2Png = 'assets/images/invite_friend2_png.png';
-  static const String imagesInviteFriendPng = 'assets/images/invite_friend_png.png';
-  static const String imagesInviteNotification = 'assets/images/invite_notification.png';
+  static const String imagesInviteFriend2Png =
+      'assets/images/invite_friend2_png.png';
+  static const String imagesInviteFriendPng =
+      'assets/images/invite_friend_png.png';
+  static const String imagesInviteNotification =
+      'assets/images/invite_notification.png';
   static const String imagesLogoutIcon = 'assets/images/logout_icon.png';
-  static const String imagesMessageQuestion = 'assets/images/message-question.png';
+  static const String imagesMessageQuestion =
+      'assets/images/message-question.png';
   static const String imagesNextButton = 'assets/images/next_button.png';
   static const String imagesNextButtonAr = 'assets/images/next_button_ar.png';
   static const String imagesNotification = 'assets/images/notification.png';
@@ -54,9 +66,11 @@ class Assets {
   static const String imagesProfileIcon = 'assets/images/profile_icon.png';
   static const String imagesRejectIcon = 'assets/images/reject_icon.png';
   static const String imagesSettingsIcon = 'assets/images/settings_icon.png';
-  static const String imagesSplashPg = 'assets/images/splash_pg.jpg';
-  static const String imagesStepsNotification = 'assets/images/steps_notification.png';
-  static const String imagesTermsConditions = 'assets/images/terms_conditions.png';
+  static const String imagesSplashPg = 'assets/images/splash_background.png';
+  static const String imagesStepsNotification =
+      'assets/images/steps_notification.png';
+  static const String imagesTermsConditions =
+      'assets/images/terms_conditions.png';
   static const String imagesTimePng = 'assets/images/time_png.png';
   static const String imagesTranslate = 'assets/images/translate.png';
   static const String imagesUserCircle = 'assets/images/user_circle.png';
@@ -69,10 +83,9 @@ class Assets {
   static const String language = 'assets/svg/language.svg';
   static const String security = 'assets/svg/security.svg';
   static const String logout = 'assets/svg/Logout.svg';
-
-
 }
-class SvgAssets{
+
+class SvgAssets {
   static const String biker = 'assets/svg/biker.svg';
   static const String reyal = 'assets/svg/reyal_black.svg';
   static const String crown = 'assets/svg/crown.svg';

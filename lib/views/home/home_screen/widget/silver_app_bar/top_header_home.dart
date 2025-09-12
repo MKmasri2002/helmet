@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/views/widget/custom_text.dart';
-import 'package:helmet_customer/views/address_book/address_book_binding.dart';
-import 'package:helmet_customer/views/address_book/address_book_view.dart';
+import 'package:helmet_customer/views/address/address_book_binding.dart';
+import 'package:helmet_customer/views/address/address_book_view.dart';
 
 class TopHeaderHome extends StatelessWidget {
   const TopHeaderHome({super.key});

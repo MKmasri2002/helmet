@@ -56,9 +56,10 @@ class OrderStatusController extends GetxController {
 
   void userAddressMethod() async {
     userAddress = await appTools.getAddressFromLatLng(
-      washDataTripModel.userLat!,
-      washDataTripModel.userLng!,
+      userModel.userAddresses![0].latitude ?? 0,
+      userModel.userAddresses?[0].longitude ?? 0,
     );
+   
     update();
   }
 

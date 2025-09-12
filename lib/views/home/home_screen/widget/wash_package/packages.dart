@@ -72,6 +72,8 @@ class Packages extends StatelessWidget {
                   washTimeDate: packages[index].endDate,
                   washTitleAr: packages[index].nameAr,
                   washTitleEn: packages[index].nameEn,
+                  userLat: userModel.userAddresses![0].latitude ?? 0,
+                  userLng:userModel.userAddresses![0].longitude ?? 0,
                 );
                 Get.to(() => const CartScreen(), binding: CartBinding());
               },
