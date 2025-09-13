@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:helmet_customer/models/wash_models/package_model.dart';
 import 'package:helmet_customer/models/wash_models/wash_data_trip_model.dart';
 import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/views/cart/cart_binding.dart';
@@ -15,7 +14,7 @@ import 'package:helmet_customer/views/widget/custom_text.dart';
 
 class Packages extends StatelessWidget {
   const Packages({super.key, required this.packages, required this.title});
-  final List packages;
+  final List<PackageModel> packages;
   final String title;
   @override
   Widget build(BuildContext context) {
@@ -60,9 +59,6 @@ class Packages extends StatelessWidget {
                       duration: const Duration(seconds: 3));
                   return;
                 }
-                log("cheac auth");
-                log(FirebaseAuth.instance.currentUser.toString());
-                log(currentAddress.value.latitude.toString());
                 washDataTripModel = WashDataTripModel(
                   washType: packages[index].type!,
                   washPrice: packages[index].price,
@@ -81,7 +77,11 @@ class Packages extends StatelessWidget {
                   horizontal: 16,
                   vertical: 8,
                 ),
-                padding: const EdgeInsetsDirectional.all(16),
+                padding: const EdgeInsetsDirectional.only(
+                  start: 16,
+                  end: 16,
+                  bottom: 12,
+                ),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16),
@@ -104,7 +104,7 @@ class Packages extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 16,
                     ),
                     Botoom(content: packages[index].price.toString())
                   ],

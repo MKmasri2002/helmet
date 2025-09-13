@@ -16,6 +16,12 @@ class Silvers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(builder: (ctrl) {
+      // Debug print to check oneTimePackages
+      print('OneTimePackages length: ${ctrl.oneTimePackages.length}');
+      if (ctrl.oneTimePackages.isNotEmpty) {
+        print('OneTimePackages first item: ${ctrl.oneTimePackages.first.nameEn}');
+      }
+      
       return Container(
         decoration: const BoxDecoration(
           color: Color(0xffF0FAFF),
@@ -38,8 +44,27 @@ class Silvers extends StatelessWidget {
                 const SizedBox(height: 24),
               ],
 
-              if (ctrl.oneTimePackages.isNotEmpty)
-              OneTimeWash(package: ctrl.oneTimePackages),
+              if (ctrl.oneTimePackages.isNotEmpty) ...[
+                OneTimeWash(package: ctrl.oneTimePackages),
+                const SizedBox(height: 24),
+              ] else ...[
+                // Debug: Show message when no one-time packages are available
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.orange.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: Colors.orange.withOpacity(0.3)),
+                  ),
+                  child: const CustomText(
+                    text: 'Debug: No one-time packages available',
+                    fontSize: 14,
+                    color: Colors.orange,
+                  ),
+                ),
+                const SizedBox(height: 16),
+              ],
               //   Packages(
               //     packages: ctrl.oneTimePackages,
               //     title: "One time wash",

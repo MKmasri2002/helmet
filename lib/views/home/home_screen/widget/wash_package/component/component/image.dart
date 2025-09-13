@@ -19,7 +19,6 @@ class HomeImage extends StatelessWidget {
           width: 80.0,
           height: 80.0,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
             image: DecorationImage(
               image: imageProvider,
               fit: BoxFit.cover,

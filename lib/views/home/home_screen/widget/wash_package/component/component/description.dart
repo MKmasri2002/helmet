@@ -17,7 +17,7 @@ class PackageDescription extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(
-            height: 5,
+            height:16,
           ),
           CustomText(
             text: Get.locale!.languageCode == 'en'
