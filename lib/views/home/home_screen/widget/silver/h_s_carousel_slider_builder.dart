@@ -19,6 +19,7 @@ class HomeScreenCarouselSliderBuilder extends StatelessWidget {
         initialPage: 0,
         enableInfiniteScroll: false,
         scrollDirection: Axis.horizontal,
+        
       ),
       itemCount: userWashDataTripModel.length,
       itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {

@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -16,6 +15,7 @@ class LoginController extends GetxController {
   // Example method to generate a random OTP
   void sendOTP(String phoneNumber) async {
     // Check if the phone number is valid
+
     isLoading = true;
     update();
     if (phoneNumber.isEmpty) {
