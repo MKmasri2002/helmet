@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
     return GetBuilder<HomeController>(
       builder: (ctrl) {
         return Scaffold(
-          backgroundColor: const Color(0xff0A6082),
+          backgroundColor:  Colors.white,
           body: SafeArea(
             child: CustomScrollView(
               slivers: [

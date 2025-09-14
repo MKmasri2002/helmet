@@ -14,22 +14,25 @@ class PackageModel {
   final double? salePrice;
   final bool? showInAdds;
   final String? type;
-  PackageModel(
-      {this.count,
-      this.currency,
-      this.descriptionAr,
-      this.descriptionEn,
-      this.endDate,
-      this.id,
-      this.image,
-      this.nameAr,
-      this.nameEn,
-      this.percentage,
-      this.price,
-      this.sale,
-      this.salePrice,
-      this.showInAdds,
-      this.type});
+  final String? imageAdds;
+  PackageModel({
+    this.count,
+    this.currency,
+    this.descriptionAr,
+    this.descriptionEn,
+    this.endDate,
+    this.id,
+    this.image,
+    this.nameAr,
+    this.nameEn,
+    this.percentage,
+    this.price,
+    this.sale,
+    this.salePrice,
+    this.showInAdds,
+    this.type,
+    this.imageAdds,
+  });
 
   factory PackageModel.fromJson(Map<String, dynamic> json) {
     return PackageModel(
@@ -48,6 +51,7 @@ class PackageModel {
       salePrice: (json['salePrice'] ?? 0).toDouble(),
       showInAdds: json['showInAdds'] ?? false,
       type: json['type'] ?? '',
+      imageAdds: json['imageAdds'] ?? '',
     );
   }
 

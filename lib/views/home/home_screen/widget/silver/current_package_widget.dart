@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/models/wash_models/wash_data_trip_model.dart';
 import 'package:helmet_customer/theme/app_colors.dart';
-import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/custom_date.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/views/widget/custom_text.dart';
