@@ -117,7 +117,7 @@ class BookingView extends StatelessWidget {
                         height: 20,
                       ),
                       const ChooseCarsWidget(),
-                      if (ctrl.didUserSeletedCar) const DateBuilder(),
+                      if (ctrl.selectedCars.isNotEmpty) const DateBuilder(),
                       const SizedBox(
                         height: 20,
                       ),

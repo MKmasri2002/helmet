@@ -43,7 +43,7 @@ class HomeScreen extends StatelessWidget {
                   width: AppSize.width,
                   padding: const EdgeInsets.all(12),
                   decoration: const BoxDecoration(
-                      color:  AppColors.primary,
+                      color: AppColors.primary,
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(16),
                           topRight: Radius.circular(16))),
@@ -57,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                             AppColors.white, BlendMode.srcIn),
                       ),
                       SizedBox(
-                        width: AppSize.width * 0.03,
+                        width: AppSize.width * 0.01,
                       ),
                       Text(
                         ctrl.nearest!.remainingTime!.inHours >= 1
@@ -112,7 +112,7 @@ class HomeScreen extends StatelessWidget {
                         child: const Text(
                           "عرض",
                           textAlign: TextAlign.center,
-                          style:  TextStyle(
+                          style: TextStyle(
                             color: AppColors.primary,
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
