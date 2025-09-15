@@ -1,0 +1,32 @@
+class Car {
+  String? id;
+  String? brand;
+  String? color;
+  String? model;
+  String? plateNumber;
+
+  Car({this.id, this.brand, this.color, this.model, this.plateNumber});
+
+  Car.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    brand = json['brand'];
+    color = json['color'];
+    model = json['model'];
+    plateNumber = json['plate_number'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['brand'] = brand;
+    data['color'] = color;
+    data['model'] = model;
+    data['plate_number'] = plateNumber;
+    return data;
+  }
+  @override
+  String toString() {
+    // TODO: implement toString
+    return  "$brand";
+  }
+}

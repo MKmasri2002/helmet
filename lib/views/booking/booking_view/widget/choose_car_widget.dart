@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:helmet_customer/models/car.dart';
 import 'package:helmet_customer/utils/colors/color1.dart';
 import 'package:helmet_customer/views/widget/custom_text.dart';
 import 'package:helmet_customer/views/add_car/add_car_binding.dart';
@@ -37,7 +38,7 @@ class ChooseCarsWidget extends StatelessWidget {
                     // controller.onClickAddCar();
                     Get.to(() => const AddCarScreen(),
                         binding: AddCarBinding());
-                    ctrl.selectedCarList.clear();
+                    // ctrl.selectedCarList.clear();
                     ctrl.update();
                   },
                   child: Container(
@@ -70,20 +71,23 @@ class ChooseCarsWidget extends StatelessWidget {
                   height: 130,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: ctrl.myCars.length,
+                    itemCount: userModel.cars.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: GestureDetector(
                           onTap: () {
-                            ctrl.selectedCar = ctrl.myCars[index];
-                            ctrl.didUserSeletedCar = true;
-                            washDataTripModel.carBrand =
-                                ctrl.myCars[index].brand;
-                            washDataTripModel.carType = ctrl.myCars[index].model;
-                            washDataTripModel.colorCode = ctrl.myCars[index].color;
-                            ctrl.selectedCarList.clear();
-                            ctrl.update();
+                            // ctrl.selectedCar = ctrl.myCars[index];
+                            // ctrl.didUserSeletedCar = true;
+                            // washDataTripModel.cars.add(ctrl.myCars[index]);
+                            // ctrl.selectedCarList.clear();
+                            // ctrl.update();
+                            ctrl.selectAndUnSelectCar(car: userModel.cars[index]);
+
+                            print("Length : ${ctrl.selectedCars.length}");
+                            for (Car c in ctrl.selectedCars) {
+                              print(c.toString());
+                            }
                           },
                           child: Container(
                             height: 140,
@@ -92,7 +96,8 @@ class ChooseCarsWidget extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20),
                               color: Colors.white,
                               border: Border.all(
-                                color: ctrl.selectedCar == ctrl.myCars[index]
+                                color: ctrl.selectedCars
+                                        .contains(userModel.cars[index])
                                     ? primaryColor
                                     : Colors.white,
                                 width: 2,
@@ -107,14 +112,14 @@ class ChooseCarsWidget extends StatelessWidget {
                                   size: 60,
                                 ),
                                 CustomText(
-                                  text: ctrl.myCars[index].brand,
+                                  text: userModel.cars[index].brand,
                                   fontWeight: FontWeight.bold,
                                 ),
                                 const SizedBox(
                                   height: 4,
                                 ),
                                 CustomText(
-                                  text: ctrl.myCars[index].model,
+                                  text: userModel.cars[index].model,
                                   fontWeight: FontWeight.bold,
                                 )
                               ],

@@ -11,7 +11,7 @@ import 'package:helmet_customer/theme/app_colors.dart';
 import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/views/booking/booking_binding.dart';
-import 'package:helmet_customer/views/booking/booking_view.dart';
+import 'package:helmet_customer/views/booking/booking_view/booking_view.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/views/widget/custom_text.dart';
 

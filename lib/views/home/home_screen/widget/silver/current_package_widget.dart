@@ -7,7 +7,7 @@ import 'package:helmet_customer/utils/custom_date.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/views/widget/custom_text.dart';
 import 'package:helmet_customer/views/booking/booking_binding.dart';
-import 'package:helmet_customer/views/booking/booking_view.dart';
+import 'package:helmet_customer/views/booking/booking_view/booking_view.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/views/order_status/order_status_binding.dart';
 import 'package:helmet_customer/views/order_status/order_status_view.dart';

@@ -3,8 +3,10 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:helmet_customer/models/car.dart';
 import 'package:helmet_customer/models/cars_model.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
+import 'package:helmet_customer/views/booking/booking_controller.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 
 class AddCarController extends GetxController {
@@ -75,11 +77,16 @@ class AddCarController extends GetxController {
     }
     // Add car to the firestore database
     // the local database will be users/uid/cars/id/add car
+    userModel.cars.add(Car(
+      id: "",
+      plateNumber: plateNumberController.text,
+      brand: selectedBrand,
+      model: selectedModel,
+      color: selectedColorHex,
+    ));
+
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.instance;
-    firebaseDatabase
-        .ref("Users/${userModel.uid}/cars")
-        .push()
-        .set({
+    firebaseDatabase.ref("Users/${userModel.uid}/cars").push().set({
       "plate_number": plateNumberController.text,
       "brand": selectedBrand,
       "model": selectedModel,
@@ -90,6 +97,7 @@ class AddCarController extends GetxController {
       selectedModel = "Select Model";
       selectedColorHex = "Select Color";
       selectedColor = const Color(0xFF111111);
+      Get.find<BookingController>().update();
       Get.back();
       update();
     }).catchError((error) {
