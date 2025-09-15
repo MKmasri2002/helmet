@@ -6,15 +6,17 @@ import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/utils/colors/color1.dart';
 import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
+import 'package:helmet_customer/views/booking/booking_view/widget/location/booking_map.dart';
+import 'package:helmet_customer/views/booking/booking_view/widget/location/select_location.dart';
 import 'package:helmet_customer/views/widget/custom_text.dart';
 import 'package:helmet_customer/views/address/address_book_binding.dart';
 import 'package:helmet_customer/views/address/address_book_view.dart';
 import 'package:helmet_customer/views/booking/booking_controller.dart';
-import 'package:helmet_customer/views/booking/widget/buy_wash_items.dart';
-import 'package:helmet_customer/views/booking/widget/choose_car_widget.dart';
-import 'package:helmet_customer/views/booking/widget/date_builder.dart';
-import 'package:helmet_customer/views/booking/widget/payment_sheet.dart';
-import 'package:helmet_customer/views/booking/widget/time_of_day_timeline.dart';
+import 'package:helmet_customer/views/booking/booking_view/widget/buy_wash_items.dart';
+import 'package:helmet_customer/views/booking/booking_view/widget/choose_car_widget.dart';
+import 'package:helmet_customer/views/booking/booking_view/widget/date_builder.dart';
+import 'package:helmet_customer/views/booking/booking_view/widget/payment_sheet.dart';
+import 'package:helmet_customer/views/booking/booking_view/widget/time_of_day_timeline.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 
 class BookingView extends StatelessWidget {
@@ -41,84 +43,14 @@ class BookingView extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(
-                        height: 200,
-                        width: double.infinity,
-                        child: GoogleMap(
-                          initialCameraPosition: CameraPosition(
-                            target: LatLng(currentAddress.value.latitude!,
-                                currentAddress.value.longitude!),
-                            zoom: 14,
-                          ),
-                          markers: {
-                            Marker(
-                                markerId: const MarkerId("1"),
-                                position: LatLng(currentAddress.value.latitude!,
-                                    currentAddress.value.longitude!))
-                          },
-                          myLocationEnabled: false,
-                          myLocationButtonEnabled: true,
-                          onMapCreated: (GoogleMapController controller) {
-                            ctrl.mapController = controller;
-                            // move camera to the selected address
-                            if (currentAddress.value.latitude != null &&
-                                currentAddress.value.longitude != null) {
-                              ctrl.mapController!.animateCamera(
-                                CameraUpdate.newCameraPosition(
-                                  CameraPosition(
-                                    target: LatLng(
-                                        currentAddress.value.latitude!,
-                                        currentAddress.value.longitude!),
-                                    zoom: 14,
-                                  ),
-                                ),
-                              );
-                            }
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 8),
-                        child: Row(
-                          children: [
-                            Icon(Icons.location_on,
-                                color: primaryColor, size: 30),
-                            TextButton(
-                              onPressed: () async {
-                                await Get.to(() => const AddressBookView(),
-                                    binding: AddressBookBinding());
-                                // move camera to the selected address
-                                if (ctrl.mapController != null) {
-                                  ctrl.mapController!.animateCamera(
-                                    CameraUpdate.newCameraPosition(
-                                      CameraPosition(
-                                        target: LatLng(
-                                            currentAddress.value.latitude!,
-                                            currentAddress.value.longitude!),
-                                        zoom: 14,
-                                      ),
-                                    ),
-                                  );
-                                }
-                                ctrl.update();
-                              },
-                              child: CustomText(
-                                text: currentAddress.value.address ?? "",
-                                fontSize: 7,//14
-                                fontWeight: FontWeight.bold,
-                                maxLines: 5,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      const BookingMap(),
+                      const SelectLocation(),
                       const SizedBox(
                         height: 20,
                       ),
                       const ChooseCarsWidget(),
                       const Divider(),
-                      if (ctrl.didUserSeletedCar) const DateBuilder(),
+                      if (ctrl.selectedCars.isNotEmpty) const DateBuilder(),
                       const SizedBox(
                         height: 20,
                       ),

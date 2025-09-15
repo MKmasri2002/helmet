@@ -1,3 +1,5 @@
+import 'package:helmet_customer/models/car.dart';
+
 class WashDataTripModel {
   int? washCount;
   String? washCountDate;
@@ -14,10 +16,11 @@ class WashDataTripModel {
   String? userPhoto;
   double? userLat;
   double? userLng;
-  String? plateNumber;
-  String? carBrand;
-  String? carType;
-  String? colorCode;
+  List<Car> cars = [];
+  // String? plateNumber;
+  // String? carBrand;
+  // String? carType;
+  // String? colorCode;
   String? carImage;
   String? userAddress;
   String? driverName;
@@ -65,10 +68,10 @@ class WashDataTripModel {
     this.paymentTransactionId,
     this.paymentReceipt,
     this.paymentStatusMessage,
-    this.plateNumber,
-    this.carBrand,
-    this.carType,
-    this.colorCode,
+    // this.plateNumber,
+    // this.carBrand,
+    // this.carType,
+    // this.colorCode,
     this.carImage,
     this.id,
     this.createdAt,
@@ -106,10 +109,15 @@ class WashDataTripModel {
     paymentTransactionId = json['paymentTransactionId'];
     paymentReceipt = json['paymentReceipt'];
     paymentStatusMessage = json['paymentStatusMessage'];
-    plateNumber = json['plateNumber'];
-    carBrand = json['carBrand'];
-    carType = json['carType'];
-    colorCode = json['colorCode'];
+    if (json['cars'] != null) {
+      cars = (json['cars'] as List)
+          .map((e) => Car.fromJson(Map<String, dynamic>.from(e)))
+          .toList();
+    }
+    // plateNumber = json['plateNumber'];
+    // carBrand = json['carBrand'];
+    // carType = json['carType'];
+    // colorCode = json['colorCode'];
     carImage = json['carImage'];
     id = json['id'];
     createdAt = json['createdAt'];
@@ -149,10 +157,13 @@ class WashDataTripModel {
     data['paymentTransactionId'] = paymentTransactionId;
     data['paymentReceipt'] = paymentReceipt;
     data['paymentStatusMessage'] = paymentStatusMessage;
-    data['plateNumber'] = plateNumber;
-    data['carBrand'] = carBrand;
-    data['carType'] = carType;
-    data['colorCode'] = colorCode;
+    if (cars.isNotEmpty) {
+      data['cars'] = cars.map((e) => e.toJson()).toList();
+    }
+    // data['plateNumber'] = plateNumber;
+    // data['carBrand'] = carBrand;
+    // data['carType'] = carType;
+    // data['colorCode'] = colorCode;
     data['carImage'] = carImage;
     data['id'] = id;
     data['createdAt'] = createdAt;
@@ -187,10 +198,10 @@ class WashDataTripModel {
     sb.writeln('  userPhoto: $userPhoto');
     sb.writeln('  userLat: $userLat');
     sb.writeln('  userLng: $userLng');
-    sb.writeln('  plateNumber: $plateNumber');
-    sb.writeln('  carBrand: $carBrand');
-    sb.writeln('  carType: $carType');
-    sb.writeln('  colorCode: $colorCode');
+    // sb.writeln('  plateNumber: $plateNumber');
+    // sb.writeln('  carBrand: $carBrand');
+    // sb.writeln('  carType: $carType');
+     sb.writeln('  car: ${cars.length}');
     sb.writeln('  carImage: $carImage');
     sb.writeln('  userAddress: $userAddress');
     sb.writeln('  driverName: $driverName');
@@ -213,5 +224,4 @@ class WashDataTripModel {
     sb.writeln('}');
     return sb.toString();
   }
-
 }

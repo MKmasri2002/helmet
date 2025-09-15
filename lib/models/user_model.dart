@@ -1,3 +1,5 @@
+import 'package:helmet_customer/models/car.dart';
+
 class UserModel {
   String? accountStatus;
   int? coins;
@@ -17,6 +19,7 @@ class UserModel {
   List<String>? ongoingReservations;
   List<String>? completedReservations;
   List<UserAddresses>? userAddresses;
+  List<Car> cars = [];
   
 
   UserModel({
@@ -106,7 +109,8 @@ UserModel(
   userType: $userType,
   ongoingReservations: $ongoingReservations,
   completedReservations: $completedReservations,
-  userAddresses: ${userAddresses![0].toString()}
+  userAddresses: ${userAddresses![0].toString()},
+  cars ${cars[0].toString()}
 )
 ''';
   }
@@ -169,30 +173,3 @@ UserAddresses(
 
 }
 
-class Cars {
-  String? id;
-  String? brand;
-  String? color;
-  String? model;
-  String? plateNumber;
-
-  Cars({this.id, this.brand, this.color, this.model, this.plateNumber});
-
-  Cars.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    brand = json['brand'];
-    color = json['color'];
-    model = json['model'];
-    plateNumber = json['plate_number'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['brand'] = brand;
-    data['color'] = color;
-    data['model'] = model;
-    data['plate_number'] = plateNumber;
-    return data;
-  }
-}

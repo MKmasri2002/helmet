@@ -5,9 +5,9 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:helmet_customer/models/car.dart';
 import 'package:helmet_customer/models/car_sub_type_model.dart';
 import 'package:helmet_customer/models/car_type_model.dart';
-import 'package:helmet_customer/models/user_cars_list.dart';
 import 'package:helmet_customer/models/wash_models/wash_items.dart';
 import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
@@ -21,15 +21,15 @@ import 'package:moyasar/moyasar.dart';
 class BookingController extends GetxController {
   GoogleMapController? mapController;
   int totalPrice = 0;
-  UserCarsList selectedCar = UserCarsList();
-  List<CarTypeModel> carTypes = [];
-  List<CarTypeModel> carTypesAfterFiltering = [];
-  List<CarSubTypeModel> carSubTypes = [];
-  List<CarSubTypeModel> carSubTypes2 = [];
-  List<CarSubTypeModel> carSubTypesAfterFiltering = [];
+  // Car selectedCar = Car();
+  // List<CarTypeModel> carTypes = [];
+  // List<CarTypeModel> carTypesAfterFiltering = [];
+  // List<CarSubTypeModel> carSubTypes = [];
+  // List<CarSubTypeModel> carSubTypes2 = [];
+  // List<CarSubTypeModel> carSubTypesAfterFiltering = [];
 
-  List<UserCarsList> myCars = [];
-  List<UserCarsList> selectedCarList = [];
+  // List<Car> myCars = [];
+  List<Car> selectedCars = [];
   TimeOfDay selectedTime = TimeOfDay.now();
 
   DateTime selectedDateTime = DateTime.now();
@@ -48,30 +48,21 @@ class BookingController extends GetxController {
     if (washDataTripModel.paymentMethod == null) {
       totalPrice = washDataTripModel.washPrice!.toInt();
     }
-    await getMyCars();
+   
     await getWashItems();
   }
 
-  Future<List<UserCarsList>> getMyCars() async {
-    List<UserCarsList> temp = [];
-    final DatabaseReference collectionReference3 =
-        FirebaseDatabase.instance.ref("Users");
-    await collectionReference3
-        .child(FirebaseAuth.instance.currentUser!.uid)
-        .child("cars")
-        .get()
-        .then(
-      (value) {
-        for (var d in value.children) {
-          final data = jsonDecode(jsonEncode(d.value));
-          temp.add(UserCarsList.fromJson(data));
-        }
-      },
-    );
-    myCars = temp;
+  void selectAndUnSelectCar({required Car car}) {
+    if (selectedCars.contains(car)) {
+      selectedCars.removeWhere((e) => e == car);
+    } else {
+      selectedCars.add(car);
+    }
+    washDataTripModel.cars = selectedCars;
     update();
-    return temp;
   }
+
+  
 
   String formatHour(BuildContext context, int hour) {
     final time = TimeOfDay(hour: hour, minute: 0);
@@ -158,9 +149,8 @@ class BookingController extends GetxController {
       );
       return;
     }
-    washDataTripModel.carBrand = selectedCar.brand;
-    washDataTripModel.carType = selectedCar.model;
-    washDataTripModel.colorCode = selectedCar.color;
+    washDataTripModel.cars.addAll(selectedCars);
+    print(washDataTripModel.cars.length);
     selectedDateTime = DateTime(
       selectedDateTime.year,
       selectedDateTime.month,

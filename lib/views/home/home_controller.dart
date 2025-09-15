@@ -107,6 +107,9 @@ class HomeController extends GetxController {
     userModel = await AuthRepository.getCurrentUserInfo(userModel.uid!);
     userModel.userAddresses =
         await AuthRepository.getCurrentUserAdresses(userModel.uid!);
+    userModel.cars =
+        await AuthRepository.getUserCars(userModel.uid!);
+        
 
   }
 

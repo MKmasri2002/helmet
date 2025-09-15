@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:helmet_customer/models/car.dart';
 import 'package:helmet_customer/models/response_model.dart';
 import 'package:helmet_customer/models/user_model.dart';
 import 'package:helmet_customer/models/notification_model.dart';
@@ -138,6 +139,28 @@ class AuthRepository {
         }).toList();
 
         return addresses;
+      } catch (e) {
+      }
+      }
+    return [];
+  }
+
+  static Future<List<Car>> getUserCars(String uid) async {
+    //UserAddresses userAddresses = UserAddresses();
+      
+      DataSnapshot snapshot = await _collectionReference.child(uid).child("cars").get();
+
+      if (snapshot.exists) {
+        try {
+        final Map<String, dynamic> data =
+            Map<String, dynamic>.from(snapshot.value as Map);
+        final List<Car> cars = data.entries.map((entry) {
+          final car =
+              Car.fromJson(Map<String, dynamic>.from(entry.value));
+          return car;
+        }).toList();
+
+        return cars;
       } catch (e) {
       }
       }
