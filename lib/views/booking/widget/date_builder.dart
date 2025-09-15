@@ -11,7 +11,8 @@ class DateBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<BookingController>(
       builder: (ctrl) {
-        return SizedBox(
+        return Container(
+          color: const Color(0xffE1F4FD),
           height: 90,
           child: Padding(
             padding: const EdgeInsetsDirectional.only(start: 16),

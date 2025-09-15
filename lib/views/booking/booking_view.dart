@@ -105,7 +105,7 @@ class BookingView extends StatelessWidget {
                               },
                               child: CustomText(
                                 text: currentAddress.value.address ?? "",
-                                fontSize: 7,//14
+                                fontSize: 7, //14
                                 fontWeight: FontWeight.bold,
                                 maxLines: 5,
                               ),
@@ -117,7 +117,6 @@ class BookingView extends StatelessWidget {
                         height: 20,
                       ),
                       const ChooseCarsWidget(),
-                      const Divider(),
                       if (ctrl.didUserSeletedCar) const DateBuilder(),
                       const SizedBox(
                         height: 20,
