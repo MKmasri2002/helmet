@@ -87,7 +87,6 @@ class AddCarController extends GetxController {
         image:
             "https://raw.githubusercontent.com/filippofilip95/car-logos-dataset/master/logos/optimized/${selectedBrand.toLowerCase().replaceAll(' ', '-')}.png");
     userModel.cars.add(newCar);
-
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.instance;
     firebaseDatabase.ref("Users/${userModel.uid}/cars").push().set({
       "plate_number": newCar.plateNumber,

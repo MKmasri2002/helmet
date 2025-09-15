@@ -78,10 +78,11 @@ class ChooseCarsWidget extends StatelessWidget {
                         child: GestureDetector(
                           onTap: () {
                             // ctrl.selectedCar = ctrl.myCars[index];
-                            // ctrl.didUserSeletedCar = true;
+                            ctrl.didUserSeletedCar = true;
                             // washDataTripModel.cars.add(ctrl.myCars[index]);
                             // ctrl.selectedCarList.clear();
-                            // ctrl.update();
+                            ctrl.update();
+
                             ctrl.selectAndUnSelectCar(
                                 car: userModel.cars[index]);
 
