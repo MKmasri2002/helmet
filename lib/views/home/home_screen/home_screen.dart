@@ -42,8 +42,8 @@ class HomeScreen extends StatelessWidget {
                 Container(
                   width: AppSize.width,
                   padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                      color: AppColors.primary,
+                  decoration: const BoxDecoration(
+                      color:  AppColors.primary,
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(16),
                           topRight: Radius.circular(16))),
@@ -109,10 +109,10 @@ class HomeScreen extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               vertical: 14, horizontal: 40),
                         ),
-                        child: Text(
+                        child: const Text(
                           "عرض",
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
+                          style:  TextStyle(
                             color: AppColors.primary,
                             fontWeight: FontWeight.bold,
                             fontSize: 16,

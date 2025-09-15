@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:helmet_customer/generated/assets.dart';
 import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/utils/colors/color1.dart';
-import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
 import 'package:helmet_customer/views/booking/booking_view/widget/location/booking_map.dart';
 import 'package:helmet_customer/views/booking/booking_view/widget/location/select_location.dart';
 import 'package:helmet_customer/views/widget/custom_text.dart';
-import 'package:helmet_customer/views/address/address_book_binding.dart';
-import 'package:helmet_customer/views/address/address_book_view.dart';
 import 'package:helmet_customer/views/booking/booking_controller.dart';
 import 'package:helmet_customer/views/booking/booking_view/widget/buy_wash_items.dart';
 import 'package:helmet_customer/views/booking/booking_view/widget/choose_car_widget.dart';

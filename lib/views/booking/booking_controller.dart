@@ -1,13 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:helmet_customer/models/car.dart';
-import 'package:helmet_customer/models/car_sub_type_model.dart';
-import 'package:helmet_customer/models/car_type_model.dart';
 import 'package:helmet_customer/models/wash_models/wash_items.dart';
 import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
@@ -150,7 +147,7 @@ class BookingController extends GetxController {
       return;
     }
     washDataTripModel.cars.addAll(selectedCars);
-    print(washDataTripModel.cars.length);
+    log(washDataTripModel.cars.length.toString());
     selectedDateTime = DateTime(
       selectedDateTime.year,
       selectedDateTime.month,
@@ -201,7 +198,6 @@ class BookingController extends GetxController {
   }
 
   Future<void> getWashItems() async {
-    // TODO: Implement logic to fetch wash items from Firebase or any other source
     final DatabaseReference collectionReference =
         FirebaseDatabase.instance.ref("items");
     await collectionReference.get().then((value) {

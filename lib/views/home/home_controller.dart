@@ -171,7 +171,7 @@ class HomeController extends GetxController {
           if (!userWashDataTripModel.contains(areaModel)) {
             userWashDataTripModel.add(areaModel);
           }
-           print(userWashDataTripModel.length);
+           log(userWashDataTripModel.length.toString());
         }
       } catch (e) {
         log('Error fetching users Dsssssata: $e');
