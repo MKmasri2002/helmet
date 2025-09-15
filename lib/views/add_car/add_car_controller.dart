@@ -17,6 +17,7 @@ class AddCarController extends GetxController {
   String selectedModel = "Select Model";
   String selectedColorHex = "Select Color";
   Color selectedColor = const Color(0xFF111111);
+  String selectedImage = '';
   List<Map<String, dynamic>> carColorMap = [
     {"hex": const Color(0xFF000000), "color_code": "#000000"},
     {"hex": const Color(0xFFFFFFFF), "color_code": "#FFFFFF"},
@@ -77,22 +78,23 @@ class AddCarController extends GetxController {
     }
     // Add car to the firestore database
     // the local database will be users/uid/cars/id/add car
-    userModel.cars.add(Car(
+    Car newCar = Car(
         id: "",
         plateNumber: plateNumberController.text,
         brand: selectedBrand,
         model: selectedModel,
         color: selectedColorHex,
         image:
-            "https://raw.githubusercontent.com/filippofilip95/car-logos-dataset/master/logos/optimized/${selectedBrand.toLowerCase().replaceAll(' ', '-')}.png"));
-            
+            "https://raw.githubusercontent.com/filippofilip95/car-logos-dataset/master/logos/optimized/${selectedBrand.toLowerCase().replaceAll(' ', '-')}.png");
+    userModel.cars.add(newCar);
 
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.instance;
     firebaseDatabase.ref("Users/${userModel.uid}/cars").push().set({
-      "plate_number": plateNumberController.text,
-      "brand": selectedBrand,
-      "model": selectedModel,
-      "color": selectedColorHex,
+      "plate_number": newCar.plateNumber,
+      "brand": newCar.brand,
+      "model": newCar.model,
+      "color": newCar.color,
+      "image": newCar.image,
     }).then((value) {
       plateNumberController.clear();
       selectedBrand = "Select Brand";

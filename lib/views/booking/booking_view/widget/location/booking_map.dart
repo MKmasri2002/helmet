@@ -9,7 +9,6 @@ class BookingMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return GetBuilder<BookingController>(builder: (ctrl) {
       return SizedBox(
         height: 200,
