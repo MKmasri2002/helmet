@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -86,9 +88,9 @@ class ChooseCarsWidget extends StatelessWidget {
                             ctrl.selectAndUnSelectCar(
                                 car: userModel.cars[index]);
 
-                            print("Length : ${ctrl.selectedCars.length}");
+                            log("Length : ${ctrl.selectedCars.length}");
                             for (Car c in ctrl.selectedCars) {
-                              print(c.toString());
+                              log(c.toString());
                             }
                           },
                           child: Container(

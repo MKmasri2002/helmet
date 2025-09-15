@@ -31,19 +31,19 @@ class OrderStatusView extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Text(
+                      const Text(
                         "رقم الحجز  1238764",
                         style: TextStyle(
                             fontSize: 18, height: 1.5, color: Colors.black),
                       ),
-                      Icon(
+                      const Icon(
                         Icons.copy,
                         color: Color(0xff8193B3),
                       ),
                       SizedBox(
                         width: AppSize.width * 0.3,
                       ),
-                      Text(
+                      const Text(
                         "القادمة",
                         style: TextStyle(
                             fontSize: 20,
