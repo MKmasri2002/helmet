@@ -93,4 +93,5 @@ class SvgAssets {
   static const String oneWash = 'assets/svg/one_wash.svg';
   static const String giveStar = 'assets/svg/give-star.svg';
   static const String location = 'assets/svg/location.svg';
+  static const String stopWatch = 'assets/svg/stopWatch.svg';
 }

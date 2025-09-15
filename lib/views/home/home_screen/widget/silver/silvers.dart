@@ -17,11 +17,7 @@ class Silvers extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(builder: (ctrl) {
       // Debug print to check oneTimePackages
-      print('OneTimePackages length: ${ctrl.oneTimePackages.length}');
-      if (ctrl.oneTimePackages.isNotEmpty) {
-        print('OneTimePackages first item: ${ctrl.oneTimePackages.first.nameEn}');
-      }
-      
+
       return Container(
         decoration: const BoxDecoration(
           color: Color(0xffF0FAFF),
@@ -50,7 +46,8 @@ class Silvers extends StatelessWidget {
               ] else ...[
                 // Debug: Show message when no one-time packages are available
                 Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: Colors.orange.withOpacity(0.1),

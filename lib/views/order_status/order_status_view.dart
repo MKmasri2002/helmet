@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/generated/assets.dart';
+import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/utils/colors/color1.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
@@ -17,8 +18,9 @@ class OrderStatusView extends StatelessWidget {
     return GetBuilder<OrderStatusController>(
       builder: (ctrl) {
         return Scaffold(
+          backgroundColor: const Color.fromARGB(255, 224, 243, 252),
           appBar: AppBar(
-            title:  Text(TranslationData.orderStatus.tr),
+            title: Text(TranslationData.reservationDetailes.tr),
             centerTitle: true,
           ),
           body: Padding(
@@ -27,6 +29,30 @@ class OrderStatusView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Row(
+                    children: [
+                      Text(
+                        "رقم الحجز  1238764",
+                        style: TextStyle(
+                            fontSize: 18, height: 1.5, color: Colors.black),
+                      ),
+                      Icon(
+                        Icons.copy,
+                        color: Color(0xff8193B3),
+                      ),
+                      SizedBox(
+                        width: AppSize.width * 0.3,
+                      ),
+                      Text(
+                        "القادمة",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            height: 1.5,
+                            color: Color(0xff29C1F2)),
+                      ),
+                    ],
+                  ),
                   Align(
                     alignment: Alignment.center,
                     child: SvgPicture.asset(

@@ -81,6 +81,23 @@ class WashDataTripModel {
     this.areaId,
     this.userId,
   });
+  DateTime? get dateTime {
+    if (washTimeDate != null) {
+      try {
+        return DateTime.parse(washTimeDate!);
+      } catch (e) {
+        return null;
+      }
+    }
+    return null;
+  }
+
+  Duration? get remainingTime {
+    if (dateTime == null) return null;
+    final now = DateTime.now();
+    if (dateTime!.isBefore(now)) return Duration.zero;
+    return dateTime!.difference(now);
+  }
 
   WashDataTripModel.fromJson(Map<String, dynamic> json) {
     washCount = json['washCount'];
@@ -201,7 +218,7 @@ class WashDataTripModel {
     // sb.writeln('  plateNumber: $plateNumber');
     // sb.writeln('  carBrand: $carBrand');
     // sb.writeln('  carType: $carType');
-     sb.writeln('  car: ${cars.length}');
+    sb.writeln('  car: ${cars.length}');
     sb.writeln('  carImage: $carImage');
     sb.writeln('  userAddress: $userAddress');
     sb.writeln('  driverName: $driverName');

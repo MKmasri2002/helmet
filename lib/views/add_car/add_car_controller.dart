@@ -78,12 +78,14 @@ class AddCarController extends GetxController {
     // Add car to the firestore database
     // the local database will be users/uid/cars/id/add car
     userModel.cars.add(Car(
-      id: "",
-      plateNumber: plateNumberController.text,
-      brand: selectedBrand,
-      model: selectedModel,
-      color: selectedColorHex,
-    ));
+        id: "",
+        plateNumber: plateNumberController.text,
+        brand: selectedBrand,
+        model: selectedModel,
+        color: selectedColorHex,
+        image:
+            "https://raw.githubusercontent.com/filippofilip95/car-logos-dataset/master/logos/optimized/${selectedBrand.toLowerCase().replaceAll(' ', '-')}.png"));
+            
 
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.instance;
     firebaseDatabase.ref("Users/${userModel.uid}/cars").push().set({

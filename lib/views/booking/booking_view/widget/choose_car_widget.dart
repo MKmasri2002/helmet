@@ -82,7 +82,8 @@ class ChooseCarsWidget extends StatelessWidget {
                             // washDataTripModel.cars.add(ctrl.myCars[index]);
                             // ctrl.selectedCarList.clear();
                             // ctrl.update();
-                            ctrl.selectAndUnSelectCar(car: userModel.cars[index]);
+                            ctrl.selectAndUnSelectCar(
+                                car: userModel.cars[index]);
 
                             print("Length : ${ctrl.selectedCars.length}");
                             for (Car c in ctrl.selectedCars) {
@@ -106,10 +107,8 @@ class ChooseCarsWidget extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Icon(
-                                  CupertinoIcons.car_detailed,
-                                  color: primaryColor,
-                                  size: 60,
+                                Image.network(
+                                  "${userModel.cars[index].image}",
                                 ),
                                 CustomText(
                                   text: userModel.cars[index].brand,

@@ -201,7 +201,7 @@ const Map<String, String> en = {
   TranslationData.continueAsVistor: "Continue as Visitor",
   //////////////////////Home Page///////////////////////
   TranslationData.apartment: "Apartment",
-  TranslationData.shareAndWin:"Share & win",
+  TranslationData.shareAndWin: "Share & win",
   /////////////////////////////////////////////
   TranslationData.skip: "Skip",
   TranslationData.reservation: "Reservation",
@@ -244,8 +244,10 @@ const Map<String, String> en = {
   TranslationData.userLocation: "User location",
   TranslationData.confirm: "Confirm",
   TranslationData.trackYourOrder: "Track your order",
-  TranslationData.pleaseEnterTheVerificationCodeSentTo : "Please enter the verification code sent to",
-  TranslationData.resendCodeAfter :"Resend code after",
-  TranslationData.verifyYourPhoneNumber : "Verify your phone number",
-  TranslationData.verify : "Verify",
+  TranslationData.pleaseEnterTheVerificationCodeSentTo:
+      "Please enter the verification code sent to",
+  TranslationData.resendCodeAfter: "Resend code after",
+  TranslationData.verifyYourPhoneNumber: "Verify your phone number",
+  TranslationData.verify: "Verify",
+  TranslationData.reservationDetailes: "Reservation Detailes",
 };

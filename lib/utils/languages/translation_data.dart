@@ -21,6 +21,7 @@ class TranslationData {
   /////////////////////////////////////////////////////////
   static const String skip = 'skip';
   static const String reservation = 'reservation';
+  static const String reservationDetailes = 'reservation_detailes';
   static const String paymentDetails = 'payment_details';
   static const String paymentMethod = "payment_method";
   static const String payWithApplePay = "pay_with_apple_pay";

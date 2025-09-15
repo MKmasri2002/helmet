@@ -199,7 +199,7 @@ const Map<String, String> ar = {
   TranslationData.continueAsVistor: "متابعة كزائر",
   ///////////////////////Home Page///////////////////////////////
   TranslationData.apartment: "شقة",
-  TranslationData.shareAndWin:"شارك واربح",
+  TranslationData.shareAndWin: "شارك واربح",
   /////////////////////////////////////////////////////////////
   TranslationData.skip: "تخطي",
   TranslationData.reservation: "حجز",
@@ -242,9 +242,10 @@ const Map<String, String> ar = {
   TranslationData.userLocation: "موقع المستخدم",
   TranslationData.confirm: "تأكيد",
   TranslationData.trackYourOrder: "تتبع طلبك",
-  TranslationData.pleaseEnterTheVerificationCodeSentTo : "يرجى ادخال رمز التحقق المرسل إلى",
+  TranslationData.pleaseEnterTheVerificationCodeSentTo:
+      "يرجى ادخال رمز التحقق المرسل إلى",
   TranslationData.resendCodeAfter: "أعد إرسال الرمز بعد",
   TranslationData.verifyYourPhoneNumber: "التحقق من رقم جوالك",
   TranslationData.verify: "تحقق",
-  
+  TranslationData.reservationDetailes: "تفاصيل الحجز",
 };

@@ -29,14 +29,35 @@ class HomeController extends GetxController {
   List<PackageModel> subscriptionPackages = [];
 
   List<WashDataTripModel> userWashDataTripModel = [];
-
+  WashDataTripModel? nearest;
+  Duration? remainingTime;
+  Timer? _timer;
   @override
   void onInit() async {
-    getAllData();
+    await getAllData();
+    
+    nearest = getNearestOrder();
+    
+     _startTimer();
     super.onInit();
   }
 
-  void getAllData() async {
+  void _startTimer() {
+    if (nearest == null) return;
+
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      nearest = getNearestOrder();
+      update(); // تحدث الشاشة
+    });
+  }
+
+  @override
+  void onClose() {
+    _timer?.cancel();
+    super.onClose();
+  }
+
+ Future<void> getAllData() async {
     if (FirebaseAuth.instance.currentUser != null) {
       userModel.uid = FirebaseAuth.instance.currentUser!.uid.toString();
       log("uid : ${userModel.uid!}");
@@ -48,7 +69,7 @@ class HomeController extends GetxController {
     Get.lazyPut<AddressBookController>(() => AddressBookController());
     await Get.find<AddressBookController>().getCurrentPosition();
     getAllAreas();
-    getAllUserOrder();
+    await getAllUserOrder();
     await getAllDriverInArea();
 
     update();
@@ -107,10 +128,7 @@ class HomeController extends GetxController {
     userModel = await AuthRepository.getCurrentUserInfo(userModel.uid!);
     userModel.userAddresses =
         await AuthRepository.getCurrentUserAdresses(userModel.uid!);
-    userModel.cars =
-        await AuthRepository.getUserCars(userModel.uid!);
-        
-
+    userModel.cars = await AuthRepository.getUserCars(userModel.uid!);
   }
 
   void getAllAreas() {
@@ -153,6 +171,7 @@ class HomeController extends GetxController {
           if (!userWashDataTripModel.contains(areaModel)) {
             userWashDataTripModel.add(areaModel);
           }
+           print(userWashDataTripModel.length);
         }
       } catch (e) {
         log('Error fetching users Dsssssata: $e');
@@ -217,5 +236,21 @@ class HomeController extends GetxController {
     }).catchError((error) {
       log("Error getting schedules: $error");
     });
+  }
+
+  WashDataTripModel? getNearestOrder() {
+    DateTime now = DateTime.now();
+
+    // فلترة: بس الأوردرات القادمة
+    final upcoming = userWashDataTripModel
+        .where((o) => o.dateTime != null && o.dateTime!.isAfter(now))
+        .toList();
+
+    if (upcoming.isEmpty) return null;
+
+    // ترتيب حسب التاريخ
+    upcoming.sort((a, b) => a.dateTime!.compareTo(b.dateTime!));
+
+    return upcoming.first;
   }
 }
