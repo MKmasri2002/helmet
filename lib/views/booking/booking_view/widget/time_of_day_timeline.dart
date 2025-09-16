@@ -11,13 +11,11 @@ class TimeOfDayTimeline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<BookingController>(builder: (ctrl) {
-      return Padding(
-        padding: const EdgeInsetsDirectional.only(
-          start: 8.0,
-        ),
+      return Center(
         child: SizedBox(
           width: MediaQuery.sizeOf(context).width,
           child: Wrap(
+            alignment: WrapAlignment.center,
             spacing: 8.0, // Horizontal spacing between items
             runSpacing: 8.0, // Vertical spacing between rows
             children: List.generate(ctrl.timesDay.length, (index) {
