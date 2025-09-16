@@ -86,6 +86,7 @@ class AddCarController extends GetxController {
         color: selectedColorHex,
         image:
             "https://raw.githubusercontent.com/filippofilip95/car-logos-dataset/master/logos/optimized/${selectedBrand.toLowerCase().replaceAll(' ', '-')}.png");
+
     userModel.cars.add(newCar);
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.instance;
     firebaseDatabase.ref("Users/${userModel.uid}/cars").push().set({
@@ -94,6 +95,7 @@ class AddCarController extends GetxController {
       "model": newCar.model,
       "color": newCar.color,
       "image": newCar.image,
+
     }).then((value) {
       plateNumberController.clear();
       selectedBrand = "Select Brand";

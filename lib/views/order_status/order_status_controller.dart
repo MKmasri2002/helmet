@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:helmet_customer/models/wash_models/wash_data_trip_model.dart';
 import 'package:helmet_customer/models/wash_models/wash_items.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
@@ -9,6 +10,7 @@ import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class OrderStatusController extends GetxController {
+  GoogleMapController? mapController;
   WashDataTripModel washDataTripModel = WashDataTripModel();
   List<WashItemsModel> washItems = [];
   String userAddress = "";
@@ -47,7 +49,7 @@ class OrderStatusController extends GetxController {
   @override
   void onInit() async {
     washDataTripModel = Get.arguments as WashDataTripModel;
-    // get wash items from firebase in items
+    print(washDataTripModel.cars[0].toString());
     getItemByID();
     getOrderById();
     userAddressMethod();
@@ -59,7 +61,7 @@ class OrderStatusController extends GetxController {
       userModel.userAddresses![0].latitude ?? 0,
       userModel.userAddresses?[0].longitude ?? 0,
     );
-   
+
     update();
   }
 
