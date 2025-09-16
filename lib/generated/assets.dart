@@ -87,6 +87,7 @@ class Assets {
   static const String locationArrived = 'assets/images/location-arrived.png';
   static const String locationCheck = 'assets/images/location-check.png';
   static const String motorBike = 'assets/images/motorbike.png';
+  static const String iconCar = 'assets/images/icon-car.png';
 }
 
 class SvgAssets {
