@@ -1,0 +1,48 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:helmet_customer/theme/app_size.dart';
+import 'package:helmet_customer/views/home/home_controller.dart';
+import 'package:helmet_customer/views/order_status/order_status_controller.dart';
+
+class Component1 extends StatelessWidget {
+  const Component1({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<OrderStatusController>(builder: (ctrl) {
+      return Container(
+                  padding: EdgeInsets.all(16),
+                  width: AppSize.width,
+                  decoration: BoxDecoration(
+                    color: Colors.blue[300],
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(16),
+                        bottomRight: Radius.circular(16)),
+                  ),
+                  child: Row(
+                    children: [
+                      const Text(
+                        "جايك بالطريق",
+                        style: TextStyle(
+                            fontSize: 18, height: 1.5, color: Colors.white),
+                      ),
+                      SizedBox(
+                        width: AppSize.width * 0.4,
+                      ),
+                      Icon(
+                        Icons.car_crash,
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "${washDataTripModel.cars[0].brand ?? " "}  ${washDataTripModel.cars[0].model ?? " "}",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                );
+    });
+  }
+}
