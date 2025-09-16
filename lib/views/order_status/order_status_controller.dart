@@ -47,7 +47,7 @@ class OrderStatusController extends GetxController {
   @override
   void onInit() async {
     washDataTripModel = Get.arguments as WashDataTripModel;
-    // get wash items from firebase in items
+    print(washDataTripModel.cars[0].toString());
     getItemByID();
     getOrderById();
     userAddressMethod();
@@ -59,7 +59,7 @@ class OrderStatusController extends GetxController {
       userModel.userAddresses![0].latitude ?? 0,
       userModel.userAddresses?[0].longitude ?? 0,
     );
-   
+
     update();
   }
 

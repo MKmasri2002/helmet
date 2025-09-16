@@ -5,6 +5,8 @@ import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/utils/colors/color1.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
+import 'package:helmet_customer/views/booking/booking_view/widget/location/booking_map.dart';
+import 'package:helmet_customer/views/booking/booking_view/widget/location/select_location.dart';
 import 'package:helmet_customer/views/widget/custom_text.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/views/order_status/order_status_controller.dart';
@@ -18,18 +20,132 @@ class OrderStatusView extends StatelessWidget {
     return GetBuilder<OrderStatusController>(
       builder: (ctrl) {
         return Scaffold(
-          backgroundColor: const Color.fromARGB(255, 224, 243, 252),
           appBar: AppBar(
             title: Text(TranslationData.reservationDetailes.tr),
             centerTitle: true,
           ),
-          body: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: EdgeInsets.all(16),
+                  width: AppSize.width,
+                  decoration: BoxDecoration(
+                    color: Colors.blue[300],
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(16),
+                        bottomRight: Radius.circular(16)),
+                  ),
+                  child: Row(
+                    children: [
+                      const Text(
+                        "جايك بالطريق",
+                        style: TextStyle(
+                            fontSize: 18, height: 1.5, color: Colors.white),
+                      ),
+                      SizedBox(
+                        width: AppSize.width * 0.4,
+                      ),
+                      Icon(
+                        Icons.car_crash,
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "${washDataTripModel.cars[0].brand ?? " "}  ${washDataTripModel.cars[0].model ?? " "}",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 14, vertical: 30),
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: Colors.blue,
+                        backgroundImage: AssetImage(
+                          Assets.motorBike,
+                        ),
+                      ),
+                      HorizontalDashedLine(
+                          width: AppSize.width * 0.18, color: Colors.grey),
+                      CircleAvatar(
+                        backgroundColor: Colors.blue[100],
+                        backgroundImage: AssetImage(Assets.locationArrived),
+                      ),
+                      HorizontalDashedLine(
+                          width: AppSize.width * 0.18, color: Colors.grey),
+                      CircleAvatar(
+                        backgroundImage: AssetImage(Assets.car),
+                      ),
+                      HorizontalDashedLine(
+                          width: AppSize.width * 0.18, color: Colors.grey),
+                      CircleAvatar(
+                        // backgroundColor: Colors.grey,
+                        backgroundImage: AssetImage(Assets.locationCheck),
+                      ),
+                    ],
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "وقت الموعد",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.black,
+                        ),
+                        textAlign: TextAlign.start,
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text(
+                        "20-60 دقيقة",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.blue,
+                        ),
+                        textAlign: TextAlign.start,
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text(
+                        "(من الممكن وصول البايكر 15 دقيقة قبل او بعد الوقت المحدد)",
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                        ),
+                        textAlign: TextAlign.start,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Divider(
+                    color: Colors.grey, // لون الخط
+                    thickness: 2, // سمك الخط
+                    height: 20, // المسافة العمودية قبل وبعد الخط
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
                     children: [
                       const Text(
                         "رقم الحجز  1238764",
@@ -43,185 +159,241 @@ class OrderStatusView extends StatelessWidget {
                       SizedBox(
                         width: AppSize.width * 0.3,
                       ),
-                      const Text(
-                        "القادمة",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            height: 1.5,
-                            color: Color(0xff29C1F2)),
-                      ),
                     ],
                   ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: SvgPicture.asset(
-                      SvgAssets.biker,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Divider(
+                    color: Colors.grey, // لون الخط
+                    thickness: 2, // سمك الخط
+                    height: 20, // المسافة العمودية قبل وبعد الخط
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(16)),
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  CustomText(
-                    text: TranslationData.thankYouForOrder.tr,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  CustomText(
-                    text: TranslationData.trackYourOrder.tr,
-                    fontSize: 12,
-                    fontWeight: FontWeight.normal,
-                    color: Colors.grey,
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CustomText(
-                            text: TranslationData.estimatedTime.tr,
-                            fontSize: 12,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.grey,
-                          ),
-                          CustomText(
-                            text: '20 - 60 min',
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: primaryColor,
-                          ),
-                        ],
-                      ),
-                      Container(
-                        padding: const EdgeInsets.all(6),
-                        decoration: BoxDecoration(
-                          color: Colors.grey.withValues(alpha: 0.2),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: CustomText(
-                          text: washDataTripModel.washStatus!.tr,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: primaryColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  EstimatedTimeWidget(
-                    status: ctrl
-                        .updateOrderStatus(ctrl.washDataTripModel.washStatus!),
-                  ),
-                  const SizedBox(height: 16),
-                  CustomText(
-                    text: TranslationData.yourOrder.tr,
-                  ),
-                  const SizedBox(height: 8),
-                  if (ctrl.washItems.isNotEmpty)
-                    ListView.builder(
-                      shrinkWrap: true,
-                      padding: EdgeInsets.zero,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: ctrl.washItemsAfterFiltering.length,
-                      itemBuilder: (context, index) {
-                        final item = ctrl.washItemsAfterFiltering[index];
-                        return Row(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Row(
                           children: [
-                            CustomText(
-                              text: Get.locale!.languageCode == 'ar'
-                                  ? item.nameAr!
-                                  : item.nameEn!,
-                              fontSize: 16,
-                              fontWeight: FontWeight.normal,
-                            ),
-                            const SizedBox(width: 8),
+                            Icon(Icons.person_2_outlined),
+                            Text("تفاصيل البايكر الخاص بك"),
+                          ],
+                        ),
+                        Divider(
+                          color: Colors.grey, // لون الخط
+                          thickness: 2, // سمك الخط
+                          height: 30, // المسافة العمودية قبل وبعد الخط
+                        ),
+                        Row(
+                          children: [
                             CircleAvatar(
-                              radius: 10,
-                              backgroundColor: primaryColor,
-                              child: const Icon(
-                                Icons.check,
-                                color: Colors.white,
-                                size: 14,
-                              ),
+                              backgroundImage: NetworkImage(
+                                  washDataTripModel.driverPhoto ?? ""),
+                              radius: 30,
                             ),
-                            const Spacer(),
-                            CustomText(
-                              text: '${item.price}',
-                              fontSize: 16,
-                              fontWeight: FontWeight.normal,
-                              color: primaryColor,
+                            Column(
+                              children: [
+                                Text(washDataTripModel.driverName ?? ""),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(children: [
+                                  Icon(
+                                    Icons.star,
+                                    color: Colors.grey,
+                                  ),
+                                  Icon(
+                                    Icons.star,
+                                    color: Colors.yellow,
+                                  ),
+                                  Icon(
+                                    Icons.star,
+                                    color: Colors.yellow,
+                                  ),
+                                  Icon(
+                                    Icons.star,
+                                    color: Colors.yellow,
+                                  ),
+                                  Icon(
+                                    Icons.star,
+                                    color: Colors.yellow,
+                                  ),
+                                  Text("4.0"),
+                                ]),
+                                Text(
+                                  "${washDataTripModel.driverPhone ?? ""}",
+                                  textAlign: TextAlign.left,
+                                ),
+                              ],
                             ),
-                            const SizedBox(width: 4),
-                            Image.asset(
-                              Assets.reyalBlack,
-                              width: 16,
-                              height: 20,
+                            SizedBox(
+                              width: AppSize.width * 0.3,
+                            ),
+                            CircleAvatar(
+                              backgroundColor: Colors.blue[200],
+                              child: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.phone,
+                                    color: Colors.white,
+                                  )),
                             ),
                           ],
-                        );
-                      },
+                        )
+                      ],
                     ),
-                  const SizedBox(height: 8),
-                  Divider(
-                    color: Colors.grey.withValues(alpha: 0.2),
-                    thickness: 3,
                   ),
-                  if (ctrl.washDataTripModel.driverPhone != null)
-                    ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      leading: const Icon(Icons.car_rental_outlined),
-                      title: CustomText(
-                        text: ctrl.washDataTripModel.driverName ?? '',
-                        fontSize: 16,
-                        fontWeight: FontWeight.normal,
-                      ),
-                      subtitle: CustomText(
-                        text: ctrl.washDataTripModel.driverPhone ?? '',
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.grey,
-                      ),
-                      trailing: IconButton(
-                        onPressed: () {
-                          ctrl.callDriver(ctrl.washDataTripModel.driverPhone!);
-                        },
-                        icon: Icon(
-                          Icons.call,
-                          color: primaryColor,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Divider(
+                    color: Colors.grey, // لون الخط
+                    thickness: 2, // سمك الخط
+                    height: 20, // المسافة العمودية قبل وبعد الخط
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text("تفاصيل الحجز"),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: ListView.builder(
+                    shrinkWrap: true, // مهم جداً عشان داخل Column/ScrollView
+                    physics:
+                        const NeverScrollableScrollPhysics(), // عشان ScrollView الرئيسي يتعامل مع السحب
+                    itemCount: ctrl.washDataTripModel.cars?.length ?? 0,
+                    itemBuilder: (context, index) {
+                      final car = ctrl.washDataTripModel.cars![index];
+                      return Card(
+                        color: Colors.white,
+                        child: ListTile(
+                          leading: car.image != null
+                              ? Image.network(
+                                  car.image!,
+                                  width: 50,
+                                  height: 50,
+                                  fit: BoxFit.contain,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      const Icon(Icons.car_repair,
+                                          size: 40, color: Colors.grey),
+                                )
+                              : const Icon(Icons.directions_car,
+                                  size: 40, color: Colors.grey),
+                          title: Text(car.brand ?? "Car"),
+                          trailing: const CircleAvatar(
+                            backgroundColor: Colors.black,
+                            radius: 10,
+                          ),
                         ),
-                      ),
+                      );
+                    },
+                  ),
+                ),
+                // const SizedBox(height: 20),
+
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: BoxBorder.all(color: Colors.black),
+                      borderRadius: BorderRadius.all(Radius.circular(16)),
                     ),
-                  const SizedBox(height: 8),
-                  if (ctrl.washDataTripModel.userLat != null)
-                    ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      leading: const Icon(Icons.location_on),
-                      title: CustomText(
-                        text: TranslationData.userLocation.tr,
-                        fontSize: 16,
-                        fontWeight: FontWeight.normal,
-                      ),
-                      subtitle: CustomText(
-                        text: ctrl.userAddress.isNotEmpty
-                            ? ctrl.userAddress
-                            : 'Fetching location...',
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.grey,
-                      ),
-                      onTap: () {
-                        appTools.openMap(
-                          ctrl.washDataTripModel.userLat!,
-                          ctrl.washDataTripModel.userLng!,
-                        );
-                      },
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.date_range,
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text("التاريخ والوقت"),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Text(washDataTripModel.washTimeDate.toString()),
+                          ],
+                        )
+                      ],
                     ),
-                ],
-              ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+              ],
             ),
           ),
         );
       },
     );
   }
+}
+
+class HorizontalDashedLine extends StatelessWidget {
+  final double width;
+  final double height;
+  final Color color;
+
+  const HorizontalDashedLine({
+    this.width = 50,
+    this.height = 2,
+    this.color = Colors.grey,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: width,
+      height: height,
+      child: CustomPaint(
+        painter: _HorizontalDashedLinePainter(color: color, height: height),
+      ),
+    );
+  }
+}
+
+class _HorizontalDashedLinePainter extends CustomPainter {
+  final Color color;
+  final double height;
+  _HorizontalDashedLinePainter({required this.color, required this.height});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    double dashWidth = 5;
+    double dashSpace = 5;
+    final paint = Paint()
+      ..color = color
+      ..strokeWidth = height;
+
+    double startX = 0;
+    while (startX < size.width) {
+      canvas.drawLine(
+        Offset(startX, 0),
+        Offset(startX + dashWidth, 0),
+        paint,
+      );
+      startX += dashWidth + dashSpace;
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

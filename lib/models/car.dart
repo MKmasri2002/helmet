@@ -30,6 +30,7 @@ class Car {
 
   @override
   String toString() {
-    return "$brand";
+    return "$brand"
+    "imageUrl : $image";
   }
 }

@@ -83,6 +83,10 @@ class Assets {
   static const String language = 'assets/svg/language.svg';
   static const String security = 'assets/svg/security.svg';
   static const String logout = 'assets/svg/Logout.svg';
+  static const String car = 'assets/images/car.png';
+  static const String locationArrived = 'assets/images/location-arrived.png';
+  static const String locationCheck = 'assets/images/location-check.png';
+  static const String motorBike = 'assets/images/motorbike.png';
 }
 
 class SvgAssets {
