@@ -15,24 +15,29 @@ class Component3 extends StatelessWidget {
           children: [
             Text(
               "وقت الموعد",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: Colors.black,
-              ),
               textAlign: TextAlign.start,
+              style: TextStyle(
+                fontFamily: 'IBMPlexSansArabic',
+                fontWeight: FontWeight.w500,
+                fontSize: 16,
+                height: 25 / 16,
+                letterSpacing: 0,
+              ),
             ),
             SizedBox(
               height: 15,
             ),
             Text(
               "20-60 دقيقة",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: Colors.blue,
-              ),
               textAlign: TextAlign.start,
+              style: TextStyle(
+                fontFamily: 'IBMPlexSansArabic',
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
+                height: 25 / 20,
+                letterSpacing: 0,
+                color: Color(0xff29C1F2),
+              ),
             ),
             SizedBox(
               height: 15,
@@ -40,8 +45,12 @@ class Component3 extends StatelessWidget {
             Text(
               "(من الممكن وصول البايكر 15 دقيقة قبل او بعد الوقت المحدد)",
               style: TextStyle(
+                fontFamily: 'IBMPlexSansArabic',
+                fontWeight: FontWeight.w500,
                 fontSize: 12,
-                color: Colors.grey,
+                height: 25 / 12,
+                letterSpacing: 0,
+                color: Color(0xff8193B3),
               ),
               textAlign: TextAlign.start,
             ),

@@ -13,76 +13,78 @@ class Component9 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<OrderStatusController>(builder: (ctrl) {
       return Container(
-                  margin: const EdgeInsets.all(8.0),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      border: BoxBorder.all(
-                        color: Colors.black,
-                      )),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        width: double.infinity,
-                        height: 200,
-                        child: ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(16),
-                            topRight: Radius.circular(16),
-                          ),
-                          child: GoogleMap(
-                            initialCameraPosition: CameraPosition(
-                              target: LatLng(washDataTripModel.userLat ?? 0,
-                                  washDataTripModel.userLng ?? 0),
-                              zoom: 14,
-                            ),
-                            markers: {
-                              Marker(
-                                  markerId: const MarkerId("1"),
-                                  position: LatLng(
-                                      washDataTripModel.userLat ?? 0,
-                                      washDataTripModel.userLng ?? 0))
-                            },
-                            myLocationEnabled: false,
-                            myLocationButtonEnabled: true,
-                            onMapCreated: (GoogleMapController controller) {
-                              ctrl.mapController = controller;
-                              // move camera to the selected address
-                              if (washDataTripModel.userLat != null &&
-                                  washDataTripModel.userLng != null) {
-                                ctrl.mapController!.animateCamera(
-                                  CameraUpdate.newCameraPosition(
-                                    CameraPosition(
-                                      target: LatLng(
-                                          washDataTripModel.userLat ?? 0,
-                                          washDataTripModel.userLng ?? 0),
-                                      zoom: 14,
-                                    ),
-                                  ),
-                                );
-                              }
-                            },
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 8),
-                        child: Row(
-                          children: [
-                            Icon(Icons.location_on,
-                                color: primaryColor, size: 30),
-                            CustomText(
-                              text: userModel.userAddresses![0].address ?? "",
-                              fontSize: 7, //14
-                              fontWeight: FontWeight.bold,
-                              maxLines: 5,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+        margin: const EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            border: BoxBorder.all(
+              color: Colors.black,
+            )),
+        child: Column(
+          children: [
+            SizedBox(
+              width: double.infinity,
+              height: 200,
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(16),
+                  topRight: Radius.circular(16),
+                ),
+                child: GoogleMap(
+                  initialCameraPosition: CameraPosition(
+                    target: LatLng(washDataTripModel.userLat ?? 0,
+                        washDataTripModel.userLng ?? 0),
+                    zoom: 14,
                   ),
-                );
+                  markers: {
+                    Marker(
+                        markerId: const MarkerId("1"),
+                        position: LatLng(washDataTripModel.userLat ?? 0,
+                            washDataTripModel.userLng ?? 0))
+                  },
+                  myLocationEnabled: false,
+                  myLocationButtonEnabled: true,
+                  onMapCreated: (GoogleMapController controller) {
+                    ctrl.mapController = controller;
+                    // move camera to the selected address
+                    if (washDataTripModel.userLat != null &&
+                        washDataTripModel.userLng != null) {
+                      ctrl.mapController!.animateCamera(
+                        CameraUpdate.newCameraPosition(
+                          CameraPosition(
+                            target: LatLng(washDataTripModel.userLat ?? 0,
+                                washDataTripModel.userLng ?? 0),
+                            zoom: 14,
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Row(
+                children: [
+                  Icon(Icons.location_on, color: primaryColor, size: 30),
+                  Text(
+                    userModel.userAddresses![0].address ?? "",
+                    style: TextStyle(
+                      fontFamily: 'IBMPlexSansArabic',
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                      height: 25 / 14,
+                      letterSpacing: 0,
+                      color: Color(0xff121212),
+                    ),
+                    textAlign: TextAlign.start,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
     });
   }
 }

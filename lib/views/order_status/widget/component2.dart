@@ -4,7 +4,6 @@ import 'package:helmet_customer/generated/assets.dart';
 import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/views/order_status/order_status_controller.dart';
 
-
 class Component2 extends StatelessWidget {
   const Component2({super.key});
 
@@ -12,31 +11,49 @@ class Component2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<OrderStatusController>(builder: (ctrl) {
       return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 30),
-        child: Row(
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        child: Column(
           children: [
-            const CircleAvatar(
-              backgroundColor: Colors.blue,
-              backgroundImage: AssetImage(
-                Assets.motorBike,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14),
+              child: Row(
+                children: [
+                  const IconForReservationDetailes(imagePath: Assets.motorBike),
+                  HorizontalDashedLine(color: Colors.grey),
+                  const IconForReservationDetailes(
+                      imagePath: Assets.locationArrived),
+                  HorizontalDashedLine(color: Colors.grey),
+                  const IconForReservationDetailes(imagePath: Assets.car),
+                  HorizontalDashedLine(color: Colors.grey),
+                  const IconForReservationDetailes(
+                      imagePath: Assets.locationCheck),
+                ],
               ),
             ),
-            HorizontalDashedLine(
-                width: AppSize.width * 0.18, color: Colors.grey),
-            CircleAvatar(
-              backgroundColor: Colors.blue[100],
-              backgroundImage: const AssetImage(Assets.locationArrived),
+            SizedBox(
+              height: 5,
             ),
-            HorizontalDashedLine(
-                width: AppSize.width * 0.18, color: Colors.grey),
-            const CircleAvatar(
-              backgroundImage: AssetImage(Assets.car),
-            ),
-            HorizontalDashedLine(
-                width: AppSize.width * 0.18, color: Colors.grey),
-            const CircleAvatar(
-              // backgroundColor: Colors.grey,
-              backgroundImage: AssetImage(Assets.locationCheck),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4.0),
+              child: Row(
+                children: [
+                  Text12(
+                    text: "جايك بالطريق",
+                  ),
+                  SizedBox(width: AppSize.width * 0.16),
+                  Text12(
+                    text: "وصل",
+                  ),
+                  SizedBox(width: AppSize.width * 0.19),
+                  Text12(
+                    text: "يتم الغسل",
+                  ),
+                  SizedBox(width: AppSize.width * 0.19),
+                  Text12(
+                    text: "تمت",
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -44,13 +61,55 @@ class Component2 extends StatelessWidget {
     });
   }
 }
+
+class IconForReservationDetailes extends StatelessWidget {
+  final String imagePath;
+  const IconForReservationDetailes({super.key, required this.imagePath});
+
+  @override
+  Widget build(BuildContext context) {
+    return CircleAvatar(
+      radius: 20, // حجم الـ CircleAvatar نفسه
+      // اللون اللي يبين كإطار
+      child: Padding(
+        padding: const EdgeInsets.all(6), // المسافة تخلي الصورة أصغر من الدائرة
+        child: ClipOval(
+          child: Image.asset(
+            imagePath,
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Text12 extends StatelessWidget {
+  final String text;
+  const Text12({super.key, required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: const TextStyle(
+        fontFamily: 'IBMPlexSansArabic',
+        fontWeight: FontWeight.w600,
+        fontSize: 12,
+        height: 1.5,
+        letterSpacing: 0,
+        color: Color(0xffC3CCD3),
+      ),
+    );
+  }
+}
+
 class HorizontalDashedLine extends StatelessWidget {
-  final double width;
+  final double width = AppSize.width * 0.18;
   final double height;
   final Color color;
 
-  const HorizontalDashedLine({
-    this.width = 50,
+  HorizontalDashedLine({
     this.height = 2,
     this.color = Colors.grey,
     super.key,

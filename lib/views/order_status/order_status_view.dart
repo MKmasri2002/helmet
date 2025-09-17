@@ -24,7 +24,17 @@ class OrderStatusView extends StatelessWidget {
       builder: (ctrl) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(TranslationData.reservationDetailes.tr),
+            title: Text(
+              TranslationData.reservationDetailes.tr,
+              style: TextStyle(
+                fontFamily: 'IBMPlexSansArabic',
+                fontWeight: FontWeight.w500,
+                fontSize: 16,
+                height: 32 / 16,
+                letterSpacing: 0,
+                color: Color(0xff121212),
+              ),
+            ),
             centerTitle: true,
           ),
           body: SingleChildScrollView(
@@ -37,14 +47,14 @@ class OrderStatusView extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                const Sperator(),
-                const Component4(),
-                const Sperator(),
-                const Component5(),
-                const Sperator(),
-                const Component6(),
-                const Component7(),
-                const SizedBox(
+                Sperator(),
+                Component4(),
+                Sperator(),
+                Component5(),
+                Sperator(),
+                Component6(),
+                Component7(),
+                SizedBox(
                   height: 20,
                 ),
                 const Component8(),
