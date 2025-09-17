@@ -8,8 +8,8 @@ class Component6 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<OrderStatusController>(builder: (ctrl) {
-      return Padding(
-        padding: const EdgeInsets.all(16.0),
+      return const Padding(
+        padding: EdgeInsets.all(16.0),
         child: Text(
           "تفاصيل الحجز",
           style: TextStyle(

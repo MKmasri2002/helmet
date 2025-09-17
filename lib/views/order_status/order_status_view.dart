@@ -25,7 +25,7 @@ class OrderStatusView extends StatelessWidget {
           appBar: AppBar(
             title: Text(
               TranslationData.reservationDetailes.tr,
-              style: TextStyle(
+              style: const TextStyle(
                 fontFamily: 'IBMPlexSansArabic',
                 fontWeight: FontWeight.w500,
                 fontSize: 16,

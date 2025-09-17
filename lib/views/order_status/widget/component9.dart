@@ -25,7 +25,7 @@ class Component9 extends StatelessWidget {
               width: double.infinity,
               height: 200,
               child: ClipRRect(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(16),
                   topRight: Radius.circular(16),
                 ),
@@ -69,7 +69,7 @@ class Component9 extends StatelessWidget {
                   Icon(Icons.location_on, color: primaryColor, size: 30),
                   Text(
                     userModel.userAddresses![0].address ?? "",
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontFamily: 'IBMPlexSansArabic',
                       fontWeight: FontWeight.w500,
                       fontSize: 14,

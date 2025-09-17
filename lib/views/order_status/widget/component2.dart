@@ -30,26 +30,26 @@ class Component2 extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4.0),
               child: Row(
                 children: [
-                  Text12(
+                  const Text12(
                     text: "جايك بالطريق",
                   ),
                   SizedBox(width: AppSize.width * 0.16),
-                  Text12(
+                  const Text12(
                     text: "وصل",
                   ),
                   SizedBox(width: AppSize.width * 0.19),
-                  Text12(
+                  const Text12(
                     text: "يتم الغسل",
                   ),
                   SizedBox(width: AppSize.width * 0.19),
-                  Text12(
+                  const Text12(
                     text: "تمت",
                   ),
                 ],

@@ -11,7 +11,7 @@ class Component10 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<OrderStatusController>(builder: (ctrl) {
       return Container(
-        margin: EdgeInsets.all(8),
+        margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           border: Border.all(
             color: Colors.black,
@@ -20,7 +20,7 @@ class Component10 extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Row(
+            const Row(
               children: [
                 Image(image: AssetImage(Assets.motorBike)),
                 SizedBox(
@@ -40,14 +40,14 @@ class Component10 extends StatelessWidget {
                 ),
               ],
             ),
-            Divider(
+            const Divider(
               color: Colors.grey, // لون الخط
               thickness: 2, // سمك الخط
               height: 30, // المسافة العمودية قبل وبعد الخط
             ),
             Text(
               washDataTripModel.washTitleAr ?? "",
-              style: TextStyle(
+              style: const TextStyle(
                 fontFamily: 'IBMPlexSansArabic',
                 fontWeight: FontWeight.w600,
                 fontSize: 14,
@@ -59,7 +59,7 @@ class Component10 extends StatelessWidget {
             ),
             Text(
               washDataTripModel.washTitleAr ?? "",
-              style: TextStyle(
+              style: const TextStyle(
                 fontFamily: 'IBMPlexSansArabic',
                 fontWeight: FontWeight.w500,
                 fontSize: 14,
@@ -69,7 +69,7 @@ class Component10 extends StatelessWidget {
               ),
               textAlign: TextAlign.start,
             ),
-            Text("رقم السجل الضريبي : 14214689124",
+            const Text("رقم السجل الضريبي : 14214689124",
                 style: TextStyle(
                   fontFamily: 'IBMPlexSansArabic',
                   fontWeight: FontWeight.w400,
@@ -79,7 +79,7 @@ class Component10 extends StatelessWidget {
                   color: Color(0xff8193B3),
                 ),
                 textAlign: TextAlign.start),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text("الذهاب الى قائمة الفواتير",
