@@ -10,58 +10,53 @@ class Component2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<OrderStatusController>(builder: (ctrl) {
-      return Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 20),
-            child: Row(
-              children: [
-                const IconForReservationDetailes(imagePath: Assets.motorBike),
-                HorizontalDashedLine(color: Colors.grey),
-                const IconForReservationDetailes(
-                    imagePath: Assets.locationArrived),
-                HorizontalDashedLine(color: Colors.grey),
-                const IconForReservationDetailes(imagePath: Assets.car),
-                HorizontalDashedLine(color: Colors.grey),
-                const IconForReservationDetailes(
-                    imagePath: Assets.locationCheck),
-              ],
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14),
+              child: Row(
+                children: [
+                  const IconForReservationDetailes(imagePath: Assets.motorBike),
+                  HorizontalDashedLine(color: Colors.grey),
+                  const IconForReservationDetailes(
+                      imagePath: Assets.locationArrived),
+                  HorizontalDashedLine(color: Colors.grey),
+                  const IconForReservationDetailes(imagePath: Assets.car),
+                  HorizontalDashedLine(color: Colors.grey),
+                  const IconForReservationDetailes(
+                      imagePath: Assets.locationCheck),
+                ],
+              ),
             ),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Text(
-                  "جايك بالطريق",
-                  style: TextStyle(
-                      color: Color(0xffC3CCD3), fontSize: 12, height: 1.5),
-                ),
-                SizedBox(width: AppSize.width * 0.16),
-                Text(
-                  "وصل",
-                  style: TextStyle(
-                      color: Color(0xffC3CCD3), fontSize: 12, height: 1.5),
-                ),
-                SizedBox(width: AppSize.width * 0.16),
-                Text(
-                  "يتم الغسل",
-                  style: TextStyle(
-                      color: Color(0xffC3CCD3), fontSize: 12, height: 1.5),
-                ),
-                SizedBox(width: AppSize.width * 0.19),
-                Text(
-                  "تمت",
-                  style: TextStyle(
-                      color: Color(0xffC3CCD3), fontSize: 12, height: 1.5),
-                ),
-              ],
+            SizedBox(
+              height: 5,
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4.0),
+              child: Row(
+                children: [
+                  Text12(
+                    text: "جايك بالطريق",
+                  ),
+                  SizedBox(width: AppSize.width * 0.16),
+                  Text12(
+                    text: "وصل",
+                  ),
+                  SizedBox(width: AppSize.width * 0.19),
+                  Text12(
+                    text: "يتم الغسل",
+                  ),
+                  SizedBox(width: AppSize.width * 0.19),
+                  Text12(
+                    text: "تمت",
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       );
     });
   }
@@ -84,6 +79,26 @@ class IconForReservationDetailes extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
+      ),
+    );
+  }
+}
+
+class Text12 extends StatelessWidget {
+  final String text;
+  const Text12({super.key, required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: const TextStyle(
+        fontFamily: 'IBMPlexSansArabic',
+        fontWeight: FontWeight.w600,
+        fontSize: 12,
+        height: 1.5,
+        letterSpacing: 0,
+        color: Color(0xffC3CCD3),
       ),
     );
   }

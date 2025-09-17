@@ -10,24 +10,31 @@ class Component4 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<OrderStatusController>(builder: (ctrl) {
       return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      const Text(
-                        "رقم الحجز  1238764",
-                        style: TextStyle(
-                            fontSize: 18, height: 1.5, color: Colors.black),
-                      ),
-                      const Icon(
-                        Icons.copy,
-                        color: Color(0xff8193B3),
-                      ),
-                      SizedBox(
-                        width: AppSize.width * 0.3,
-                      ),
-                    ],
-                  ),
-                );
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            const Text(
+              "رقم الحجز  1238764",
+              style: TextStyle(
+                fontFamily: 'IBMPlexSansArabic',
+                fontWeight: FontWeight.w500,
+                fontSize: 18,
+                height: 25 / 18,
+                letterSpacing: 0,
+                color: Color(0xff121212),
+              ),
+              textAlign: TextAlign.start,
+            ),
+            const Icon(
+              Icons.copy,
+              color: Color(0xff8193B3),
+            ),
+            SizedBox(
+              width: AppSize.width * 0.3,
+            ),
+          ],
+        ),
+      );
     });
   }
 }

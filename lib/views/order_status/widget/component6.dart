@@ -10,7 +10,18 @@ class Component6 extends StatelessWidget {
     return GetBuilder<OrderStatusController>(builder: (ctrl) {
       return Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Text("تفاصيل الحجز"),
+        child: Text(
+          "تفاصيل الحجز",
+          style: TextStyle(
+            fontFamily: 'IBMPlexSansArabic',
+            fontWeight: FontWeight.w500,
+            fontSize: 16,
+            height: 25 / 16,
+            letterSpacing: 0,
+            color: Color(0xff121212),
+          ),
+          textAlign: TextAlign.start,
+        ),
       );
     });
   }
