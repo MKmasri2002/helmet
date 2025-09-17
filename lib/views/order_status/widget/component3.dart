@@ -15,12 +15,14 @@ class Component3 extends StatelessWidget {
           children: [
             Text(
               "وقت الموعد",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: Colors.black,
-              ),
               textAlign: TextAlign.start,
+              style: const TextStyle(
+                fontFamily: 'IBMPlexSansArabic',
+                fontWeight: FontWeight.w500,
+                fontSize: 16,
+                height: 25 / 16,
+                letterSpacing: 0,
+              ),
             ),
             SizedBox(
               height: 15,

@@ -52,7 +52,7 @@ class Component2 extends StatelessWidget {
                   style: TextStyle(
                       color: Color(0xffC3CCD3), fontSize: 12, height: 1.5),
                 ),
-                SizedBox(width: AppSize.width * 0.16),
+                SizedBox(width: AppSize.width * 0.19),
                 Text(
                   "تمت",
                   style: TextStyle(
