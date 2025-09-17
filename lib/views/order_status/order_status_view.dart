@@ -14,6 +14,7 @@ import 'package:helmet_customer/views/order_status/widget/component8.dart';
 import 'package:helmet_customer/views/order_status/widget/component9.dart';
 import 'package:helmet_customer/views/order_status/widget/sperator.dart';
 import 'package:helmet_customer/views/order_status/order_status_controller.dart';
+import 'package:helmet_customer/widget/primary_button/primary_button.dart';
 
 class OrderStatusView extends StatelessWidget {
   const OrderStatusView({super.key});
@@ -26,31 +27,36 @@ class OrderStatusView extends StatelessWidget {
             title: Text(TranslationData.reservationDetailes.tr),
             centerTitle: true,
           ),
-          body: const SingleChildScrollView(
+          body: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Component1(),
-                Component2(),
-                Component3(),
-                SizedBox(
+                const Component1(),
+                const Component2(),
+                const Component3(),
+                const SizedBox(
                   height: 20,
                 ),
-                Sperator(),
-                Component4(),
-                Sperator(),
-                Component5(),
-                Sperator(),
-                Component6(),
-                Component7(),
-                 SizedBox(
+                const Sperator(),
+                const Component4(),
+                const Sperator(),
+                const Component5(),
+                const Sperator(),
+                const Component6(),
+                const Component7(),
+                const SizedBox(
                   height: 20,
                 ),
-                Component8(),
-                SizedBox(height: 20),
-                Component9(),
-                Component10(),
-                Component11()
+                const Component8(),
+                const SizedBox(height: 20),
+                const Component9(),
+                const Component10(),
+                // const Component11(),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: PrimaryButton(onTap: () {}, title: "تأكيد نهاية الطلب"),
+                ),
+                const SizedBox(height: 32,)
               ],
             ),
           ),
