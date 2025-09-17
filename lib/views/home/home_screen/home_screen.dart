@@ -71,9 +71,7 @@ class HomeScreen extends StatelessWidget {
                           fontSize: 16,
                         ),
                       ),
-                      SizedBox(
-                        width: AppSize.width * 0.15,
-                      ),
+                      const Spacer(),
                       ElevatedButton(
                         onPressed: () {
                           if (FirebaseAuth.instance.currentUser == null) {

@@ -23,6 +23,11 @@ class OrderStatusView extends StatelessWidget {
       builder: (ctrl) {
         return Scaffold(
           appBar: AppBar(
+            leading: IconButton(
+                onPressed: () {
+                  Get.back();
+                },
+                icon: const Icon(Icons.arrow_back_ios_new)),
             title: Text(
               TranslationData.reservationDetailes.tr,
               style: const TextStyle(
@@ -63,9 +68,12 @@ class OrderStatusView extends StatelessWidget {
                 // const Component11(),
                 Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: PrimaryButton(onTap: () {}, title: "تأكيد نهاية الطلب"),
+                  child:
+                      PrimaryButton(onTap: () {}, title: "تأكيد نهاية الطلب"),
                 ),
-                const SizedBox(height: 32,)
+                const SizedBox(
+                  height: 32,
+                )
               ],
             ),
           ),

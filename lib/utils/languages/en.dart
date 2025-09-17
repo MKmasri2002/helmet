@@ -249,5 +249,5 @@ const Map<String, String> en = {
   TranslationData.resendCodeAfter: "Resend code after",
   TranslationData.verifyYourPhoneNumber: "Verify your phone number",
   TranslationData.verify: "Verify",
-  TranslationData.reservationDetailes: "Reservation Detailes",
+  TranslationData.reservationDetailes: "Reservation Status",
 };

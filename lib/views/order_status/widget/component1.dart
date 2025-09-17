@@ -14,11 +14,12 @@ class Component1 extends StatelessWidget {
       return Container(
         padding: const EdgeInsets.all(16),
         width: AppSize.width,
+        height: 70,
         decoration: BoxDecoration(
           color: Colors.blue[300],
           borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(16),
-              bottomRight: Radius.circular(16)),
+              bottomLeft: Radius.circular(8),
+              bottomRight: Radius.circular(8)),
         ),
         child: Row(
           children: [
@@ -31,9 +32,7 @@ class Component1 extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            SizedBox(
-              width: AppSize.width * 0.4,
-            ),
+            const Spacer(),
             const Image(image: AssetImage(Assets.iconCar)),
             const SizedBox(
               width: 10,

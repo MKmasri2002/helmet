@@ -247,5 +247,5 @@ const Map<String, String> ar = {
   TranslationData.resendCodeAfter: "أعد إرسال الرمز بعد",
   TranslationData.verifyYourPhoneNumber: "التحقق من رقم جوالك",
   TranslationData.verify: "تحقق",
-  TranslationData.reservationDetailes: "تفاصيل الحجز",
+  TranslationData.reservationDetailes: "حالة الحجز",
 };
