@@ -120,9 +120,7 @@ class Component5 extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
-                  width: AppSize.width * 0.25,
-                ),
+                Spacer(),
                 CircleAvatar(
                   backgroundColor: Color(0xff29C1F2),
                   child: IconButton(

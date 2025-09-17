@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:helmet_customer/generated/assets.dart';
 import 'package:helmet_customer/utils/colors/color1.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/views/order_status/order_status_controller.dart';
@@ -13,11 +15,11 @@ class Component9 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<OrderStatusController>(builder: (ctrl) {
       return Container(
-         margin: const EdgeInsets.symmetric(vertical: 15),
+        margin: const EdgeInsets.symmetric(vertical: 15),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
             border: BoxBorder.all(
-              color: Colors.black,
+              color: Color(0xffC3CCD3),
             )),
         child: Column(
           children: [
@@ -66,7 +68,19 @@ class Component9 extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Row(
                 children: [
-                  Icon(Icons.location_on, color: primaryColor, size: 30),
+                  // static const String dateIcon = 'assets/svg/date-icon.svg';
+                  SvgPicture.asset(
+                    SvgAssets.homeIcon,
+                    fit: BoxFit
+                        .cover, // يحافظ على نسب الصورة ويملأ الـ Container
+                    width: 24, // اختياري: عرض محدد
+                    height: 24,
+
+                    // اختياري: ارتفاع محدد
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
                   Text(
                     userModel.userAddresses![0].address ?? "",
                     style: const TextStyle(

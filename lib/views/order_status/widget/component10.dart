@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:helmet_customer/generated/assets.dart';
-import 'package:helmet_customer/theme/app_colors.dart';
 import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/views/order_status/order_status_controller.dart';
@@ -18,7 +17,7 @@ class Component10 extends StatelessWidget {
         padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
           border: Border.all(
-            color: Colors.black,
+            color: Color(0xffC3CCD3),
           ),
           borderRadius: BorderRadius.circular(16),
         ),

@@ -9,12 +9,12 @@ class Component7 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<OrderStatusController>(builder: (ctrl) {
       return Padding(
-        padding: EdgeInsets.symmetric(vertical: 8.0),
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: ListView.builder(
           shrinkWrap: true, // مهم جداً عشان داخل Column/ScrollView
           physics:
               const NeverScrollableScrollPhysics(), // عشان ScrollView الرئيسي يتعامل مع السحب
-          itemCount: ctrl.washDataTripModel.cars.length ?? 0,
+          itemCount: ctrl.washDataTripModel.cars.length,
           itemBuilder: (context, index) {
             final car = ctrl.washDataTripModel.cars[index];
             return Card(
