@@ -9,7 +9,7 @@ class Component7 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<OrderStatusController>(builder: (ctrl) {
       return Padding(
-        padding: const EdgeInsets.all(8),
+        padding: EdgeInsets.symmetric(vertical: 8.0),
         child: ListView.builder(
           shrinkWrap: true, // مهم جداً عشان داخل Column/ScrollView
           physics:

@@ -13,7 +13,7 @@ class Component9 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<OrderStatusController>(builder: (ctrl) {
       return Container(
-        margin: const EdgeInsets.all(8.0),
+         margin: const EdgeInsets.symmetric(vertical: 15),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
             border: BoxBorder.all(

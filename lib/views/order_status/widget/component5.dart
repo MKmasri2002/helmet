@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/generated/assets.dart';
 import 'package:helmet_customer/theme/app_size.dart';
@@ -12,123 +13,128 @@ class Component5 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<OrderStatusController>(builder: (ctrl) {
-      return Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(16)),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const Row(
-                children: [
-                  Icon(Icons.person_2_outlined),
-                  Text(
-                    "تفاصيل البايكر الخاص بك",
-                    style: TextStyle(
-                      fontFamily: 'IBMPlexSansArabic',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
-                      height: 25 / 16,
-                      letterSpacing: 0,
-                      color: Color(0xff121212),
+      return Container(
+        padding: EdgeInsets.symmetric(vertical: 8.0),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(16)),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                SvgPicture.asset(
+                  SvgAssets.personIcon,
+                  fit: BoxFit.cover, // يحافظ على نسب الصورة ويملأ الـ Container
+                  width: 16.25, // اختياري: عرض محدد
+                  height: 17.92,
+
+                  // اختياري: ارتفاع محدد
+                ),
+                Text(
+                  "تفاصيل البايكر الخاص بك",
+                  style: TextStyle(
+                    fontFamily: 'IBMPlexSansArabic',
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16,
+                    height: 25 / 16,
+                    letterSpacing: 0,
+                    color: Color(0xff121212),
+                  ),
+                  textAlign: TextAlign.start,
+                ),
+              ],
+            ),
+            const Sperator(),
+            Row(
+              children: [
+                CircleAvatar(
+                  backgroundImage: washDataTripModel.driverPhoto != null
+                      ? NetworkImage(washDataTripModel.driverPhoto!)
+                      : AssetImage(Assets.driverImage),
+                  radius: 30,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      washDataTripModel.driverName ?? "",
+                      style: const TextStyle(
+                        fontFamily: 'IBMPlexSansArabic',
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                        height: 25 / 14,
+                        letterSpacing: 0,
+                        color: Color(0xff121212),
+                      ),
                     ),
-                    textAlign: TextAlign.start,
-                  ),
-                ],
-              ),
-              const Sperator(),
-              Row(
-                children: [
-                  CircleAvatar(
-                    backgroundImage: washDataTripModel.driverPhoto != null
-                        ? NetworkImage(washDataTripModel.driverPhoto!)
-                        : AssetImage(Assets.driverImage),
-                    radius: 30,
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    const Row(children: [
+                      Icon(
+                        Icons.star,
+                        color: Colors.grey,
+                      ),
+                      Icon(
+                        Icons.star,
+                        color: Colors.yellow,
+                      ),
+                      Icon(
+                        Icons.star,
+                        color: Colors.yellow,
+                      ),
+                      Icon(
+                        Icons.star,
+                        color: Colors.yellow,
+                      ),
+                      Icon(
+                        Icons.star,
+                        color: Colors.yellow,
+                      ),
                       Text(
-                        washDataTripModel.driverName ?? "",
-                        style: const TextStyle(
+                        "4.0",
+                        style: TextStyle(
                           fontFamily: 'IBMPlexSansArabic',
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.w500,
                           fontSize: 14,
                           height: 25 / 14,
                           letterSpacing: 0,
                           color: Color(0xff121212),
                         ),
                       ),
-                      const Row(children: [
-                        Icon(
-                          Icons.star,
-                          color: Colors.grey,
-                        ),
-                        Icon(
-                          Icons.star,
-                          color: Colors.yellow,
-                        ),
-                        Icon(
-                          Icons.star,
-                          color: Colors.yellow,
-                        ),
-                        Icon(
-                          Icons.star,
-                          color: Colors.yellow,
-                        ),
-                        Icon(
-                          Icons.star,
-                          color: Colors.yellow,
-                        ),
-                        Text(
-                          "4.0",
-                          style: TextStyle(
-                            fontFamily: 'IBMPlexSansArabic',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            height: 25 / 14,
-                            letterSpacing: 0,
-                            color: Color(0xff121212),
-                          ),
-                        ),
-                      ]),
-                      Text(
-                        washDataTripModel.driverPhone ?? "",
-                        textAlign: TextAlign.left,
-                        style: const TextStyle(
-                          fontFamily: 'IBMPlexSansArabic',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12,
-                          height: 25 / 12,
-                          letterSpacing: 0,
-                          color: Color(0xff8193B3),
-                        ),
+                    ]),
+                    Text(
+                      washDataTripModel.driverPhone ?? "",
+                      textAlign: TextAlign.start,
+                      textDirection: TextDirection.ltr,
+                      style: const TextStyle(
+                        fontFamily: 'IBMPlexSansArabic',
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                        height: 25 / 12,
+                        letterSpacing: 0,
+                        color: Color(0xff8193B3),
                       ),
-                    ],
-                  ),
-                  SizedBox(
-                    width: AppSize.width * 0.3,
-                  ),
-                  CircleAvatar(
-                    backgroundColor: Color(0xff29C1F2),
-                    child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.phone,
-                          color: Colors.white,
-                        )),
-                  ),
-                ],
-              )
-            ],
-          ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  width: AppSize.width * 0.25,
+                ),
+                CircleAvatar(
+                  backgroundColor: Color(0xff29C1F2),
+                  child: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.phone,
+                        color: Colors.white,
+                      )),
+                ),
+              ],
+            )
+          ],
         ),
       );
     });

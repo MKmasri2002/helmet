@@ -10,7 +10,7 @@ import 'package:helmet_customer/views/order_status/widget/component4.dart';
 import 'package:helmet_customer/views/order_status/widget/component5.dart';
 import 'package:helmet_customer/views/order_status/widget/component6.dart';
 import 'package:helmet_customer/views/order_status/widget/component7.dart';
-import 'package:helmet_customer/views/order_status/widget/component8.dart';
+import 'package:helmet_customer/views/order_status/widget/reservation_date.dart';
 import 'package:helmet_customer/views/order_status/widget/component9.dart';
 import 'package:helmet_customer/views/order_status/widget/sperator.dart';
 import 'package:helmet_customer/views/order_status/order_status_controller.dart';
@@ -24,7 +24,7 @@ class OrderStatusView extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: Text(
-              TranslationData.reservationDetailes.tr,
+              "حالة الحجز",
               style: const TextStyle(
                 fontFamily: 'IBMPlexSansArabic',
                 fontWeight: FontWeight.w500,
@@ -42,25 +42,33 @@ class OrderStatusView extends StatelessWidget {
               children: [
                 Component1(),
                 Component2(),
-                Component3(),
-                SizedBox(
-                  height: 20,
+                Padding(
+                  padding: EdgeInsets.all(15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Component3(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Sperator(),
+                      Component4(),
+                      Sperator(),
+                      Component5(),
+                      Sperator(),
+                      Component6(),
+                      Component7(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Component8(),
+                      SizedBox(height: 20),
+                      Component9(),
+                      Component10(),
+                      Component11()
+                    ],
+                  ),
                 ),
-                Sperator(),
-                Component4(),
-                Sperator(),
-                Component5(),
-                Sperator(),
-                Component6(),
-                Component7(),
-                SizedBox(
-                  height: 20,
-                ),
-                Component8(),
-                SizedBox(height: 20),
-                Component9(),
-                Component10(),
-                Component11()
               ],
             ),
           ),

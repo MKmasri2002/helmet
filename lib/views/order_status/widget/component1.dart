@@ -31,9 +31,7 @@ class Component1 extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            SizedBox(
-              width: AppSize.width * 0.4,
-            ),
+            Spacer(),
             const Image(image: AssetImage(Assets.iconCar)),
             const SizedBox(
               width: 10,

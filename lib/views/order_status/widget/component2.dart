@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/generated/assets.dart';
+import 'package:helmet_customer/theme/app_colors.dart';
 import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/views/order_status/order_status_controller.dart';
 
@@ -18,15 +20,16 @@ class Component2 extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 14),
               child: Row(
                 children: [
-                  const IconForReservationDetailes(imagePath: Assets.motorBike),
+                  const IconForReservationDetailes(
+                      imagePath: SvgAssets.motorbikeSvg),
                   HorizontalDashedLine(color: Colors.grey),
                   const IconForReservationDetailes(
-                      imagePath: Assets.locationArrived),
+                      imagePath: SvgAssets.locationArrived),
                   HorizontalDashedLine(color: Colors.grey),
-                  const IconForReservationDetailes(imagePath: Assets.car),
+                  const IconForReservationDetailes(imagePath: SvgAssets.car),
                   HorizontalDashedLine(color: Colors.grey),
                   const IconForReservationDetailes(
-                      imagePath: Assets.locationCheck),
+                      imagePath: SvgAssets.locationCheck),
                 ],
               ),
             ),
@@ -71,12 +74,17 @@ class IconForReservationDetailes extends StatelessWidget {
     return CircleAvatar(
       radius: 20, // حجم الـ CircleAvatar نفسه
       // اللون اللي يبين كإطار
+      backgroundColor: AppColors.primary.withValues(alpha: 0.2),
       child: Padding(
         padding: const EdgeInsets.all(6), // المسافة تخلي الصورة أصغر من الدائرة
         child: ClipOval(
-          child: Image.asset(
+          child: SvgPicture.asset(
             imagePath,
-            fit: BoxFit.cover,
+            fit: BoxFit.cover, // يحافظ على نسب الصورة ويملأ الـ Container
+            width: 100, // اختياري: عرض محدد
+            height: 100,
+            color: AppColors.primary,
+            // اختياري: ارتفاع محدد
           ),
         ),
       ),
