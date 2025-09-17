@@ -15,7 +15,7 @@ class Component8 extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
             color: Colors.white,
-            border: BoxBorder.all(color: Colors.black),
+            border: BoxBorder.all(color: Color(0xffC3CCD3)),
             borderRadius: const BorderRadius.all(Radius.circular(16)),
           ),
           child: Row(
@@ -27,7 +27,8 @@ class Component8 extends StatelessWidget {
                 width: 20,
               ),
               Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   const Text(
                     "التاريخ والوقت",

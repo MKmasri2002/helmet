@@ -88,6 +88,7 @@ class Assets {
   static const String locationCheck = 'assets/images/location-check.png';
   static const String motorBike = 'assets/images/motorbike.png';
   static const String iconCar = 'assets/images/icon-car.png';
+  static const String driverImage = 'assets/images/driver-image.png';
 }
 
 class SvgAssets {

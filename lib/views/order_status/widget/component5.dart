@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:helmet_customer/generated/assets.dart';
 import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/views/order_status/order_status_controller.dart';
@@ -43,11 +44,16 @@ class Component5 extends StatelessWidget {
               Row(
                 children: [
                   CircleAvatar(
-                    backgroundImage:
-                        NetworkImage(washDataTripModel.driverPhoto ?? ""),
+                    backgroundImage: washDataTripModel.driverPhoto != null
+                        ? NetworkImage(washDataTripModel.driverPhoto!)
+                        : AssetImage(Assets.driverImage),
                     radius: 30,
                   ),
+                  const SizedBox(
+                    width: 10,
+                  ),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         washDataTripModel.driverName ?? "",
@@ -59,9 +65,6 @@ class Component5 extends StatelessWidget {
                           letterSpacing: 0,
                           color: Color(0xff121212),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 10,
                       ),
                       const Row(children: [
                         Icon(
@@ -114,7 +117,7 @@ class Component5 extends StatelessWidget {
                     width: AppSize.width * 0.3,
                   ),
                   CircleAvatar(
-                    backgroundColor: Colors.blue[200],
+                    backgroundColor: Color(0xff29C1F2),
                     child: IconButton(
                         onPressed: () {},
                         icon: const Icon(
