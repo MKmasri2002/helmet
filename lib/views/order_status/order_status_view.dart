@@ -9,7 +9,7 @@ import 'package:helmet_customer/views/order_status/widget/component4.dart';
 import 'package:helmet_customer/views/order_status/widget/component5.dart';
 import 'package:helmet_customer/views/order_status/widget/component6.dart';
 import 'package:helmet_customer/views/order_status/widget/component7.dart';
-import 'package:helmet_customer/views/order_status/widget/component8.dart';
+import 'package:helmet_customer/views/order_status/widget/reservation_date.dart';
 import 'package:helmet_customer/views/order_status/widget/component9.dart';
 import 'package:helmet_customer/views/order_status/widget/sperator.dart';
 import 'package:helmet_customer/views/order_status/order_status_controller.dart';
@@ -29,7 +29,7 @@ class OrderStatusView extends StatelessWidget {
                 },
                 icon: const Icon(Icons.arrow_back_ios_new)),
             title: Text(
-              TranslationData.reservationDetailes.tr,
+              "حالة الحجز",
               style: const TextStyle(
                 fontFamily: 'IBMPlexSansArabic',
                 fontWeight: FontWeight.w500,
@@ -45,35 +45,39 @@ class OrderStatusView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Component1(),
-                const Component2(),
-                const Component3(),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Sperator(),
-                const Component4(),
-                const Sperator(),
-                const Component5(),
-                const Sperator(),
-                const Component6(),
-                const Component7(),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Component8(),
-                const SizedBox(height: 20),
-                const Component9(),
-                const Component10(),
-                // const Component11(),
+                Component1(),
+                Component2(),
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child:
-                      PrimaryButton(onTap: () {}, title: "تأكيد نهاية الطلب"),
+                  padding: EdgeInsets.all(15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Component3(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Sperator(),
+                      Component4(),
+                      Sperator(),
+                      Component5(),
+                      Sperator(),
+                      Component6(),
+                      Component7(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Component8(),
+                      SizedBox(height: 20),
+                      Component9(),
+                      Component10(),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: PrimaryButton(
+                            onTap: () {}, title: "تأكيد نهاية الطلب"),
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(
-                  height: 32,
-                )
               ],
             ),
           ),

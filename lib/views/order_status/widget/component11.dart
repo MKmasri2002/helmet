@@ -9,7 +9,7 @@ class Component11 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<OrderStatusController>(builder: (ctrl) {
       return Container(
-        margin: const EdgeInsets.all(8), // مسافة من كل الجهات
+        margin: const EdgeInsets.symmetric(vertical: 15), // مسافة من كل الجهات
         width: double.infinity, // عرض الشاشة كامل
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
@@ -26,8 +26,12 @@ class Component11 extends StatelessWidget {
           child: const Text(
             "تأكيد نهاية الطلب",
             style: TextStyle(
+              fontFamily: 'IBMPlexSansArabic',
+              fontWeight: FontWeight.w600,
               fontSize: 16,
-              fontWeight: FontWeight.bold,
+              height: 1.5,
+              letterSpacing: 0,
+              color: Color(0xffffffff),
             ),
           ),
         ),

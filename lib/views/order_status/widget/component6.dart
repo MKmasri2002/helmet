@@ -9,7 +9,7 @@ class Component6 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<OrderStatusController>(builder: (ctrl) {
       return const Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: EdgeInsets.symmetric(vertical: 16.0),
         child: Text(
           "تفاصيل الحجز",
           style: TextStyle(

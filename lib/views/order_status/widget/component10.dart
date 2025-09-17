@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:helmet_customer/generated/assets.dart';
+import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/views/order_status/order_status_controller.dart';
 
@@ -11,20 +13,29 @@ class Component10 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<OrderStatusController>(builder: (ctrl) {
       return Container(
-        margin: const EdgeInsets.all(8),
+        margin: const EdgeInsets.symmetric(vertical: 15),
+        padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
           border: Border.all(
-            color: Colors.black,
+            color: Color(0xffC3CCD3),
           ),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Row(
+            Row(
               children: [
-                Image(image: AssetImage(Assets.motorBike)),
+                SvgPicture.asset(
+                  SvgAssets.summuryIcon,
+                  fit: BoxFit.cover, // يحافظ على نسب الصورة ويملأ الـ Container
+                  width: 21.5, // اختياري: عرض محدد
+                  height: 21.5,
+
+                  // اختياري: ارتفاع محدد
+                ),
                 SizedBox(
-                  width: 20,
+                  width: 8,
                 ),
                 Text(
                   "ملخص الحجز",
@@ -41,9 +52,9 @@ class Component10 extends StatelessWidget {
               ],
             ),
             const Divider(
-              color: Colors.grey, // لون الخط
-              thickness: 2, // سمك الخط
-              height: 30, // المسافة العمودية قبل وبعد الخط
+              color: Colors.grey,
+              thickness: 2,
+              height: 30,
             ),
             Text(
               washDataTripModel.washTitleAr ?? "",
@@ -56,6 +67,9 @@ class Component10 extends StatelessWidget {
                 color: Color(0xff121212),
               ),
               textAlign: TextAlign.start,
+            ),
+            SizedBox(
+              height: AppSize.width * 0.05,
             ),
             Text(
               washDataTripModel.washTitleAr ?? "",
@@ -79,6 +93,9 @@ class Component10 extends StatelessWidget {
                   color: Color(0xff8193B3),
                 ),
                 textAlign: TextAlign.start),
+            SizedBox(
+              height: AppSize.width * 0.05,
+            ),
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

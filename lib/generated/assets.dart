@@ -88,6 +88,7 @@ class Assets {
   static const String locationCheck = 'assets/images/location-check.png';
   static const String motorBike = 'assets/images/motorbike.png';
   static const String iconCar = 'assets/images/icon-car.png';
+  static const String driverImage = 'assets/images/driver-image.png';
 }
 
 class SvgAssets {
@@ -99,4 +100,14 @@ class SvgAssets {
   static const String giveStar = 'assets/svg/give-star.svg';
   static const String location = 'assets/svg/location.svg';
   static const String stopWatch = 'assets/svg/stopWatch.svg';
+  static const String motorbikeSvg = 'assets/svg/motorbike-02.svg';
+  static const String car = 'assets/svg/car.svg';
+  static const String locationArrived = 'assets/svg/location-arrived.svg';
+  static const String locationCheck = 'assets/svg/location-check.svg';
+
+  static const String personIcon = 'assets/svg/person-icon.svg';
+  static const String copyIcon = 'assets/svg/copy-icon.svg';
+  static const String dateIcon = 'assets/svg/date-icon.svg';
+  static const String homeIcon = 'assets/svg/home-icon.svg';
+  static const String summuryIcon = 'assets/svg/summury-icon.svg';
 }
