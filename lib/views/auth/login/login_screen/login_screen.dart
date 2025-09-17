@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/generated/assets.dart';
+import 'package:helmet_customer/theme/app_colors.dart';
 import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/utils/colors/color1.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
@@ -10,6 +11,7 @@ import 'package:helmet_customer/views/auth/login/login_screen/login_screen_widge
 import 'package:helmet_customer/views/widget/field/field1.dart';
 import 'package:helmet_customer/views/widget/text/t1.dart';
 import 'package:helmet_customer/views/widget/text/t2.dart';
+import 'package:helmet_customer/widget/my_country_code/call_country_code.dart';
 import '../login_controller.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -70,7 +72,9 @@ class LoginScreen extends StatelessWidget {
                             },
                             hintText: '05xxxxxxxxx',
                             labelText: "الرقم",
-                            iconData: Icons.phone_android,
+                            // iconData: Icons.phone_android,
+                            prefixIcon: const CallCountryCodeIcon(),
+                            iconColor: AppColors.primary,
                           ),
                           const SizedBox(
                             height: 24,

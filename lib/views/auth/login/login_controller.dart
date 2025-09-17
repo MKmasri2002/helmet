@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:helmet_customer/views/auth/otp/otp_binding.dart';
 import 'package:helmet_customer/views/auth/otp/otp_view.dart';
 import 'package:helmet_customer/utils/widgets/custom_snake_bar.dart';
+import 'package:helmet_customer/widget/my_country_code/country_code_method.dart';
 
 class LoginController extends GetxController {
   String phone = "";
@@ -27,7 +28,7 @@ class LoginController extends GetxController {
     // Show a progress dialog or loading indicator
     //customProgressDialog(cancelable: true);
     await auth.verifyPhoneNumber(
-      phoneNumber: "+962$phoneNumber",
+      phoneNumber: "${mainCountryCode.value.dialCode}$phoneNumber",
       timeout: const Duration(seconds: 60),
       verificationCompleted: (PhoneAuthCredential credential) async {
         // Auto-resolved, optional

@@ -12,6 +12,8 @@ import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/notificatio_manager.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
+import 'package:helmet_customer/widget/my_country_code/countries.dart';
+import 'package:helmet_customer/widget/my_country_code/country_code_method.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:video_player/video_player.dart';
 
@@ -22,6 +24,8 @@ class SplashScreenController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
+    mainCountryCode.value =
+        nadCountries.where((element) => element.code == 'SA').first;
     videoController =
         VideoPlayerController.asset('assets/video/splash_vid.mp4');
     await videoController.initialize();

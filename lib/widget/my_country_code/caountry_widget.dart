@@ -5,8 +5,8 @@ import 'package:helmet_customer/widget/text/headline3.dart';
 import 'package:helmet_customer/widget/text/headline5.dart';
 import 'package:helmet_customer/widget/text_field.dart';
 
-class NadCountryCodeWidget extends GetView<CountryCodeMethod> {
-  const NadCountryCodeWidget({
+class NewCountryCodeWidget extends GetView<CountryCodeMethod> {
+  const NewCountryCodeWidget({
     super.key,
   });
   @override

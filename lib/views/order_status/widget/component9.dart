@@ -25,7 +25,7 @@ class Component9 extends StatelessWidget {
                         width: double.infinity,
                         height: 200,
                         child: ClipRRect(
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(16),
                             topRight: Radius.circular(16),
                           ),

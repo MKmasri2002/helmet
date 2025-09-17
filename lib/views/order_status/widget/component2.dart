@@ -15,7 +15,7 @@ class Component2 extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 30),
         child: Row(
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               backgroundColor: Colors.blue,
               backgroundImage: AssetImage(
                 Assets.motorBike,
@@ -25,16 +25,16 @@ class Component2 extends StatelessWidget {
                 width: AppSize.width * 0.18, color: Colors.grey),
             CircleAvatar(
               backgroundColor: Colors.blue[100],
-              backgroundImage: AssetImage(Assets.locationArrived),
+              backgroundImage: const AssetImage(Assets.locationArrived),
             ),
             HorizontalDashedLine(
                 width: AppSize.width * 0.18, color: Colors.grey),
-            CircleAvatar(
+            const CircleAvatar(
               backgroundImage: AssetImage(Assets.car),
             ),
             HorizontalDashedLine(
                 width: AppSize.width * 0.18, color: Colors.grey),
-            CircleAvatar(
+            const CircleAvatar(
               // backgroundColor: Colors.grey,
               backgroundImage: AssetImage(Assets.locationCheck),
             ),

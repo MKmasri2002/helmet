@@ -14,21 +14,21 @@ class Component5 extends StatelessWidget {
       return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    padding: EdgeInsets.all(8),
-                    decoration: BoxDecoration(
+                    padding: const EdgeInsets.all(8),
+                    decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(16)),
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Row(
+                        const Row(
                           children: [
                             Icon(Icons.person_2_outlined),
                             Text("تفاصيل البايكر الخاص بك"),
                           ],
                         ),
-                        Sperator(),
+                        const Sperator(),
                         Row(
                           children: [
                             CircleAvatar(
@@ -39,10 +39,10 @@ class Component5 extends StatelessWidget {
                             Column(
                               children: [
                                 Text(washDataTripModel.driverName ?? ""),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
-                                Row(children: [
+                                const Row(children: [
                                   Icon(
                                     Icons.star,
                                     color: Colors.grey,
@@ -66,7 +66,7 @@ class Component5 extends StatelessWidget {
                                   Text("4.0"),
                                 ]),
                                 Text(
-                                  "${washDataTripModel.driverPhone ?? ""}",
+                                  washDataTripModel.driverPhone ?? "",
                                   textAlign: TextAlign.left,
                                 ),
                               ],
@@ -78,7 +78,7 @@ class Component5 extends StatelessWidget {
                               backgroundColor: Colors.blue[200],
                               child: IconButton(
                                   onPressed: () {},
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.phone,
                                     color: Colors.white,
                                   )),

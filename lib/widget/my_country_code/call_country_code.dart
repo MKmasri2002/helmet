@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/widget/my_country_code/caountry_widget.dart';
 import 'package:helmet_customer/widget/my_country_code/country_code_method.dart';
-import 'package:helmet_customer/widget/text/headline5.dart';
 
 class CallCountryCodeIcon extends GetView<CountryCodeMethod> {
   const CallCountryCodeIcon({
@@ -25,14 +24,6 @@ class CallCountryCodeIcon extends GetView<CountryCodeMethod> {
                 myCountryCodeMethod.flagWidget(
                   mainCountryCode.value,
                 ),
-                Headline5(
-                  title: mainCountryCode.value.dialCode,
-                ),
-                const Icon(
-                  Icons.keyboard_arrow_down_rounded,
-                  size: 20,
-                  color: Colors.black,
-                ),
                 Container(
                   margin: const EdgeInsetsDirectional.fromSTEB(
                     8,
@@ -42,7 +33,6 @@ class CallCountryCodeIcon extends GetView<CountryCodeMethod> {
                   ),
                   height: 26,
                   width: 1,
-                  color: Colors.grey.withValues(alpha:0.3),
                 ),
               ],
             ),
@@ -51,7 +41,7 @@ class CallCountryCodeIcon extends GetView<CountryCodeMethod> {
             Get.lazyPut<CountryCodeMethod>(() => CountryCodeMethod());
             showCustomBottomSheet(
               context,
-              const NadCountryCodeWidget(),
+              const NewCountryCodeWidget(),
               true,
             );
           },

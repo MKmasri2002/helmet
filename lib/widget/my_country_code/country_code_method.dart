@@ -71,7 +71,7 @@ Future<void> showCustomBottomSheet(
     enableDrag: false,
     elevation: 5,
     isScrollControlled: true,
-    backgroundColor: Colors.white.withValues(alpha:0.3),
+    backgroundColor: Colors.white.withValues(alpha: 0.3),
     context: context,
     isDismissible: isDismissible,
     builder: (BuildContext newContext) => SingleChildScrollView(

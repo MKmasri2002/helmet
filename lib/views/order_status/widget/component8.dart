@@ -12,25 +12,25 @@ class Component8 extends StatelessWidget {
       return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    padding: EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       border: BoxBorder.all(color: Colors.black),
-                      borderRadius: BorderRadius.all(Radius.circular(16)),
+                      borderRadius: const BorderRadius.all(Radius.circular(16)),
                     ),
                     child: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.date_range,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 20,
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text("التاريخ والوقت"),
-                            SizedBox(
+                            const Text("التاريخ والوقت"),
+                            const SizedBox(
                               height: 20,
                             ),
                             Text(washDataTripModel.washTimeDate.toString()),

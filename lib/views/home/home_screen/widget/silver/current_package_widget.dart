@@ -23,6 +23,7 @@ class CurrentPackageWidget extends StatelessWidget {
     return GetBuilder<HomeController>(builder: (ctrl) {
       return Container(
         width: MediaQuery.sizeOf(context).width,
+        margin: const EdgeInsetsDirectional.only(end: 16),
         padding: const EdgeInsets.only(
           left: 16,
           right: 16,

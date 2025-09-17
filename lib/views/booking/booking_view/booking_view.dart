@@ -128,7 +128,7 @@ class BookingView extends StatelessWidget {
                       if (ctrl.didUserSeletedDateOfDay) const BuyWashItems(),
                       if (ctrl.didUserSeletedDateOfDay)
                         const SizedBox(
-                          height: 90,
+                          height: 120,
                         ),
                     ],
                   ),

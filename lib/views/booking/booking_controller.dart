@@ -35,6 +35,7 @@ class BookingController extends GetxController {
   bool didUserSeletedCar = false;
   bool didUserSeletedDate = false;
   List<WashItemsModel> washItems = [];
+  List<int> selectedWashItemIndices = [];
 
   bool applePay = false;
   bool creditCard = false;
@@ -45,7 +46,7 @@ class BookingController extends GetxController {
     if (washDataTripModel.paymentMethod == null) {
       totalPrice = washDataTripModel.washPrice!.toInt();
     }
-   
+
     await getWashItems();
   }
 
@@ -58,8 +59,6 @@ class BookingController extends GetxController {
     washDataTripModel.cars = selectedCars;
     update();
   }
-
-  
 
   String formatHour(BuildContext context, int hour) {
     final time = TimeOfDay(hour: hour, minute: 0);
@@ -74,6 +73,23 @@ class BookingController extends GetxController {
       }
     }
     return false;
+  }
+
+  void toggleWashItem(int index) {
+    if (selectedWashItemIndices.contains(index)) {
+      selectedWashItemIndices.remove(index);
+      totalPrice -= washItems[index].price!.toInt();
+      washDataTripModel.washPrice = totalPrice.toDouble();
+    } else {
+      selectedWashItemIndices.add(index);
+      totalPrice += washItems[index].price!.toInt();
+      washDataTripModel.washPrice = totalPrice.toDouble();
+    }
+    update();
+  }
+
+  bool isWashItemSelected(int index) {
+    return selectedWashItemIndices.contains(index);
   }
 
   void createOrder() async {
@@ -183,11 +199,7 @@ class BookingController extends GetxController {
     await userOrdersRef
         .child(washDataTripModel.id!)
         .set(washDataTripModel.toJson());
-    for (WashItemsModel item in washItemsAfterFiltering) {
-      if (item.quantity! > 0) {
-        await userOrdersRef.child(item.id!).set(item.toJson());
-      }
-    }
+
     Get.put(HomeController()).getAllDriverInArea();
     Get.back();
     Get.to(

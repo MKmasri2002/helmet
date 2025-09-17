@@ -11,11 +11,11 @@ class Component1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<OrderStatusController>(builder: (ctrl) {
       return Container(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   width: AppSize.width,
                   decoration: BoxDecoration(
                     color: Colors.blue[300],
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(16),
                         bottomRight: Radius.circular(16)),
                   ),
@@ -29,16 +29,17 @@ class Component1 extends StatelessWidget {
                       SizedBox(
                         width: AppSize.width * 0.4,
                       ),
-                      Icon(
+                      const Icon(
                         Icons.car_crash,
                         color: Colors.white,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
+                      if(washDataTripModel.cars.isNotEmpty)
                       Text(
                         "${washDataTripModel.cars[0].brand ?? " "}  ${washDataTripModel.cars[0].model ?? " "}",
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                       ),
                     ],
                   ),

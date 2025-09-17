@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/theme/app_colors.dart';
 import 'package:helmet_customer/views/booking/booking_controller.dart';
-import 'package:helmet_customer/views/home/home_controller.dart';
 
 class BuyWashItems extends StatelessWidget {
   const BuyWashItems({super.key});
@@ -17,70 +16,76 @@ class BuyWashItems extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 0.81,
+            childAspectRatio: 2,
             crossAxisSpacing: 8,
             mainAxisSpacing: 16,
           ),
           itemCount: ctrl.washItems.length,
           itemBuilder: (context, index) {
             final item = ctrl.washItems[index];
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.network(
-                  item.image ?? '',
-                  height: 100,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
+            return GestureDetector(
+              onTap: () {
+                ctrl.toggleWashItem(index);
+              },
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: ctrl.isWashItemSelected(index) 
+                        ? AppColors.primary 
+                        : Colors.grey.withValues(alpha: 0.3),
+                    width: ctrl.isWashItemSelected(index) ? 2 : 1,
+                  ),
                 ),
-                Text(item.nameEn ?? ''),
-                Text(item.descriptionEn ?? ''),
-                Text('\$${item.price ?? 0}'),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Stack(
                   children: [
-                    IconButton(
-                      icon: const Icon(Icons.remove_circle_outline,
-                          color: AppColors.primary),
-                      onPressed: () {
-                        // Logic to decrease quantity
-                        if (item.quantity != null && item.quantity! > 0) {
-                          item.quantity = (item.quantity ?? 1) - 1;
-                          ctrl.totalPrice -= item.price!.toInt();
-                          washDataTripModel.washPrice =
-                              washDataTripModel.washPrice! -
-                                  item.price!.toDouble();
-                        } else {
-                          // Remove item if quantity is 1
-                          if (washItemsAfterFiltering.isNotEmpty) {
-                            washItemsAfterFiltering.removeAt(index);
-                            ctrl.totalPrice -= item.price!.toInt();
-                            washDataTripModel.washPrice =
-                                washDataTripModel.washPrice! -
-                                    item.price!.toDouble();
-                          }
-                        }
-                        ctrl.update();
-                      },
-                    ),
-                    Text('Quantity: ${item.quantity ?? 0}'),
-                    IconButton(
-                      icon: const Icon(
-                        Icons.add_circle_outline,
-                        color: AppColors.primary,
+                    Positioned(
+                      top: 0,
+                      left: 0,
+                      child: Container(
+                        height: 24,
+                        width: 24,
+                        decoration: BoxDecoration(
+                          color: ctrl.isWashItemSelected(index) 
+                              ? AppColors.primary 
+                              : Colors.white,
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                              color: AppColors.primary.withValues(alpha: 0.5)),
+                        ),
+                        child: ctrl.isWashItemSelected(index)
+                            ? const Icon(
+                                Icons.check,
+                                color: Colors.white,
+                                size: 16,
+                              )
+                            : null,
                       ),
-                      onPressed: () {
-                        // Logic to increase quantity
-                        item.quantity = (item.quantity ?? 0) + 1;
-                        ctrl.totalPrice += item.price!.toInt();
-                        washDataTripModel.washPrice =
-                            washDataTripModel.washPrice! + item.price!.toDouble();
-                        ctrl.update();
-                      },
+                    ),
+                    Row(
+                      children: [
+                        Image.network(
+                          item.image ?? '',
+                          height: 50,
+                          width: 50,
+                          fit: BoxFit.cover,
+                        ),
+                        const SizedBox(width: 8),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(item.nameEn ?? ''),
+                            Text('\$${item.price ?? 0}'),
+                          ],
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
+              ),
             );
           },
         ),

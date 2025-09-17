@@ -14,6 +14,7 @@ class TextFormField1 extends StatelessWidget {
     this.labelFontSize,
     this.initValue,
     this.iconData,
+    this.prefixIcon,
   });
 
   final TextEditingController? textEditingController;
@@ -28,11 +29,13 @@ class TextFormField1 extends StatelessWidget {
   final double? labelFontSize;
   final IconData? icon;
   final IconData? iconData;
-
+  final Widget? prefixIcon;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       child: TextFormField(
+        scrollPadding:
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         controller: textEditingController,
         onChanged: onChanged,
         keyboardType: TextInputType.phone,
@@ -43,32 +46,35 @@ class TextFormField1 extends StatelessWidget {
             borderRadius: BorderRadius.circular(12.0),
             borderSide: BorderSide(
               color: Colors.grey.withValues(alpha: 0.6),
-              width: 1.2,
+              width: 1,
             ),
           ),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: Colors.black.withValues(alpha: 0.6),
-              width: 3,
+              width: 1,
             ),
             borderRadius: BorderRadius.circular(12.0),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: primaryColor,
-              width: 3,
+              width: 1,
             ),
             borderRadius: BorderRadius.circular(12.0),
           ),
           errorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.red, width: 1.6),
+            borderSide: const BorderSide(color: Colors.red, width: 1),
             borderRadius: BorderRadius.circular(12.0),
           ),
           filled: true,
-          prefixIcon: const Padding(
-            padding: EdgeInsetsDirectional.only(start: 8),
-            child: Icon(Icons.phone_android, color: AppColors.blue),
-          ),
+          prefixIcon: prefixIcon ??
+              (iconData != null
+                  ? Icon(
+                      iconData,
+                      color: iconColor ?? primaryColor,
+                    )
+                  : null),
           prefixIconConstraints: const BoxConstraints(
             minWidth: 10,
           ),
