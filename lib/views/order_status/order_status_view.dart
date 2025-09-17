@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/views/order_status/widget/component1.dart';
 import 'package:helmet_customer/views/order_status/widget/component10.dart';
-import 'package:helmet_customer/views/order_status/widget/component11.dart';
 import 'package:helmet_customer/views/order_status/widget/component2.dart';
 import 'package:helmet_customer/views/order_status/widget/component3.dart';
 import 'package:helmet_customer/views/order_status/widget/component4.dart';
@@ -26,7 +25,7 @@ class OrderStatusView extends StatelessWidget {
           appBar: AppBar(
             title: Text(
               TranslationData.reservationDetailes.tr,
-              style: TextStyle(
+              style: const TextStyle(
                 fontFamily: 'IBMPlexSansArabic',
                 fontWeight: FontWeight.w500,
                 fontSize: 16,
@@ -47,14 +46,14 @@ class OrderStatusView extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Sperator(),
-                Component4(),
-                Sperator(),
-                Component5(),
-                Sperator(),
-                Component6(),
-                Component7(),
-                SizedBox(
+                const Sperator(),
+                const Component4(),
+                const Sperator(),
+                const Component5(),
+                const Sperator(),
+                const Component6(),
+                const Component7(),
+                const SizedBox(
                   height: 20,
                 ),
                 const Component8(),
