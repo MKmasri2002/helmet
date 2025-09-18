@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/views/order_status/widget/component1.dart';
 import 'package:helmet_customer/views/order_status/widget/component10.dart';
 import 'package:helmet_customer/views/order_status/widget/component2.dart';
@@ -28,9 +27,9 @@ class OrderStatusView extends StatelessWidget {
                   Get.back();
                 },
                 icon: const Icon(Icons.arrow_back_ios_new)),
-            title: Text(
+            title: const Text(
               "حالة الحجز",
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'IBMPlexSansArabic',
                 fontWeight: FontWeight.w500,
                 fontSize: 16,
@@ -45,31 +44,31 @@ class OrderStatusView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Component1(),
-                Component2(),
+                const Component1(),
+                const Component2(),
                 Padding(
-                  padding: EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Component3(),
-                      SizedBox(
+                      const Component3(),
+                      const SizedBox(
                         height: 20,
                       ),
-                      Sperator(),
-                      Component4(),
-                      Sperator(),
-                      Component5(),
-                      Sperator(),
-                      Component6(),
-                      Component7(),
-                      SizedBox(
+                      const Sperator(),
+                      const Component4(),
+                      const Sperator(),
+                      const Component5(),
+                      const Sperator(),
+                      const Component6(),
+                      const Component7(),
+                      const SizedBox(
                         height: 20,
                       ),
-                      Component8(),
-                      SizedBox(height: 20),
-                      Component9(),
-                      Component10(),
+                      const Component8(),
+                      const SizedBox(height: 20),
+                      const Component9(),
+                      const Component10(),
                       Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: PrimaryButton(
