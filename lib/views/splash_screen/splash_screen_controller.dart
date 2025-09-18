@@ -33,6 +33,7 @@ class SplashScreenController extends GetxController {
     //FirebaseAuth.instance.signOut();
     await checkConnectivity();
     await getCurrentPosition();
+    
     try {
       userModel.token = await FirebaseMessaging.instance.getToken() ?? "";
     } catch (e) {

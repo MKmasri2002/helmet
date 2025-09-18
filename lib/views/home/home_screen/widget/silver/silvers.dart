@@ -16,7 +16,7 @@ class Silvers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(builder: (ctrl) {
-      // Debug print to check oneTimePackages
+     
 
       return Container(
         decoration: const BoxDecoration(
@@ -28,7 +28,7 @@ class Silvers extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (ctrl.userWashDataTripModel.isNotEmpty) ...[
+              if (userWashDataTripModel.isNotEmpty) ...[
                 CustomText(
                   text: TranslationData.currentPackage.tr,
                   fontSize: 18,
@@ -36,7 +36,7 @@ class Silvers extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 HomeScreenCarouselSliderBuilder(
-                    userWashDataTripModel: ctrl.userWashDataTripModel),
+                    userWashDataTripModel: userWashDataTripModel),
                 const SizedBox(height: 24),
               ],
 

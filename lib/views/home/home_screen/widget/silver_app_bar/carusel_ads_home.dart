@@ -21,7 +21,7 @@ class CaruselAdsHome extends StatelessWidget {
       _showError('Please login first');
       return;
     }
-    if (currentAddress.value.latitude == null) {
+    if (userModel.Addresses[0].latitude == null) {
       _showError('Please select or add an address first');
       return;
     }

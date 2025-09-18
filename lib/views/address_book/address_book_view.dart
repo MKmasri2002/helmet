@@ -37,7 +37,7 @@ class AddressBookView extends StatelessWidget {
               ),
             ],
           ),
-          body: userModel.userAddresses!.isEmpty
+          body: userModel.Addresses.isEmpty
               ? const Center(
                   child: Text(
                     'No Address Found',
@@ -47,13 +47,13 @@ class AddressBookView extends StatelessWidget {
                   ),
                 )
               : ListView.builder(
-                  itemCount: userModel.userAddresses!.length,
+                  itemCount: userModel.Addresses.length,
                   itemBuilder: (context, index) {
-                    return  userModel.userAddresses!.isNotEmpty
+                    return  userModel.Addresses.isNotEmpty
                         ? ListTile(
-                            title: Text(userModel.userAddresses![index].title!),
-                            subtitle: Text(userModel.userAddresses![index].address!),
-                            trailing: userModel.userAddresses![index].defaultLocation!
+                            title: Text(userModel.Addresses[index].title!),
+                            subtitle: Text(userModel.Addresses[index].address!),
+                            trailing: userModel.Addresses[index].defaultLocation!
                                    
                                 ? Container(
                                     padding: const EdgeInsets.all(8),

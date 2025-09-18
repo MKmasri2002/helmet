@@ -55,7 +55,7 @@ class OneTimeWash extends StatelessWidget {
                             duration: const Duration(seconds: 3));
                         return;
                       }
-                      if (currentAddress.value.latitude == null) {
+                      if (userModel.Addresses[0].latitude == null) {
                         Get.snackbar(
                             'Error', 'Please select or add an address first',
                             snackPosition: SnackPosition.BOTTOM,
@@ -64,19 +64,17 @@ class OneTimeWash extends StatelessWidget {
                             duration: const Duration(seconds: 3));
                         return;
                       }
-                      log("OneTimeWash item tapped");
-                      log(FirebaseAuth.instance.currentUser.toString());
-                      log(currentAddress.value.latitude.toString());
+                     
                       washDataTripModel = WashDataTripModel(
-                        washType: package[index].type!,
+                        washType: package[index].type,
                         washPrice: package[index].price,
-                        washCount: package[index].count!,
+                        washCount: package[index].count,
                         washStatus: 'pending',
                         washTimeDate: package[index].endDate,
                         washTitleAr: package[index].nameAr,
                         washTitleEn: package[index].nameEn,
-                        userLat: userModel.userAddresses![0].latitude ?? 0,
-                        userLng: userModel.userAddresses![0].longitude ?? 0,
+                        userLat: userModel.Addresses[0].latitude ?? 0,
+                        userLng: userModel.Addresses[0].longitude ?? 0,
                       );
                       Get.to(
                           () => const BookingView(

@@ -17,7 +17,7 @@ class NotificationManagement {
         if (message.data.isNotEmpty) {
           Get.put(() => HomeController());
           Get.put(() => OrderStatusController());
-          Get.find<OrderStatusController>().getOrderById();
+          Get.find<OrderStatusController>().washDataTripModel;
         }
         Get.snackbar(
           message.notification?.title ?? "Notification",

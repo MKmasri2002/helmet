@@ -74,7 +74,7 @@ class CurrentPackageWidget extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                     CustomText(
-                      text: ctrl.userWashDataTripModel.isNotEmpty
+                      text: userWashDataTripModel.isNotEmpty
                           ? '${currentWasghDataTripModel.washCount}'
                           : '0',
                       fontSize: 32,

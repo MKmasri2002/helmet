@@ -4,6 +4,8 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
+import 'package:helmet_customer/data/area_repository.dart';
+import 'package:helmet_customer/data/user_repository.dart';
 import 'package:helmet_customer/data/wash_package_repository.dart';
 import 'package:helmet_customer/models/area/area_model.dart';
 import 'package:helmet_customer/models/dirver_model.dart';
@@ -13,32 +15,29 @@ import 'package:helmet_customer/models/wash_models/package_model.dart';
 import 'package:helmet_customer/models/wash_models/wash_data_trip_model.dart';
 import 'package:helmet_customer/models/wash_models/wash_items.dart';
 import 'package:helmet_customer/utils/constants.dart';
-import 'package:helmet_customer/utils/custom_date.dart';
-import 'package:helmet_customer/views/address/address_book_controller.dart';
 import 'package:helmet_customer/data/auth_repository.dart';
 
 UserModel userModel = UserModel();
 WashDataTripModel washDataTripModel = WashDataTripModel();
 List<WashItemsModel> washItemsAfterFiltering = [];
-List<AreaModel> areasList = [];
+List<Area> areasList = [];
+ List<WashDataTripModel> userWashDataTripModel = [];
+
 
 class HomeController extends GetxController {
-  List<PackageModel> packages = [];
-  List<PackageModel> adsCaruselPackages = [];
+  List<PackageModel> adsPackages = [];
   List<PackageModel> oneTimePackages = [];
   List<PackageModel> subscriptionPackages = [];
 
-  List<WashDataTripModel> userWashDataTripModel = [];
+ 
   WashDataTripModel? nearest;
   Duration? remainingTime;
   Timer? _timer;
+
   @override
   void onInit() async {
     await getAllData();
-    
-    nearest = getNearestOrder();
-    
-     _startTimer();
+    _startTimer();
     super.onInit();
   }
 
@@ -47,7 +46,7 @@ class HomeController extends GetxController {
 
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       nearest = getNearestOrder();
-      update(); // تحدث الشاشة
+      update();
     });
   }
 
@@ -57,29 +56,35 @@ class HomeController extends GetxController {
     super.onClose();
   }
 
- Future<void> getAllData() async {
+  Future<void> getAllData() async {
     if (FirebaseAuth.instance.currentUser != null) {
       userModel.uid = FirebaseAuth.instance.currentUser!.uid.toString();
-      log("uid : ${userModel.uid!}");
     }
-    log("uid : ${userModel.uid!}");
-    getUserInfo();
-    getPackages();
 
-    Get.lazyPut<AddressBookController>(() => AddressBookController());
-    await Get.find<AddressBookController>().getCurrentPosition();
-    getAllAreas();
+    await getUserInfo();
+    await getPackages();
+    await getAllAreas();
     await getAllUserOrder();
     await getAllDriverInArea();
 
     update();
   }
 
-  void getPackages() async {
-    packages = await WashPackageRepository.getAllWashPackage();
+  Future<void> getUserInfo() async {
+    userModel = await AuthRepository.getCurrentUserInfo(userModel.uid!);
+    userModel.Addresses =
+        await AuthRepository.getCurrentUserAdresses(userModel.uid!);
+    userModel.cars = await AuthRepository.getUserCars(userModel.uid!);
+
+    update();
+  }
+
+  Future<void> getPackages() async {
+    List<PackageModel> packages =
+        await WashPackageRepository.getAllWashPackage();
     for (PackageModel package in packages) {
       if (package.showInAdds == true) {
-        adsCaruselPackages.add(package);
+        adsPackages.add(package);
       }
       if (package.type == "one_time") {
         oneTimePackages.add(package);
@@ -87,97 +92,23 @@ class HomeController extends GetxController {
         subscriptionPackages.add(package);
       }
     }
+    update();
+    
   }
 
-  Map<dynamic, dynamic> differenceDates = {};
-
-  Timer? timer;
-  void getDifference(int date) {
-    try {
-      timer!.cancel();
-    } catch (e) {}
-    timer = Timer.periodic(
-      const Duration(seconds: 1),
-      (timer) {
-        differenceDates = CustomDate.differenceBetweenTowDatesDaysHoursMinuts(
-            CustomDate.currentDateAtMillisecond(), date);
-        update();
-      },
-    );
-  }
-
-  Timer? timer2;
-  Map<dynamic, dynamic> differenceDatesForSubscription = {};
-  void getDifferenceForSubscription(int date) {
-    try {
-      timer2!.cancel();
-    } catch (e) {}
-    timer2 = Timer.periodic(
-      const Duration(seconds: 1),
-      (timer) {
-        differenceDatesForSubscription =
-            CustomDate.differenceBetweenTowDatesDaysHoursMinuts(
-                CustomDate.currentDateAtMillisecond(), date);
-        update();
-      },
-    );
-  }
-
-  void getUserInfo() async {
-    log(userModel.uid!);
-    userModel = await AuthRepository.getCurrentUserInfo(userModel.uid!);
-    userModel.userAddresses =
-        await AuthRepository.getCurrentUserAdresses(userModel.uid!);
-    userModel.cars = await AuthRepository.getUserCars(userModel.uid!);
-  }
-
-  void getAllAreas() {
-    // Get all areas from repository from firebase
-    // save them in areasList
-    FirebaseDatabase.instance.ref("areas").get().then((value) {
-      try {
-        Map<String, dynamic> data = jsonDecode(jsonEncode(value.value));
-        for (var key in data.keys) {
-          AreaModel areaModel = AreaModel.fromJson(data[key]);
-          areasList.add(areaModel);
-        }
-        log('Areas Data: ${areasList.length}');
-      } catch (e) {
-        log('Error fetching users Data: $e');
-      }
-      update();
-    });
+  Future<void> getAllAreas() async {
+    
+    areasList = await AreaRepository.getAllAreas();
+    update();
+    
   }
 
   Future<void> getAllUserOrder() async {
-    // Get all user orders from repository from firebase
-    // save them in userOrdersList
-    if (FirebaseAuth.instance.currentUser == null) {
-      return;
-    }
-    userWashDataTripModel.clear();
-    await FirebaseDatabase.instance
-        .ref("Users/${FirebaseAuth.instance.currentUser!.uid}/order")
-        .get()
-        .then((value) {
-      if (!value.exists) {
-        return;
-      }
-      try {
-        Map<String, dynamic> data = jsonDecode(jsonEncode(value.value));
-        log("User orders data: ${data.keys}");
-        for (var key in data.keys) {
-          WashDataTripModel areaModel = WashDataTripModel.fromJson(data[key]);
-          if (!userWashDataTripModel.contains(areaModel)) {
-            userWashDataTripModel.add(areaModel);
-          }
-           log(userWashDataTripModel.length.toString());
-        }
-      } catch (e) {
-        log('Error fetching users Dsssssata: $e');
-      }
-      update();
-    });
+    
+    userWashDataTripModel = await UserRepository.getUserOrders();
+    
+    update();
+    
   }
 
   Future<void> getAllDriverInArea() async {

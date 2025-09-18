@@ -126,11 +126,12 @@ class WashDataTripModel {
     paymentTransactionId = json['paymentTransactionId'];
     paymentReceipt = json['paymentReceipt'];
     paymentStatusMessage = json['paymentStatusMessage'];
-    if (json['cars'] != null) {
-      cars = (json['cars'] as List)
-          .map((e) => Car.fromJson(Map<String, dynamic>.from(e)))
-          .toList();
-    }
+
+    // if (json['cars'] != null) {
+    //   cars = (json['cars'] as List)
+    //       .map((e) => Car.fromJson(Map<String, dynamic>.from(e)))
+    //       .toList();
+    // }
     // plateNumber = json['plateNumber'];
     // carBrand = json['carBrand'];
     // carType = json['carType'];
@@ -174,9 +175,12 @@ class WashDataTripModel {
     data['paymentTransactionId'] = paymentTransactionId;
     data['paymentReceipt'] = paymentReceipt;
     data['paymentStatusMessage'] = paymentStatusMessage;
-    if (cars.isNotEmpty) {
-      data['cars'] = cars.map((e) => e.toJson()).toList();
-    }
+    // if (cars.isNotEmpty) {
+    //   Map<String, dynamic> carsMap = {
+    //     for (var car in cars) car.id!: car.toJson(),
+    //   };
+    //   data['cars'] = carsMap;
+    // }
     // data['plateNumber'] = plateNumber;
     // data['carBrand'] = carBrand;
     // data['carType'] = carType;
