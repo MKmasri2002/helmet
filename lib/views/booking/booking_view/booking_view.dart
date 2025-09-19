@@ -39,78 +39,6 @@ class BookingView extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // SizedBox(
-                      //   height: 200,
-                      //   width: double.infinity,
-                      //   child: GoogleMap(
-                      //     initialCameraPosition: CameraPosition(
-                      //       target: LatLng(currentAddress.value.latitude!,
-                      //           currentAddress.value.longitude!),
-                      //       zoom: 14,
-                      //     ),
-                      //     markers: {
-                      //       Marker(
-                      //           markerId: const MarkerId("1"),
-                      //           position: LatLng(currentAddress.value.latitude!,
-                      //               currentAddress.value.longitude!))
-                      //     },
-                      //     myLocationEnabled: false,
-                      //     myLocationButtonEnabled: true,
-                      //     onMapCreated: (GoogleMapController controller) {
-                      //       ctrl.mapController = controller;
-                      //       // move camera to the selected address
-                      //       if (currentAddress.value.latitude != null &&
-                      //           currentAddress.value.longitude != null) {
-                      //         ctrl.mapController!.animateCamera(
-                      //           CameraUpdate.newCameraPosition(
-                      //             CameraPosition(
-                      //               target: LatLng(
-                      //                   currentAddress.value.latitude!,
-                      //                   currentAddress.value.longitude!),
-                      //               zoom: 14,
-                      //             ),
-                      //           ),
-                      //         );
-                      //       }
-                      //     },
-                      //   ),
-                      // ),
-                      // Padding(
-                      //   padding: const EdgeInsets.symmetric(
-                      //       horizontal: 16, vertical: 8),
-                      //   child: Row(
-                      //     children: [
-                      //       Icon(Icons.location_on,
-                      //           color: primaryColor, size: 30),
-                      //       TextButton(
-                      //         onPressed: () async {
-                      //           await Get.to(() => const AddressBookView(),
-                      //               binding: AddressBookBinding());
-                      //           // move camera to the selected address
-                      //           if (ctrl.mapController != null) {
-                      //             ctrl.mapController!.animateCamera(
-                      //               CameraUpdate.newCameraPosition(
-                      //                 CameraPosition(
-                      //                   target: LatLng(
-                      //                       currentAddress.value.latitude!,
-                      //                       currentAddress.value.longitude!),
-                      //                   zoom: 14,
-                      //                 ),
-                      //               ),
-                      //             );
-                      //           }
-                      //           ctrl.update();
-                      //         },
-                      //         child: CustomText(
-                      //           text: currentAddress.value.address ?? "",
-                      //           fontSize: 7, //14
-                      //           fontWeight: FontWeight.bold,
-                      //           maxLines: 5,
-                      //         ),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
                       const BookingMap(),
                       const SelectLocation(),
                       const SizedBox(
@@ -189,7 +117,7 @@ class BookingView extends StatelessWidget {
                         const Spacer(),
                         ElevatedButton(
                           onPressed: () {
-                            // create order and send it to driver database for packages
+
                             if (ctrl.totalPrice != 0 && newOrder) {
                               appTools.showCustomBottomSheet(
                                   context, const PaymentSheet(), true);

@@ -18,7 +18,7 @@ class UserModel {
   String? userType;
   List<String>? ongoingReservations;
   List<String>? completedReservations;
-  List<UserAddresses>? userAddresses;
+  List<Address> Addresses=[];
   List<Car> cars = [];
   
 
@@ -109,14 +109,14 @@ UserModel(
   userType: $userType,
   ongoingReservations: $ongoingReservations,
   completedReservations: $completedReservations,
-  userAddresses: ${userAddresses![0].toString()},
+  userAddresses: ${Addresses[0].toString()},
   cars ${cars[0].toString()}
 )
 ''';
   }
 }
 
-class UserAddresses {
+class Address {
   String? address;
   String? areaId;
   bool? defaultLocation;
@@ -125,7 +125,7 @@ class UserAddresses {
   double? longitude;
   String? title;
 
-  UserAddresses(
+  Address(
       {this.address,
       this.areaId,
       this.defaultLocation,
@@ -134,7 +134,7 @@ class UserAddresses {
       this.longitude,
       this.title});
 
-  UserAddresses.fromJson(Map<String, dynamic> json) {
+  Address.fromJson(Map<String, dynamic> json) {
     address = json['address'];
     areaId = json['areaId'];
     defaultLocation = json['defaultLocation'];

@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/generated/assets.dart';
 import 'package:helmet_customer/theme/app_colors.dart';
+import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/utils/colors/color1.dart';
 import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
@@ -21,7 +22,7 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CartController>(
-      builder: (ctrl) {   
+      builder: (ctrl) {
         return Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
@@ -42,7 +43,7 @@ class CartScreen extends StatelessWidget {
                 if (showTime != null)
                   if (showTime!)
                     Container(
-                      width: screenWidth,
+                      width: AppSize.width,
                       height: 58,
                       color: AppColors.primary,
                       padding: const EdgeInsets.all(6),
@@ -74,7 +75,7 @@ class CartScreen extends StatelessWidget {
                       ),
                     ),
                 const SizedBox(
-                  height: 16,
+                  height: 40,
                 ),
                 Row(
                   children: [

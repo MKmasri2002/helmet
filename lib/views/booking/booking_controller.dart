@@ -106,29 +106,28 @@ class BookingController extends GetxController {
           colorText: Colors.white);
       return;
     }
-    appTools.showLoading();
+
+    
     selectedDateTime = DateTime(
       selectedDateTime.year,
       selectedDateTime.month,
       selectedDateTime.day,
       selectedTime.hour,
     );
-    washDataTripModel.areaId = currentAddress.value.areaId;
+    washDataTripModel.areaId = userModel.Addresses[0].areaId;
     washDataTripModel.createdAt = DateTime.now().toString();
     washDataTripModel.userName = userModel.name;
     washDataTripModel.userId = userModel.uid;
     washDataTripModel.washTimeDay = selectedTime.toString();
     washDataTripModel.washTimeDate = selectedDateTime.toString();
-    washDataTripModel.userLat = currentAddress.value.latitude!;
-    washDataTripModel.userLng = currentAddress.value.longitude!;
+    washDataTripModel.userLat = userModel.Addresses[0].latitude!;
+    washDataTripModel.userLng = userModel.Addresses[0].longitude!;
     washDataTripModel.driverName = driverList[0].fullName;
     washDataTripModel.driverPhone = driverList[0].phoneNumber;
     if (washDataTripModel.washCount! > 1) {
       washDataTripModel.washCount = washDataTripModel.washCount! - 1;
     }
-    Get.back();
-    Get.back();
-    Get.back();
+    
     Get.to(
       () => const CartScreen(
         showTime: true,
@@ -170,14 +169,14 @@ class BookingController extends GetxController {
       selectedDateTime.day,
       selectedTime.hour,
     );
-    washDataTripModel.areaId = currentAddress.value.areaId;
+    washDataTripModel.areaId = userModel.Addresses[0].areaId;
     washDataTripModel.createdAt = DateTime.now().toString();
     washDataTripModel.userName = userModel.name;
     washDataTripModel.userId = userModel.uid;
     washDataTripModel.washTimeDay = selectedTime.toString();
     washDataTripModel.washTimeDate = selectedDateTime.toString();
-    washDataTripModel.userLat = currentAddress.value.latitude!;
-    washDataTripModel.userLng = currentAddress.value.longitude!;
+    washDataTripModel.userLat = userModel.Addresses[0].latitude!;
+    washDataTripModel.userLng = userModel.Addresses[0].longitude!;
     if (washDataTripModel.washCount! > 1) {
       washDataTripModel.washCount = washDataTripModel.washCount! - 1;
     }

@@ -3,6 +3,9 @@ import 'dart:developer';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:helmet_customer/data/driver_repository.dart';
+import 'package:helmet_customer/data/order_repositry.dart';
+import 'package:helmet_customer/data/user_repository.dart';
 import 'package:helmet_customer/models/wash_models/wash_items.dart';
 import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
@@ -80,7 +83,7 @@ class CartController extends GetxController {
           washDataTripModel.paymentToken = sourcePayment.token;
           washDataTripModel.paymentId = paymentResponse.id;
           washDataTripModel.paymentCard = sourcePayment.number;
-          washDataTripModel.areaId = currentAddress.value.areaId;
+          washDataTripModel.areaId = userModel.Addresses[0].areaId;
           washDataTripModel.createdAt = DateTime.now().toString();
           washDataTripModel.userName = userModel.name;
           washDataTripModel.userId = userModel.uid;
@@ -115,50 +118,29 @@ class CartController extends GetxController {
   }
 
   Future<void> setOrder() async {
-    // Implement order setting logic here
-    DatabaseReference documentReference =
-        FirebaseDatabase.instance.ref("orders").push();
-    documentReference.set(washDataTripModel.toJson());
-    log("order set");
-    washDataTripModel.id = documentReference.key!;
-
-    DatabaseReference userOrdersRef =
-        FirebaseDatabase.instance.ref("Users/${userModel.uid}/order");
-    await userOrdersRef
-        .child(washDataTripModel.id!)
-        .set(washDataTripModel.toJson());
-    if (washItemsAfterFiltering.isNotEmpty) {
-      for (WashItemsModel item in washItemsAfterFiltering) {
-        await userOrdersRef
-            .child(washDataTripModel.id!)
-            .child('items')
-            .child(item.id!)
-            .set(item.toJson());
-      }
+    washDataTripModel.id =
+        await OrderRepositry.setOrder(order: washDataTripModel);
+    await UserRepository.setOrderToUser(
+        orderId: washDataTripModel.id!, order: washDataTripModel);
+    // if (washItemsAfterFiltering.isNotEmpty) {
+    //   await UserRepository.setItemsToOrder(
+    //       items: washItemsAfterFiltering, orderId: washDataTripModel.id);
+    // }
+    if(washDataTripModel.cars.isNotEmpty){
+     await UserRepository.setCarsToOrder(
+          cars: washDataTripModel.cars, orderId: washDataTripModel.id);
     }
+
     if (washDataTripModel.washType == "one_time") {
-      DatabaseReference documentReference =
-          FirebaseDatabase.instance.ref("orders/${washDataTripModel.id}");
-      await documentReference.set(washDataTripModel.toJson());
-      await FirebaseDatabase.instance
-          .ref("driver/${driverList[0].id}/orders/${washDataTripModel.id}")
-          .set(washDataTripModel.toJson());
-      await Get.put(HomeController()).getAllUserOrder();
+      await DriverRepository.setOrderToDriver(
+          driverId: driverList[0].id!,
+          orderId: washDataTripModel.id!,
+          order: washDataTripModel);
+      userWashDataTripModel = await UserRepository.getUserOrders();
+      Get.find<HomeController>().update();
       Get.to(() => const OrderStatusView(),
           binding: OrderStatusBinding(), arguments: washDataTripModel);
     }
-
-    // you need to set list areas data in the database done
-    // set to driver in same area and available time done
-    // get all drivers in same area done
-    // build logic to find driver have time for this in same area done
-    // check the area support this order done
-    // check the time support this order done
-    // send to all driver have same area and time
-    // send notification to the driver he have new order in list
-    // send notification to the user that the order is accepted
-    // create screen for order details
-    // create screen for order history
   }
 
   void payCridetCard() {

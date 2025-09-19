@@ -104,7 +104,7 @@ class AuthRepository {
     });
     return responseModel;
   }
-
+/////////////////////////////////////////////////////////////
   static Future<UserModel> getCurrentUserInfo(String uid) async {
     UserModel userModel = UserModel();
     try {
@@ -119,12 +119,12 @@ class AuthRepository {
         FirebaseAuth.instance.signOut();
       }
     } catch (e) {
-
+      
     }
     return userModel;
   }
-   static Future<List<UserAddresses>> getCurrentUserAdresses(String uid) async {
-    //UserAddresses userAddresses = UserAddresses();
+   static Future<List<Address>> getCurrentUserAdresses(String uid) async {
+   
       
       DataSnapshot snapshot = await _collectionReference.child(uid).child("UserAddresses").get();
 
@@ -132,9 +132,9 @@ class AuthRepository {
         try {
         final Map<String, dynamic> data =
             Map<String, dynamic>.from(snapshot.value as Map);
-        final List<UserAddresses> addresses = data.entries.map((entry) {
+        final List<Address> addresses = data.entries.map((entry) {
           final address =
-              UserAddresses.fromJson(Map<String, dynamic>.from(entry.value));
+              Address.fromJson(Map<String, dynamic>.from(entry.value));
           return address;
         }).toList();
 
@@ -146,7 +146,7 @@ class AuthRepository {
   }
 
   static Future<List<Car>> getUserCars(String uid) async {
-    //UserAddresses userAddresses = UserAddresses();
+    
       
       DataSnapshot snapshot = await _collectionReference.child(uid).child("cars").get();
 

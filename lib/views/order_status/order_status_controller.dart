@@ -7,7 +7,6 @@ import 'package:helmet_customer/models/wash_models/wash_data_trip_model.dart';
 import 'package:helmet_customer/models/wash_models/wash_items.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class OrderStatusController extends GetxController {
   GoogleMapController? mapController;
@@ -49,75 +48,21 @@ class OrderStatusController extends GetxController {
   @override
   void onInit() async {
     washDataTripModel = Get.arguments as WashDataTripModel;
-    print(washDataTripModel.cars[0].toString());
-    getItemByID();
-    getOrderById();
+    
     userAddressMethod();
     super.onInit();
   }
 
   void userAddressMethod() async {
+  
     userAddress = await appTools.getAddressFromLatLng(
-      userModel.userAddresses![0].latitude ?? 0,
-      userModel.userAddresses?[0].longitude ?? 0,
+      userModel.Addresses[0].latitude ?? 0,
+      userModel.Addresses[0].longitude ?? 0,
     );
-
     update();
   }
 
-  void getOrderById({String? orderId}) {
-    DatabaseReference data = FirebaseDatabase.instance.ref('orders');
+  
 
-    data.child(orderId ?? washDataTripModel.id!).onValue.listen((value) async {
-      if (value.snapshot.value != null) {
-        washDataTripModel = WashDataTripModel.fromJson(
-            jsonDecode(jsonEncode(value.snapshot.value)));
-        if (washDataTripModel.washStatus == 'completed') {
-          await Future.delayed(const Duration(seconds: 3));
-          Get.back();
-          Get.put(() => HomeController());
-          Get.find<HomeController>().getAllData();
-          Get.find<HomeController>().update();
-        }
-        log("Order. ID: ${washDataTripModel.id!}, Data: ${washDataTripModel.toJson()}");
-        update();
-      }
-    }).onError((error) {
-      log("Error getting order: $error");
-    });
-  }
-
-  void getItemByID() {
-    DatabaseReference data = FirebaseDatabase.instance.ref('items');
-    // log(washDataTripModel.washItems![0]);
-    for (WashItemsModel d in washItemsAfterFiltering) {
-      log("Wash Item ID:${d.id}");
-      data.child(d.id!).get().then((value) {
-        if (value.value != null) {
-          washItems.add(
-              WashItemsModel.fromJson(jsonDecode(jsonEncode(value.value))));
-          update();
-        }
-      }).catchError((error) {
-        log("Error getting wash items: $error");
-      });
-    }
-    update();
-  }
-
-  void callDriver(String phoneNumber) {
-    // Implement logic to call the driver
-    log("Calling driver...");
-    // You can use a package like url_launcher to initiate a phone call
-    // For example:
-    canLaunchUrl(Uri.parse('tel:$phoneNumber')).then((canLaunch) {
-      if (canLaunch) {
-        launchUrl(Uri.parse('tel:$phoneNumber'));
-      } else {
-        log("Cannot launch phone call");
-      }
-    }).catchError((error) {
-      log("Error launching phone call: $error");
-    });
-  }
+ 
 }

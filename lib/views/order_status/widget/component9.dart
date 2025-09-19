@@ -81,7 +81,7 @@ class Component9 extends StatelessWidget {
                     width: 8,
                   ),
                   Text(
-                    userModel.userAddresses![0].address ?? "",
+                    userModel.Addresses[0].address ?? "",
                     style: const TextStyle(
                       fontFamily: 'IBMPlexSansArabic',
                       fontWeight: FontWeight.w500,
