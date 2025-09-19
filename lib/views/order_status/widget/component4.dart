@@ -27,7 +27,7 @@ class Component4 extends StatelessWidget {
               ),
               textAlign: TextAlign.start,
             ),
-            SizedBox(
+            const SizedBox(
               width: 8,
             ),
             SvgPicture.asset(

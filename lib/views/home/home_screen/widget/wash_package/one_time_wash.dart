@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,7 +6,6 @@ import 'package:helmet_customer/generated/assets.dart';
 import 'package:helmet_customer/models/wash_models/package_model.dart';
 import 'package:helmet_customer/models/wash_models/wash_data_trip_model.dart';
 import 'package:helmet_customer/theme/app_colors.dart';
-import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/views/booking/booking_binding.dart';
 import 'package:helmet_customer/views/booking/booking_view/booking_view.dart';
@@ -55,7 +52,7 @@ class OneTimeWash extends StatelessWidget {
                             duration: const Duration(seconds: 3));
                         return;
                       }
-                      if (userModel.Addresses[0].latitude == null) {
+                      if (userModel.addresses[0].latitude == null) {
                         Get.snackbar(
                             'Error', 'Please select or add an address first',
                             snackPosition: SnackPosition.BOTTOM,
@@ -73,8 +70,8 @@ class OneTimeWash extends StatelessWidget {
                         washTimeDate: package[index].endDate,
                         washTitleAr: package[index].nameAr,
                         washTitleEn: package[index].nameEn,
-                        userLat: userModel.Addresses[0].latitude ?? 0,
-                        userLng: userModel.Addresses[0].longitude ?? 0,
+                        userLat: userModel.addresses[0].latitude ?? 0,
+                        userLng: userModel.addresses[0].longitude ?? 0,
                       );
                       Get.to(
                           () => const BookingView(

@@ -114,14 +114,14 @@ class BookingController extends GetxController {
       selectedDateTime.day,
       selectedTime.hour,
     );
-    washDataTripModel.areaId = userModel.Addresses[0].areaId;
+    washDataTripModel.areaId = userModel.addresses[0].areaId;
     washDataTripModel.createdAt = DateTime.now().toString();
     washDataTripModel.userName = userModel.name;
     washDataTripModel.userId = userModel.uid;
     washDataTripModel.washTimeDay = selectedTime.toString();
     washDataTripModel.washTimeDate = selectedDateTime.toString();
-    washDataTripModel.userLat = userModel.Addresses[0].latitude!;
-    washDataTripModel.userLng = userModel.Addresses[0].longitude!;
+    washDataTripModel.userLat = userModel.addresses[0].latitude!;
+    washDataTripModel.userLng = userModel.addresses[0].longitude!;
     washDataTripModel.driverName = driverList[0].fullName;
     washDataTripModel.driverPhone = driverList[0].phoneNumber;
     if (washDataTripModel.washCount! > 1) {
@@ -169,14 +169,14 @@ class BookingController extends GetxController {
       selectedDateTime.day,
       selectedTime.hour,
     );
-    washDataTripModel.areaId = userModel.Addresses[0].areaId;
+    washDataTripModel.areaId = userModel.addresses[0].areaId;
     washDataTripModel.createdAt = DateTime.now().toString();
     washDataTripModel.userName = userModel.name;
     washDataTripModel.userId = userModel.uid;
     washDataTripModel.washTimeDay = selectedTime.toString();
     washDataTripModel.washTimeDate = selectedDateTime.toString();
-    washDataTripModel.userLat = userModel.Addresses[0].latitude!;
-    washDataTripModel.userLng = userModel.Addresses[0].longitude!;
+    washDataTripModel.userLat = userModel.addresses[0].latitude!;
+    washDataTripModel.userLng = userModel.addresses[0].longitude!;
     if (washDataTripModel.washCount! > 1) {
       washDataTripModel.washCount = washDataTripModel.washCount! - 1;
     }

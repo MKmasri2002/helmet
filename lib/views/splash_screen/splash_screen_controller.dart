@@ -24,6 +24,8 @@ class SplashScreenController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
+    screenHeight = MediaQuery.sizeOf(Get.context!).height;
+    screenWidth = MediaQuery.sizeOf(Get.context!).width;
     mainCountryCode.value =
         nadCountries.where((element) => element.code == 'SA').first;
     videoController =

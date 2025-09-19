@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:helmet_customer/generated/assets.dart';
-import 'package:helmet_customer/utils/colors/color1.dart';
+import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/views/order_status/order_status_controller.dart';
 
@@ -16,14 +16,14 @@ class Component9 extends StatelessWidget {
       return Container(
         margin: const EdgeInsets.symmetric(vertical: 15),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(8),
             border: BoxBorder.all(
-              color: Color(0xffC3CCD3),
+              color: const Color(0xffC3CCD3),
             )),
         child: Column(
           children: [
             SizedBox(
-              width: double.infinity,
+              width: screenWidth,
               height: 200,
               child: ClipRRect(
                 borderRadius: const BorderRadius.only(
@@ -77,11 +77,11 @@ class Component9 extends StatelessWidget {
 
                     // اختياري: ارتفاع محدد
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 8,
                   ),
                   Text(
-                    userModel.Addresses[0].address ?? "",
+                    userModel.addresses[0].address ?? "",
                     style: const TextStyle(
                       fontFamily: 'IBMPlexSansArabic',
                       fontWeight: FontWeight.w500,

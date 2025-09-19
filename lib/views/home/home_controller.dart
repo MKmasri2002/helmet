@@ -72,7 +72,7 @@ class HomeController extends GetxController {
 
   Future<void> getUserInfo() async {
     userModel = await AuthRepository.getCurrentUserInfo(userModel.uid!);
-    userModel.Addresses =
+    userModel.addresses =
         await AuthRepository.getCurrentUserAdresses(userModel.uid!);
     userModel.cars = await AuthRepository.getUserCars(userModel.uid!);
 

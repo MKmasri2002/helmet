@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:developer';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:helmet_customer/models/wash_models/wash_data_trip_model.dart';
@@ -56,8 +53,8 @@ class OrderStatusController extends GetxController {
   void userAddressMethod() async {
   
     userAddress = await appTools.getAddressFromLatLng(
-      userModel.Addresses[0].latitude ?? 0,
-      userModel.Addresses[0].longitude ?? 0,
+      userModel.addresses[0].latitude ?? 0,
+      userModel.addresses[0].longitude ?? 0,
     );
     update();
   }

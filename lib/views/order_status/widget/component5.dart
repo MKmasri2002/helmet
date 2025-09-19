@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/generated/assets.dart';
-import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/views/order_status/order_status_controller.dart';
 import 'package:helmet_customer/views/order_status/widget/sperator.dart';
@@ -14,7 +13,7 @@ class Component5 extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<OrderStatusController>(builder: (ctrl) {
       return Container(
-        padding: EdgeInsets.symmetric(vertical: 8.0),
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -32,7 +31,7 @@ class Component5 extends StatelessWidget {
 
                   // اختياري: ارتفاع محدد
                 ),
-                Text(
+                const Text(
                   "تفاصيل البايكر الخاص بك",
                   style: TextStyle(
                     fontFamily: 'IBMPlexSansArabic',
@@ -52,7 +51,7 @@ class Component5 extends StatelessWidget {
                 CircleAvatar(
                   backgroundImage: washDataTripModel.driverPhoto != null
                       ? NetworkImage(washDataTripModel.driverPhoto!)
-                      : AssetImage(Assets.driverImage),
+                      : const AssetImage(Assets.driverImage),
                   radius: 30,
                 ),
                 const SizedBox(
@@ -120,9 +119,9 @@ class Component5 extends StatelessWidget {
                     ),
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
                 CircleAvatar(
-                  backgroundColor: Color(0xff29C1F2),
+                  backgroundColor: const Color(0xff29C1F2),
                   child: IconButton(
                       onPressed: () {},
                       icon: const Icon(

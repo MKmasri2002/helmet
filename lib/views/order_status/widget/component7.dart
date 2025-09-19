@@ -7,41 +7,49 @@ class Component7 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<OrderStatusController>(builder: (ctrl) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
-        child: ListView.builder(
-          shrinkWrap: true, // مهم جداً عشان داخل Column/ScrollView
-          physics:
-              const NeverScrollableScrollPhysics(), // عشان ScrollView الرئيسي يتعامل مع السحب
-          itemCount: ctrl.washDataTripModel.cars.length,
-          itemBuilder: (context, index) {
-            final car = ctrl.washDataTripModel.cars[index];
-            return Card(
-              color: Colors.white,
-              child: ListTile(
-                leading: car.image != null
-                    ? Image.network(
-                        car.image!,
-                        width: 50,
-                        height: 50,
-                        fit: BoxFit.contain,
-                        errorBuilder: (context, error, stackTrace) =>
-                            const Icon(Icons.car_repair,
-                                size: 40, color: Colors.grey),
-                      )
-                    : const Icon(Icons.directions_car,
-                        size: 40, color: Colors.grey),
-                title: Text(car.brand ?? "Car"),
-                trailing: const CircleAvatar(
-                  backgroundColor: Colors.black,
-                  radius: 10,
+    return GetBuilder<OrderStatusController>(
+      builder: (ctrl) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: ListView.builder(
+            shrinkWrap: true, // مهم جداً عشان داخل Column/ScrollView
+            physics:
+                const NeverScrollableScrollPhysics(), // عشان ScrollView الرئيسي يتعامل مع السحب
+            itemCount: ctrl.washDataTripModel.cars.length,
+            itemBuilder: (context, index) {
+              final car = ctrl.washDataTripModel.cars[index];
+              return Container(
+                height: 80,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(width: 1, color: Colors.grey.withValues(alpha: 0.5)),
+                    borderRadius: BorderRadius.circular(8)),
+                child: Center(
+                  child: ListTile(
+                    leading: car.image != null
+                        ? Image.network(
+                            car.image!,
+                            width: 50,
+                            height: 50,
+                            fit: BoxFit.contain,
+                            errorBuilder: (context, error, stackTrace) =>
+                                const Icon(Icons.car_repair,
+                                    size: 40, color: Colors.grey),
+                          )
+                        : const Icon(Icons.directions_car,
+                            size: 40, color: Colors.grey),
+                    title: Text(car.brand ?? "Car"),
+                    trailing: const CircleAvatar(
+                      backgroundColor: Colors.black,
+                      radius: 10,
+                    ),
+                  ),
                 ),
-              ),
-            );
-          },
-        ),
-      );
-    });
+              );
+            },
+          ),
+        );
+      },
+    );
   }
 }

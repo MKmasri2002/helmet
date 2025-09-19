@@ -22,10 +22,9 @@ class UserRepository {
           order.cars = await getCarsForOrder(orderId: order.id!);
           return order;
         }).toList());
-        print(orders.length);
-        if (orders.isNotEmpty) 
-        print(orders[0].cars.length);
-        return orders;
+        if (orders.isNotEmpty) {
+          return orders;
+        }
       } catch (e) {}
     }
 

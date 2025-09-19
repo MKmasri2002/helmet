@@ -18,7 +18,7 @@ class UserModel {
   String? userType;
   List<String>? ongoingReservations;
   List<String>? completedReservations;
-  List<Address> Addresses=[];
+  List<Address> addresses=[];
   List<Car> cars = [];
   
 
@@ -109,7 +109,7 @@ UserModel(
   userType: $userType,
   ongoingReservations: $ongoingReservations,
   completedReservations: $completedReservations,
-  userAddresses: ${Addresses[0].toString()},
+  userAddresses: ${addresses[0].toString()},
   cars ${cars[0].toString()}
 )
 ''';

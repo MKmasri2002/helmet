@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:helmet_customer/models/wash_models/package_model.dart';
 import 'package:helmet_customer/models/wash_models/wash_data_trip_model.dart';
 import 'package:helmet_customer/theme/app_size.dart';
-import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/views/booking/booking_binding.dart';
 import 'package:helmet_customer/views/booking/booking_view/booking_view.dart';
 import 'package:helmet_customer/views/cart/cart_binding.dart';
@@ -21,7 +20,7 @@ class CaruselAdsHome extends StatelessWidget {
       _showError('Please login first');
       return;
     }
-    if (userModel.Addresses[0].latitude == null) {
+    if (userModel.addresses[0].latitude == null) {
       _showError('Please select or add an address first');
       return;
     }
