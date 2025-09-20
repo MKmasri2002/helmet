@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/models/wash_models/package_model.dart';
-import 'package:helmet_customer/models/wash_models/wash_data_trip_model.dart';
+import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/views/booking/booking_binding.dart';
@@ -26,7 +26,7 @@ class CaruselAdsHome extends StatelessWidget {
       return;
     }
     log("image ${adsData.image}");
-    washDataTripModel = WashDataTripModel(
+    washDataTripModel = Order(
       id: adsData.id,
       washTitleAr: adsData.nameAr,
       washTitleEn: adsData.nameEn,

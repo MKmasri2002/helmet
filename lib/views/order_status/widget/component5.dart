@@ -3,13 +3,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/generated/assets.dart';
 import 'package:helmet_customer/theme/app_size.dart';
+import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/views/order_status/order_status_controller.dart';
 import 'package:helmet_customer/views/order_status/widget/sperator.dart';
 
 class Component5 extends StatelessWidget {
   const Component5({super.key});
-
+  
   @override
   Widget build(BuildContext context) {
     return GetBuilder<OrderStatusController>(builder: (ctrl) {
@@ -50,8 +51,8 @@ class Component5 extends StatelessWidget {
             Row(
               children: [
                 CircleAvatar(
-                  backgroundImage: washDataTripModel.driverPhoto != null
-                      ? NetworkImage(washDataTripModel.driverPhoto!)
+                  backgroundImage: driverList.firstWhere((e)=> e.id == washDataTripModel.driverId).imageUrl  != null
+                      ? NetworkImage( driverList.firstWhere((e)=> e.id == washDataTripModel.driverId).imageUrl ?? "")
                       : AssetImage(Assets.driverImage),
                   radius: 30,
                 ),
@@ -62,7 +63,7 @@ class Component5 extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      washDataTripModel.driverName ?? "",
+                      driverList.firstWhere((e)=> e.id == washDataTripModel.driverId).fullName ?? "",
                       style: const TextStyle(
                         fontFamily: 'IBMPlexSansArabic',
                         fontWeight: FontWeight.w600,
@@ -106,7 +107,9 @@ class Component5 extends StatelessWidget {
                       ),
                     ]),
                     Text(
-                      washDataTripModel.driverPhone ?? "",
+                      
+                    //  washDataTripModel.driverPhone ?? "",
+                      driverList.firstWhere((e)=> e.id == washDataTripModel.driverId).phoneNumber ?? "",
                       textAlign: TextAlign.start,
                       textDirection: TextDirection.ltr,
                       style: const TextStyle(

@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:helmet_customer/models/wash_models/wash_data_trip_model.dart';
+import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/theme/app_colors.dart';
 import 'package:helmet_customer/utils/custom_date.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
@@ -17,7 +17,7 @@ class CurrentPackageWidget extends StatelessWidget {
     super.key,
     required this.currentWasghDataTripModel,
   });
-  final WashDataTripModel currentWasghDataTripModel;
+  final Order currentWasghDataTripModel;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(builder: (ctrl) {

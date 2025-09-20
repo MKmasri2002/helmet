@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/models/wash_models/package_model.dart';
-import 'package:helmet_customer/models/wash_models/wash_data_trip_model.dart';
+import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/views/cart/cart_binding.dart';
 import 'package:helmet_customer/views/cart/cart_screen.dart';
@@ -59,7 +59,7 @@ class Packages extends StatelessWidget {
                       duration: const Duration(seconds: 3));
                   return;
                 }
-                washDataTripModel = WashDataTripModel(
+                washDataTripModel = Order(
                   washType: packages[index].type!,
                   washPrice: packages[index].price,
                   washCount: packages[index].count!,
@@ -67,8 +67,8 @@ class Packages extends StatelessWidget {
                   washTimeDate: packages[index].endDate,
                   washTitleAr: packages[index].nameAr,
                   washTitleEn: packages[index].nameEn,
-                  userLat: userModel.Addresses[0].latitude ?? 0,
-                  userLng: userModel.Addresses[0].longitude ?? 0,
+                  // userLat: userModel.Addresses[0].latitude ?? 0,
+                  // userLng: userModel.Addresses[0].longitude ?? 0,
                 );
                 Get.to(() => const CartScreen(), binding: CartBinding());
               },

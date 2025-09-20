@@ -12,16 +12,16 @@ import 'package:helmet_customer/models/dirver_model.dart';
 import 'package:helmet_customer/models/schedule_list.dart';
 import 'package:helmet_customer/models/user_model.dart';
 import 'package:helmet_customer/models/wash_models/package_model.dart';
-import 'package:helmet_customer/models/wash_models/wash_data_trip_model.dart';
+import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/models/wash_models/wash_items.dart';
 import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/data/auth_repository.dart';
 
 UserModel userModel = UserModel();
-WashDataTripModel washDataTripModel = WashDataTripModel();
+Order washDataTripModel = Order();
 List<WashItemsModel> washItemsAfterFiltering = [];
 List<Area> areasList = [];
- List<WashDataTripModel> userWashDataTripModel = [];
+ List<Order> userWashDataTripModel = [];
 
 
 class HomeController extends GetxController {
@@ -30,7 +30,7 @@ class HomeController extends GetxController {
   List<PackageModel> subscriptionPackages = [];
 
  
-  WashDataTripModel? nearest;
+  Order? nearest;
   Duration? remainingTime;
   Timer? _timer;
 
@@ -105,7 +105,7 @@ class HomeController extends GetxController {
 
   Future<void> getAllUserOrder() async {
     
-    userWashDataTripModel = await UserRepository.getUserOrders();
+    userWashDataTripModel = await UserRepository.getUserOrders(userId: userModel.uid!);
     
     update();
     
@@ -169,7 +169,7 @@ class HomeController extends GetxController {
     });
   }
 
-  WashDataTripModel? getNearestOrder() {
+  Order? getNearestOrder() {
     DateTime now = DateTime.now();
 
     // فلترة: بس الأوردرات القادمة

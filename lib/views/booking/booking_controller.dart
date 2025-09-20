@@ -38,11 +38,11 @@ class BookingController extends GetxController {
 
   bool applePay = false;
   bool creditCard = false;
-
+   
   @override
   void onInit() async {
     super.onInit();
-    if (washDataTripModel.paymentMethod == null) {
+    if (washDataTripModel.washPrice != null) {
       totalPrice = washDataTripModel.washPrice!.toInt();
     }
 
@@ -75,7 +75,7 @@ class BookingController extends GetxController {
   }
 
   void createOrder() async {
-    if (washDataTripModel.paymentMethod != null) {
+    if (washDataTripModel.payment != null) {
       log("create order");
       await setOrderAlreadyPayed();
 
@@ -98,14 +98,15 @@ class BookingController extends GetxController {
     );
     washDataTripModel.areaId = userModel.Addresses[0].areaId;
     washDataTripModel.createdAt = DateTime.now().toString();
-    washDataTripModel.userName = userModel.name;
+    // washDataTripModel.userName = userModel.name;
     washDataTripModel.userId = userModel.uid;
     washDataTripModel.washTimeDay = selectedTime.toString();
     washDataTripModel.washTimeDate = selectedDateTime.toString();
-    washDataTripModel.userLat = userModel.Addresses[0].latitude!;
-    washDataTripModel.userLng = userModel.Addresses[0].longitude!;
-    washDataTripModel.driverName = driverList[0].fullName;
-    washDataTripModel.driverPhone = driverList[0].phoneNumber;
+    // washDataTripModel.userLat = userModel.Addresses[0].latitude!;
+    // washDataTripModel.userLng = userModel.Addresses[0].longitude!;
+    // washDataTripModel.driverName = driverList[0].fullName;
+    // washDataTripModel.driverPhone = driverList[0].phoneNumber;
+    washDataTripModel.driverId = driverList[0].id; 
     if (washDataTripModel.washCount! > 1) {
       washDataTripModel.washCount = washDataTripModel.washCount! - 1;
     }
@@ -153,17 +154,18 @@ class BookingController extends GetxController {
     );
     washDataTripModel.areaId = userModel.Addresses[0].areaId;
     washDataTripModel.createdAt = DateTime.now().toString();
-    washDataTripModel.userName = userModel.name;
+    // washDataTripModel.userName = userModel.name;
     washDataTripModel.userId = userModel.uid;
     washDataTripModel.washTimeDay = selectedTime.toString();
     washDataTripModel.washTimeDate = selectedDateTime.toString();
-    washDataTripModel.userLat = userModel.Addresses[0].latitude!;
-    washDataTripModel.userLng = userModel.Addresses[0].longitude!;
+    // washDataTripModel.userLat = userModel.Addresses[0].latitude!;
+    // washDataTripModel.userLng = userModel.Addresses[0].longitude!;
     if (washDataTripModel.washCount! > 1) {
       washDataTripModel.washCount = washDataTripModel.washCount! - 1;
     }
-    washDataTripModel.driverName = driverList[0].fullName;
-    washDataTripModel.driverPhone = driverList[0].phoneNumber;
+    // washDataTripModel.driverName = driverList[0].fullName;
+    // washDataTripModel.driverPhone = driverList[0].phoneNumber;
+    washDataTripModel.driverId = driverList[0].id; 
     DatabaseReference documentReference =
         FirebaseDatabase.instance.ref("orders/${washDataTripModel.id}");
     await documentReference.set(washDataTripModel.toJson());

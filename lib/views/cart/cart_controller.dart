@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:helmet_customer/data/driver_repository.dart';
 import 'package:helmet_customer/data/order_repositry.dart';
 import 'package:helmet_customer/data/user_repository.dart';
+import 'package:helmet_customer/models/payment.dart';
 import 'package:helmet_customer/models/wash_models/wash_items.dart';
 import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
@@ -75,22 +76,29 @@ class CartController extends GetxController {
           // handle success.
           // save payment response to database
           log("order set");
-          washDataTripModel.paymentAmount = paymentResponse.amount;
-          washDataTripModel.paymentDate = paymentResponse.createdAt;
-          washDataTripModel.paymentMethod = sourcePayment.company.toString();
-          washDataTripModel.paymentStatus = paymentResponse.status.toString();
-          washDataTripModel.paymentTransactionId = sourcePayment.transactionUrl;
-          washDataTripModel.paymentToken = sourcePayment.token;
-          washDataTripModel.paymentId = paymentResponse.id;
-          washDataTripModel.paymentCard = sourcePayment.number;
+
+          washDataTripModel.payment = Payment(
+            amount: paymentResponse.amount,
+            date: paymentResponse.createdAt,
+            method: sourcePayment.company.toString(),
+            status: paymentResponse.status.toString(),
+            transactionId: sourcePayment.transactionUrl,
+            token: sourcePayment.token,
+            id: paymentResponse.id,
+            card: sourcePayment.number,
+          );
+
+          log("payment status ${washDataTripModel.payment!.status.toString()}");
+
           washDataTripModel.areaId = userModel.Addresses[0].areaId;
           washDataTripModel.createdAt = DateTime.now().toString();
-          washDataTripModel.userName = userModel.name;
+          // washDataTripModel.userName = userModel.name;
           washDataTripModel.userId = userModel.uid;
-          washDataTripModel.userPhone = userModel.phone;
+          // washDataTripModel.userPhone = userModel.phone;
           if (driverList.isNotEmpty) {
-            washDataTripModel.driverName = driverList[0].fullName;
-            washDataTripModel.driverPhone = driverList[0].phoneNumber;
+            // washDataTripModel.driverName = driverList[0].fullName;
+            // washDataTripModel.driverPhone = driverList[0].phoneNumber;
+            washDataTripModel.driverId = driverList[0].id;
           } else {
             log("⚠️ driverList is empty or null");
           }
@@ -118,25 +126,15 @@ class CartController extends GetxController {
   }
 
   Future<void> setOrder() async {
-    washDataTripModel.id =
-        await OrderRepositry.setOrder(order: washDataTripModel);
-    await UserRepository.setOrderToUser(
-        orderId: washDataTripModel.id!, order: washDataTripModel);
-    // if (washItemsAfterFiltering.isNotEmpty) {
-    //   await UserRepository.setItemsToOrder(
-    //       items: washItemsAfterFiltering, orderId: washDataTripModel.id);
-    // }
-    if(washDataTripModel.cars.isNotEmpty){
-     await UserRepository.setCarsToOrder(
-          cars: washDataTripModel.cars, orderId: washDataTripModel.id);
-    }
+    await OrderRepositry.setOrder(order: washDataTripModel);
 
     if (washDataTripModel.washType == "one_time") {
-      await DriverRepository.setOrderToDriver(
-          driverId: driverList[0].id!,
-          orderId: washDataTripModel.id!,
-          order: washDataTripModel);
-      userWashDataTripModel = await UserRepository.getUserOrders();
+      // await DriverRepository.setOrderToDriver(
+      //     driverId: driverList[0].id!,
+      //     orderId: washDataTripModel.id!,
+      //     order: washDataTripModel);
+      userWashDataTripModel =
+          await UserRepository.getUserOrders(userId: userModel.uid!);
       Get.find<HomeController>().update();
       Get.to(() => const OrderStatusView(),
           binding: OrderStatusBinding(), arguments: washDataTripModel);

@@ -96,7 +96,7 @@ class BookingView extends StatelessWidget {
                             Row(
                               children: [
                                 CustomText(
-                                  text: washDataTripModel.paymentMethod != null
+                                  text: washDataTripModel.payment != null
                                       ? ctrl.totalPrice.toString()
                                       : ctrl.totalPrice.toString(),
                                   fontSize: 32,
