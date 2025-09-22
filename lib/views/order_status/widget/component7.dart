@@ -14,9 +14,9 @@ class Component7 extends StatelessWidget {
           shrinkWrap: true, // مهم جداً عشان داخل Column/ScrollView
           physics:
               const NeverScrollableScrollPhysics(), // عشان ScrollView الرئيسي يتعامل مع السحب
-          itemCount: ctrl.washDataTripModel.cars.length,
+          itemCount: ctrl.washDataTripModel.sessions.last.cars.length,
           itemBuilder: (context, index) {
-            final car = ctrl.washDataTripModel.cars[index];
+            final car = ctrl.washDataTripModel.sessions.last.cars[index];
             return Card(
               color: Colors.white,
               child: ListTile(

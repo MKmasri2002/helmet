@@ -106,7 +106,11 @@ class HomeController extends GetxController {
   Future<void> getAllUserOrder() async {
     
     userWashDataTripModel = await UserRepository.getUserOrders(userId: userModel.uid!);
-    
+    if(userWashDataTripModel.isNotEmpty)
+    // ignore: curly_braces_in_flow_control_structures
+    for(Order order in userWashDataTripModel) {
+      log(order.toString());
+    }
     update();
     
   }

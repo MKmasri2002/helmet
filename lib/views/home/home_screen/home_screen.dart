@@ -87,7 +87,7 @@ class HomeScreen extends StatelessWidget {
 
                           if (ctrl.nearest!.washCount! > 1 &&
                               ctrl.nearest!.washType! == 'subscription' &&
-                              ctrl.nearest!.washStatus! == 'pending') {
+                              ctrl.nearest!.sessions![0].status == 'pending') {
                             Get.to(
                               () => const BookingView(newOrder: true),
                               binding: BookingBinding(),

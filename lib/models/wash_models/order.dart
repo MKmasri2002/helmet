@@ -1,42 +1,33 @@
 import 'package:helmet_customer/models/car.dart';
 import 'package:helmet_customer/models/payment.dart';
+import 'package:helmet_customer/models/wash_models/wash_session.dart';
 
 class Order {
+
   int? washCount;
-  String? washCountDate;
-  String? washStatus;
   String? washType;
   double? washPrice;
-  String? washTimeDay;
-  String? washTimeDate;
-  String? washArea;
   String? washTitleEn;
   String? washTitleAr;
   String? userId;
-  String? driverId;
-  List<Car> cars = [];
-  Payment? payment;
+  bool? isPaid = false;
   String? id;
   String? createdAt;
-  String? areaId;
+  List<WashSession> sessions = [];
+  String? washTimeDate;
+
 
   Order({
     this.washCount,
-    this.washCountDate,
-    this.washStatus,
     this.washType,
     this.washPrice,
-    this.washTimeDay,
-    this.washTimeDate,
-    this.washArea,
     this.washTitleEn,
     this.washTitleAr,
-    this.driverId,
-    this.payment,
     this.id,
     this.createdAt,
-    this.areaId,
     this.userId,
+    this.isPaid,
+    this.washTimeDate,
   });
   DateTime? get dateTime {
     if (washTimeDate != null) {
@@ -58,65 +49,51 @@ class Order {
 
   Order.fromJson(Map<String, dynamic> json) {
     washCount = json['washCount'];
-    washCountDate = json['washCountDate'];
-    washStatus = json['washStatus'];
     washType = json['washType'];
     washPrice = json['washPrice'];
-    washTimeDay = json['washTime'];
     washTimeDate = json['washTimeDate'];
-    washArea = json['washArea'];
     washTitleEn = json['washTitleEn'];
     washTitleAr = json['washTitleAr'];
-    driverId = json['driverId'];
     id = json['id'];
     createdAt = json['createdAt'];
-    washTimeDay = json['washTime'];
-    areaId = json['areaId'];
     userId = json['userId'];
+    isPaid = json['isPaid'] ?? false;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['washCount'] = washCount;
-    data['washCountDate'] = washCountDate;
-    data['washStatus'] = washStatus;
     data['washType'] = washType;
     data['washPrice'] = washPrice;
-    data['washTime'] = washTimeDay;
     data['washTimeDate'] = washTimeDate;
-    data['washArea'] = washArea;
     data['washTitleEn'] = washTitleEn;
     data['washTitleAr'] = washTitleAr;
-    data['driverId'] = driverId;
     data['id'] = id;
     data['createdAt'] = createdAt;
-    data['washTime'] = washTimeDay;
-    data['areaId'] = areaId;
     data['userId'] = userId;
+    data['isPaid'] = isPaid;
 
     return data;
   }
-
 
   @override
   String toString() {
     final sb = StringBuffer();
     sb.writeln('WashDataTripModel {');
     sb.writeln('  washCount: $washCount');
-    sb.writeln('  washCountDate: $washCountDate');
-    sb.writeln('  washStatus: $washStatus');
     sb.writeln('  washType: $washType');
     sb.writeln('  washPrice: $washPrice');
-    sb.writeln('  washTimeDay: $washTimeDay');
     sb.writeln('  washTimeDate: $washTimeDate');
-    sb.writeln('  washArea: $washArea');
     sb.writeln('  washTitleEn: $washTitleEn');
-    sb.writeln('  car: ${cars.length}');
     sb.writeln('  id: $id');
     sb.writeln('  userId: $userId');
-    sb.writeln('  driverId: $driverId');
     sb.writeln('  createdAt: $createdAt');
-    sb.writeln('  areaId: $areaId');
+    sb.writeln('  is paid : $isPaid');
+    sb.writeln('  sessions: ');
+    for(WashSession w in sessions){
+      sb.writeln('  ${w.toString()}');
+    }
+    sb.writeln('  car l : $isPaid');
     sb.writeln('}');
     return sb.toString();
   }

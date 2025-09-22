@@ -51,7 +51,7 @@ class Packages extends StatelessWidget {
                       duration: const Duration(seconds: 3));
                   return;
                 }
-                if (currentAddress.value.latitude == null) {
+                if (userModel.Addresses[0].latitude == null) {
                   Get.snackbar('Error', 'Please select or add an address first',
                       snackPosition: SnackPosition.BOTTOM,
                       backgroundColor: Colors.red,
@@ -63,10 +63,11 @@ class Packages extends StatelessWidget {
                   washType: packages[index].type!,
                   washPrice: packages[index].price,
                   washCount: packages[index].count!,
-                  washStatus: 'pending',
                   washTimeDate: packages[index].endDate,
                   washTitleAr: packages[index].nameAr,
                   washTitleEn: packages[index].nameEn,
+                  createdAt: DateTime.now().toString(),  
+                  userId: userModel.uid,
                   // userLat: userModel.Addresses[0].latitude ?? 0,
                   // userLng: userModel.Addresses[0].longitude ?? 0,
                 );

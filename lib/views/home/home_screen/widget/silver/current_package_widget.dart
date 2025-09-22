@@ -102,9 +102,10 @@ class CurrentPackageWidget extends StatelessWidget {
                   return;
                 }
                 washDataTripModel = currentWasghDataTripModel;
-                if (currentWasghDataTripModel.washCount! > 1 &&
-                    currentWasghDataTripModel.washType! == 'subscription' &&
-                    currentWasghDataTripModel.washStatus! == 'pending') {
+                if (currentWasghDataTripModel.washCount! >= 1 &&
+                    currentWasghDataTripModel.washType! == 'subscription' 
+                   // currentWasghDataTripModel.washStatus! == 'pending'
+                   ) {
                   Get.to(
                     () => const BookingView(newOrder: true),
                     binding: BookingBinding(),

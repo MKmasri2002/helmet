@@ -37,7 +37,7 @@ class Component1 extends StatelessWidget {
               width: 10,
             ),
             Text(
-              "${washDataTripModel.cars[0].brand ?? " "}  ${washDataTripModel.cars[0].model ?? " "}",
+              "${washDataTripModel.sessions.last.cars[0].brand ?? " "}  ${washDataTripModel.sessions.last.cars[0].model ?? " "}",
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,

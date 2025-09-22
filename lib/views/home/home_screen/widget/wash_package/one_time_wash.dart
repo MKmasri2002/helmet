@@ -69,12 +69,12 @@ class OneTimeWash extends StatelessWidget {
                         washType: package[index].type,
                         washPrice: package[index].price,
                         washCount: package[index].count,
-                        washStatus: 'pending',
                         washTimeDate: package[index].endDate,
                         washTitleAr: package[index].nameAr,
                         washTitleEn: package[index].nameEn,
-                        // userLat: userModel.Addresses[0].latitude ?? 0,
-                        // userLng: userModel.Addresses[0].longitude ?? 0,
+                        createdAt: DateTime.now().toString(),  
+                        userId: userModel.uid,
+                                       
                       );
                       Get.to(
                           () => const BookingView(

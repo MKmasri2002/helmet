@@ -68,42 +68,18 @@ class CartController extends GetxController {
     }
     if (result is PaymentResponse) {
       PaymentResponse paymentResponse = result;
-      // log("Payment Response: ${paymentResponse.toJson()}");
+    
       CardPaymentResponseSource sourcePayment = paymentResponse.source;
       log(result.status.toString());
       switch (result.status) {
         case PaymentStatus.paid:
-          // handle success.
-          // save payment response to database
+       
           log("order set");
 
-          washDataTripModel.payment = Payment(
-            amount: paymentResponse.amount,
-            date: paymentResponse.createdAt,
-            method: sourcePayment.company.toString(),
-            status: paymentResponse.status.toString(),
-            transactionId: sourcePayment.transactionUrl,
-            token: sourcePayment.token,
-            id: paymentResponse.id,
-            card: sourcePayment.number,
-          );
+          washDataTripModel.isPaid = true;
 
-          log("payment status ${washDataTripModel.payment!.status.toString()}");
-
-          washDataTripModel.areaId = userModel.Addresses[0].areaId;
-          washDataTripModel.createdAt = DateTime.now().toString();
-          // washDataTripModel.userName = userModel.name;
-          washDataTripModel.userId = userModel.uid;
-          // washDataTripModel.userPhone = userModel.phone;
-          if (driverList.isNotEmpty) {
-            // washDataTripModel.driverName = driverList[0].fullName;
-            // washDataTripModel.driverPhone = driverList[0].phoneNumber;
-            washDataTripModel.driverId = driverList[0].id;
-          } else {
-            log("⚠️ driverList is empty or null");
-          }
           log(washDataTripModel.toString());
-          setOrder();
+         await setOrder();
           appTools.unFocusKeyboard(Get.context!);
 
           await Get.put(HomeController()).getAllUserOrder();
@@ -127,18 +103,15 @@ class CartController extends GetxController {
 
   Future<void> setOrder() async {
     await OrderRepositry.setOrder(order: washDataTripModel);
-
-    if (washDataTripModel.washType == "one_time") {
-      // await DriverRepository.setOrderToDriver(
-      //     driverId: driverList[0].id!,
-      //     orderId: washDataTripModel.id!,
-      //     order: washDataTripModel);
-      userWashDataTripModel =
+     userWashDataTripModel =
           await UserRepository.getUserOrders(userId: userModel.uid!);
       Get.find<HomeController>().update();
+    if (washDataTripModel.washType == "one_time") {
       Get.to(() => const OrderStatusView(),
           binding: OrderStatusBinding(), arguments: washDataTripModel);
     }
+     
+     
   }
 
   void payCridetCard() {

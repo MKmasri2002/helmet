@@ -51,8 +51,8 @@ class Component5 extends StatelessWidget {
             Row(
               children: [
                 CircleAvatar(
-                  backgroundImage: driverList.firstWhere((e)=> e.id == washDataTripModel.driverId).imageUrl  != null
-                      ? NetworkImage( driverList.firstWhere((e)=> e.id == washDataTripModel.driverId).imageUrl ?? "")
+                  backgroundImage: driverList.firstWhere((e)=> e.id == washDataTripModel.sessions.last.driverId).imageUrl  != null
+                      ? NetworkImage( driverList.firstWhere((e)=> e.id == washDataTripModel.sessions.last.driverId).imageUrl ?? "")
                       : AssetImage(Assets.driverImage),
                   radius: 30,
                 ),
@@ -63,7 +63,7 @@ class Component5 extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      driverList.firstWhere((e)=> e.id == washDataTripModel.driverId).fullName ?? "",
+                      driverList.firstWhere((e)=> e.id == washDataTripModel.sessions.last.driverId).fullName ?? "",
                       style: const TextStyle(
                         fontFamily: 'IBMPlexSansArabic',
                         fontWeight: FontWeight.w600,
@@ -109,7 +109,7 @@ class Component5 extends StatelessWidget {
                     Text(
                       
                     //  washDataTripModel.driverPhone ?? "",
-                      driverList.firstWhere((e)=> e.id == washDataTripModel.driverId).phoneNumber ?? "",
+                      driverList.firstWhere((e)=> e.id == washDataTripModel.sessions.last.driverId).phoneNumber ?? "",
                       textAlign: TextAlign.start,
                       textDirection: TextDirection.ltr,
                       style: const TextStyle(

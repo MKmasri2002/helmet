@@ -3,6 +3,7 @@ import 'package:helmet_customer/models/car.dart';
 import 'package:helmet_customer/models/payment.dart';
 import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/models/wash_models/wash_items.dart';
+import 'package:helmet_customer/models/wash_models/wash_session.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 
 class UserRepository {
@@ -19,20 +20,24 @@ class UserRepository {
             Map<String, dynamic>.from(snapshot.value as Map);
 
         final List<Order> orders =
-            await Future.wait(data.entries.map((entry) async {
+            (data.entries.map((entry)  {
           final orderData = Map<String, dynamic>.from(entry.value);
 
           final order = Order.fromJson(orderData);
 
-          final carsData = Map<String, dynamic>.from(orderData['cars'] ?? {});
+          final washSessionData = Map<String, dynamic>.from(orderData['washSessions'] ?? {});
+         
 
-          order.cars = carsData.entries.map((carEntry) {
-            return Car.fromJson(Map<String, dynamic>.from(carEntry.value));
+          order.sessions = washSessionData.entries.map((sessionEntry) {
+            final sessionData = Map<String, dynamic>.from(sessionEntry.value);
+            final session= WashSession.fromJson(sessionData);
+             final carsData = Map<String, dynamic>.from(sessionData['cars'] ?? {});
+             session.cars = carsData.entries.map((carEntry) {
+              return Car.fromJson(Map<String, dynamic>.from(carEntry.value));
+            }).toList();
+            return session;
           }).toList();
-          order.payment = orderData['payment'] != null
-              ? Payment.fromJson(Map<String, dynamic>.from(orderData['payment']))
-              : null;
-          print(order.payment!.status!);
+         
           return order;
         }).toList());
 

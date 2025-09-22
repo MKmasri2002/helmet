@@ -28,9 +28,17 @@ class Car {
     return data;
   }
 
-  @override
+   @override
   String toString() {
-    return "$brand"
-    "imageUrl : $image";
+    final sb = StringBuffer();
+    sb.writeln('car {');
+    sb.writeln('  id: $id');
+    sb.writeln('  brand: $brand');
+    sb.writeln('  color: $color');
+    sb.writeln('  model: $model');
+    sb.writeln('  plateNumber: $plateNumber');
+    sb.writeln('  image: $image');
+    sb.writeln('}');
+    return sb.toString();
   }
 }

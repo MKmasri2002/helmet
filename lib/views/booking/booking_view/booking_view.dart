@@ -96,9 +96,7 @@ class BookingView extends StatelessWidget {
                             Row(
                               children: [
                                 CustomText(
-                                  text: washDataTripModel.payment != null
-                                      ? ctrl.totalPrice.toString()
-                                      : ctrl.totalPrice.toString(),
+                                  text: ctrl.totalPrice.toString(),
                                   fontSize: 32,
                                   fontWeight: FontWeight.w700,
                                   color: Colors.white,
@@ -117,7 +115,6 @@ class BookingView extends StatelessWidget {
                         const Spacer(),
                         ElevatedButton(
                           onPressed: () {
-
                             if (ctrl.totalPrice != 0 && newOrder) {
                               appTools.showCustomBottomSheet(
                                   context, const PaymentSheet(), true);

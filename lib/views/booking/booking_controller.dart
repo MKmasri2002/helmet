@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:helmet_customer/models/car.dart';
 import 'package:helmet_customer/models/wash_models/wash_items.dart';
+import 'package:helmet_customer/models/wash_models/wash_session.dart';
 import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
 import 'package:helmet_customer/views/cart/cart_binding.dart';
@@ -38,7 +39,7 @@ class BookingController extends GetxController {
 
   bool applePay = false;
   bool creditCard = false;
-   
+
   @override
   void onInit() async {
     super.onInit();
@@ -55,7 +56,7 @@ class BookingController extends GetxController {
     } else {
       selectedCars.add(car);
     }
-    washDataTripModel.cars = selectedCars;
+   
     update();
   }
 
@@ -73,9 +74,9 @@ class BookingController extends GetxController {
     }
     return false;
   }
-
+  /////////////////*******is using */
   void createOrder() async {
-    if (washDataTripModel.payment != null) {
+    if (washDataTripModel.isPaid != null) {
       log("create order");
       await setOrderAlreadyPayed();
 
@@ -89,28 +90,27 @@ class BookingController extends GetxController {
       return;
     }
 
-    
     selectedDateTime = DateTime(
       selectedDateTime.year,
       selectedDateTime.month,
       selectedDateTime.day,
       selectedTime.hour,
     );
-    washDataTripModel.areaId = userModel.Addresses[0].areaId;
-    washDataTripModel.createdAt = DateTime.now().toString();
-    // washDataTripModel.userName = userModel.name;
-    washDataTripModel.userId = userModel.uid;
-    washDataTripModel.washTimeDay = selectedTime.toString();
+    WashSession washSession =WashSession(
+      areaId: userModel.Addresses[0].areaId,
+      driverId: driverList[0].id,
+      timeDate: selectedDateTime.toString(),
+      timeHour: selectedTime.toString(),
+      status: 'pending',
+    );
+    washSession.cars = selectedCars;
+    washDataTripModel.sessions!.add(washSession);
+    
     washDataTripModel.washTimeDate = selectedDateTime.toString();
-    // washDataTripModel.userLat = userModel.Addresses[0].latitude!;
-    // washDataTripModel.userLng = userModel.Addresses[0].longitude!;
-    // washDataTripModel.driverName = driverList[0].fullName;
-    // washDataTripModel.driverPhone = driverList[0].phoneNumber;
-    washDataTripModel.driverId = driverList[0].id; 
     if (washDataTripModel.washCount! > 1) {
       washDataTripModel.washCount = washDataTripModel.washCount! - 1;
     }
-    
+
     Get.to(
       () => const CartScreen(
         showTime: true,
@@ -144,28 +144,31 @@ class BookingController extends GetxController {
       );
       return;
     }
-    washDataTripModel.cars.addAll(selectedCars);
-    log(washDataTripModel.cars.length.toString());
+    WashSession newSession = WashSession(
+      areaId: userModel.Addresses[0].areaId,
+      driverId: driverList[0].id,
+      timeDate: selectedDateTime.toString(),
+      timeHour: selectedTime.toString(),
+      status: 'pending',
+    );
+    newSession.cars = selectedCars;
+    washDataTripModel.sessions.add(newSession);   
+    
     selectedDateTime = DateTime(
       selectedDateTime.year,
       selectedDateTime.month,
       selectedDateTime.day,
       selectedTime.hour,
     );
-    washDataTripModel.areaId = userModel.Addresses[0].areaId;
+
     washDataTripModel.createdAt = DateTime.now().toString();
-    // washDataTripModel.userName = userModel.name;
     washDataTripModel.userId = userModel.uid;
-    washDataTripModel.washTimeDay = selectedTime.toString();
     washDataTripModel.washTimeDate = selectedDateTime.toString();
-    // washDataTripModel.userLat = userModel.Addresses[0].latitude!;
-    // washDataTripModel.userLng = userModel.Addresses[0].longitude!;
     if (washDataTripModel.washCount! > 1) {
       washDataTripModel.washCount = washDataTripModel.washCount! - 1;
     }
-    // washDataTripModel.driverName = driverList[0].fullName;
-    // washDataTripModel.driverPhone = driverList[0].phoneNumber;
-    washDataTripModel.driverId = driverList[0].id; 
+   
+    
     DatabaseReference documentReference =
         FirebaseDatabase.instance.ref("orders/${washDataTripModel.id}");
     await documentReference.set(washDataTripModel.toJson());
@@ -178,7 +181,7 @@ class BookingController extends GetxController {
     // update user order history
     DatabaseReference userOrdersRef =
         FirebaseDatabase.instance.ref("Users/${userModel.uid}/order");
-    washDataTripModel.washStatus = 'active';
+    washDataTripModel.sessions.last.status = 'active';
     await userOrdersRef
         .child(washDataTripModel.id!)
         .set(washDataTripModel.toJson());
