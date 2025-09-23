@@ -16,7 +16,7 @@ class Component8 extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: Colors.white,
-          border: BoxBorder.all(color: Color(0xffC3CCD3)),
+          border: BoxBorder.all(color: const Color(0xffC3CCD3)),
           borderRadius: const BorderRadius.all(Radius.circular(16)),
         ),
         child: Row(
@@ -52,7 +52,7 @@ class Component8 extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  washDataTripModel.washTimeDate.toString(),
+                  ctrl.washDataTripModel.washTimeDate.toString(),
                   style: const TextStyle(
                     fontFamily: 'IBMPlexSansArabic',
                     fontWeight: FontWeight.w600,

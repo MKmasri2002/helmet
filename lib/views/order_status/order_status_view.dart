@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/views/order_status/widget/component1.dart';
 import 'package:helmet_customer/views/order_status/widget/component10.dart';
 import 'package:helmet_customer/views/order_status/widget/component11.dart';
@@ -23,9 +22,9 @@ class OrderStatusView extends StatelessWidget {
       builder: (ctrl) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(
+            title: const Text(
               "حالة الحجز",
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'IBMPlexSansArabic',
                 fontWeight: FontWeight.w500,
                 fontSize: 16,
@@ -36,7 +35,7 @@ class OrderStatusView extends StatelessWidget {
             ),
             centerTitle: true,
           ),
-          body: const SingleChildScrollView(
+          body:  SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

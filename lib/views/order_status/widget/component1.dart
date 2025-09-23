@@ -31,13 +31,13 @@ class Component1 extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            Spacer(),
+            const Spacer(),
             const Image(image: AssetImage(Assets.iconCar)),
             const SizedBox(
               width: 10,
             ),
             Text(
-              "${washDataTripModel.sessions.last.cars[0].brand ?? " "}  ${washDataTripModel.sessions.last.cars[0].model ?? " "}",
+              "${ ctrl.washDataTripModel.sessions.last.cars[0].brand ?? " "}  ${ctrl.washDataTripModel.sessions.last.cars[0].model ?? " "}",
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,

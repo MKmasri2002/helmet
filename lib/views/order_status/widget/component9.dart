@@ -3,10 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:helmet_customer/generated/assets.dart';
-import 'package:helmet_customer/utils/colors/color1.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/views/order_status/order_status_controller.dart';
-import 'package:helmet_customer/views/widget/custom_text.dart';
 
 class Component9 extends StatelessWidget {
   const Component9({super.key});
@@ -19,7 +17,7 @@ class Component9 extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
             border: BoxBorder.all(
-              color: Color(0xffC3CCD3),
+              color: const Color(0xffC3CCD3),
             )),
         child: Column(
           children: [
@@ -78,7 +76,7 @@ class Component9 extends StatelessWidget {
 
                     // اختياري: ارتفاع محدد
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 8,
                   ),
                   Text(

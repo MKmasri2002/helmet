@@ -17,7 +17,7 @@ class Component10 extends StatelessWidget {
         padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
           border: Border.all(
-            color: Color(0xffC3CCD3),
+            color: const Color(0xffC3CCD3),
           ),
           borderRadius: BorderRadius.circular(16),
         ),
@@ -34,10 +34,10 @@ class Component10 extends StatelessWidget {
 
                   // اختياري: ارتفاع محدد
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
-                Text(
+                const Text(
                   "ملخص الحجز",
                   style: TextStyle(
                     fontFamily: 'IBMPlexSansArabic',
@@ -57,7 +57,7 @@ class Component10 extends StatelessWidget {
               height: 30,
             ),
             Text(
-              washDataTripModel.washTitleAr ?? "",
+              ctrl.washDataTripModel.washTitleAr ?? "",
               style: const TextStyle(
                 fontFamily: 'IBMPlexSansArabic',
                 fontWeight: FontWeight.w600,
@@ -72,7 +72,7 @@ class Component10 extends StatelessWidget {
               height: AppSize.width * 0.05,
             ),
             Text(
-              washDataTripModel.washTitleAr ?? "",
+              ctrl.washDataTripModel.washTitleAr ?? "",
               style: const TextStyle(
                 fontFamily: 'IBMPlexSansArabic',
                 fontWeight: FontWeight.w500,

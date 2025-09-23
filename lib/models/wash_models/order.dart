@@ -1,5 +1,3 @@
-import 'package:helmet_customer/models/car.dart';
-import 'package:helmet_customer/models/payment.dart';
 import 'package:helmet_customer/models/wash_models/wash_session.dart';
 
 class Order {
@@ -96,5 +94,10 @@ class Order {
     sb.writeln('  car l : $isPaid');
     sb.writeln('}');
     return sb.toString();
+  }
+  void decrementWashCount() {
+    if (washCount != null && washCount! > 0) {
+      washCount = washCount! - 1;
+    }
   }
 }

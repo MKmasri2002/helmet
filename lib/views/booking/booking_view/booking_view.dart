@@ -13,7 +13,6 @@ import 'package:helmet_customer/views/booking/booking_view/widget/choose_car_wid
 import 'package:helmet_customer/views/booking/booking_view/widget/date_builder.dart';
 import 'package:helmet_customer/views/booking/booking_view/widget/payment_sheet.dart';
 import 'package:helmet_customer/views/booking/booking_view/widget/time_of_day_timeline.dart';
-import 'package:helmet_customer/views/home/home_controller.dart';
 
 class BookingView extends StatelessWidget {
   const BookingView({

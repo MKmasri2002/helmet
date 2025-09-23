@@ -27,7 +27,7 @@ class HomeScreenCarouselSliderBuilder extends StatelessWidget {
           return const SizedBox.shrink();
         }
         return CurrentPackageWidget(
-          currentWasghDataTripModel: userWashDataTripModel[itemIndex],
+          currentOrder: userWashDataTripModel[itemIndex]
         );
       },
     );

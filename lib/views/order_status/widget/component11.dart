@@ -13,16 +13,16 @@ class Component11 extends StatelessWidget {
         width: double.infinity, // عرض الشاشة كامل
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue, // لون الزر
+            backgroundColor: ctrl.lastSessionStatus == "done"
+                ? const Color(0xff29C1F2)
+                : const Color(0xff29C1F2).withAlpha(127), // لون الزر
             foregroundColor: Colors.white, // لون الخط والأيقونات
             padding: const EdgeInsets.symmetric(vertical: 16), // ارتفاع الزر
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8), // زوايا ناعمة
             ),
           ),
-          onPressed: () {
-            // أكشن الزر
-          },
+          onPressed: ctrl.lastSessionStatus == "done" ? () {} : null,
           child: const Text(
             "تأكيد نهاية الطلب",
             style: TextStyle(

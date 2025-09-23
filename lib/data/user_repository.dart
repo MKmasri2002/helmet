@@ -1,16 +1,12 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:helmet_customer/models/car.dart';
-import 'package:helmet_customer/models/payment.dart';
 import 'package:helmet_customer/models/wash_models/order.dart';
-import 'package:helmet_customer/models/wash_models/wash_items.dart';
 import 'package:helmet_customer/models/wash_models/wash_session.dart';
-import 'package:helmet_customer/views/home/home_controller.dart';
 
 class UserRepository {
   static DatabaseReference ref = FirebaseDatabase.instance.ref("orders");
   ////////////////////////////////<Get User Data>///////////////////////////////////////
-  static Future<List<Order>> getUserOrders(
-      {required String userId}) async {
+  static Future<List<Order>> getUserOrders({required String userId}) async {
     DataSnapshot snapshot =
         await ref.orderByChild("userId").equalTo(userId).get();
 
@@ -19,25 +15,25 @@ class UserRepository {
         final Map<String, dynamic> data =
             Map<String, dynamic>.from(snapshot.value as Map);
 
-        final List<Order> orders =
-            (data.entries.map((entry)  {
+        final List<Order> orders = (data.entries.map((entry) {
           final orderData = Map<String, dynamic>.from(entry.value);
 
           final order = Order.fromJson(orderData);
 
-          final washSessionData = Map<String, dynamic>.from(orderData['washSessions'] ?? {});
-         
+          final washSessionData =
+              Map<String, dynamic>.from(orderData['washSessions'] ?? {});
 
           order.sessions = washSessionData.entries.map((sessionEntry) {
             final sessionData = Map<String, dynamic>.from(sessionEntry.value);
-            final session= WashSession.fromJson(sessionData);
-             final carsData = Map<String, dynamic>.from(sessionData['cars'] ?? {});
-             session.cars = carsData.entries.map((carEntry) {
+            final session = WashSession.fromJson(sessionData);
+            final carsData =
+                Map<String, dynamic>.from(sessionData['cars'] ?? {});
+            session.cars = carsData.entries.map((carEntry) {
               return Car.fromJson(Map<String, dynamic>.from(carEntry.value));
             }).toList();
             return session;
           }).toList();
-         
+
           return order;
         }).toList());
 
@@ -68,26 +64,32 @@ class UserRepository {
   }
 
   ////////////////////////////////<Set User Data>///////////////////////////////////////
-  // static Future<void> setOrderToUser(
-  //     {required String orderId, required WashDataTripModel order}) async {
-  //   await ref.child(orderId).set(order.toJson());
-  // }
 
-  // static Future<void> setItemsToOrder(
-  //     {required orderId, required List<WashItemsModel> items}) async {
-  //   for (WashItemsModel item in items) {
-  //     await ref
-  //         .child(orderId)
-  //         .child('items')
-  //         .child(item.id!)
-  //         .set(item.toJson());
-  //   }
-  // }
+// مثال: تعديل السعر والعدد للاشتراك الشهري
+  static Future<void> updateSubscriptionOrder({
+    required String orderId,
+    required int newWashCount,
+    required WashSession newSession,
+    required List<Car> cars, // الجلسة الجديدة
+  }) async {
+    final DatabaseReference ref = FirebaseDatabase.instance.ref("orders");
 
-  // static Future<void> setCarsToOrder(
-  //     {required orderId, required List<Car> cars}) async {
-  //   for (Car car in cars) {
-  //     await ref.child(orderId).child('cars').push().set(car.toJson());
-  //   }
-  // }
+    Map<String, dynamic> updateData = {};
+
+      updateData["washCount"] = newWashCount;
+    
+    
+
+    await ref.child(orderId).update(<String,dynamic>{"washCount": newWashCount});
+    DatabaseReference sessionRef =
+        ref.child(orderId).child('washSessions').push();
+    newSession.id = sessionRef.key;
+    await sessionRef.set(newSession.toJson());
+     for(Car car in cars){
+    DatabaseReference carRef =sessionRef.child('cars').push();
+    car.id = carRef.key;
+    await carRef.set(car.toJson());
+     
+     }
+  }
 }

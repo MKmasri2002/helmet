@@ -1,13 +1,9 @@
 import 'dart:async';
 import 'dart:developer';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:helmet_customer/data/driver_repository.dart';
 import 'package:helmet_customer/data/order_repositry.dart';
 import 'package:helmet_customer/data/user_repository.dart';
-import 'package:helmet_customer/models/payment.dart';
-import 'package:helmet_customer/models/wash_models/wash_items.dart';
 import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
@@ -54,7 +50,7 @@ class CartController extends GetxController {
     startTimer();
     super.onInit();
   }
-
+  ////// using one time package and subsicription*////////////
   void onPaymentResult(result) async {
     if (seconds <= 0) {
       Get.snackbar(
@@ -100,7 +96,7 @@ class CartController extends GetxController {
       }
     }
   }
-
+ ////// using one time package*////////////
   Future<void> setOrder() async {
     await OrderRepositry.setOrder(order: washDataTripModel);
      userWashDataTripModel =

@@ -4,6 +4,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:helmet_customer/data/user_repository.dart';
 import 'package:helmet_customer/models/car.dart';
 import 'package:helmet_customer/models/wash_models/wash_items.dart';
 import 'package:helmet_customer/models/wash_models/wash_session.dart';
@@ -44,7 +45,11 @@ class BookingController extends GetxController {
   void onInit() async {
     super.onInit();
     if (washDataTripModel.washPrice != null) {
-      totalPrice = washDataTripModel.washPrice!.toInt();
+      if (washDataTripModel.washType == 'one_time') {
+        totalPrice = washDataTripModel.washPrice!.toInt();
+      } else {
+        totalPrice = 0;
+      }
     }
 
     await getWashItems();
@@ -56,7 +61,7 @@ class BookingController extends GetxController {
     } else {
       selectedCars.add(car);
     }
-   
+
     update();
   }
 
@@ -74,7 +79,8 @@ class BookingController extends GetxController {
     }
     return false;
   }
-  /////////////////*******is using */
+
+  /////////////////*******is using for one time package and subsicription*/
   void createOrder() async {
     if (washDataTripModel.isPaid != null) {
       log("create order");
@@ -96,7 +102,7 @@ class BookingController extends GetxController {
       selectedDateTime.day,
       selectedTime.hour,
     );
-    WashSession washSession =WashSession(
+    WashSession washSession = WashSession(
       areaId: userModel.Addresses[0].areaId,
       driverId: driverList[0].id,
       timeDate: selectedDateTime.toString(),
@@ -104,8 +110,8 @@ class BookingController extends GetxController {
       status: 'pending',
     );
     washSession.cars = selectedCars;
-    washDataTripModel.sessions!.add(washSession);
-    
+    washDataTripModel.sessions.add(washSession);
+
     washDataTripModel.washTimeDate = selectedDateTime.toString();
     if (washDataTripModel.washCount! > 1) {
       washDataTripModel.washCount = washDataTripModel.washCount! - 1;
@@ -118,32 +124,13 @@ class BookingController extends GetxController {
       binding: CartBinding(),
     );
   }
-
+/// using subsicription 
   Future<void> setOrderAlreadyPayed() async {
     if (driverList.isEmpty) {
       Get.snackbar("Error", "No drivers available in this area");
       return;
     }
 
-    log("Order added to driver: ${driverList[0].orders!.length}");
-    if (driverList[0].orders!.contains(washDataTripModel.id!) &&
-        washDataTripModel.washCount! != 0 &&
-        totalPrice.toInt() == 0) {
-      Get.back();
-      Get.snackbar(
-        "Error",
-        "Order already exists for this driver",
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red[400],
-        colorText: Colors.white,
-      );
-      Get.to(
-        () => const OrderStatusView(),
-        binding: OrderStatusBinding(),
-        arguments: washDataTripModel,
-      );
-      return;
-    }
     WashSession newSession = WashSession(
       areaId: userModel.Addresses[0].areaId,
       driverId: driverList[0].id,
@@ -152,45 +139,30 @@ class BookingController extends GetxController {
       status: 'pending',
     );
     newSession.cars = selectedCars;
-    washDataTripModel.sessions.add(newSession);   
-    
+    washDataTripModel.sessions.add(newSession);
+
     selectedDateTime = DateTime(
       selectedDateTime.year,
       selectedDateTime.month,
       selectedDateTime.day,
       selectedTime.hour,
     );
-
+    print(washDataTripModel.sessions.last.status);
     washDataTripModel.createdAt = DateTime.now().toString();
     washDataTripModel.userId = userModel.uid;
     washDataTripModel.washTimeDate = selectedDateTime.toString();
     if (washDataTripModel.washCount! > 1) {
-      washDataTripModel.washCount = washDataTripModel.washCount! - 1;
+      washDataTripModel.decrementWashCount();
     }
-   
-    
-    DatabaseReference documentReference =
-        FirebaseDatabase.instance.ref("orders/${washDataTripModel.id}");
-    await documentReference.set(washDataTripModel.toJson());
-    driverList[0].orders!.add(washDataTripModel.id!);
-    FirebaseDatabase.instance
-        .ref("driver/${driverList[0].id}")
-        .set(driverList[0].toJson());
-
-    // Additional logic for setting the order can be added here
-    // update user order history
-    DatabaseReference userOrdersRef =
-        FirebaseDatabase.instance.ref("Users/${userModel.uid}/order");
-    washDataTripModel.sessions.last.status = 'active';
-    await userOrdersRef
-        .child(washDataTripModel.id!)
-        .set(washDataTripModel.toJson());
-    for (WashItemsModel item in washItemsAfterFiltering) {
-      if (item.quantity! > 0) {
-        await userOrdersRef.child(item.id!).set(item.toJson());
-      }
-    }
-    Get.put(HomeController()).getAllDriverInArea();
+    print(washDataTripModel.sessions.last.status);
+    await UserRepository.updateSubscriptionOrder(
+        orderId: washDataTripModel.id!,
+        newWashCount: washDataTripModel.washCount!,
+        newSession: newSession,
+        cars: selectedCars);
+    print(washDataTripModel.sessions.last.status);
+    await Get.put(HomeController()).getAllUserOrder();
+    print(washDataTripModel.sessions.last.status);
     Get.back();
     Get.to(
       () => const OrderStatusView(),

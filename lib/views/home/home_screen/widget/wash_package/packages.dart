@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/models/wash_models/package_model.dart';
 import 'package:helmet_customer/models/wash_models/order.dart';
-import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/views/cart/cart_binding.dart';
 import 'package:helmet_customer/views/cart/cart_screen.dart';
 import 'package:helmet_customer/views/home/home_screen/widget/wash_package/component/component/botoom.dart';

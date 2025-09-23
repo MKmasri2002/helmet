@@ -46,7 +46,7 @@ class WashSession {
     sb.writeln('  timeHour: $timeHour');
     sb.writeln('  status: $status');
     sb.writeln('  cars: ');
-    for (Car w in cars!) {
+    for (Car w in cars) {
       sb.writeln('  ${w.toString()}');
     }
     sb.writeln('}');

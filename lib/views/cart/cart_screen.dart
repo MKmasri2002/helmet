@@ -6,7 +6,6 @@ import 'package:helmet_customer/generated/assets.dart';
 import 'package:helmet_customer/theme/app_colors.dart';
 import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/utils/colors/color1.dart';
-import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/views/widget/custom_text.dart';
 import 'package:helmet_customer/views/cart/cart_controller.dart';

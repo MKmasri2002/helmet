@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/models/wash_models/order.dart';
+import 'package:helmet_customer/models/wash_models/wash_session.dart';
 import 'package:helmet_customer/theme/app_colors.dart';
 import 'package:helmet_customer/utils/custom_date.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
@@ -15,9 +16,9 @@ import 'package:helmet_customer/views/order_status/order_status_view.dart';
 class CurrentPackageWidget extends StatelessWidget {
   const CurrentPackageWidget({
     super.key,
-    required this.currentWasghDataTripModel,
+    required this.currentOrder,
   });
-  final Order currentWasghDataTripModel;
+  final Order currentOrder;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(builder: (ctrl) {
@@ -39,18 +40,18 @@ class CurrentPackageWidget extends StatelessWidget {
                   children: [
                     CustomText(
                       text: Get.locale!.languageCode == 'ar'
-                          ? currentWasghDataTripModel.washTitleAr
-                          : currentWasghDataTripModel.washTitleEn,
+                          ? currentOrder.washTitleAr
+                          : currentOrder.washTitleEn,
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                     ),
                     const SizedBox(
                       height: 8,
                     ),
-                    if (currentWasghDataTripModel.washTimeDate != null)
+                    if (currentOrder.washTimeDate != null)
                       CustomText(
                         text:
-                            'End date: ${CustomDate.getDateDDMMYYYYFromMillisecond(DateTime.parse(currentWasghDataTripModel.washTimeDate!).millisecondsSinceEpoch)}',
+                            'End date: ${CustomDate.getDateDDMMYYYYFromMillisecond(DateTime.parse(currentOrder.washTimeDate!).millisecondsSinceEpoch)}',
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
                         color: Colors.grey,
@@ -75,7 +76,7 @@ class CurrentPackageWidget extends StatelessWidget {
                     ),
                     CustomText(
                       text: userWashDataTripModel.isNotEmpty
-                          ? '${currentWasghDataTripModel.washCount}'
+                          ? '${currentOrder.washCount}'
                           : '0',
                       fontSize: 32,
                       fontWeight: FontWeight.w700,
@@ -101,22 +102,50 @@ class CurrentPackageWidget extends StatelessWidget {
                       duration: const Duration(seconds: 3));
                   return;
                 }
-                washDataTripModel = currentWasghDataTripModel;
-                if (currentWasghDataTripModel.washCount! >= 1 &&
-                    currentWasghDataTripModel.washType! == 'subscription' 
-                   // currentWasghDataTripModel.washStatus! == 'pending'
-                   ) {
-                  Get.to(
-                    () => const BookingView(newOrder: true),
-                    binding: BookingBinding(),
-                  );
-                  return;
+                washDataTripModel = currentOrder;
+                if (currentOrder.washType! == 'subscription') {
+                  if (currentOrder.sessions.isEmpty) {
+                    Get.to(
+                      () => const BookingView(newOrder: true),
+                      binding: BookingBinding(),
+                    );
+                    return;
+                  } else {
+                    final WashSession? currentSession = currentOrder.sessions
+                        .firstWhereOrNull(
+                            (session) => session.status != "done");
+                    if (currentSession != null) {
+                      Get.to(
+                        () => const OrderStatusView(),
+                        binding: OrderStatusBinding(),
+                        arguments: currentOrder,
+                      );
+                      return;
+                    }else{
+                       Get.to(
+                      () => const BookingView(newOrder: true),
+                      binding: BookingBinding(),
+                    );
+                    }
+                    return;
+                  }
+                } else if (currentOrder.washType! == 'one_time') {
+                  if (currentOrder.sessions[0].status != "done") {
+                    Get.to(
+                      () => const OrderStatusView(),
+                      binding: OrderStatusBinding(),
+                      arguments: currentOrder,
+                    );
+                    return;
+                  } else {
+                    Get.snackbar('Error', 'you already used this package',
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: Colors.red,
+                        colorText: Colors.white,
+                        duration: const Duration(seconds: 3));
+                    return;
+                  }
                 }
-                Get.to(
-                  () => const OrderStatusView(),
-                  binding: OrderStatusBinding(),
-                  arguments: washDataTripModel,
-                );
               },
               child: Container(
                 height: 50,
