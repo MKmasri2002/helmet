@@ -99,7 +99,7 @@ class CartController extends GetxController {
  ////// using one time package*////////////
   Future<void> setOrder() async {
     await OrderRepositry.setOrder(order: washDataTripModel);
-     userWashDataTripModel =
+     userOrder =
           await UserRepository.getUserOrders(userId: userModel.uid!);
       Get.find<HomeController>().update();
     if (washDataTripModel.washType == "one_time") {

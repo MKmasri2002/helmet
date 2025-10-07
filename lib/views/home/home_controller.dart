@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/data/area_repository.dart';
 import 'package:helmet_customer/data/user_repository.dart';
@@ -13,47 +14,35 @@ import 'package:helmet_customer/models/schedule_list.dart';
 import 'package:helmet_customer/models/user_model.dart';
 import 'package:helmet_customer/models/wash_models/package_model.dart';
 import 'package:helmet_customer/models/wash_models/order.dart';
+import 'package:helmet_customer/models/wash_models/reservation.dart';
 import 'package:helmet_customer/models/wash_models/wash_items.dart';
+import 'package:helmet_customer/models/wash_models/wash_session.dart';
 import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/data/auth_repository.dart';
 
 UserModel userModel = UserModel();
 Order washDataTripModel = Order();
+Subscribe subscribe = Subscribe();
 List<WashItemsModel> washItemsAfterFiltering = [];
 List<Area> areasList = [];
- List<Order> userWashDataTripModel = [];
-
+List<Order> userOrder = [];
+List<WashSession> userSessions = [];
+List<WashSession> futureSessions = [];
+WashSession? nearestSession;
+Duration? remainingTime;
 
 class HomeController extends GetxController {
   List<PackageModel> adsPackages = [];
   List<PackageModel> oneTimePackages = [];
   List<PackageModel> subscriptionPackages = [];
-
- 
-  Order? nearest;
-  Duration? remainingTime;
-  Timer? _timer;
+  List<Order> userSubscriptionOrders = [];
+  List<Order> userOneTimeOrders = [];
 
   @override
   void onInit() async {
     await getAllData();
-    _startTimer();
+
     super.onInit();
-  }
-
-  void _startTimer() {
-    if (nearest == null) return;
-
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      nearest = getNearestOrder();
-      update();
-    });
-  }
-
-  @override
-  void onClose() {
-    _timer?.cancel();
-    super.onClose();
   }
 
   Future<void> getAllData() async {
@@ -93,26 +82,58 @@ class HomeController extends GetxController {
       }
     }
     update();
-    
   }
 
   Future<void> getAllAreas() async {
-    
     areasList = await AreaRepository.getAllAreas();
     update();
-    
   }
 
   Future<void> getAllUserOrder() async {
-    
-    userWashDataTripModel = await UserRepository.getUserOrders(userId: userModel.uid!);
-    if(userWashDataTripModel.isNotEmpty)
-    // ignore: curly_braces_in_flow_control_structures
-    for(Order order in userWashDataTripModel) {
-      log(order.toString());
-    }
+    userOrder.clear();
+    userSubscriptionOrders.clear();
+    userOneTimeOrders.clear();
+    userSessions.clear();
+    userOrder = await UserRepository.getUserOrders(userId: userModel.uid!);
+    if (userOrder.isNotEmpty)
+      for (Order order in userOrder) {
+        if (order.washType == "subscription") {
+          userSubscriptionOrders.add(order);
+        } else if (order.washType == "one_time") {
+          userOneTimeOrders.add(order);
+        }
+      }
+    getUserSession();
+
     update();
-    
+  }
+
+  void getUserSession() {
+    for (var order in userOrder) {
+      userSessions.addAll(order.sessions);
+    }
+
+    if (userSessions.isEmpty) return;
+    userSessions.sort((a, b) =>
+        DateTime.parse(b.washTime!).compareTo(DateTime.parse(a.washTime!)));
+    // استبعد الجلسات اللي وقتها مضى
+    final now = DateTime.now();
+    futureSessions = userSessions
+        .where((session) =>
+            session.washTime != null &&
+            DateTime.parse(session.washTime!).isAfter(now))
+        .toList();
+
+    if (futureSessions.isEmpty) return;
+
+    // رتبهم حسب الوقت الأقرب
+    futureSessions.sort((a, b) =>
+        DateTime.parse(a.washTime!).compareTo(DateTime.parse(b.washTime!)));
+
+    nearestSession = futureSessions.first;
+    final washDateTime = DateTime.parse(nearestSession!.washTime!);
+    remainingTime = washDateTime.difference(now);
+    update();
   }
 
   Future<void> getAllDriverInArea() async {
@@ -142,8 +163,6 @@ class HomeController extends GetxController {
   }
 
   void getAllSchedulesDriver() async {
-    // Get all schedules from repository from firebase
-    // save them in schedulesList
     if (driverList.isEmpty) {
       log("No drivers available in this area");
       return;
@@ -173,19 +192,31 @@ class HomeController extends GetxController {
     });
   }
 
-  Order? getNearestOrder() {
-    DateTime now = DateTime.now();
+  void checkLocaionAndLogin() {
+    checkIsLoggedIn();
+    checkLocation();
+    return;
+  }
 
-    // فلترة: بس الأوردرات القادمة
-    final upcoming = userWashDataTripModel
-        .where((o) => o.dateTime != null && o.dateTime!.isAfter(now))
-        .toList();
+  void checkIsLoggedIn() {
+    if (FirebaseAuth.instance.currentUser == null) {
+      Get.snackbar('Error', 'Please login first',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+          duration: const Duration(seconds: 3));
+      return;
+    }
+  }
 
-    if (upcoming.isEmpty) return null;
-
-    // ترتيب حسب التاريخ
-    upcoming.sort((a, b) => a.dateTime!.compareTo(b.dateTime!));
-
-    return upcoming.first;
+  void checkLocation() {
+    if (userModel.Addresses[0].latitude == null) {
+      Get.snackbar('Error', 'Please select or add an address first',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+          duration: const Duration(seconds: 3));
+      return;
+    }
   }
 }

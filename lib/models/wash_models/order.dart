@@ -12,7 +12,7 @@ class Order {
   String? id;
   String? createdAt;
   List<WashSession> sessions = [];
-  String? washTimeDate;
+  String? endDate;
 
 
   Order({
@@ -25,31 +25,15 @@ class Order {
     this.createdAt,
     this.userId,
     this.isPaid,
-    this.washTimeDate,
+    this.endDate,
   });
-  DateTime? get dateTime {
-    if (washTimeDate != null) {
-      try {
-        return DateTime.parse(washTimeDate!);
-      } catch (e) {
-        return null;
-      }
-    }
-    return null;
-  }
-
-  Duration? get remainingTime {
-    if (dateTime == null) return null;
-    final now = DateTime.now();
-    if (dateTime!.isBefore(now)) return Duration.zero;
-    return dateTime!.difference(now);
-  }
+  
 
   Order.fromJson(Map<String, dynamic> json) {
     washCount = json['washCount'];
     washType = json['washType'];
     washPrice = json['washPrice'];
-    washTimeDate = json['washTimeDate'];
+    endDate = json['washTimeDate'];
     washTitleEn = json['washTitleEn'];
     washTitleAr = json['washTitleAr'];
     id = json['id'];
@@ -63,7 +47,7 @@ class Order {
     data['washCount'] = washCount;
     data['washType'] = washType;
     data['washPrice'] = washPrice;
-    data['washTimeDate'] = washTimeDate;
+    data['washTimeDate'] = endDate;
     data['washTitleEn'] = washTitleEn;
     data['washTitleAr'] = washTitleAr;
     data['id'] = id;
@@ -81,7 +65,7 @@ class Order {
     sb.writeln('  washCount: $washCount');
     sb.writeln('  washType: $washType');
     sb.writeln('  washPrice: $washPrice');
-    sb.writeln('  washTimeDate: $washTimeDate');
+    sb.writeln('  washTimeDate: $endDate');
     sb.writeln('  washTitleEn: $washTitleEn');
     sb.writeln('  id: $id');
     sb.writeln('  userId: $userId');

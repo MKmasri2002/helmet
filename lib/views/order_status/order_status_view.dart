@@ -35,7 +35,7 @@ class OrderStatusView extends StatelessWidget {
             ),
             centerTitle: true,
           ),
-          body:  SingleChildScrollView(
+          body:  const SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

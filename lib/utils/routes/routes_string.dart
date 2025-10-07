@@ -7,4 +7,6 @@ class RoutesString {
   static const String myCars = '/my-cars';
   static const String myLocations = '/my-locations';
   static const String addressBook = '/address-book';
+  static const String reservations = '/reservations';
+  static const String settings = '/settings';
 }

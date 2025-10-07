@@ -89,6 +89,29 @@ class Assets {
   static const String motorBike = 'assets/images/motorbike.png';
   static const String iconCar = 'assets/images/icon-car.png';
   static const String driverImage = 'assets/images/driver-image.png';
+  ///////////////////////profile///////////////////////////////
+  static const String profileEmailIcon =
+      'assets/images/profile/profile_email_icon.png';
+  static const String profilePhoneIcon =
+      'assets/images/profile/profile_phone_icon.png';
+  static const String profile1 = 'assets/images/profile/1.png';
+  static const String profile2 = 'assets/images/profile/2.png';
+  static const String profile3 = 'assets/images/profile/3.png';
+  static const String profile4 = 'assets/images/profile/4.png';
+  static const String profile5 = 'assets/images/profile/5.png';
+  static const String profile6 = 'assets/images/profile/6.png';
+  static const String profile7 = 'assets/images/profile/7.png';
+  static const String profile8 = 'assets/images/profile/8.png';
+  static const String profile9 = 'assets/images/profile/9.png';
+  static const String profile10 = 'assets/images/profile/10.png';
+  static const String profile11 = 'assets/images/profile/11.png';
+  static const String profileLogoutIcon =
+      'assets/images/profile/profile_logout_icon.png';
+  static const String changeLanguage = 'assets/images/language-skill.png';
+  static const String privacyPoliciy = 'assets/images/secur.png';
+  static const String termsAndConditions = 'assets/images/tag.png';
+  static const String receivwNotifications =
+      'assets/images/notification-03.png';
 }
 
 class SvgAssets {

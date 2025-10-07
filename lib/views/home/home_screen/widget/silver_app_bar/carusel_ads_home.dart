@@ -30,7 +30,7 @@ class CaruselAdsHome extends StatelessWidget {
       washTitleAr: adsData.nameAr,
       washTitleEn: adsData.nameEn,
       washPrice: adsData.price,
-      washTimeDate: adsData.endDate,
+      endDate: adsData.endDate,
       washCount: adsData.count,
     );
 

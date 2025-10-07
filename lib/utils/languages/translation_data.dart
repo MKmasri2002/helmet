@@ -67,6 +67,26 @@ class TranslationData {
   static const String resendCodeAfter = "resend_Code_After";
   static const String verifyYourPhoneNumber = "verify_your_phone_number";
   static const String verify = "verify";
+  //////////////////acount///////////////////////////
+  static const String account = "account";
+  static const String freeBalanceForYouAndYourFriend = "free_balance_for_you_and_your_friend";
+  static const String whenShareTheApp = "when_share_the_app";
+  static const String vision = "vision";
+  static const String joinAsServiceProvider = "join_as_service_provider";
+  static const String myWallet = "my_wallet";
+  static const String myCars = "my_cars";
+  static const String discountCodes= "discount_codes";
+  static const String bills = "bills";
+  static const String help = "help";
+  static const String packages = "packages";
+  static const String activatePackages = "activate_packages";
+  static const String settings = "settings";
+  static const String logout = "logout";
+  //////////////////settings///////////////////////////
+  static const String changeLanguage = "change_language";
+  static const String receiveNotifications = "receive_notifications";
+  
+
   
   
 }

@@ -77,7 +77,7 @@ class OrderStatusController extends GetxController {
         washDataTripModel.sessions[idx].status = newStatus;
       }
 
-      userWashDataTripModel =
+      userOrder =
           await UserRepository.getUserOrders(userId: userModel.uid!);
 
       update();

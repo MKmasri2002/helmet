@@ -31,6 +31,14 @@ class TimeOfDayTimeline extends StatelessWidget {
                   ctrl.selectedTime =
                       TimeOfDay(hour: ctrl.timesDay[index], minute: 0);
                   ctrl.didUserSeletedDateOfDay = true;
+                  ctrl.fullDate = DateTime(
+                    ctrl.selectedDateTime.year,
+                    ctrl.selectedDateTime.month,
+                    ctrl.selectedDateTime.day,
+                    ctrl.selectedTime.hour,
+                    ctrl.selectedTime.minute,
+                  );
+                  print('fullDate: ${ctrl.fullDate.toString()}');
                   ctrl.update();
                 },
                 child: Container(
@@ -53,7 +61,7 @@ class TimeOfDayTimeline extends StatelessWidget {
                         context,
                         ctrl.timesDay[index],
                       ),
-                      style:  TextStyle(
+                      style: TextStyle(
                         color: Colors.grey[600],
                         fontWeight: FontWeight.bold,
                       ),

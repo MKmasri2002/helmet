@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/models/wash_models/wash_session.dart';
 import 'package:helmet_customer/theme/app_colors.dart';
+import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/utils/custom_date.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/views/widget/custom_text.dart';
@@ -23,7 +24,7 @@ class CurrentPackageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(builder: (ctrl) {
       return Container(
-        width: MediaQuery.sizeOf(context).width,
+        width: AppSize.width,
         padding: const EdgeInsets.only(
           left: 16,
           right: 16,
@@ -48,10 +49,10 @@ class CurrentPackageWidget extends StatelessWidget {
                     const SizedBox(
                       height: 8,
                     ),
-                    if (currentOrder.washTimeDate != null)
+                    if (currentOrder.endDate != null)
                       CustomText(
                         text:
-                            'End date: ${CustomDate.getDateDDMMYYYYFromMillisecond(DateTime.parse(currentOrder.washTimeDate!).millisecondsSinceEpoch)}',
+                            'End date: ${CustomDate.getDateDDMMYYYYFromMillisecond(DateTime.parse(currentOrder.endDate!).millisecondsSinceEpoch)}',
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
                         color: Colors.grey,
@@ -75,7 +76,7 @@ class CurrentPackageWidget extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                     CustomText(
-                      text: userWashDataTripModel.isNotEmpty
+                      text: userOrder.isNotEmpty
                           ? '${currentOrder.washCount}'
                           : '0',
                       fontSize: 32,

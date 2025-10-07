@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:helmet_customer/generated/assets.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
@@ -32,11 +33,11 @@ class Component8 extends StatelessWidget {
             const SizedBox(
               width: 20,
             ),
-            Column(
+            const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Text(
+                Text(
                   "التاريخ والوقت",
                   style: TextStyle(
                     fontFamily: 'IBMPlexSansArabic',
@@ -48,21 +49,10 @@ class Component8 extends StatelessWidget {
                   ),
                   textAlign: TextAlign.start,
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 10,
                 ),
-                Text(
-                  ctrl.washDataTripModel.washTimeDate.toString(),
-                  style: const TextStyle(
-                    fontFamily: 'IBMPlexSansArabic',
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14,
-                    height: 25 / 14,
-                    letterSpacing: 0,
-                    color: Color(0xff121212),
-                  ),
-                  textAlign: TextAlign.start,
-                ),
+               
               ],
             )
           ],

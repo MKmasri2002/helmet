@@ -29,6 +29,7 @@ class BookingController extends GetxController {
 
   // List<Car> myCars = [];
   List<Car> selectedCars = [];
+  DateTime? fullDate;
   TimeOfDay selectedTime = TimeOfDay.now();
 
   DateTime selectedDateTime = DateTime.now();
@@ -105,14 +106,12 @@ class BookingController extends GetxController {
     WashSession washSession = WashSession(
       areaId: userModel.Addresses[0].areaId,
       driverId: driverList[0].id,
-      timeDate: selectedDateTime.toString(),
-      timeHour: selectedTime.toString(),
+      washTime: fullDate.toString(),
       status: 'pending',
     );
     washSession.cars = selectedCars;
     washDataTripModel.sessions.add(washSession);
 
-    washDataTripModel.washTimeDate = selectedDateTime.toString();
     if (washDataTripModel.washCount! > 1) {
       washDataTripModel.washCount = washDataTripModel.washCount! - 1;
     }
@@ -124,7 +123,8 @@ class BookingController extends GetxController {
       binding: CartBinding(),
     );
   }
-/// using subsicription 
+
+  /// using subsicription
   Future<void> setOrderAlreadyPayed() async {
     if (driverList.isEmpty) {
       Get.snackbar("Error", "No drivers available in this area");
@@ -134,8 +134,7 @@ class BookingController extends GetxController {
     WashSession newSession = WashSession(
       areaId: userModel.Addresses[0].areaId,
       driverId: driverList[0].id,
-      timeDate: selectedDateTime.toString(),
-      timeHour: selectedTime.toString(),
+      washTime: fullDate.toString(),
       status: 'pending',
     );
     newSession.cars = selectedCars;
@@ -150,7 +149,7 @@ class BookingController extends GetxController {
     print(washDataTripModel.sessions.last.status);
     washDataTripModel.createdAt = DateTime.now().toString();
     washDataTripModel.userId = userModel.uid;
-    washDataTripModel.washTimeDate = selectedDateTime.toString();
+    washDataTripModel.endDate = selectedDateTime.toString();
     if (washDataTripModel.washCount! > 1) {
       washDataTripModel.decrementWashCount();
     }

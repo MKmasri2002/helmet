@@ -22,7 +22,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -42,7 +41,9 @@ class MyApp extends StatelessWidget {
       translations: Translation(),
       getPages: RouteClass.routs,
       builder: (context, child) {
-        AppSize.init(appHeight: MediaQuery.sizeOf(context).height, appWidth:  MediaQuery.sizeOf(context).width);
+        AppSize.init(
+            appHeight: MediaQuery.sizeOf(context).height,
+            appWidth: MediaQuery.sizeOf(context).width);
         return MediaQuery(
           data: MediaQuery.of(context)
               .copyWith(textScaler: const TextScaler.linear(1.0)),

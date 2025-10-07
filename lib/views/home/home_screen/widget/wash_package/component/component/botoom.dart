@@ -11,13 +11,13 @@ class Botoom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
+      height: 45,
       padding: const EdgeInsets.symmetric(
         horizontal: 16,
       ),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 1, 139, 194),
-        borderRadius: BorderRadius.circular(16),
+        color: const Color(0xff0A6082),
+        borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
         children: [

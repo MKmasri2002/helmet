@@ -248,4 +248,23 @@ const Map<String, String> ar = {
   TranslationData.verifyYourPhoneNumber: "التحقق من رقم جوالك",
   TranslationData.verify: "تحقق",
   TranslationData.reservationDetailes: "تفاصيل الحجز",
+  ///////////////acount////////////////////////
+  TranslationData.account: "حسابي",
+
+  TranslationData.freeBalanceForYouAndYourFriend: "رصيد مجاني لك ولصديقك",
+  TranslationData.whenShareTheApp: "عند مشاركة التطبيق!",
+  TranslationData.vision: "الرؤية",
+  TranslationData.joinAsServiceProvider: "أنضم كمزود خدمة",
+  TranslationData.myWallet: "محفظتي",
+  TranslationData.myCars: "سياراتي",
+  TranslationData.discountCodes: "أكواد الخصم",
+  TranslationData.bills: "الفواتير",
+  TranslationData.settings: "الإعدادات",
+  TranslationData.activatePackages: "تفعيل الباقات",
+  TranslationData.packages: "الباقات",
+  TranslationData.help: "مساعدة",
+  TranslationData.logout: "تسجيل الخروج",
+  ///////////////Setting////////////////////////
+  TranslationData.changeLanguage: "تغيير اللغة",
+  TranslationData.receiveNotifications: "تلقي الإشعارات",
 };

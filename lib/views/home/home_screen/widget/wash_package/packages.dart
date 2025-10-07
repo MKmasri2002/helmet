@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/models/wash_models/package_model.dart';
@@ -42,33 +41,16 @@ class Packages extends StatelessWidget {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                if (FirebaseAuth.instance.currentUser == null) {
-                  Get.snackbar('Error', 'Please login first',
-                      snackPosition: SnackPosition.BOTTOM,
-                      backgroundColor: Colors.red,
-                      colorText: Colors.white,
-                      duration: const Duration(seconds: 3));
-                  return;
-                }
-                if (userModel.Addresses[0].latitude == null) {
-                  Get.snackbar('Error', 'Please select or add an address first',
-                      snackPosition: SnackPosition.BOTTOM,
-                      backgroundColor: Colors.red,
-                      colorText: Colors.white,
-                      duration: const Duration(seconds: 3));
-                  return;
-                }
+                ctrl.checkLocaionAndLogin();
                 washDataTripModel = Order(
                   washType: packages[index].type!,
                   washPrice: packages[index].price,
                   washCount: packages[index].count!,
-                  washTimeDate: packages[index].endDate,
+                  endDate: packages[index].endDate,
                   washTitleAr: packages[index].nameAr,
                   washTitleEn: packages[index].nameEn,
-                  createdAt: DateTime.now().toString(),  
+                  createdAt: DateTime.now().toString(),
                   userId: userModel.uid,
-                  // userLat: userModel.Addresses[0].latitude ?? 0,
-                  // userLng: userModel.Addresses[0].longitude ?? 0,
                 );
                 Get.to(() => const CartScreen(), binding: CartBinding());
               },

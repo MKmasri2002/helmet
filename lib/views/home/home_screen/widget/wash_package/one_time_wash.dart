@@ -1,5 +1,4 @@
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -45,29 +44,13 @@ class OneTimeWash extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
-                      if (FirebaseAuth.instance.currentUser == null) {
-                        Get.snackbar('Error', 'Please login first',
-                            snackPosition: SnackPosition.BOTTOM,
-                            backgroundColor: Colors.red,
-                            colorText: Colors.white,
-                            duration: const Duration(seconds: 3));
-                        return;
-                      }
-                      if (userModel.Addresses[0].latitude == null) {
-                        Get.snackbar(
-                            'Error', 'Please select or add an address first',
-                            snackPosition: SnackPosition.BOTTOM,
-                            backgroundColor: Colors.red,
-                            colorText: Colors.white,
-                            duration: const Duration(seconds: 3));
-                        return;
-                      }
+                     ctrl.checkLocaionAndLogin();
                      
                       washDataTripModel = Order(
                         washType: package[index].type,
                         washPrice: package[index].price,
                         washCount: package[index].count,
-                        washTimeDate: package[index].endDate,
+                        endDate: package[index].endDate,
                         washTitleAr: package[index].nameAr,
                         washTitleEn: package[index].nameEn,
                         createdAt: DateTime.now().toString(),  

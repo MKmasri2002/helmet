@@ -15,14 +15,9 @@ class CustomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 70,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
-        border: Border(
-          top: BorderSide(
-            color: Colors.grey.withValues(alpha: 0.3),
-            width: 0.5,
-          ),
-        ),
+      
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -30,7 +25,7 @@ class CustomNavBar extends StatelessWidget {
           GestureDetector(
             onTap: () {
               if (pos != 1) {
-                Get.toNamed(RoutesString.home);
+                Get.offNamed(RoutesString.home);
               }
             },
             child: Column(
@@ -49,7 +44,9 @@ class CustomNavBar extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              
+              if (pos != 2) {
+                Get.offNamed(RoutesString.reservations);
+              }
             },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -71,7 +68,7 @@ class CustomNavBar extends StatelessWidget {
           GestureDetector(
             onTap: () {
               if (pos != 4) {
-                Get.to(() => const SettingsScreen());
+                Get.offNamed(RoutesString.profile);
               }
             },
             child: Column(
@@ -93,4 +90,5 @@ class CustomNavBar extends StatelessWidget {
     );
   }
 }
+
 

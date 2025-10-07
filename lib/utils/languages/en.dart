@@ -250,4 +250,24 @@ const Map<String, String> en = {
   TranslationData.verifyYourPhoneNumber: "Verify your phone number",
   TranslationData.verify: "Verify",
   TranslationData.reservationDetailes: "Reservation Detailes",
+  ///////////////acount////////////////////////
+  TranslationData.account: "my account",
+  TranslationData.freeBalanceForYouAndYourFriend: "Free balance for you and your friend",
+  TranslationData.whenShareTheApp: "When share the application!",
+  TranslationData.vision: "Vision",
+  TranslationData.joinAsServiceProvider: "Join as service provider",
+  TranslationData.myWallet: "My Wallet",
+  TranslationData.myCars: "My cars",
+  TranslationData.discountCodes: "Discount codes",
+  TranslationData.bills: "Bills",
+  TranslationData.settings: "Settings",
+  TranslationData.activatePackages: "Activate packages",
+  TranslationData.packages: "Packages",
+  TranslationData.help: "Help",
+  TranslationData.logout: "Log out",
+  ///////////////Setting////////////////////////
+  TranslationData.changeLanguage: "Change language",
+  TranslationData.receiveNotifications: "Receive notifications",
+  
+  
 };
