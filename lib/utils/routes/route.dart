@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/views/auth/login/login_binding.dart';
 import 'package:helmet_customer/views/auth/login/login_screen/login_screen.dart';
+import 'package:helmet_customer/views/feedback/binding/feedback_binding.dart';
+import 'package:helmet_customer/views/feedback/screen/feedback_screen.dart';
 import 'package:helmet_customer/views/home/home_screen/home_screen.dart';
 import 'package:helmet_customer/views/home/home_binding.dart';
 import 'package:helmet_customer/views/profile/binding/profile_screen_binding.dart';
@@ -50,6 +52,12 @@ class RouteClass {
       name: RoutesString.settings,
       page: () =>  SettingScreen(),
       binding: SettingBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: RoutesString.feedback,
+      page: () =>  FeedbackScreen(),
+      binding: FeedbackBinding(),
       transition: Transition.fadeIn,
     ),
   ];

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -52,39 +54,30 @@ class OrderStatusController extends GetxController {
   @override
   void onInit() async {
     washDataTripModel = Get.arguments as Order;
-    currentSession = washDataTripModel.sessions
-                        .firstWhereOrNull(
-                            (session) => session.status != "done");
+
+    lastSessionStatus = nearestSession?.status ?? 'pending';
     userAddressMethod();
     super.onInit();
 
     orderRef = FirebaseDatabase.instance.ref("orders/${washDataTripModel.id}");
-    _listenToSessionStatus(currentSession?.id ?? "");
+    if(nearestSession != null)
+    _listenToSessionStatus(nearestSession?.id ?? "");
   }
 
- void _listenToSessionStatus(String sessionId) {
-  orderRef.child("washSessions/$sessionId/status").onValue.listen((event) async {
-    if (!event.snapshot.exists) return;
+  void _listenToSessionStatus(String sessionId) {
+    orderRef
+        .child("washSessions/$sessionId/status")
+        .onValue
+        .listen((event) async {
+      if (!event.snapshot.exists) return;
 
-    final newStatus = event.snapshot.value as String;
-
-    if (lastSessionStatus != newStatus) {
-      lastSessionStatus = newStatus;
-
-      // حدث الجلسة جوّا الموديل اللي عندك
-      final idx = washDataTripModel.sessions.indexWhere((s) => s.id == sessionId);
-      if (idx != -1) {
-        washDataTripModel.sessions[idx].status = newStatus;
-      }
-
-      userOrder =
-          await UserRepository.getUserOrders(userId: userModel.uid!);
+     lastSessionStatus = event.snapshot.value as String;
+      
+      log("New session status: $lastSessionStatus");
 
       update();
-    }
-  });
-}
-
+    });
+  }
 
   void userAddressMethod() async {
     userAddress = await appTools.getAddressFromLatLng(

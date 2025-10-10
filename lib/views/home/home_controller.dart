@@ -30,6 +30,7 @@ List<WashSession> userSessions = [];
 List<WashSession> futureSessions = [];
 WashSession? nearestSession;
 Duration? remainingTime;
+String? newStatus;
 
 class HomeController extends GetxController {
   List<PackageModel> adsPackages = [];
@@ -37,29 +38,44 @@ class HomeController extends GetxController {
   List<PackageModel> subscriptionPackages = [];
   List<Order> userSubscriptionOrders = [];
   List<Order> userOneTimeOrders = [];
-
+  Timer? sessionTimer;
+  late DatabaseReference orderRef;
   @override
   void onInit() async {
     await getAllData();
 
+    _listenToSessionStatus(nearestSession?.id ?? "");
     super.onInit();
   }
 
-  Future<void> getAllData() async {
-    if (FirebaseAuth.instance.currentUser != null) {
-      userModel.uid = FirebaseAuth.instance.currentUser!.uid.toString();
-    }
+  void _listenToSessionStatus(String sessionId) {
+    orderRef
+        .child("washSessions/$sessionId/status")
+        .onValue
+        .listen((event) async {
+      if (!event.snapshot.exists) return;
 
+      newStatus = event.snapshot.value as String;
+      if (newStatus == "done") await getAllUserOrder();
+      update();
+    });
+  }
+
+  Future<void> getAllData() async {
     await getUserInfo();
     await getPackages();
     await getAllAreas();
     await getAllUserOrder();
     await getAllDriverInArea();
+    startSessionTimer();
 
     update();
   }
 
   Future<void> getUserInfo() async {
+    if (FirebaseAuth.instance.currentUser != null) {
+      userModel.uid = FirebaseAuth.instance.currentUser!.uid;
+    }
     userModel = await AuthRepository.getCurrentUserInfo(userModel.uid!);
     userModel.Addresses =
         await AuthRepository.getCurrentUserAdresses(userModel.uid!);
@@ -109,31 +125,52 @@ class HomeController extends GetxController {
   }
 
   void getUserSession() {
+    // الأفضل تنظف قبل ما تضيف عشان ما تتكرر البيانات
     for (var order in userOrder) {
       userSessions.addAll(order.sessions);
     }
 
     if (userSessions.isEmpty) return;
-    userSessions.sort((a, b) =>
-        DateTime.parse(b.washTime!).compareTo(DateTime.parse(a.washTime!)));
-    // استبعد الجلسات اللي وقتها مضى
-    final now = DateTime.now();
-    futureSessions = userSessions
-        .where((session) =>
-            session.washTime != null &&
-            DateTime.parse(session.washTime!).isAfter(now))
-        .toList();
+
+    // استبعد الجلسات المنتهية
+    futureSessions =
+        userSessions.where((session) => session.status != 'done').toList();
 
     if (futureSessions.isEmpty) return;
 
-    // رتبهم حسب الوقت الأقرب
+    // رتب الجلسات حسب الوقت الأقرب
     futureSessions.sort((a, b) =>
         DateTime.parse(a.washTime!).compareTo(DateTime.parse(b.washTime!)));
 
+    final now = DateTime.now();
+
+    // أقرب جلسة
     nearestSession = futureSessions.first;
-    final washDateTime = DateTime.parse(nearestSession!.washTime!);
-    remainingTime = washDateTime.difference(now);
+    orderRef = FirebaseDatabase.instance.ref(
+        "orders/${userOrder.firstWhere((order) => order.sessions.any((s) => s.id == nearestSession!.id)).id}");
+    if (nearestSession!.status == 'pending') {
+      final washDateTime = DateTime.parse(nearestSession!.washTime!);
+
+      if (washDateTime.isAfter(now)) {
+        remainingTime = washDateTime.difference(now);
+      } else {
+        nearestSession!.status = 'on_way';
+        washDataTripModel = userOrder
+            .firstWhere((order) => order.sessions.contains(nearestSession));
+        FirebaseDatabase.instance
+            .ref(
+                "orders/${washDataTripModel.id}/washSessions/${nearestSession!.id}/status")
+            .set('on_way');
+      }
+    }
+
     update();
+  }
+
+  void startSessionTimer() {
+    sessionTimer = Timer.periodic(const Duration(seconds: 5), (timer) {
+      getUserSession();
+    });
   }
 
   Future<void> getAllDriverInArea() async {

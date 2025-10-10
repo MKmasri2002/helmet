@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/utils/widgets/custom_nav_bar.dart';
 import 'package:helmet_customer/views/home/home_screen/widget/buttom_slider.dart';
+import 'package:helmet_customer/views/home/home_screen/widget/buttom_with_status.dart';
 import 'package:helmet_customer/views/home/home_screen/widget/silver_app_bar/silver_app_bar.dart';
 import 'package:helmet_customer/views/home/home_screen/widget/silver/silvers.dart';
 import '../home_controller.dart';
@@ -30,8 +31,11 @@ class HomeScreen extends StatelessWidget {
           bottomNavigationBar: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              if (nearestSession!=null) const ButtomSlider(),
-             
+              if (nearestSession != null) ...[
+                if (nearestSession!.status == 'pending') const ButtomSlider(),
+                if (nearestSession!.status != 'pending')
+                  const ButtomWithStatus(),
+              ],
               const CustomNavBar(pos: 1),
             ],
           ),

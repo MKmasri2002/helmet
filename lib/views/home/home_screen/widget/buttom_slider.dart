@@ -15,7 +15,6 @@ class ButtomSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(builder: (ctrl) {
       return Container(
-        margin: const EdgeInsets.symmetric(horizontal: 6),
         padding: const EdgeInsets.all(12),
         decoration: const BoxDecoration(
           color: Color(0xff0A6082),

@@ -9,4 +9,5 @@ class RoutesString {
   static const String addressBook = '/address-book';
   static const String reservations = '/reservations';
   static const String settings = '/settings';
+  static const String feedback = '/feedback';
 }
