@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/views/auth/login/login_binding.dart';
 import 'package:helmet_customer/views/auth/login/login_screen/login_screen.dart';
+import 'package:helmet_customer/views/editprofile/edit.dart';
+import 'package:helmet_customer/views/editprofile/edit_binding.dart';
 import 'package:helmet_customer/views/feedback/binding/feedback_binding.dart';
 import 'package:helmet_customer/views/feedback/screen/feedback_screen.dart';
 import 'package:helmet_customer/views/home/home_screen/home_screen.dart';
@@ -42,21 +44,27 @@ class RouteClass {
       binding: SplashScreenBinding(),
       transition: Transition.fadeIn,
     ),
-     GetPage(
+    GetPage(
       name: RoutesString.reservations,
       page: () => const ReservationScreen(),
       binding: ReservationBinding(),
       transition: Transition.fadeIn,
     ),
-     GetPage(
+    GetPage(
+      name: RoutesString.edit,
+      page: () => editpage(),
+      binding: EditBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
       name: RoutesString.settings,
-      page: () =>  SettingScreen(),
+      page: () => SettingScreen(),
       binding: SettingBinding(),
       transition: Transition.fadeIn,
     ),
     GetPage(
       name: RoutesString.feedback,
-      page: () =>  FeedbackScreen(),
+      page: () => FeedbackScreen(),
       binding: FeedbackBinding(),
       transition: Transition.fadeIn,
     ),

@@ -104,7 +104,7 @@ class SettingsScreen extends StatelessWidget {
                               ],
                             ),
                             const Spacer(),
-                            const Padding(
+                            Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Row(
                                 children: [
@@ -121,11 +121,16 @@ class SettingsScreen extends StatelessWidget {
                                   //   //   height: 24,
                                   //   // ),
                                   // ),
-                                  ProfileText(
-                                      text: "تعديل",
-                                      height: 0.25,
-                                      fontSize: 16,
-                                      color: Color(0xff29C1F2)),
+                                  TextButton(
+                                    onPressed: () {
+                                      Get.toNamed(RoutesString.edit);
+                                    },
+                                    child: ProfileText(
+                                        text: "تعديل",
+                                        height: 0.25,
+                                        fontSize: 16,
+                                        color: Color(0xff29C1F2)),
+                                  ),
                                 ],
                               ),
                             ),
