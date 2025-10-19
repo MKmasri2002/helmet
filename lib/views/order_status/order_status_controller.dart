@@ -60,8 +60,9 @@ class OrderStatusController extends GetxController {
     super.onInit();
 
     orderRef = FirebaseDatabase.instance.ref("orders/${washDataTripModel.id}");
-    if(nearestSession != null)
-    _listenToSessionStatus(nearestSession?.id ?? "");
+    if(nearestSession != null) {
+      _listenToSessionStatus(nearestSession?.id ?? "");
+    }
   }
 
   void _listenToSessionStatus(String sessionId) {

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/utils/colors/color1.dart';
-import 'package:helmet_customer/views/profile/settings_screen.dart';
 
 class CustomNavBar extends StatelessWidget {
   final int pos;

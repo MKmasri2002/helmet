@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:helmet_customer/views/order_status/widget/component1.dart';
 import 'package:helmet_customer/views/order_status/widget/component10.dart';
 import 'package:helmet_customer/views/order_status/widget/component11.dart';
-import 'package:helmet_customer/views/order_status/widget/component2.dart';
 import 'package:helmet_customer/views/order_status/widget/component3.dart';
 import 'package:helmet_customer/views/order_status/widget/component4.dart';
 import 'package:helmet_customer/views/order_status/widget/component5.dart';
@@ -35,12 +34,12 @@ class OrderStatusView extends StatelessWidget {
             ),
             centerTitle: true,
           ),
-          body:  const SingleChildScrollView(
+          body: const SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Component1(),
-                Component2(),
+                // Component2(),
                 Padding(
                   padding: EdgeInsets.all(15),
                   child: Column(

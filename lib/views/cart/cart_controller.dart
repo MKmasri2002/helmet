@@ -83,6 +83,7 @@ class CartController extends GetxController {
           Get.back();
           Get.back();
           Get.back();
+          Get.back();
           break;
         case PaymentStatus.failed:
           // handle failure.

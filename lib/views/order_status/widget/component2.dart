@@ -48,7 +48,7 @@ class Component2 extends StatelessWidget {
                   // HorizontalDashedLine(color: Colors.grey),
                   // IconForReservationDetailes(imagePath: SvgAssets.car),
                   // HorizontalDashedLine(color: Colors.grey),
-                  IconForReservationDetailes(
+                  const IconForReservationDetailes(
                       imagePath: SvgAssets.locationCheck),
                 ],
               ),

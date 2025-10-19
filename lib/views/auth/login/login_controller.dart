@@ -7,10 +7,10 @@ import 'package:helmet_customer/views/auth/otp/otp_view.dart';
 import 'package:helmet_customer/utils/widgets/custom_snake_bar.dart';
 
 class LoginController extends GetxController {
+
   String phone = "";
   bool isLoading = false;
   final GlobalKey<FormState> loginForm = GlobalKey<FormState>();
-
   FirebaseAuth auth = FirebaseAuth.instance;
   // Example method to generate a random OTP
   void sendOTP(String phoneNumber) async {

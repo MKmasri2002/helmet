@@ -10,7 +10,6 @@ import 'package:helmet_customer/models/address/addresses.dart';
 import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:maps_toolkit/maps_toolkit.dart' as maps_toolkit;
 
 class AddressBookController extends GetxController {
@@ -20,7 +19,7 @@ class AddressBookController extends GetxController {
   List<AddressModel> addressList = [];
   @override
   void onInit() async {
-    await Permission.location.request();
+    //await Permission.location.request();
     super.onInit();
   }
 

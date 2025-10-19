@@ -15,7 +15,7 @@ class FeedbackScreen2 extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: Text("تقييم الغسيل"),
+          title: const Text("تقييم الغسيل"),
           centerTitle: true,
           toolbarHeight: 72,
           titleTextStyle: const TextStyle(
@@ -31,25 +31,25 @@ class FeedbackScreen2 extends StatelessWidget {
             onPressed: () {
               Get.back();
             },
-            icon: Icon(Icons.arrow_back_ios, color: Colors.black, size: 16),
+            icon: const Icon(Icons.arrow_back_ios, color: Colors.black, size: 16),
           ),
         ),
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(10),
-            child: Container(
+            padding: const EdgeInsets.all(10),
+            child: SizedBox(
               width: pageWidth,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 80),
+                  const SizedBox(height: 80),
                   Image.asset(
                     "assets/images/star.PNG",
                     height: 150,
                     width: 150,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(20),
+                  const Padding(
+                    padding: EdgeInsets.all(20),
                     child: Text(
                       "شكراً لتقييم الخدمة ",
                       style: TextStyle(
@@ -62,8 +62,8 @@ class FeedbackScreen2 extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
-                  Text(
+                  const SizedBox(height: 20),
+                  const Text(
                     "شكرًا لإختياركم سويتر",
                     style: TextStyle(
                       fontFamily: 'IBM Plex Sans Arabic',
@@ -75,8 +75,8 @@ class FeedbackScreen2 extends StatelessWidget {
                       color: Color(0xff8193B3),
                     ),
                   ),
-                  SizedBox(height: 15),
-                  Text(
+                  const SizedBox(height: 15),
+                  const Text(
                     "رضاكم هو أولويتنا ويسعدنا خدمتكم",
                     style: TextStyle(
                       fontFamily: 'IBM Plex Sans Arabic',
@@ -88,7 +88,7 @@ class FeedbackScreen2 extends StatelessWidget {
                       color: Color(0xff8193B3),
                     ),
                   ),
-                  SizedBox(height: 60),
+                  const SizedBox(height: 60),
                   SizedBox(
                     height: pageHeight * .07,
                     width: pageWidth * .9,
@@ -99,13 +99,13 @@ class FeedbackScreen2 extends StatelessWidget {
                         Get.back();
                       },
                       style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.fromLTRB(40, 14, 40, 14),
+                        padding: const EdgeInsets.fromLTRB(40, 14, 40, 14),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        backgroundColor: Color(0xff29C1F2),
+                        backgroundColor: const Color(0xff29C1F2),
                       ),
-                      child: Text(
+                      child: const Text(
                         "العودة الى الصفحة الرئيسية",
                         style: TextStyle(
                           color: Color(0xffFFFFFF),

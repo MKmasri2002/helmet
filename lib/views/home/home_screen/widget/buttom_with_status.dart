@@ -1,12 +1,9 @@
 import 'dart:developer';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/generated/assets.dart';
 import 'package:helmet_customer/models/wash_models/order.dart';
-import 'package:helmet_customer/theme/app_colors.dart';
 import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/views/order_status/order_status_binding.dart';

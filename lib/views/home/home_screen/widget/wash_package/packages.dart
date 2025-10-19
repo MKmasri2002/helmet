@@ -75,8 +75,10 @@ class Packages extends StatelessWidget {
                         PackageDescription(
                             arContent: packages[index].nameAr!,
                             enContent: packages[index].nameEn!,
-                            arDescription: packages[index].descriptionAr!,
-                            enDescription: packages[index].descriptionEn!),
+                            arDescription:
+                                packages[index].descriptionAr!,
+                            enDescription:
+                                packages[index].descriptionEn!),
                         const SizedBox(
                           width: 16,
                         ),

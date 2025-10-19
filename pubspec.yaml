@@ -62,6 +62,7 @@ dependencies:
   webview_flutter: ^4.13.0
   font_awesome_flutter: ^10.8.0
   video_player: ^2.10.0
+  cloud_firestore: ^5.6.12
   
 
 dev_dependencies:

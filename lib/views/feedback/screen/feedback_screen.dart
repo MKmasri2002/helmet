@@ -4,6 +4,8 @@ import 'package:helmet_customer/views/feedback/controller/feedback_controller.da
 import 'package:helmet_customer/views/feedback/screen/feedback_screen2.dart';
 
 class FeedbackScreen extends StatelessWidget {
+  const FeedbackScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     double pageWidth = MediaQuery.of(context).size.width;
@@ -14,7 +16,7 @@ class FeedbackScreen extends StatelessWidget {
           textDirection: TextDirection.rtl,
           child: Scaffold(
             appBar: AppBar(
-              title: Text("تقييم الغسيل"),
+              title: const Text("تقييم الغسيل"),
               centerTitle: true,
               toolbarHeight: 72,
               titleTextStyle: const TextStyle(
@@ -28,19 +30,19 @@ class FeedbackScreen extends StatelessWidget {
               ),
               leading: IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.arrow_back_ios, color: Colors.black, size: 16),
+                icon: const Icon(Icons.arrow_back_ios, color: Colors.black, size: 16),
               ),
             ),
             body: SafeArea(
               child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Container(
+                padding: const EdgeInsets.all(10),
+                child: SizedBox(
                   width: pageWidth,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(height: 20),
-                      Text(
+                      const SizedBox(height: 20),
+                      const Text(
                         "تقييم خدمة الغسيل",
                         style: TextStyle(
                           fontFamily: 'IBM Plex Sans Arabic',
@@ -51,14 +53,14 @@ class FeedbackScreen extends StatelessWidget {
                           color: Color(0xff121212),
                         ),
                       ),
-                      SizedBox(height: 20),
-                      Container(
+                      const SizedBox(height: 20),
+                      SizedBox(
                         width: pageWidth * .85,
                         height: pageWidth * .2,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: ctrl.list.length,
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
                             return InkWell(
                               child: Image.asset(
@@ -75,8 +77,8 @@ class FeedbackScreen extends StatelessWidget {
                           },
                         ),
                       ),
-                      SizedBox(height: 20),
-                      Text(
+                      const SizedBox(height: 20),
+                      const Text(
                         "منح تقييم 5-1 نجوم 1 مخيب للآمال و 5 راضٍ",
                         style: TextStyle(
                           fontFamily: 'IBM Plex Sans Arabic',
@@ -91,9 +93,9 @@ class FeedbackScreen extends StatelessWidget {
                       Container(
                         child: Column(
                           children: [
-                            SizedBox(height: 80),
+                            const SizedBox(height: 80),
                             if (ctrl.index >= 0) ...[
-                              Text(
+                              const Text(
                                 "اصنع سعادة البايكر بهديه تحلي يومه",
                                 style: TextStyle(
                                   fontFamily: 'IBM Plex Sans Arabic',
@@ -104,8 +106,8 @@ class FeedbackScreen extends StatelessWidget {
                                   color: Color(0xff121212),
                                 ),
                               ),
-                              SizedBox(height: 20),
-                              Text(
+                              const SizedBox(height: 20),
+                              const Text(
                                 "سيحصل البايكر على المبلغ كامل",
                                 style: TextStyle(
                                   fontFamily: 'IBM Plex Sans Arabic',
@@ -117,19 +119,19 @@ class FeedbackScreen extends StatelessWidget {
                                   color: Color(0xff8193B3),
                                 ),
                               ),
-                              SizedBox(height: 30),
-                              Container(
+                              const SizedBox(height: 30),
+                              SizedBox(
                                 width: pageWidth * .8,
                                 height: pageWidth * .3,
                                 child: ListView.builder(
                                   scrollDirection: Axis.horizontal,
                                   itemCount: ctrl.price.length,
-                                  physics: NeverScrollableScrollPhysics(),
+                                  physics: const NeverScrollableScrollPhysics(),
                                   itemBuilder: (context, index) {
-                                    return Container(
+                                    return SizedBox(
                                       width: 80,
                                       height: 150,
-                                      child: Container(
+                                      child: SizedBox(
                                         height: 150,
                                         width: 100,
                                         child: Stack(
@@ -138,7 +140,7 @@ class FeedbackScreen extends StatelessWidget {
                                             Container(
                                               height: 100,
                                               width: 80,
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                 borderRadius: BorderRadius.only(
                                                   bottomLeft: Radius.circular(
                                                     8,
@@ -159,7 +161,7 @@ class FeedbackScreen extends StatelessWidget {
                                                     context: context,
                                                     isScrollControlled: true,
                                                     shape:
-                                                        RoundedRectangleBorder(
+                                                        const RoundedRectangleBorder(
                                                       borderRadius:
                                                           BorderRadius.vertical(
                                                         top: Radius.circular(
@@ -191,7 +193,7 @@ class FeedbackScreen extends StatelessWidget {
                                                                 width: 60,
                                                                 decoration:
                                                                     BoxDecoration(
-                                                                  color: Color(
+                                                                  color: const Color(
                                                                     0xff29C1F2,
                                                                   ),
                                                                   borderRadius:
@@ -202,12 +204,12 @@ class FeedbackScreen extends StatelessWidget {
                                                                 ),
                                                               ),
                                                             ),
-                                                            SizedBox(
+                                                            const SizedBox(
                                                               height: 30,
                                                             ),
-                                                            Padding(
+                                                            const Padding(
                                                               padding:
-                                                                  const EdgeInsets
+                                                                  EdgeInsets
                                                                       .all(
                                                                 20,
                                                               ),
@@ -233,10 +235,10 @@ class FeedbackScreen extends StatelessWidget {
                                                                 ),
                                                               ),
                                                             ),
-                                                            SizedBox(
+                                                            const SizedBox(
                                                               height: 10,
                                                             ),
-                                                            Container(
+                                                            SizedBox(
                                                               height: 50,
                                                               width: pageWidth,
                                                               child: TextField(
@@ -253,7 +255,7 @@ class FeedbackScreen extends StatelessWidget {
                                                                   alignLabelWithHint:
                                                                       true,
                                                                   hintStyle:
-                                                                      TextStyle(
+                                                                      const TextStyle(
                                                                     fontSize:
                                                                         14,
                                                                     color:
@@ -323,7 +325,7 @@ class FeedbackScreen extends StatelessWidget {
                                                                 ),
                                                               ),
                                                             ),
-                                                            SizedBox(
+                                                            const SizedBox(
                                                               height: 60,
                                                             ),
                                                             SizedBox(
@@ -332,6 +334,27 @@ class FeedbackScreen extends StatelessWidget {
                                                                   ElevatedButton(
                                                                 onPressed:
                                                                     () {},
+                                                                style: ElevatedButton
+                                                                    .styleFrom(
+                                                                  backgroundColor:
+                                                                      const Color(
+                                                                    0xff29C1F2,
+                                                                  ),
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                          .symmetric(
+                                                                    vertical:
+                                                                        14,
+                                                                  ),
+                                                                  shape:
+                                                                      RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                      8,
+                                                                    ),
+                                                                  ),
+                                                                ),
                                                                 child: Text(
                                                                   "تأكيد",
                                                                   style:
@@ -350,30 +373,9 @@ class FeedbackScreen extends StatelessWidget {
                                                                         0,
                                                                   ),
                                                                 ),
-                                                                style: ElevatedButton
-                                                                    .styleFrom(
-                                                                  backgroundColor:
-                                                                      Color(
-                                                                    0xff29C1F2,
-                                                                  ),
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .symmetric(
-                                                                    vertical:
-                                                                        14,
-                                                                  ),
-                                                                  shape:
-                                                                      RoundedRectangleBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(
-                                                                      8,
-                                                                    ),
-                                                                  ),
-                                                                ),
                                                               ),
                                                             ),
-                                                            SizedBox(
+                                                            const SizedBox(
                                                               height: 20,
                                                             ),
                                                           ],
@@ -385,7 +387,7 @@ class FeedbackScreen extends StatelessWidget {
                                                 child: Container(
                                                   height: 100,
                                                   width: 80,
-                                                  decoration: BoxDecoration(
+                                                  decoration: const BoxDecoration(
                                                     color: Color(0xffF0FAFF),
                                                     borderRadius:
                                                         BorderRadius.only(
@@ -417,7 +419,7 @@ class FeedbackScreen extends StatelessWidget {
                                                         Text(
                                                           ctrl.price.values
                                                               .toList()[index],
-                                                          style: TextStyle(
+                                                          style: const TextStyle(
                                                             fontWeight:
                                                                 FontWeight.w600,
                                                             fontSize: 14,
@@ -459,27 +461,27 @@ class FeedbackScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(
                         height: pageHeight * .07,
                         width: pageWidth * .85,
                         child: ElevatedButton(
                           onPressed: ctrl.ButtonEnabled
                               ? () {
-                                  Get.to(() => FeedbackScreen2());
+                                  Get.to(() => const FeedbackScreen2());
                                 }
                               : null,
                           style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.fromLTRB(40, 14, 40, 14),
+                            padding: const EdgeInsets.fromLTRB(40, 14, 40, 14),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
                             ),
-                            backgroundColor: Color(0xff29C1F2),
-                            disabledBackgroundColor: Color(
+                            backgroundColor: const Color(0xff29C1F2),
+                            disabledBackgroundColor: const Color(
                               0xff29C1F2,
                             ).withAlpha(128),
                           ),
-                          child: Text(
+                          child: const Text(
                             "إرسال التقييم",
                             style: TextStyle(
                               color: Color(0xffFFFFFF),
