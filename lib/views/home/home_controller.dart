@@ -110,7 +110,7 @@ class HomeController extends GetxController {
     userOrder.clear();
     userSubscriptionOrders.clear();
     userOneTimeOrders.clear();
-    userSessions.clear();
+    
     userOrder = await UserRepository.getUserOrders(userId: userModel.uid!);
     if (userOrder.isNotEmpty)
       for (Order order in userOrder) {
@@ -126,6 +126,7 @@ class HomeController extends GetxController {
   }
 
   void getUserSession() {
+    userSessions.clear();
     // الأفضل تنظف قبل ما تضيف عشان ما تتكرر البيانات
     for (var order in userOrder) {
       userSessions.addAll(order.sessions);
