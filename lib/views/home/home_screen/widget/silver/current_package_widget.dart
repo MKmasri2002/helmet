@@ -52,11 +52,36 @@ class CurrentPackageWidget extends StatelessWidget {
                     if (currentOrder.endDate != null)
                       CustomText(
                         text:
-                            'End date: ${CustomDate.getDateDDMMYYYYFromMillisecond(DateTime.parse(currentOrder.endDate!).millisecondsSinceEpoch)}',
+                            '${TranslationData.endDate.tr} ${CustomDate.getDateDDMMYYYYFromMillisecond(DateTime.parse(currentOrder.endDate!).millisecondsSinceEpoch)}',
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
                         color: Colors.grey,
                       ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Container(
+                      width: AppSize.width * 0.35,
+                      height: AppSize.width * 0.13,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          color: Color(0xff29C1F2)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(TranslationData.sharePackage.tr,
+                          style: TextStyle(
+                            color: Color(0xffFFFFFF),
+                            fontFamily: 'IBMPlexSansArabic',
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12,
+                            height: 1.5,
+                          ),
+                          ),
+                          Icon(Icons.share_sharp),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
                 const Spacer(),
@@ -70,23 +95,24 @@ class CurrentPackageWidget extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                     CustomText(
+                    CustomText(
                       text: TranslationData.remain.tr,
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
                     ),
                     CustomText(
-                      text: userOrder.isNotEmpty
-                          ? '${currentOrder.remain}'
-                          : '0',
+                      text:
+                          userOrder.isNotEmpty ? '${currentOrder.remain}' : '0',
                       fontSize: 32,
                       fontWeight: FontWeight.w700,
                       color: AppColors.primary,
                     ),
-                     CustomText(
-                      text: TranslationData.outOf.tr+" "+ (userOrder.isNotEmpty
-                          ? '${currentOrder.washCount}'
-                          : '0'),
+                    CustomText(
+                      text: TranslationData.outOf.tr +
+                          " " +
+                          (userOrder.isNotEmpty
+                              ? '${currentOrder.washCount}'
+                              : '0'),
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
                     ),
@@ -129,11 +155,11 @@ class CurrentPackageWidget extends StatelessWidget {
                         arguments: currentOrder,
                       );
                       return;
-                    }else{
-                       Get.to(
-                      () => const BookingView(newOrder: true),
-                      binding: BookingBinding(),
-                    );
+                    } else {
+                      Get.to(
+                        () => const BookingView(newOrder: true),
+                        binding: BookingBinding(),
+                      );
                     }
                     return;
                   }
@@ -160,7 +186,7 @@ class CurrentPackageWidget extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  color: AppColors.primary.withValues(alpha: 0.3),
+                  color: Color(0xffF0FAFF),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

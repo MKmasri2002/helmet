@@ -204,6 +204,8 @@ const Map<String, String> en = {
   TranslationData.shareAndWin: "Share & win",
   TranslationData.remain : "Remain",
   TranslationData.outOf : "Out of",
+  TranslationData.endDate : "End date",
+  TranslationData.sharePackage : "Share Package",
   /////////////////////////////////////////////
   TranslationData.skip: "Skip",
   TranslationData.reservation: "Reservation",

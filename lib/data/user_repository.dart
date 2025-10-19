@@ -76,11 +76,11 @@ class UserRepository {
 
     Map<String, dynamic> updateData = {};
 
-      updateData["washCount"] = newWashCount;
+      updateData["remain"] = newWashCount;
     
     
 
-    await ref.child(orderId).update(<String,dynamic>{"washCount": newWashCount});
+    await ref.child(orderId).update(<String,dynamic>{"remain": newWashCount});
     DatabaseReference sessionRef =
         ref.child(orderId).child('washSessions').push();
     newSession.id = sessionRef.key;

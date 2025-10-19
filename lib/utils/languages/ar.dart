@@ -202,6 +202,8 @@ const Map<String, String> ar = {
   TranslationData.shareAndWin: "شارك واربح",
   TranslationData.remain : "باقي",
   TranslationData.outOf : "من أصل",
+  TranslationData.endDate : "تنتهي في",
+  TranslationData.sharePackage :"مشاركة الباقة",
   /////////////////////////////////////////////////////////////
   TranslationData.skip: "تخطي",
   TranslationData.reservation: "حجز",
