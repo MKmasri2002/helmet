@@ -8,7 +8,7 @@ import 'package:helmet_customer/utils/languages/translate.dart';
 import 'package:helmet_customer/utils/routes/route.dart';
 import 'firebase_options.dart';
 
-String? tokenMk = "";
+String? token = "";
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
