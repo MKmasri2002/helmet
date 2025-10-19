@@ -202,6 +202,8 @@ const Map<String, String> en = {
   //////////////////////Home Page///////////////////////
   TranslationData.apartment: "Apartment",
   TranslationData.shareAndWin: "Share & win",
+  TranslationData.remain : "Remain",
+  TranslationData.outOf : "Out of",
   /////////////////////////////////////////////
   TranslationData.skip: "Skip",
   TranslationData.reservation: "Reservation",

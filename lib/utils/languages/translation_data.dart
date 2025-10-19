@@ -16,8 +16,9 @@ class TranslationData {
   static const String continueAsVistor = "continue_as_visitor";
   //////////////////////Home Page//////////////////////////////
   static const String apartment = "apartment";
-  static const String shareAndWin="share_and_win";
-
+  static const String shareAndWin = "share_and_win";
+  static const String remain = "remain";
+  static const String outOf = "out_of";
   /////////////////////////////////////////////////////////
   static const String skip = 'skip';
   static const String reservation = 'reservation';
@@ -63,19 +64,22 @@ class TranslationData {
   static const String userLocation = "user_location";
   static const String confirm = "confirm";
   static const String trackYourOrder = "track_your_order";
-  static const String pleaseEnterTheVerificationCodeSentTo = "please_enter_the_verification_code_sent_to\n05xxxxxxxxx";
+  static const String pleaseEnterTheVerificationCodeSentTo =
+      "please_enter_the_verification_code_sent_to\n05xxxxxxxxx";
   static const String resendCodeAfter = "resend_Code_After";
   static const String verifyYourPhoneNumber = "verify_your_phone_number";
   static const String verify = "verify";
+
   //////////////////acount///////////////////////////
   static const String account = "account";
-  static const String freeBalanceForYouAndYourFriend = "free_balance_for_you_and_your_friend";
+  static const String freeBalanceForYouAndYourFriend =
+      "free_balance_for_you_and_your_friend";
   static const String whenShareTheApp = "when_share_the_app";
   static const String vision = "vision";
   static const String joinAsServiceProvider = "join_as_service_provider";
   static const String myWallet = "my_wallet";
   static const String myCars = "my_cars";
-  static const String discountCodes= "discount_codes";
+  static const String discountCodes = "discount_codes";
   static const String bills = "bills";
   static const String help = "help";
   static const String packages = "packages";
@@ -85,8 +89,4 @@ class TranslationData {
   //////////////////settings///////////////////////////
   static const String changeLanguage = "change_language";
   static const String receiveNotifications = "receive_notifications";
-  
-
-  
-  
 }

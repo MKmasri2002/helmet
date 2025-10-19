@@ -200,6 +200,8 @@ const Map<String, String> ar = {
   ///////////////////////Home Page///////////////////////////////
   TranslationData.apartment: "شقة",
   TranslationData.shareAndWin: "شارك واربح",
+  TranslationData.remain : "باقي",
+  TranslationData.outOf : "من أصل",
   /////////////////////////////////////////////////////////////
   TranslationData.skip: "تخطي",
   TranslationData.reservation: "حجز",

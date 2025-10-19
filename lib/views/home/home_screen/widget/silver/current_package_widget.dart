@@ -70,18 +70,25 @@ class CurrentPackageWidget extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    const CustomText(
-                      text: 'Remain',
+                     CustomText(
+                      text: TranslationData.remain.tr,
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
                     ),
                     CustomText(
                       text: userOrder.isNotEmpty
-                          ? '${currentOrder.washCount}'
+                          ? '${currentOrder.remain}'
                           : '0',
                       fontSize: 32,
                       fontWeight: FontWeight.w700,
                       color: AppColors.primary,
+                    ),
+                     CustomText(
+                      text: TranslationData.outOf.tr+" "+ (userOrder.isNotEmpty
+                          ? '${currentOrder.washCount}'
+                          : '0'),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
                     ),
                   ],
                 ),

@@ -1,8 +1,8 @@
 import 'package:helmet_customer/models/wash_models/wash_session.dart';
 
 class Order {
-
   int? washCount;
+  int? remain;
   String? washType;
   double? washPrice;
   String? washTitleEn;
@@ -13,7 +13,6 @@ class Order {
   String? createdAt;
   List<WashSession> sessions = [];
   String? endDate;
-
 
   Order({
     this.washCount,
@@ -26,11 +25,13 @@ class Order {
     this.userId,
     this.isPaid,
     this.endDate,
-  });
-  
+  }) {
+    remain = washCount;
+  }
 
   Order.fromJson(Map<String, dynamic> json) {
     washCount = json['washCount'];
+    remain = json['remain'];
     washType = json['washType'];
     washPrice = json['washPrice'];
     endDate = json['washTimeDate'];
@@ -45,6 +46,7 @@ class Order {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['washCount'] = washCount;
+    data['remain'] = remain;
     data['washType'] = washType;
     data['washPrice'] = washPrice;
     data['washTimeDate'] = endDate;
@@ -72,16 +74,17 @@ class Order {
     sb.writeln('  createdAt: $createdAt');
     sb.writeln('  is paid : $isPaid');
     sb.writeln('  sessions: ');
-    for(WashSession w in sessions){
+    for (WashSession w in sessions) {
       sb.writeln('  ${w.toString()}');
     }
     sb.writeln('  car l : $isPaid');
     sb.writeln('}');
     return sb.toString();
   }
+
   void decrementWashCount() {
-    if (washCount != null && washCount! > 0) {
-      washCount = washCount! - 1;
+    if (remain != null && remain! > 0) {
+      remain = remain! - 1;
     }
   }
 }
