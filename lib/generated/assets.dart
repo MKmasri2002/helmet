@@ -133,4 +133,5 @@ class SvgAssets {
   static const String dateIcon = 'assets/svg/date-icon.svg';
   static const String homeIcon = 'assets/svg/home-icon.svg';
   static const String summuryIcon = 'assets/svg/summury-icon.svg';
+  static const String sharePackage = 'assets/svg/share_package.svg';
 }

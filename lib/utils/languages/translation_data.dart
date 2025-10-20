@@ -19,6 +19,8 @@ class TranslationData {
   static const String shareAndWin = "share_and_win";
   static const String remain = "remain";
   static const String outOf = "out_of";
+  static const String endDate = "end_date";
+  static const String sharePackage = "share_package";
   /////////////////////////////////////////////////////////
   static const String skip = 'skip';
   static const String reservation = 'reservation';

@@ -152,11 +152,12 @@ class BookingController extends GetxController {
     washDataTripModel.endDate = selectedDateTime.toString();
     if (washDataTripModel.washCount! > 1) {
       washDataTripModel.decrementWashCount();
+      log("decrement");
     }
     print(washDataTripModel.sessions.last.status);
     await UserRepository.updateSubscriptionOrder(
         orderId: washDataTripModel.id!,
-        newWashCount: washDataTripModel.washCount!,
+        newWashCount: washDataTripModel.remain!,
         newSession: newSession,
         cars: selectedCars);
     print(washDataTripModel.sessions.last.status);

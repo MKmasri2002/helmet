@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -7,7 +6,6 @@ import 'package:helmet_customer/views/splash_screen/splash_screen_controller.dar
 import 'package:video_player/video_player.dart';
 import '../../generated/assets.dart';
 
-
 class SplashScreen extends GetView<SplashScreenController> {
   const SplashScreen({super.key});
 
@@ -15,7 +13,7 @@ class SplashScreen extends GetView<SplashScreenController> {
   Widget build(BuildContext context) {
     return GetBuilder<SplashScreenController>(builder: (controller) {
       return Scaffold(
-        backgroundColor: AppColors.primary,
+        
         body: Stack(
           children: [
             Positioned.fill(
@@ -28,7 +26,10 @@ class SplashScreen extends GetView<SplashScreenController> {
                         child: VideoPlayer(controller.videoController),
                       ),
                     )
-                  : Container(color: AppColors.primary),
+                  : const Image(
+                      image: AssetImage(Assets.imagesSplashPg),
+                      fit: BoxFit.fill,
+                    ),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
