@@ -63,7 +63,7 @@ class ReservationScreen extends StatelessWidget {
                       style: const TextStyle(
                         fontFamily: 'IBM Plex Sans Arabic',
                         fontWeight: FontWeight.w500,
-                        fontSize: 16,
+                        fontSize: 12,
                         color: Color.fromARGB(255, 0, 0, 0),
                       ),
                     ),
