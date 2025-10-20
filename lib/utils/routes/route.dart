@@ -6,6 +6,8 @@ import 'package:helmet_customer/views/editprofile/edit.dart';
 import 'package:helmet_customer/views/editprofile/edit_binding.dart';
 import 'package:helmet_customer/views/feedback/binding/feedback_binding.dart';
 import 'package:helmet_customer/views/feedback/screen/feedback_screen.dart';
+import 'package:helmet_customer/views/hajez/hajez.dart';
+import 'package:helmet_customer/views/hajez/hajez_binding.dart';
 import 'package:helmet_customer/views/home/home_screen/home_screen.dart';
 import 'package:helmet_customer/views/home/home_binding.dart';
 import 'package:helmet_customer/views/profile/binding/profile_screen_binding.dart';
@@ -17,6 +19,8 @@ import 'package:helmet_customer/views/setting/screen/setting_screen.dart';
 import 'package:helmet_customer/views/splash_screen/splash_screen_binding.dart';
 
 import 'package:helmet_customer/views/splash_screen/splash_screen.dart';
+import 'package:helmet_customer/views/wallet/wallet.dart';
+import 'package:helmet_customer/views/wallet/wallet_binding.dart';
 
 class RouteClass {
   static List<GetPage> routs = [
@@ -48,6 +52,18 @@ class RouteClass {
       name: RoutesString.reservations,
       page: () => const ReservationScreen(),
       binding: ReservationBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: RoutesString.hajez,
+      page: () => const Hajez(),
+      binding: HajezBinding(),
+      transition: Transition.fadeIn,
+    ),
+     GetPage(
+      name: RoutesString.wallet,
+      page: () =>  WalletPage(),
+      binding: WalletBinding(),
       transition: Transition.fadeIn,
     ),
     GetPage(
