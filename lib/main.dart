@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -15,6 +16,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  // ✅ Firestore optional setup (to confirm readiness)
+  // ignore: unused_local_variable
+  final firestore = FirebaseFirestore.instance;
   await GetStorage.init();
   runApp(const MyApp());
 }
