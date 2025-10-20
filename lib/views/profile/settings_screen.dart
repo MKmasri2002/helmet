@@ -211,7 +211,10 @@ class SettingsScreen extends StatelessWidget {
                             MenuItem(
                               mainText: TranslationData.bills.tr,
                               path: Assets.profile7,
-                              onTap: () {},
+                              onTap: () {
+                          Get.offAllNamed(RoutesString.hajez);
+
+                              },
                             ),
                             MenuItem(
                               mainText: TranslationData.settings.tr,

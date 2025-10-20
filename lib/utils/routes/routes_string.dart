@@ -11,4 +11,7 @@ class RoutesString {
   static const String settings = '/settings';
   static const String feedback = '/feedback';
   static const String edit = '/edit';
+  static const String hajez = '/hajez';
+  static const String wallet = '/wallet';
+
 }
