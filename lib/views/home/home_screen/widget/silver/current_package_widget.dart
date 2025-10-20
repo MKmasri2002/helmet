@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:helmet_customer/generated/assets.dart';
 import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/models/wash_models/wash_session.dart';
 import 'package:helmet_customer/theme/app_colors.dart';
@@ -69,16 +71,28 @@ class CurrentPackageWidget extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(TranslationData.sharePackage.tr,
-                          style: TextStyle(
-                            color: Color(0xffFFFFFF),
-                            fontFamily: 'IBMPlexSansArabic',
-                            fontWeight: FontWeight.w600,
-                            fontSize: 12,
-                            height: 1.5,
+                          Text(
+                            TranslationData.sharePackage.tr,
+                            style: TextStyle(
+                              color: Color(0xffFFFFFF),
+                              fontFamily: 'IBMPlexSansArabic',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 12,
+                              height: 1.5,
+                            ),
                           ),
+                          SizedBox(
+                            width: 8,
                           ),
-                          Icon(Icons.share_sharp),
+                          SvgPicture.asset(
+                            SvgAssets.sharePackage,
+                            fit: BoxFit
+                                .cover, // يحافظ على نسب الصورة ويملأ الـ Container
+                            width: 22.21, // اختياري: عرض محدد
+                            height: 23.29,
+
+                            // اختياري: ارتفاع محدد
+                          ),
                         ],
                       ),
                     ),
