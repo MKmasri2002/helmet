@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:helmet_customer/generated/assets.dart';
 import 'package:helmet_customer/views/wallet/wallet_controller.dart';
 
 class WalletPage extends StatelessWidget {
@@ -58,11 +59,11 @@ class WalletPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding:  EdgeInsets.all(8.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                           const Text(
                               'الرصيد',
                               style: TextStyle(
                                 fontFamily: 'IBM Plex Sans Arabic',
@@ -77,7 +78,7 @@ class WalletPage extends StatelessWidget {
                             SizedBox(height: 8),
                             Row(
                               children: [
-                                Text(
+                             const   Text(
                                   '299.00',
                                   style: TextStyle(
                                     fontFamily: 'IBM Plex Sans Arabic',
@@ -89,10 +90,11 @@ class WalletPage extends StatelessWidget {
                                     color: Color.fromARGB(255, 255, 255, 255),
                                   ),
                                 ),
+                                SizedBox(width: 10,),
                                 Image.asset(
-                                  "assets/images/Riyal2.png",
-                                  width: 34,
-                                  height: 34,
+                                 Assets.reyal,
+                                  width: 25,
+                                  height: 25,
                                   fit: BoxFit.contain,
                                 ),
                               ],

@@ -4,10 +4,15 @@ import 'package:helmet_customer/views/auth/login/login_binding.dart';
 import 'package:helmet_customer/views/auth/login/login_screen/login_screen.dart';
 import 'package:helmet_customer/views/editprofile/edit.dart';
 import 'package:helmet_customer/views/editprofile/edit_binding.dart';
+import 'package:helmet_customer/views/editprofile/edit_page.dart';
+import 'package:helmet_customer/views/fawater/fawater.dart';
+import 'package:helmet_customer/views/fawater/fawater_binding.dart';
 import 'package:helmet_customer/views/feedback/binding/feedback_binding.dart';
 import 'package:helmet_customer/views/feedback/screen/feedback_screen.dart';
-import 'package:helmet_customer/views/hajez/hajez.dart';
-import 'package:helmet_customer/views/hajez/hajez_binding.dart';
+import 'package:helmet_customer/views/Packages/Packages.dart';
+import 'package:helmet_customer/views/Packages/Packages_binding.dart';
+import 'package:helmet_customer/views/helps/helps.dart';
+import 'package:helmet_customer/views/helps/helps_binding.dart';
 import 'package:helmet_customer/views/home/home_screen/home_screen.dart';
 import 'package:helmet_customer/views/home/home_binding.dart';
 import 'package:helmet_customer/views/profile/binding/profile_screen_binding.dart';
@@ -55,9 +60,9 @@ class RouteClass {
       transition: Transition.fadeIn,
     ),
     GetPage(
-      name: RoutesString.hajez,
-      page: () => const Hajez(),
-      binding: HajezBinding(),
+      name: RoutesString.packages,
+      page: () => const PackagesPage(),
+      binding: PackagesBinding(),
       transition: Transition.fadeIn,
     ),
      GetPage(
@@ -68,7 +73,7 @@ class RouteClass {
     ),
     GetPage(
       name: RoutesString.edit,
-      page: () => editpage(),
+      page: () => EditPage(),
       binding: EditBinding(),
       transition: Transition.fadeIn,
     ),
@@ -82,6 +87,18 @@ class RouteClass {
       name: RoutesString.feedback,
       page: () => FeedbackScreen(),
       binding: FeedbackBinding(),
+      transition: Transition.fadeIn,
+    ),
+     GetPage(
+      name: RoutesString.fawater,
+      page: () => Fawater(),
+      binding: FawaterBinding(),
+      transition: Transition.fadeIn,
+    ),
+     GetPage(
+      name: RoutesString.helps,
+      page: () => HelpPage(),
+      binding: HelpsBinding(),
       transition: Transition.fadeIn,
     ),
   ];
