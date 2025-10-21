@@ -41,7 +41,14 @@ class Packages extends StatelessWidget {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                ctrl.checkLocaionAndLogin();
+                 if (ctrl.checkLogin()==false) {
+                        ctrl.pleaseLogin();
+                        return;
+                      }
+                      if (ctrl.checkLocation()==false) {
+                        ctrl.pleaseSelectLocation();
+                        return;
+                      }
                 washDataTripModel = Order(
                   washType: packages[index].type!,
                   washPrice: packages[index].price,

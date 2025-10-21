@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
+import 'package:helmet_customer/views/address/address_binding.dart';
+import 'package:helmet_customer/views/address/address_screen.dart';
 import 'package:helmet_customer/views/auth/login/login_binding.dart';
 import 'package:helmet_customer/views/auth/login/login_screen/login_screen.dart';
 import 'package:helmet_customer/views/editprofile/edit.dart';
@@ -84,5 +86,12 @@ class RouteClass {
       binding: FeedbackBinding(),
       transition: Transition.fadeIn,
     ),
+    GetPage(
+      name: RoutesString.addressBook,
+      page: () => AddressBookScreen(),
+      binding: AddressBookBinding(),
+      transition: Transition.fadeIn,
+    ),
+    
   ];
 }

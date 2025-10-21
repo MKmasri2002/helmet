@@ -2,9 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
+import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/views/widget/custom_text.dart';
-import 'package:helmet_customer/views/address/address_book_binding.dart';
-import 'package:helmet_customer/views/address/address_book_view.dart';
+import 'package:helmet_customer/views/address/address_binding.dart';
+import 'package:helmet_customer/views/address/address_screen.dart';
 
 class TopHeaderHome extends StatelessWidget {
   const TopHeaderHome({super.key});
@@ -14,7 +15,8 @@ class TopHeaderHome extends StatelessWidget {
       _showError('Please login first');
       return;
     }
-    Get.to(() => const AddressBookView(), binding: AddressBookBinding());
+    //Get.to(() => const AddressBookView(), binding: AddressBookBinding());
+    Get.toNamed(RoutesString.addressBook);
   }
 
   void _showError(String message) {

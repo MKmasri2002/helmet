@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:developer';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:helmet_customer/models/car.dart';
@@ -105,6 +107,21 @@ class AuthRepository {
     return responseModel;
   }
 /////////////////////////////////////////////////////////////
+static Future<UserModel> getFullUserData(String uid) async {
+  try {
+    final doc = await FirebaseFirestore.instance.collection("user").doc(uid).get();
+
+    if (!doc.exists) throw Exception("User not found");
+
+    final data = doc.data() as Map<String, dynamic>;
+    return UserModel.fromJson(data);
+  } catch (e) {
+    log("Error loading full user info: $e");
+    return UserModel();
+  }
+}
+
+///////////////////////////////////////////////////////////////
   static Future<UserModel> getCurrentUserInfo(String uid) async {
     UserModel userModel = UserModel();
     try {

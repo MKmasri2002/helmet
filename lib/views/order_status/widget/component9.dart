@@ -31,28 +31,28 @@ class Component9 extends StatelessWidget {
                 ),
                 child: GoogleMap(
                   initialCameraPosition: CameraPosition(
-                    target: LatLng(userModel.Addresses[0].latitude ?? 0,
-                        userModel.Addresses[0].longitude ?? 0),
+                    target: LatLng(userModel.addresses[0].latitude ?? 0,
+                        userModel.addresses[0].longitude ?? 0),
                     zoom: 14,
                   ),
                   markers: {
                     Marker(
                         markerId: const MarkerId("1"),
-                        position: LatLng(userModel.Addresses[0].latitude ?? 0,
-                        userModel.Addresses[0].longitude ?? 0),)
+                        position: LatLng(userModel.addresses[0].latitude ?? 0,
+                        userModel.addresses[0].longitude ?? 0),)
                   },
                   myLocationEnabled: false,
                   myLocationButtonEnabled: true,
                   onMapCreated: (GoogleMapController controller) {
                     ctrl.mapController = controller;
                     // move camera to the selected address
-                    if (userModel.Addresses[0].latitude != null &&
-                        userModel.Addresses[0].longitude != null) {
+                    if (userModel.addresses[0].latitude != null &&
+                        userModel.addresses[0].longitude != null) {
                       ctrl.mapController!.animateCamera(
                         CameraUpdate.newCameraPosition(
                           CameraPosition(
-                            target: LatLng(userModel.Addresses[0].latitude ?? 0,
-                               userModel.Addresses[0].longitude ?? 0),
+                            target: LatLng(userModel.addresses[0].latitude ?? 0,
+                               userModel.addresses[0].longitude ?? 0),
                             zoom: 14,
                           ),
                         ),
@@ -80,7 +80,7 @@ class Component9 extends StatelessWidget {
                     width: 8,
                   ),
                   Text(
-                    userModel.Addresses[0].address ?? "",
+                    userModel.addresses[0].address ?? "",
                     style: const TextStyle(
                       fontFamily: 'IBMPlexSansArabic',
                       fontWeight: FontWeight.w500,
