@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class HajezController extends GetxController {
+class PackagesController extends GetxController {
   String currentTab = "all";
 
   List<Map<String, dynamic>> allPackages = [

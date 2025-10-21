@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/views/editprofile/edit_controller.dart';
 
-class editpage extends StatefulWidget {
+class editpage1 extends StatefulWidget {
   @override
-  State<editpage> createState() => _editpageState();
+  State<editpage1> createState() => _editpageState();
 }
 
-class _editpageState extends State<editpage> {
+class _editpageState extends State<editpage1> {
   @override
   Widget build(BuildContext context) {
     double pageWidth = MediaQuery.of(context).size.width;

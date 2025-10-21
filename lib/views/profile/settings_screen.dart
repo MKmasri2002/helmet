@@ -196,7 +196,7 @@ class SettingsScreen extends StatelessWidget {
                             MenuItem(
                               mainText: TranslationData.myWallet.tr,
                               path: Assets.profile4,
-                              onTap: () {},
+                              onTap: () {Get.toNamed(RoutesString.wallet);},
                             ),
                             MenuItem(
                               mainText: TranslationData.myCars.tr,
@@ -211,10 +211,8 @@ class SettingsScreen extends StatelessWidget {
                             MenuItem(
                               mainText: TranslationData.bills.tr,
                               path: Assets.profile7,
-                              onTap: () {
-                          Get.offAllNamed(RoutesString.hajez);
+                             onTap: () {Get.toNamed(RoutesString.wallet);},
 
-                              },
                             ),
                             MenuItem(
                               mainText: TranslationData.settings.tr,
@@ -231,12 +229,12 @@ class SettingsScreen extends StatelessWidget {
                             MenuItem(
                               mainText: TranslationData.packages.tr,
                               path: Assets.profile10,
-                              onTap: () {},
+                              onTap: () {Get.toNamed(RoutesString.packages);},
                             ),
                             MenuItem(
                               mainText: TranslationData.help.tr,
                               path: Assets.profile11,
-                              onTap: () {},
+                              onTap: () {Get.toNamed(RoutesString.helps);},
                             ),
                             MenuItem(
                               mainText: TranslationData.logout.tr,
