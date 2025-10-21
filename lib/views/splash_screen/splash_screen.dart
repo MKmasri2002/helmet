@@ -13,7 +13,6 @@ class SplashScreen extends GetView<SplashScreenController> {
   Widget build(BuildContext context) {
     return GetBuilder<SplashScreenController>(builder: (controller) {
       return Scaffold(
-        
         body: Stack(
           children: [
             Positioned.fill(
