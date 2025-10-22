@@ -4,6 +4,7 @@ import 'package:helmet_customer/views/editprofile/widget/date_field.dart';
 import 'package:helmet_customer/views/editprofile/widget/gender_sellector.dart';
 import 'package:helmet_customer/views/editprofile/widget/name_field.dart';
 import 'package:helmet_customer/views/editprofile/widget/update_button.dart';
+import 'package:helmet_customer/views/profile/controller/profile_screen_controller.dart';
 import 'edit_controller.dart';
 
 
@@ -35,6 +36,7 @@ class EditProfilePage extends StatelessWidget {
 
               leading: IconButton(
                 onPressed: () {
+                  Get.find<ProfileScreenController>().update();
                   Get.back();
                 },
                 icon: Icon(Icons.arrow_back_ios, color: Colors.black, size: 16),

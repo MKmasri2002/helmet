@@ -73,6 +73,7 @@ class EditController extends GetxController {
     } catch (e) {
       Get.snackbar('خطأ', 'حدث خطأ أثناء حفظ التغييرات: $e');
     }
+    update();
   }
 
   /// ✳️ التحقق من البريد بعد فتح الرابط وتحديث Firestore
