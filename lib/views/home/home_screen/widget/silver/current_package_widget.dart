@@ -142,12 +142,12 @@ class CurrentPackageWidget extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                if (FirebaseAuth.instance.currentUser == null) {
-                  Get.snackbar('Error', 'Please login first',
-                      snackPosition: SnackPosition.BOTTOM,
-                      backgroundColor: Colors.red,
-                      colorText: Colors.white,
-                      duration: const Duration(seconds: 3));
+                if (ctrl.checkLogin() == false) {
+                  ctrl.pleaseLogin();
+                  return;
+                }
+                if (ctrl.checkLocation() == false) {
+                  ctrl.pleaseSelectLocation();
                   return;
                 }
                 washDataTripModel = currentOrder;

@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:helmet_customer/models/address/addresses.dart';
 import 'package:helmet_customer/models/car.dart';
 
 class UserModel {
@@ -20,10 +23,13 @@ class UserModel {
   String? userType;
   List<String>? ongoingReservations;
   List<String>? completedReservations;
-  List<Address> Addresses=[];
+  List<Address> addresses = [];
   List<Car> cars = [];
+<<<<<<< HEAD
 
   
+=======
+>>>>>>> c7f61c7b4e40234aa28565755f4e06063502a706
 
   UserModel({
     this.accountStatus,
@@ -43,8 +49,14 @@ class UserModel {
     this.userType,
     this.ongoingReservations,
     this.completedReservations,
+<<<<<<< HEAD
     this.birthdate,
   });
+=======
+  }) {
+    getAddresses();
+  }
+>>>>>>> c7f61c7b4e40234aa28565755f4e06063502a706
 
   UserModel.fromJson(Map<String, dynamic> json) {
     accountStatus = json['accountStatus'];
@@ -65,6 +77,10 @@ class UserModel {
     token = json['token'];
     uid = json['uid'];
     userType = json['userType'];
+    cars = json['cars'] != null
+        ? List<Car>.from(json['cars'].map((x) => Car.fromJson(x)))
+        : [];
+    getAddresses();
     ongoingReservations = json['ongoingReservations'] != null
         ? List<String>.from(json['ongoingReservations'])
         : [];
@@ -97,7 +113,7 @@ class UserModel {
     return data;
   }
 
-   @override
+  @override
   String toString() {
     return '''
 UserModel(
@@ -120,10 +136,22 @@ UserModel(
   userType: $userType,
   ongoingReservations: $ongoingReservations,
   completedReservations: $completedReservations,
-  userAddresses: ${Addresses[0].toString()},
-  cars ${cars[0].toString()}
+
+  
+
 )
 ''';
+  }
+
+  Future<void> getAddresses() async {
+    final query = await FirebaseFirestore.instance
+        .collection('address')
+        .where('user_id', isEqualTo: uid)
+        .get();
+    if (query.docs.isNotEmpty) {
+      addresses =
+          query.docs.map((doc) => Address.fromJson(doc.data())).toList();
+    }
   }
 }
 
@@ -132,12 +160,14 @@ class Address {
   String? areaId;
   bool? defaultLocation;
   String? id;
+  String? userId;
   double? latitude;
   double? longitude;
   String? title;
 
   Address(
       {this.address,
+      this.userId,
       this.areaId,
       this.defaultLocation,
       this.id,
@@ -150,6 +180,7 @@ class Address {
     areaId = json['areaId'];
     defaultLocation = json['defaultLocation'];
     id = json['id'];
+    userId = json['user_id'];
     latitude = json['latitude'];
     longitude = json['longitude'];
     title = json['title'];
@@ -161,6 +192,7 @@ class Address {
     data['areaId'] = areaId;
     data['defaultLocation'] = defaultLocation;
     data['id'] = id;
+    data['user_id'] = userId;
     data['latitude'] = latitude;
     data['longitude'] = longitude;
     data['title'] = title;
@@ -181,6 +213,4 @@ UserAddresses(
 )
 ''';
   }
-
 }
-

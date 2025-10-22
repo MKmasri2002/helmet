@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:helmet_customer/utils/colors/color1.dart';
 import 'package:helmet_customer/utils/constants.dart';
-import 'package:helmet_customer/views/address/address_book_binding.dart';
-import 'package:helmet_customer/views/address/address_book_view.dart';
+import 'package:helmet_customer/views/address/address_binding.dart';
+import 'package:helmet_customer/views/address/address_screen.dart';
 import 'package:helmet_customer/views/booking/booking_controller.dart';
 import 'package:helmet_customer/views/widget/custom_text.dart';
 
@@ -21,7 +21,7 @@ class SelectLocation extends StatelessWidget {
             Icon(Icons.location_on, color: primaryColor, size: 30),
             TextButton(
               onPressed: () async {
-                await Get.to(() => const AddressBookView(),
+                await Get.to(() => const AddressBookScreen(),
                     binding: AddressBookBinding());
                 // move camera to the selected address
                 if (ctrl.mapController != null) {

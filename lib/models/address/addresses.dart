@@ -1,5 +1,6 @@
 class AddressModel {
   String? id;
+  String? userId;
   String? address;
   String? addressType;
   String? contactPersonName;
@@ -14,6 +15,7 @@ class AddressModel {
 
   AddressModel({
     this.id,
+    this.userId,
     this.address,
     this.addressType,
     this.contactPersonName,
@@ -29,6 +31,7 @@ class AddressModel {
 
   AddressModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+     id = json['user_id'];
     address = json['address'];
     addressType = json['addressType'];
     contactPersonName = json['contactPersonName'];
@@ -45,6 +48,7 @@ class AddressModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
+    data['user_id'] = id;
     data['address'] = address;
     data['addressType'] = addressType;
     data['contactPersonName'] = contactPersonName;

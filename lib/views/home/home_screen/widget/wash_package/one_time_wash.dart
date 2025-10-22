@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -44,8 +43,15 @@ class OneTimeWash extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
-                     ctrl.checkLocaionAndLogin();
-                     
+                      if (ctrl.checkLogin()==false) {
+                        ctrl.pleaseLogin();
+                        return;
+                      }
+                      if (ctrl.checkLocation()==false) {
+                        ctrl.pleaseSelectLocation();
+                        return;
+                      }
+
                       washDataTripModel = Order(
                         washType: package[index].type,
                         washPrice: package[index].price,
@@ -53,9 +59,8 @@ class OneTimeWash extends StatelessWidget {
                         endDate: package[index].endDate,
                         washTitleAr: package[index].nameAr,
                         washTitleEn: package[index].nameEn,
-                        createdAt: DateTime.now().toString(),  
+                        createdAt: DateTime.now().toString(),
                         userId: userModel.uid,
-                                       
                       );
                       Get.to(
                           () => const BookingView(

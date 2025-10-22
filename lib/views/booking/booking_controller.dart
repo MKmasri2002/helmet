@@ -104,7 +104,7 @@ class BookingController extends GetxController {
       selectedTime.hour,
     );
     WashSession washSession = WashSession(
-      areaId: userModel.Addresses[0].areaId,
+      areaId: userModel.addresses[0].areaId,
       driverId: driverList[0].id,
       washTime: fullDate.toString(),
       status: 'pending',
@@ -132,7 +132,7 @@ class BookingController extends GetxController {
     }
 
     WashSession newSession = WashSession(
-      areaId: userModel.Addresses[0].areaId,
+      areaId: userModel.addresses[0].areaId,
       driverId: driverList[0].id,
       washTime: fullDate.toString(),
       status: 'pending',

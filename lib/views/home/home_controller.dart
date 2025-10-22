@@ -69,10 +69,12 @@ class HomeController extends GetxController {
     await getAllUserOrder();
     await getAllDriverInArea();
     startSessionTimer();
+    log(userModel.toString());
 
     update();
   }
 
+<<<<<<< HEAD
   // Future<void> getUserInfo() async {
   //   if (FirebaseAuth.instance.currentUser != null) {
   //     userModel.uid = FirebaseAuth.instance.currentUser!.uid;
@@ -84,10 +86,19 @@ class HomeController extends GetxController {
 
   //   update();
   // }
+=======
+  Future<void> getUserInfo() async {
+    if (FirebaseAuth.instance.currentUser != null) {
+      userModel.uid = FirebaseAuth.instance.currentUser!.uid;
+
+      userModel = await AuthRepository.getFullUserData(userModel.uid!);
+    }
+    update();
+  }
+>>>>>>> c7f61c7b4e40234aa28565755f4e06063502a706
 
   Future<void> getPackages() async {
-    List<PackageModel> packages =
-        await WashPackageRepository.getAllWashPackage();
+    List<PackageModel> packages = await WashPackageRepository.getAllPackage();
     for (PackageModel package in packages) {
       if (package.showInAdds == true) {
         adsPackages.add(package);
@@ -110,8 +121,13 @@ class HomeController extends GetxController {
     userOrder.clear();
     userSubscriptionOrders.clear();
     userOneTimeOrders.clear();
+<<<<<<< HEAD
     
     // userOrder = await UserRepository.getUserOrders(userId: userModel.uid!);
+=======
+
+    userOrder = await UserRepository.getUserOrders(userId: userModel.uid!);
+>>>>>>> c7f61c7b4e40234aa28565755f4e06063502a706
     if (userOrder.isNotEmpty)
       for (Order order in userOrder) {
         if (order.washType == "subscription") {
@@ -231,31 +247,32 @@ class HomeController extends GetxController {
     });
   }
 
-  void checkLocaionAndLogin() {
-    checkIsLoggedIn();
-    checkLocation();
+  bool checkLogin() {
+    if (FirebaseAuth.instance.currentUser == null) return false;
+
+    return true;
+  }
+  bool checkLocation() {
+    if (userModel.addresses.isEmpty) return false;
+
+    return true;
+  }
+
+  void pleaseLogin() {
+    Get.snackbar('Error', 'Please login first',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+        duration: const Duration(seconds: 3));
     return;
   }
 
-  void checkIsLoggedIn() {
-    if (FirebaseAuth.instance.currentUser == null) {
-      Get.snackbar('Error', 'Please login first',
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-          duration: const Duration(seconds: 3));
-      return;
-    }
-  }
-
-  void checkLocation() {
-    if (userModel.Addresses[0].latitude == null) {
-      Get.snackbar('Error', 'Please select or add an address first',
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-          duration: const Duration(seconds: 3));
-      return;
-    }
+  void pleaseSelectLocation() {
+    Get.snackbar('Error', 'Please select or add an address first',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+        duration: const Duration(seconds: 3));
+    return;
   }
 }
