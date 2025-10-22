@@ -15,6 +15,9 @@ class RoutesString {
   static const String wallet = '/wallet';
   static const String fawater = '/fawater';
   static const String helps = '/helps';
+    static const String editemail = '/editemail';
+    static const String editphone = '/editphone';
+
 
 
 

@@ -65,7 +65,7 @@ class SplashScreenController extends GetxController {
           duration: const Duration(seconds: 3));
       return;
     }
-    await FirebaseMessaging.instance.requestPermission();
+    //await FirebaseMessaging.instance.requestPermission();
     NotificationManagement.onGroundMessaging();
     NotificationManagement.open();
     NotificationManagement.firebaseMessagingBackgroundHandler;

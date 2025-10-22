@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:helmet_customer/views/editprofile/edit_controller.dart';
 
 class UpdateButton extends StatelessWidget {
-  const UpdateButton({super.key});
+  final EditController controller;
+
+  const UpdateButton({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 55,
-      width: 350,
-      child: ElevatedButton(
-        onPressed: () {},
-        style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          backgroundColor: const Color.fromARGB(255, 74, 197, 237),
-        ),
-        child: const Text(
-          "تحديث",
-          style: TextStyle(
-            fontFamily: 'IBM Plex Sans Arabic',
-            fontWeight: FontWeight.w500,
-            fontSize: 18,
-            color: Colors.white,
-          ),
+    return ElevatedButton(
+      onPressed: () {
+        controller.updateUser();
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color(0xff4AC5ED),
+        minimumSize: const Size(double.infinity, 55),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+      child: const Text(
+        "تحديث",
+        style: TextStyle(
+          fontSize: 18,
+          color: Colors.white,
+          fontWeight: FontWeight.w600,
         ),
       ),
     );

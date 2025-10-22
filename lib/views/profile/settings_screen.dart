@@ -6,6 +6,8 @@ import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/utils/widgets/custom_nav_bar.dart';
+import 'package:helmet_customer/views/editprofile/edit_controller.dart';
+import 'package:helmet_customer/views/profile/controller/profile_screen_controller.dart';
 
 class SettingsScreen extends StatelessWidget {
   SettingsScreen({super.key});
@@ -25,6 +27,8 @@ class SettingsScreen extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
+     return GetBuilder<ProfileScreenController>(
+      builder: (ctrl) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -85,13 +89,13 @@ class SettingsScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            const Column(
+                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 ProfileText(
-                                    text: "khaled mohammed", height: 0.25),
+                                    text: ctrl.userModel.name ?? "" , height: 0.25),
                                 SizedBox(height: 15),
-                                Row(
+                               const Row(
                                   children: [
                                     // Image.asset(
                                     //   "assets/images/Icon.png",
@@ -140,12 +144,13 @@ class SettingsScreen extends StatelessWidget {
                         MenuItem(
                           mainText: 'اضافة البريد الالكتروني',
                           path: Assets.profileEmailIcon,
-                          onTap: () {},
+                             onTap: () {Get.toNamed(RoutesString.editemail);},
+
                         ),
                         MenuItem(
-                          mainText: '+962793313222',
+                          mainText: ctrl.userModel.phone ?? "",
                           path: Assets.profilePhoneIcon,
-                          onTap: () {},
+                             onTap: () {Get.toNamed(RoutesString.editphone);},
                         ),
                       ],
                     ),
@@ -211,7 +216,7 @@ class SettingsScreen extends StatelessWidget {
                             MenuItem(
                               mainText: TranslationData.bills.tr,
                               path: Assets.profile7,
-                             onTap: () {Get.toNamed(RoutesString.wallet);},
+                             onTap: () {Get.toNamed(RoutesString.fawater);},
 
                             ),
                             MenuItem(
@@ -258,7 +263,7 @@ class SettingsScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: const CustomNavBar(pos: 4),
-    );
+    );});
   }
 }
 

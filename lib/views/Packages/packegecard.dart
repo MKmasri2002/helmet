@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:helmet_customer/generated/assets.dart';
 
@@ -16,10 +15,11 @@ class PackageCard extends StatelessWidget {
         padding: EdgeInsets.all(12.h),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.r),
-          border: Border.all(color: Color(0xffDBDFE6)),
+          border: Border.all(color: const Color(0xffDBDFE6)),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min, // 🔹 الكرت يتمدد حسب المحتوى فقط
           children: [
             /// Header Row
             Row(
@@ -27,7 +27,7 @@ class PackageCard extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.all(3.h),
                   decoration: BoxDecoration(
-                    color: Color(0xff29C1F2),
+                    color: const Color(0xff29C1F2),
                     borderRadius: BorderRadius.circular(6.r),
                   ),
                   child: Text(
@@ -43,12 +43,12 @@ class PackageCard extends StatelessWidget {
                 Image.asset(Assets.tabby, width: 62.w, height: 21.h),
                 SizedBox(width: 10.w),
                 Image.asset(Assets.tamara, width: 60.w, height: 20.h),
-                Spacer(),
+                const Spacer(),
                 Container(
                   width: 40.w,
                   height: 45.h,
                   decoration: BoxDecoration(
-                    color: Color(0xff07729D),
+                    color: const Color(0xff07729D),
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(10.r),
                       bottomRight: Radius.circular(10.r),
@@ -73,16 +73,16 @@ class PackageCard extends StatelessWidget {
               package["description"],
               style: TextStyle(
                 fontSize: 14.sp,
-                color: Color(0xff8193B3),
+                color: const Color(0xff8193B3),
               ),
             ),
-            Spacer(),
+            SizedBox(height: 12.h),
 
             Container(
               width: double.infinity,
               height: 55.h,
               decoration: BoxDecoration(
-                color: Color(0xff0A6082),
+                color: const Color(0xff0A6082),
                 borderRadius: BorderRadius.circular(8.r),
               ),
               child: Padding(
@@ -105,7 +105,7 @@ class PackageCard extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     IconButton(
                       onPressed: () {},
                       icon: Icon(

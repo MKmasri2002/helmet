@@ -1,73 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart'; // 👈 استدعاء المكتبة
-import 'package:helmet_customer/views/editprofile/edit_controller.dart';
 import 'package:helmet_customer/views/editprofile/widget/date_field.dart';
-import 'package:helmet_customer/views/editprofile/widget/delet_account.dart';
 import 'package:helmet_customer/views/editprofile/widget/gender_sellector.dart';
 import 'package:helmet_customer/views/editprofile/widget/name_field.dart';
 import 'package:helmet_customer/views/editprofile/widget/update_button.dart';
+import 'edit_controller.dart';
 
-class EditPage extends StatefulWidget {
-  const EditPage({super.key});
 
-  @override
-  State<EditPage> createState() => _EditPageState();
-}
+class EditProfilePage extends StatelessWidget {
+  const EditProfilePage({super.key});
 
-class _EditPageState extends State<EditPage> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<EditController>(
-      builder: (ctrl) {
-        return Directionality(
-          textDirection: TextDirection.rtl,
-          child: Scaffold(
-            backgroundColor: Colors.white,
-            appBar: AppBar(
+    final controller = Get.put(EditController());
+
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
               backgroundColor: Colors.white,
-              title: const Text("تعديل الحساب"),
+              title: Text("تعديل الحساب"),
               centerTitle: true,
-              toolbarHeight: 72.h, // 👈 متكيفة
-              titleTextStyle: TextStyle(
+              toolbarHeight: 72,
+              titleTextStyle: const TextStyle(
                 fontFamily: 'IBM Plex Sans Arabic',
                 fontWeight: FontWeight.w500,
-                fontSize: 16.sp, // 👈 متكيف
-                color: const Color(0xff121212),
+                fontStyle: FontStyle.normal,
+                fontSize: 16,
+                height: 1.5,
+                letterSpacing: 0,
+                color: Color(0xff121212),
               ),
+
               leading: IconButton(
-                onPressed: () => Get.back(),
-                icon: Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.black,
-                  size: 16.w, // 👈 متكيف
-                ),
+                onPressed: () {
+                  Get.back();
+                },
+                icon: Icon(Icons.arrow_back_ios, color: Colors.black, size: 16),
               ),
             ),
-            body: SafeArea(
-              child: Padding(
-                padding: EdgeInsets.all(20.w), // 👈 متكيف
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      SizedBox(height: 20.h),
-                      const NameFields(),
-                      SizedBox(height: 40.h),
-                      const DateField(),
-                      SizedBox(height: 40.h),
-                      const GenderSelector(),
-                      SizedBox(height: 30.h),
-                      const UpdateButton(),
-                      SizedBox(height: 30.h),
-                      const DeleteAccountText(),
-                    ],
-                  ),
-                ),
-              ),
+        body: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              children: [
+                                const SizedBox(height: 10),
+
+                NameFields(controller: controller),
+                const SizedBox(height: 30),
+                DateField(controller: controller),
+                const SizedBox(height: 40),
+                GenderSelector(controller: controller),
+                const SizedBox(height: 45),
+                UpdateButton(controller: controller),
+              ],
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

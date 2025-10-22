@@ -63,7 +63,7 @@ class HomeController extends GetxController {
   }
 
   Future<void> getAllData() async {
-    await getUserInfo();
+    // await getUserInfo();
     await getPackages();
     await getAllAreas();
     await getAllUserOrder();
@@ -73,17 +73,17 @@ class HomeController extends GetxController {
     update();
   }
 
-  Future<void> getUserInfo() async {
-    if (FirebaseAuth.instance.currentUser != null) {
-      userModel.uid = FirebaseAuth.instance.currentUser!.uid;
-    }
-    userModel = await AuthRepository.getCurrentUserInfo(userModel.uid!);
-    userModel.Addresses =
-        await AuthRepository.getCurrentUserAdresses(userModel.uid!);
-    userModel.cars = await AuthRepository.getUserCars(userModel.uid!);
+  // Future<void> getUserInfo() async {
+  //   if (FirebaseAuth.instance.currentUser != null) {
+  //     userModel.uid = FirebaseAuth.instance.currentUser!.uid;
+  //   }
+  //   userModel = await AuthRepository.getCurrentUserInfo(userModel.uid!);
+  //   userModel.Addresses =
+  //       await AuthRepository.getCurrentUserAdresses(userModel.uid!);
+  //   userModel.cars = await AuthRepository.getUserCars(userModel.uid!);
 
-    update();
-  }
+  //   update();
+  // }
 
   Future<void> getPackages() async {
     List<PackageModel> packages =
@@ -111,7 +111,7 @@ class HomeController extends GetxController {
     userSubscriptionOrders.clear();
     userOneTimeOrders.clear();
     
-    userOrder = await UserRepository.getUserOrders(userId: userModel.uid!);
+    // userOrder = await UserRepository.getUserOrders(userId: userModel.uid!);
     if (userOrder.isNotEmpty)
       for (Order order in userOrder) {
         if (order.washType == "subscription") {

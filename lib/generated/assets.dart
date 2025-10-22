@@ -112,13 +112,15 @@ class Assets {
   static const String termsAndConditions = 'assets/images/tag.png';
   static const String receivwNotifications =
       'assets/images/notification-03.png';
-   static const String whatsapp = 'assets/images/whatsapp.png';
-   static const String help = 'assets/images/help.png';
-   static const String emailhelp = 'assets/images/emailhelp.png';
-      static const String tamara = 'assets/images/tamara.png';
-   static const String tabby = 'assets/images/tabby.png';
+  static const String whatsapp = 'assets/images/whatsapp.png';
+    static const String flag = 'assets/images/flag.png';
 
-
+  static const String help = 'assets/images/help.png';
+  static const String emailhelp = 'assets/images/emailhelp.png';
+  static const String tamara = 'assets/images/tamara.png';
+  static const String tabby = 'assets/images/tabby.png';
+  static const String man = 'assets/images/man.png';
+  static const String woman = 'assets/images/woman.png';
 }
 
 class SvgAssets {

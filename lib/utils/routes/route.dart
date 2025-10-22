@@ -2,8 +2,9 @@ import 'package:get/get.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/views/auth/login/login_binding.dart';
 import 'package:helmet_customer/views/auth/login/login_screen/login_screen.dart';
-import 'package:helmet_customer/views/editprofile/edit.dart';
 import 'package:helmet_customer/views/editprofile/edit_binding.dart';
+import 'package:helmet_customer/views/editprofile/edit_email.dart/edit_phone.dart';
+import 'package:helmet_customer/views/editprofile/edit_email.dart/editemail.dart';
 import 'package:helmet_customer/views/editprofile/edit_page.dart';
 import 'package:helmet_customer/views/fawater/fawater.dart';
 import 'package:helmet_customer/views/fawater/fawater_binding.dart';
@@ -73,7 +74,19 @@ class RouteClass {
     ),
     GetPage(
       name: RoutesString.edit,
-      page: () => EditPage(),
+      page: () => EditProfilePage(),
+      binding: EditBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: RoutesString.editemail,
+      page: () => Editemail(),
+      binding: EditBinding(),
+      transition: Transition.fadeIn,
+    ),
+     GetPage(
+      name: RoutesString.editphone,
+      page: () => EditPhone(),
       binding: EditBinding(),
       transition: Transition.fadeIn,
     ),

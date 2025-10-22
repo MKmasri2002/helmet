@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/models/user_model.dart';
@@ -15,8 +16,15 @@ class ProfileScreenController extends GetxController {
   }
 
   void getUserInfo() async {
-    userModel = await AuthRepository.getCurrentUserInfo(userModel.uid!);
+  final currentUser = FirebaseAuth.instance.currentUser
+;
+  if (currentUser != null) {
+    userModel = await AuthRepository.getCurrentUserInfo(currentUser.uid);
+    update(); // لتحديث الواجهة إذا بتستخدم GetBuilder
+  } else {
+    customSnakeBar(message: "لم يتم العثور على مستخدم مسجل حاليًا", color: Colors.red);
   }
+}
 
   void onClickSave() {
     if (userModel.name!.isEmpty) {

@@ -15,11 +15,14 @@ class UserModel {
   String? registerDate;
   String? token;
   String? uid;
+    String? birthdate;
+
   String? userType;
   List<String>? ongoingReservations;
   List<String>? completedReservations;
   List<Address> Addresses=[];
   List<Car> cars = [];
+
   
 
   UserModel({
@@ -40,6 +43,7 @@ class UserModel {
     this.userType,
     this.ongoingReservations,
     this.completedReservations,
+    this.birthdate,
   });
 
   UserModel.fromJson(Map<String, dynamic> json) {
@@ -50,7 +54,10 @@ class UserModel {
     image = json['image'];
     invitedBy = json['invitedBy'];
     lastLoginDate = json['lastLoginDate'];
+    
     name = json['name'];
+        birthdate = json['birthdate'];
+
     password = json['password'];
     phone = json['phone'];
     referralCode = json['referralCode'];
@@ -71,6 +78,8 @@ class UserModel {
     data['accountStatus'] = accountStatus;
     data['coins'] = coins;
     data['email'] = email;
+        data['birthdate'] = birthdate;
+
     data['gender'] = gender;
     data['image'] = image;
     data['invitedBy'] = invitedBy;
@@ -101,6 +110,8 @@ UserModel(
   lastLoginDate: $lastLoginDate,
   name: $name,
   password: $password,
+    birthdate: $birthdate,
+
   phone: $phone,
   referralCode: $referralCode,
   registerDate: $registerDate,
