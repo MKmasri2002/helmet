@@ -66,7 +66,7 @@ class EditController extends GetxController {
 
       await FirebaseFirestore.instance
           .collection('user')
-          .doc(currentUser.uid)
+          .doc(userModel.uid)
           .update(userModel.toJson());
 
       Get.snackbar('تم بنجاح', 'تم تحديث البيانات بنجاح');

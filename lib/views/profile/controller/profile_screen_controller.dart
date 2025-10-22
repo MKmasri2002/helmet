@@ -12,7 +12,7 @@ class ProfileScreenController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getUserInfo();
+    //getUserInfo();
   }
 
   void getUserInfo() async {
