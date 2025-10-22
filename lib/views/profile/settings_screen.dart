@@ -93,7 +93,8 @@ class SettingsScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   ProfileText(
-                                      text: userModel.name ?? "", height: 0.25),
+                                      text: userModel.name ?? "لا يوجد",
+                                      height: 0.25),
                                   SizedBox(height: 15),
                                   const Row(
                                     children: [
