@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:core';
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -74,19 +75,6 @@ class HomeController extends GetxController {
     update();
   }
 
-<<<<<<< HEAD
-  // Future<void> getUserInfo() async {
-  //   if (FirebaseAuth.instance.currentUser != null) {
-  //     userModel.uid = FirebaseAuth.instance.currentUser!.uid;
-  //   }
-  //   userModel = await AuthRepository.getCurrentUserInfo(userModel.uid!);
-  //   userModel.Addresses =
-  //       await AuthRepository.getCurrentUserAdresses(userModel.uid!);
-  //   userModel.cars = await AuthRepository.getUserCars(userModel.uid!);
-
-  //   update();
-  // }
-=======
   Future<void> getUserInfo() async {
     if (FirebaseAuth.instance.currentUser != null) {
       userModel.uid = FirebaseAuth.instance.currentUser!.uid;
@@ -95,7 +83,6 @@ class HomeController extends GetxController {
     }
     update();
   }
->>>>>>> c7f61c7b4e40234aa28565755f4e06063502a706
 
   Future<void> getPackages() async {
     List<PackageModel> packages = await WashPackageRepository.getAllPackage();
@@ -121,13 +108,8 @@ class HomeController extends GetxController {
     userOrder.clear();
     userSubscriptionOrders.clear();
     userOneTimeOrders.clear();
-<<<<<<< HEAD
-    
-    // userOrder = await UserRepository.getUserOrders(userId: userModel.uid!);
-=======
 
     userOrder = await UserRepository.getUserOrders(userId: userModel.uid!);
->>>>>>> c7f61c7b4e40234aa28565755f4e06063502a706
     if (userOrder.isNotEmpty)
       for (Order order in userOrder) {
         if (order.washType == "subscription") {

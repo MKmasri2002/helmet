@@ -25,11 +25,6 @@ class UserModel {
   List<String>? completedReservations;
   List<Address> addresses = [];
   List<Car> cars = [];
-<<<<<<< HEAD
-
-  
-=======
->>>>>>> c7f61c7b4e40234aa28565755f4e06063502a706
 
   UserModel({
     this.accountStatus,
@@ -49,14 +44,11 @@ class UserModel {
     this.userType,
     this.ongoingReservations,
     this.completedReservations,
-<<<<<<< HEAD
     this.birthdate,
-  });
-=======
-  }) {
+  })
+   {
     getAddresses();
   }
->>>>>>> c7f61c7b4e40234aa28565755f4e06063502a706
 
   UserModel.fromJson(Map<String, dynamic> json) {
     accountStatus = json['accountStatus'];

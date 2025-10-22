@@ -5,9 +5,9 @@ import 'package:helmet_customer/models/user_model.dart';
 import 'package:helmet_customer/utils/widgets/custom_dialog.dart';
 import 'package:helmet_customer/utils/widgets/custom_snake_bar.dart';
 import 'package:helmet_customer/data/auth_repository.dart';
+import 'package:helmet_customer/views/home/home_controller.dart';
 
 class ProfileScreenController extends GetxController {
-  UserModel userModel = UserModel.fromJson({});
 
   @override
   void onInit() {

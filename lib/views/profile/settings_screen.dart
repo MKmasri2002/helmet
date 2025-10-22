@@ -7,6 +7,7 @@ import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/utils/widgets/custom_nav_bar.dart';
 import 'package:helmet_customer/views/editprofile/edit_controller.dart';
+import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/views/profile/controller/profile_screen_controller.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -27,243 +28,253 @@ class SettingsScreen extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-     return GetBuilder<ProfileScreenController>(
-      builder: (ctrl) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
+    return GetBuilder<ProfileScreenController>(builder: (ctrl) {
+      return Scaffold(
         backgroundColor: Colors.white,
-        title: const Text("حسابي"),
-        centerTitle: true,
-        toolbarHeight: AppSize.height / 7.5,
-        titleTextStyle: const TextStyle(
-          fontFamily: 'IBM Plex Sans Arabic',
-          fontWeight: FontWeight.w500,
-          fontStyle: FontStyle.normal,
-          fontSize: 20,
-          height: 1.5,
-          letterSpacing: 0,
-          color: Color(0xff121212),
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: const Text("حسابي"),
+          centerTitle: true,
+          toolbarHeight: AppSize.height / 7.5,
+          titleTextStyle: const TextStyle(
+            fontFamily: 'IBM Plex Sans Arabic',
+            fontWeight: FontWeight.w500,
+            fontStyle: FontStyle.normal,
+            fontSize: 20,
+            height: 1.5,
+            letterSpacing: 0,
+            color: Color(0xff121212),
+          ),
         ),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.all(AppSize.height * .02),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Center(
-                child: Container(
-                  height: AppSize.height / 3,
-                  width: AppSize.width * .9,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(
-                      color: const Color.fromARGB(
-                        255,
-                        193,
-                        192,
-                        192,
-                      ).withAlpha(150),
-                      width: .5,
+        body: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.all(AppSize.height * .02),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Center(
+                  child: Container(
+                    height: AppSize.height / 3,
+                    width: AppSize.width * .9,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                        color: const Color.fromARGB(
+                          255,
+                          193,
+                          192,
+                          192,
+                        ).withAlpha(150),
+                        width: .5,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: AppSize.height * .02,
-                        vertical: AppSize.height * .01),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.all(AppSize.width / 30),
-                              child: CircleAvatar(
-                                radius: AppSize.width / 15,
-                                child: Image.network(
-                                  "https://i.pinimg.com/736x/17/a4/a1/17a4a17e6a350f456ec86a21afa2e007.jpg",
-                                  fit: BoxFit.cover,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: AppSize.height * .02,
+                          vertical: AppSize.height * .01),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(AppSize.width / 30),
+                                child: CircleAvatar(
+                                  radius: AppSize.width / 15,
+                                  child: Image.network(
+                                    "https://i.pinimg.com/736x/17/a4/a1/17a4a17e6a350f456ec86a21afa2e007.jpg",
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                            ),
-                             Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ProfileText(
-                                    text: ctrl.userModel.name ?? "" , height: 0.25),
-                                SizedBox(height: 15),
-                               const Row(
-                                  children: [
-                                    // Image.asset(
-                                    //   "assets/images/Icon.png",
-                                    //   width: 24,
-                                    //   height: 24,
-                                    // ),
-                                    ProfileText(text: "3.5", height: 0.25),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            const Spacer(),
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Row(
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  // InkWell(
-                                  //   onTap: () {
-                                  //     // Get.to(
-                                  //     //   () => editpage(),
-                                  //     //   binding: EditBinding(),
-                                  //     // );
-                                  //   },
-                                  //   // child: Image.asset(
-                                  //   //   "assets/images/edit.png",
-                                  //   //   width: 24,
-                                  //   //   height: 24,
-                                  //   // ),
-                                  // ),
-                                  TextButton(
-                                    onPressed: () {
-                                      Get.toNamed(RoutesString.edit);
-                                    },
-                                    child: ProfileText(
-                                        text: "تعديل",
-                                        height: 0.25,
-                                        fontSize: 16,
-                                        color: Color(0xff29C1F2)),
+                                  ProfileText(
+                                      text: userModel.name ?? "", height: 0.25),
+                                  SizedBox(height: 15),
+                                  const Row(
+                                    children: [
+                                      // Image.asset(
+                                      //   "assets/images/Icon.png",
+                                      //   width: 24,
+                                      //   height: 24,
+                                      // ),
+                                      ProfileText(text: "3.5", height: 0.25),
+                                    ],
                                   ),
                                 ],
                               ),
-                            ),
-                          ],
-                        ),
-                        const ProfileDivider(),
-                        MenuItem(
-                          mainText: 'اضافة البريد الالكتروني',
-                          path: Assets.profileEmailIcon,
-                             onTap: () {Get.toNamed(RoutesString.editemail);},
-
-                        ),
-                        MenuItem(
-                          mainText: ctrl.userModel.phone ?? "",
-                          path: Assets.profilePhoneIcon,
-                             onTap: () {Get.toNamed(RoutesString.editphone);},
-                        ),
-                      ],
+                              const Spacer(),
+                              Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Row(
+                                  children: [
+                                    // InkWell(
+                                    //   onTap: () {
+                                    //     // Get.to(
+                                    //     //   () => editpage(),
+                                    //     //   binding: EditBinding(),
+                                    //     // );
+                                    //   },
+                                    //   // child: Image.asset(
+                                    //   //   "assets/images/edit.png",
+                                    //   //   width: 24,
+                                    //   //   height: 24,
+                                    //   // ),
+                                    // ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Get.toNamed(RoutesString.edit);
+                                      },
+                                      child: ProfileText(
+                                          text: "تعديل",
+                                          height: 0.25,
+                                          fontSize: 16,
+                                          color: Color(0xff29C1F2)),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          const ProfileDivider(),
+                          MenuItem(
+                            mainText: 'اضافة البريد الالكتروني',
+                            path: Assets.profileEmailIcon,
+                            onTap: () {
+                              Get.toNamed(RoutesString.editemail);
+                            },
+                          ),
+                          MenuItem(
+                            mainText: userModel.phone ?? "",
+                            path: Assets.profilePhoneIcon,
+                            onTap: () {
+                              Get.toNamed(RoutesString.editphone);
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(height: AppSize.height * 0.02),
-              Column(
-                children: [
-                  Center(
-                    child: Container(
-                      width: AppSize.width * .9,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(
-                          color: const Color.fromARGB(
-                            255,
-                            193,
-                            192,
-                            192,
-                          ).withAlpha(150),
-                          width: .5,
+                SizedBox(height: AppSize.height * 0.02),
+                Column(
+                  children: [
+                    Center(
+                      child: Container(
+                        width: AppSize.width * .9,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                            color: const Color.fromARGB(
+                              255,
+                              193,
+                              192,
+                              192,
+                            ).withAlpha(150),
+                            width: .5,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(AppSize.height * .02),
-                        child: Column(
-                          children: [
-                            MenuItem(
-                              mainText: TranslationData
-                                  .freeBalanceForYouAndYourFriend.tr,
-                              subText: TranslationData.whenShareTheApp.tr,
-                              path: Assets.profile1,
-                              onTap: () {},
-                            ),
-                            MenuItem(
-                              mainText: TranslationData.vision.tr,
-                              path: Assets.profile2,
-                              onTap: () {},
-                            ),
-                            MenuItem(
-                              mainText:
-                                  TranslationData.joinAsServiceProvider.tr,
-                              path: Assets.profile3,
-                              onTap: () {},
-                            ),
-                            MenuItem(
-                              mainText: TranslationData.myWallet.tr,
-                              path: Assets.profile4,
-                              onTap: () {Get.toNamed(RoutesString.wallet);},
-                            ),
-                            MenuItem(
-                              mainText: TranslationData.myCars.tr,
-                              path: Assets.profile5,
-                              onTap: () {},
-                            ),
-                            MenuItem(
-                              mainText: TranslationData.discountCodes.tr,
-                              path: Assets.profile6,
-                              onTap: () {},
-                            ),
-                            MenuItem(
-                              mainText: TranslationData.bills.tr,
-                              path: Assets.profile7,
-                             onTap: () {Get.toNamed(RoutesString.fawater);},
-
-                            ),
-                            MenuItem(
-                              mainText: TranslationData.settings.tr,
-                              path: Assets.profile8,
-                              onTap: () {
-                                Get.toNamed(RoutesString.settings);
-                              },
-                            ),
-                            MenuItem(
-                              mainText: TranslationData.activatePackages.tr,
-                              path: Assets.profile9,
-                              onTap: () {},
-                            ),
-                            MenuItem(
-                              mainText: TranslationData.packages.tr,
-                              path: Assets.profile10,
-                              onTap: () {Get.toNamed(RoutesString.packages);},
-                            ),
-                            MenuItem(
-                              mainText: TranslationData.help.tr,
-                              path: Assets.profile11,
-                              onTap: () {Get.toNamed(RoutesString.helps);},
-                            ),
-                            MenuItem(
-                              mainText: TranslationData.logout.tr,
-                              path: Assets.profileLogoutIcon,
-                              isLogout: true,
-                              onTap: () async {
-                                await FirebaseAuth.instance.signOut();
-                                Get.offAllNamed(RoutesString.login);
-                              },
-                            ),
-                            const SizedBox(height: 50),
-                          ],
+                        child: Padding(
+                          padding: EdgeInsets.all(AppSize.height * .02),
+                          child: Column(
+                            children: [
+                              MenuItem(
+                                mainText: TranslationData
+                                    .freeBalanceForYouAndYourFriend.tr,
+                                subText: TranslationData.whenShareTheApp.tr,
+                                path: Assets.profile1,
+                                onTap: () {},
+                              ),
+                              MenuItem(
+                                mainText: TranslationData.vision.tr,
+                                path: Assets.profile2,
+                                onTap: () {},
+                              ),
+                              MenuItem(
+                                mainText:
+                                    TranslationData.joinAsServiceProvider.tr,
+                                path: Assets.profile3,
+                                onTap: () {},
+                              ),
+                              MenuItem(
+                                mainText: TranslationData.myWallet.tr,
+                                path: Assets.profile4,
+                                onTap: () {
+                                  Get.toNamed(RoutesString.wallet);
+                                },
+                              ),
+                              MenuItem(
+                                mainText: TranslationData.myCars.tr,
+                                path: Assets.profile5,
+                                onTap: () {},
+                              ),
+                              MenuItem(
+                                mainText: TranslationData.discountCodes.tr,
+                                path: Assets.profile6,
+                                onTap: () {},
+                              ),
+                              MenuItem(
+                                mainText: TranslationData.bills.tr,
+                                path: Assets.profile7,
+                                onTap: () {
+                                  Get.toNamed(RoutesString.fawater);
+                                },
+                              ),
+                              MenuItem(
+                                mainText: TranslationData.settings.tr,
+                                path: Assets.profile8,
+                                onTap: () {
+                                  Get.toNamed(RoutesString.settings);
+                                },
+                              ),
+                              MenuItem(
+                                mainText: TranslationData.activatePackages.tr,
+                                path: Assets.profile9,
+                                onTap: () {},
+                              ),
+                              MenuItem(
+                                mainText: TranslationData.packages.tr,
+                                path: Assets.profile10,
+                                onTap: () {
+                                  Get.toNamed(RoutesString.packages);
+                                },
+                              ),
+                              MenuItem(
+                                mainText: TranslationData.help.tr,
+                                path: Assets.profile11,
+                                onTap: () {
+                                  Get.toNamed(RoutesString.helps);
+                                },
+                              ),
+                              MenuItem(
+                                mainText: TranslationData.logout.tr,
+                                path: Assets.profileLogoutIcon,
+                                isLogout: true,
+                                onTap: () async {
+                                  await FirebaseAuth.instance.signOut();
+                                  Get.offAllNamed(RoutesString.login);
+                                },
+                              ),
+                              const SizedBox(height: 50),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-      bottomNavigationBar: const CustomNavBar(pos: 4),
-    );});
+        bottomNavigationBar: const CustomNavBar(pos: 4),
+      );
+    });
   }
 }
 
