@@ -64,7 +64,7 @@ class HomeController extends GetxController {
   }
 
   Future<void> getAllData() async {
-    // await getUserInfo();
+    await getUserInfo();
     await getPackages();
     await getAllAreas();
     await getAllUserOrder();
