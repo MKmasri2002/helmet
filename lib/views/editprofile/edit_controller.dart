@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:helmet_customer/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:helmet_customer/views/home/home_controller.dart';
 
 class EditController extends GetxController {
   final firstNameController = TextEditingController();
@@ -12,7 +13,6 @@ class EditController extends GetxController {
   final phoneController = TextEditingController();
 
   String selectedGender = '';
-  UserModel user = UserModel();
 
   @override
   void onInit() {
@@ -32,25 +32,18 @@ class EditController extends GetxController {
 
       if (currentUser == null) return;
 
-      var doc = await FirebaseFirestore.instance
-          .collection('user')
-          .doc(currentUser.uid)
-          .get();
-
-      if (doc.exists) {
-        user = UserModel.fromJson(doc.data()!);
-
-        firstNameController.text = user.name?.split(' ').first ?? '';
+     
+        firstNameController.text = userModel.name?.split(' ').first ?? '';
         lastNameController.text =
-            user.name?.split(' ').length == 2 ? user.name!.split(' ').last : '';
-        birthDateController.text = user.birthdate ?? '';
-        emailController.text = user.email ?? '';
-        selectedGender = user.gender ?? '';
-        emailController.text = user.email ?? '';
-        phoneController.text = user.phone ?? '';
+            userModel.name?.split(' ').length == 2 ? userModel.name!.split(' ').last : '';
+        birthDateController.text = userModel.birthdate ?? '';
+        emailController.text = userModel.email ?? '';
+        selectedGender = userModel.gender ?? '';
+        emailController.text = userModel.email ?? '';
+        phoneController.text = userModel.phone ?? '';
         update();
       }
-    } catch (e) {
+     catch (e) {
       Get.snackbar("خطأ", "حدث خطأ أثناء جلب بيانات المستخدم: $e");
     }
   }
@@ -67,14 +60,14 @@ class EditController extends GetxController {
       User? currentUser = FirebaseAuth.instance.currentUser;
       if (currentUser == null) return;
 
-      user.name = "${firstNameController.text} ${lastNameController.text}";
-      user.gender = selectedGender;
-      user.birthdate = birthDateController.text;
+      userModel.name = "${firstNameController.text} ${lastNameController.text}";
+      userModel.gender = selectedGender;
+      userModel.birthdate = birthDateController.text;
 
       await FirebaseFirestore.instance
           .collection('user')
           .doc(currentUser.uid)
-          .update(user.toJson());
+          .update(userModel.toJson());
 
       Get.snackbar('تم بنجاح', 'تم تحديث البيانات بنجاح');
     } catch (e) {
