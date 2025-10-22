@@ -104,15 +104,14 @@ class RouteClass {
       binding: FeedbackBinding(),
       transition: Transition.fadeIn,
     ),
-<<<<<<< HEAD
+
     GetPage(
       name: RoutesString.addressBook,
       page: () => AddressBookScreen(),
       binding: AddressBookBinding(),
       transition: Transition.fadeIn,
     ),
-    
-=======
+
      GetPage(
       name: RoutesString.fawater,
       page: () => Fawater(),
@@ -125,6 +124,6 @@ class RouteClass {
       binding: HelpsBinding(),
       transition: Transition.fadeIn,
     ),
->>>>>>> ea7504a4d8c8095301ed2f11c11720948aa8cce1
+
   ];
 }
