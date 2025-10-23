@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:helmet_customer/generated/assets.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/views/widget/custom_text.dart';
@@ -17,6 +18,14 @@ class TopHeaderHome extends StatelessWidget {
     }
     //Get.to(() => const AddressBookView(), binding: AddressBookBinding());
     Get.toNamed(RoutesString.addressBook);
+  }
+  void _goTosharepage() {
+    if (FirebaseAuth.instance.currentUser == null) {
+      _showError('Please login first');
+      return;
+    }
+    //Get.to(() => const AddressBookView(), binding: AddressBookBinding());
+    Get.toNamed(RoutesString.sharepage);
   }
 
   void _showError(String message) {
@@ -52,16 +61,16 @@ class TopHeaderHome extends StatelessWidget {
         child: Row(
           children: [
             HeaderButton(
-              icon1: Icons.location_on_outlined,
+              image: Assets.tone,
               icon2: Icons.keyboard_arrow_down_outlined,
               text: TranslationData.apartment.tr,
               onTap: _goToAddressBook,
             ),
             const Spacer(),
             HeaderButton(
-              icon1: Icons.star,
+              image: Assets.givestar,
               text: TranslationData.shareAndWin.tr,
-              onTap: () {},
+              onTap:_goTosharepage,
             ),
           ],
         ),
@@ -71,13 +80,13 @@ class TopHeaderHome extends StatelessWidget {
 }
 
 class HeaderButton extends StatelessWidget {
-  final IconData icon1;
+  final String image;
   final IconData? icon2;
   final String text;
   final GestureTapCallback onTap;
   const HeaderButton(
       {super.key,
-      required this.icon1,
+      required this.image,
       this.icon2,
       required this.text,
       required this.onTap});
@@ -94,8 +103,7 @@ class HeaderButton extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Icon(icon1, color: Colors.black, size: 22),
-            const SizedBox(width: 8),
+            ImageIcon(AssetImage(image), color: Colors.black, size: 30),
             CustomText(
               text: text,
               color: Colors.black,

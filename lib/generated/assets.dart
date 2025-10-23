@@ -75,8 +75,25 @@ class Assets {
   static const String imagesTranslate = 'assets/images/translate.png';
   static const String imagesUserCircle = 'assets/images/user_circle.png';
   static const String imagesZahzah = 'assets/images/zahzah.png';
-  static const String reyal = 'assets/images/reyal.png';
-  static const String reyalBlack = 'assets/images/reyal_black.png';
+  static const String reyalwhite = 'assets/images/reyal.png';
+  static const String gift = 'assets/images/Gift.png';
+  static const String home = 'assets/images/home.png';
+  static const String schedul = 'assets/images/elements.png';
+  static const String profile = 'assets/images/user.png';
+  static const String mada = 'assets/images/mada.png';
+  static const String sendgifts = 'assets/images/sendgifts.png';
+  static const String visa = 'assets/images/visa.png';
+  static const String stcpay = 'assets/images/stc_pay.png';
+  static const String mastercard = 'assets/images/Mastercard.png';
+  static const String applepay = 'assets/images/Apple_PAY.png';
+  static const String reyalblack = 'assets/images/reyalblack.png';
+  static const String givestar = 'assets/images/give-star.png';
+  static const String tone = 'assets/images/Tone.png';
+   static const String coins = 'assets/images/coins.png';
+
+
+
+  static const String reyalblue = 'assets/images/reyal_black.png';
   static const String notification = 'assets/svg/notification.svg';
   static const String helpCenter = 'assets/svg/help_center.svg';
   static const String invite = 'assets/svg/invite.svg';
@@ -113,7 +130,7 @@ class Assets {
   static const String receivwNotifications =
       'assets/images/notification-03.png';
   static const String whatsapp = 'assets/images/whatsapp.png';
-    static const String flag = 'assets/images/flag.png';
+  static const String flag = 'assets/images/flag.png';
 
   static const String help = 'assets/images/help.png';
   static const String emailhelp = 'assets/images/emailhelp.png';

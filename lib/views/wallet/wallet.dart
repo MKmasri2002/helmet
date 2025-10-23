@@ -92,7 +92,7 @@ class WalletPage extends StatelessWidget {
                                 ),
                                 SizedBox(width: 10,),
                                 Image.asset(
-                                 Assets.reyal,
+                                 Assets.reyalwhite,
                                   width: 25,
                                   height: 25,
                                   fit: BoxFit.contain,

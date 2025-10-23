@@ -104,7 +104,7 @@ class BookingView extends StatelessWidget {
                                   width: 8,
                                 ),
                                 Image.asset(
-                                  Assets.reyal,
+                                  Assets.reyalwhite,
                                   width: 25,
                                 )
                               ],

@@ -4,7 +4,7 @@ import 'package:helmet_customer/views/editprofile/widget/date_field.dart';
 import 'package:helmet_customer/views/editprofile/widget/gender_sellector.dart';
 import 'package:helmet_customer/views/editprofile/widget/name_field.dart';
 import 'package:helmet_customer/views/editprofile/widget/update_button.dart';
-import 'edit_controller.dart';
+import '../edit_controller.dart';
 
 
 class EditProfilePage extends StatelessWidget {
