@@ -18,7 +18,7 @@ class UserModel {
   String? registerDate;
   String? token;
   String? uid;
-    String? birthdate;
+  String? birthdate;
 
   String? userType;
   List<String>? ongoingReservations;
@@ -45,8 +45,7 @@ class UserModel {
     this.ongoingReservations,
     this.completedReservations,
     this.birthdate,
-  })
-   {
+  }) {
     getAddresses();
   }
 
@@ -58,9 +57,9 @@ class UserModel {
     image = json['image'];
     invitedBy = json['invitedBy'];
     lastLoginDate = json['lastLoginDate'];
-    
+
     name = json['name'];
-        birthdate = json['birthdate'];
+    birthdate = json['birthdate'];
 
     password = json['password'];
     phone = json['phone'];
@@ -73,6 +72,7 @@ class UserModel {
         ? List<Car>.from(json['cars'].map((x) => Car.fromJson(x)))
         : [];
     getAddresses();
+    getCars();
     ongoingReservations = json['ongoingReservations'] != null
         ? List<String>.from(json['ongoingReservations'])
         : [];
@@ -86,7 +86,7 @@ class UserModel {
     data['accountStatus'] = accountStatus;
     data['coins'] = coins;
     data['email'] = email;
-        data['birthdate'] = birthdate;
+    data['birthdate'] = birthdate;
 
     data['gender'] = gender;
     data['image'] = image;
@@ -143,6 +143,16 @@ UserModel(
     if (query.docs.isNotEmpty) {
       addresses =
           query.docs.map((doc) => Address.fromJson(doc.data())).toList();
+    }
+  }
+
+  Future<void> getCars() async {
+    final query = await FirebaseFirestore.instance
+        .collection('car')
+        .where('user_id', isEqualTo: uid)
+        .get();
+    if (query.docs.isNotEmpty) {
+      cars = query.docs.map((doc) => Car.fromJson(doc.data())).toList();
     }
   }
 }

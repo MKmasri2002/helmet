@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/generated/assets.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
+import 'package:helmet_customer/utils/widgets/custom_nav_bar.dart';
 import 'package:helmet_customer/views/gifts/gifts/gifts2.dart';
 import 'package:helmet_customer/views/gifts/gifts/gifts_binding.dart';
 import 'package:helmet_customer/views/gifts/gifts/gifts_controller.dart';
@@ -27,11 +27,11 @@ class giftspage extends StatelessWidget {
                 button(
                   title: "إرسال هدية",
                   onPressed: () {
-               Get.toNamed(RoutesString.sendgifts);
+                    Get.toNamed(RoutesString.sendgifts);
                   },
                 ),
                 SizedBox(height: 20),
-              const  Padding(
+                const Padding(
                   padding: const EdgeInsets.all(14.0),
                   child: Text(
                     "تاريخ الهدايا",
@@ -46,7 +46,6 @@ class giftspage extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ListView.builder(
@@ -75,7 +74,7 @@ class giftspage extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                     const Text(
+                                      const Text(
                                         "2028-09-03",
                                         style: TextStyle(
                                           fontSize: 14,
@@ -83,17 +82,15 @@ class giftspage extends StatelessWidget {
                                         ),
                                       ),
                                       SizedBox(height: 8),
-
                                       Row(
                                         children: [
-                                         const Text(
+                                          const Text(
                                             "59.25",
                                             style: TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.bold,
                                               fontFamily:
                                                   'IBM Plex Sans Arabic',
-
                                               color: const Color.fromARGB(
                                                 255,
                                                 0,
@@ -104,7 +101,7 @@ class giftspage extends StatelessWidget {
                                           ),
                                           SizedBox(width: 3),
                                           Image.asset(
-                                           Assets.reyalblack,
+                                            Assets.reyalblack,
                                             width: 18,
                                             height: 18,
                                             fit: BoxFit.contain,
@@ -114,7 +111,7 @@ class giftspage extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                               const Padding(
+                                const Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
                                     "تم تطبيقه",
@@ -136,6 +133,7 @@ class giftspage extends StatelessWidget {
                 ),
               ],
             ),
+            bottomNavigationBar: const CustomNavBar(pos: 3),
           ),
         );
       },

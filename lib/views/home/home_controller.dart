@@ -182,29 +182,9 @@ class HomeController extends GetxController {
     }
     driverList.clear();
     driverList = await DriverRepository.getAllDrivers(userId: userModel.uid!, areas_id: areas_id);
-    // await FirebaseDatabase.instance.ref("driver").get().then((value) {
-    //   if (!value.exists) {
-    //     return;
-    //   }
-    //   try {
-    //     Map<String, dynamic> data = jsonDecode(jsonEncode(value.value));
-    //     for (var key in data.keys) {
-    //       DriverModel driverModel = DriverModel.fromJson(data[key]);
-    //       if (currentAddress.value.areaId == driverModel.areaId) {
-    //         driverList.add(driverModel);
-    //         if (driverList[0].orders == null) {
-    //           driverList[0].orders = [];
-    //         }
-    //       }
-    //     }
-
-    //     log("User orders Driver: ${driverList.length}");
-    //   } catch (e) {
-    //     log('Error fetching users Dsssssata: $e');
-    //   }
       getAllSchedulesDriver();
       update();
-    // });
+    
   }
 
   void getAllSchedulesDriver() async {

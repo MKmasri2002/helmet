@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:helmet_customer/data/car_repository.dart';
 import 'package:helmet_customer/models/car.dart';
 import 'package:helmet_customer/models/cars_model.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
@@ -80,7 +81,8 @@ class AddCarController extends GetxController {
     // the local database will be users/uid/cars/id/add car
     Car newCar = Car(
         id: "",
-        plateNumber: plateNumberController.text,
+        user_id: userModel.uid,
+        plateNumber: plateNumberController.text,  
         brand: selectedBrand,
         model: selectedModel,
         color: selectedColorHex,
@@ -88,16 +90,8 @@ class AddCarController extends GetxController {
             "https://raw.githubusercontent.com/filippofilip95/car-logos-dataset/master/logos/optimized/${selectedBrand.toLowerCase().replaceAll(' ', '-')}.png");
 
     userModel.cars.add(newCar);
-    FirebaseDatabase firebaseDatabase = FirebaseDatabase.instance;
-    firebaseDatabase.ref("Users/${userModel.uid}/cars").push().set({
-      "plate_number": newCar.plateNumber,
-      "brand": newCar.brand,
-      "model": newCar.model,
-      "color": newCar.color,
-      "image": newCar.image,
-
-    }).then((value) {
-      plateNumberController.clear();
+    CarRepository.addCar(car: newCar);
+    plateNumberController.clear();
       selectedBrand = "Select Brand";
       selectedModel = "Select Model";
       selectedColorHex = "Select Color";
@@ -105,9 +99,5 @@ class AddCarController extends GetxController {
       Get.find<BookingController>().update();
       Get.back();
       update();
-    }).catchError((error) {
-      Get.snackbar("Error", error.toString(),
-          snackPosition: SnackPosition.BOTTOM);
-    });
   }
 }

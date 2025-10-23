@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/generated/assets.dart';
+import 'package:helmet_customer/utils/widgets/custom_nav_bar.dart';
 import 'package:helmet_customer/views/gifts/gifts/gifts_controller.dart';
 import 'package:helmet_customer/views/gifts/widget/appbar.dart';
 import 'package:helmet_customer/views/gifts/widget/elevatedbutton.dart';
@@ -20,14 +20,17 @@ class sendgifts extends StatelessWidget {
           textDirection: TextDirection.rtl,
           child: Scaffold(
             backgroundColor: Colors.white,
-            appBar: appbar(text: "إرسال هدية", withleading: true,ontap: () =>  Get.back(),),
+            appBar: appbar(
+              text: "إرسال هدية",
+              withleading: true,
+              ontap: () => Get.back(),
+            ),
             body: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 20),
-
-                 const Padding(
+                  const Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Text(
                       "رقم جوال المستلم ",
@@ -42,12 +45,10 @@ class sendgifts extends StatelessWidget {
                       ),
                     ),
                   ),
-
                   SizedBox(height: 20),
                   phonetextfield(controller: ctrl.phoneController),
                   SizedBox(height: 30),
-
-                 const Padding(
+                  const Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Text(
                       "اختر بطاقتك المصممة",
@@ -65,40 +66,34 @@ class sendgifts extends StatelessWidget {
                   SizedBox(height: 20),
                   mylistview(i: true, price: "2"),
                   SizedBox(height: 40),
-
                   OptionButton(
                     title: "البطاقة الاتمانية",
                     value: 1,
                     controller: ctrl.option1Controller,
-                     image2:Assets.visa,
-                        image3:Assets.mastercard,
-                     image1:Assets.mada,
-
-                  
+                    image2: Assets.visa,
+                    image3: Assets.mastercard,
+                    image1: Assets.mada,
                   ),
                   SizedBox(height: 8),
-
                   OptionButton(
                     title: "Stc Pay ",
                     value: 2,
                     controller: ctrl.option1Controller,
-                                         image1:Assets.stcpay,
-
+                    image1: Assets.stcpay,
                   ),
                   SizedBox(height: 8),
-
                   OptionButton(
                     title: "Apple Pay",
                     value: 3,
                     controller: ctrl.option1Controller,
-                       image1:Assets.applepay,
-
+                    image1: Assets.applepay,
                   ),
                   SizedBox(height: 20),
                   button(title: "تأكيد و إرسال", onPressed: () {}),
                 ],
               ),
             ),
+            bottomNavigationBar: const CustomNavBar(pos: 3),
           ),
         );
       },
