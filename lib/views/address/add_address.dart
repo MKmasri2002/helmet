@@ -116,6 +116,9 @@ class AddAddress extends StatelessWidget {
                                         ctrl.addLocation(
                                             pickResult: selectedPlace,
                                             defaultLocation: false);
+                                        
+
+                                        
                                       },
                                     );
                                   },

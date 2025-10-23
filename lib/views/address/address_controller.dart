@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 import 'package:helmet_customer/models/address/addresses.dart';
+import 'package:helmet_customer/models/area/area_model.dart';
 import 'package:helmet_customer/models/user_model.dart';
 import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
@@ -31,14 +32,6 @@ class AddressBookController extends GetxController {
     required PickResult pickResult,
     required bool defaultLocation,
   }) async {
-    // AddressModel addressModel = AddressModel(
-    //   latitude: pickResult.geometry!.location.lat,
-    //   longitude: pickResult.geometry!.location.lng,
-    //   address: pickResult.formattedAddress,
-    //   title: pickResult.name,
-    //   id: userModel.uid.toString(),
-    //   defaultLocation: defaultLocation,
-    // );
     final docRef = firebaseFirestore.collection('address').doc();
     Address address = Address(
       latitude: pickResult.geometry!.location.lat,
@@ -49,7 +42,6 @@ class AddressBookController extends GetxController {
       userId: userModel.uid.toString(),
       defaultLocation: defaultLocation,
     );
-    
 
     // if (defaultLocation) {
     //   currentAddress.value = addressModel;
@@ -58,15 +50,14 @@ class AddressBookController extends GetxController {
     // }
     bool isInArea = false;
 
-    for (var area in areasList) {
+    for (Area area in areasList) {
       List<maps_toolkit.LatLng> locations = [];
-      
-      for (var aixs in area.location!) {
-        locations.add(maps_toolkit.LatLng(aixs.latitude, aixs.longitude));
+
+      for (var loc in area.location!) {
+        locations.add(maps_toolkit.LatLng(loc.latitude, loc.longitude));
       }
       isInArea = maps_toolkit.PolygonUtil.containsLocation(
-          maps_toolkit.LatLng(
-              currentAddress.value.latitude!, currentAddress.value.longitude!),
+          maps_toolkit.LatLng(address.latitude!, address.longitude!),
           locations,
           false);
       if (isInArea) {
@@ -75,7 +66,15 @@ class AddressBookController extends GetxController {
         break;
       }
     }
-    
+    if (!isInArea) {
+      Get.back();
+      Get.snackbar(
+        'Error',
+        'This address is out of our service area',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      return;
+    }
     docRef.set(address.toJson());
     userModel.addresses.add(address);
     //firebaseFirestore.collection('address').add(address.toJson());
@@ -91,7 +90,7 @@ class AddressBookController extends GetxController {
     required Address address,
   }) async {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
-    final  addressRef =
+    final addressRef =
         firestore.collection('address').where('id', isEqualTo: userModel.uid);
   }
 

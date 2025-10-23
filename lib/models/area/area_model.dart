@@ -6,18 +6,20 @@ class Area {
   List<LatLng>? location;
   Area({this.id, this.name, this.location});
 
-  factory Area.fromJson(Map<String, dynamic> json) {
-    return Area(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      location:
-          (json['location'] as List<dynamic>?)
-              ?.map(
-                (e) =>
-                    LatLng(e['latitude'] as double, e['longitude'] as double),
-              )
-              .toList(),
-    );
+  Area.fromJson(Map<String, dynamic> json) {
+    
+      id = json['id'];
+      name = json['name'];
+      if(json['location'] != null)
+      {
+        location = (json['location'] as List<dynamic>)
+            .map(
+              (e) => LatLng(e['latitude'] as double, e['longitude'] as double),
+            )
+            .toList();
+      }else{
+        location = [];
+      }          
   }
 
   Map<String, dynamic> toJson() {

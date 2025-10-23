@@ -33,7 +33,7 @@ class DriverModel {
     isActive = json['isActive'];
     isOnline = json['isOnline'];
     notificationToken = json['notificationToken'];
-    phoneNumber = json['phoneNumber'];
+    phoneNumber = json['phone'];
     enableNotification = json['enableNotification'];
     // orders = json["orders"] == null ? [] : List<String>.from(json["orders"]!.map((x) => x));
     areaId = json['areaId'];
@@ -48,7 +48,7 @@ class DriverModel {
     data['isActive'] = isActive;
     data['isOnline'] = isOnline;
     data['notificationToken'] = notificationToken;
-    data['phoneNumber'] = phoneNumber;
+    data['phone'] = phoneNumber;
     data['enableNotification'] = enableNotification;
     data['orders'] = orders;
     data['areaId'] = areaId;

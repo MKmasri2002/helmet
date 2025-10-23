@@ -7,6 +7,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/data/area_repository.dart';
+import 'package:helmet_customer/data/driver_repository.dart';
 import 'package:helmet_customer/data/user_repository.dart';
 import 'package:helmet_customer/data/wash_package_repository.dart';
 import 'package:helmet_customer/models/area/area_model.dart';
@@ -67,6 +68,7 @@ class HomeController extends GetxController {
     await getUserInfo();
     await getPackages();
     await getAllAreas();
+    /////////////////////
     await getAllUserOrder();
     await getAllDriverInArea();
     startSessionTimer();
@@ -174,29 +176,35 @@ class HomeController extends GetxController {
   }
 
   Future<void> getAllDriverInArea() async {
-    await FirebaseDatabase.instance.ref("driver").get().then((value) {
-      if (!value.exists) {
-        return;
-      }
-      try {
-        Map<String, dynamic> data = jsonDecode(jsonEncode(value.value));
-        for (var key in data.keys) {
-          DriverModel driverModel = DriverModel.fromJson(data[key]);
-          if (currentAddress.value.areaId == driverModel.areaId) {
-            driverList.add(driverModel);
-            if (driverList[0].orders == null) {
-              driverList[0].orders = [];
-            }
-          }
-        }
+    final List<String> areas_id = [];
+    for (var address in userModel.addresses) {
+      areas_id.add(address.areaId!);
+    }
+    driverList.clear();
+    driverList = await DriverRepository.getAllDrivers(userId: userModel.uid!, areas_id: areas_id);
+    // await FirebaseDatabase.instance.ref("driver").get().then((value) {
+    //   if (!value.exists) {
+    //     return;
+    //   }
+    //   try {
+    //     Map<String, dynamic> data = jsonDecode(jsonEncode(value.value));
+    //     for (var key in data.keys) {
+    //       DriverModel driverModel = DriverModel.fromJson(data[key]);
+    //       if (currentAddress.value.areaId == driverModel.areaId) {
+    //         driverList.add(driverModel);
+    //         if (driverList[0].orders == null) {
+    //           driverList[0].orders = [];
+    //         }
+    //       }
+    //     }
 
-        log("User orders Driver: ${driverList.length}");
-      } catch (e) {
-        log('Error fetching users Dsssssata: $e');
-      }
+    //     log("User orders Driver: ${driverList.length}");
+    //   } catch (e) {
+    //     log('Error fetching users Dsssssata: $e');
+    //   }
       getAllSchedulesDriver();
       update();
-    });
+    // });
   }
 
   void getAllSchedulesDriver() async {
@@ -234,6 +242,7 @@ class HomeController extends GetxController {
 
     return true;
   }
+
   bool checkLocation() {
     if (userModel.addresses.isEmpty) return false;
 
