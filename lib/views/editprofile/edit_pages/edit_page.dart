@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:helmet_customer/views/editprofile/edit_controller.dart';
 import 'package:helmet_customer/views/editprofile/widget/date_field.dart';
 import 'package:helmet_customer/views/editprofile/widget/gender_sellector.dart';
 import 'package:helmet_customer/views/editprofile/widget/name_field.dart';
 import 'package:helmet_customer/views/editprofile/widget/update_button.dart';
-<<<<<<< HEAD:lib/views/editprofile/edit_pages/edit_page.dart
-import '../edit_controller.dart';
-=======
 import 'package:helmet_customer/views/profile/controller/profile_screen_controller.dart';
-import 'edit_controller.dart';
->>>>>>> bdddf10b689ff2c0fcf57950e1360561ace0abd1:lib/views/editprofile/edit_page.dart
 
 
 class EditProfilePage extends StatelessWidget {
