@@ -73,7 +73,7 @@ class OneTimeWash extends StatelessWidget {
                       padding: const EdgeInsets.all(16),
                       width: MediaQuery.of(context).size.width * 0.7,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                       color: Colors.white,                     
                         borderRadius: BorderRadius.circular(12),
                         boxShadow: [
                           BoxShadow(

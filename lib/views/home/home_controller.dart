@@ -212,7 +212,7 @@ class HomeController extends GetxController {
       log("No drivers available in this area");
       return;
     }
-    log("Getting schedules for driver: ${driverList[0].id!}");
+    log("Getting schedules for driver: ${driverList[0].name!}");
     FirebaseDatabase.instance
         .ref("driver/${driverList[0].id!}/schedule")
         .get()

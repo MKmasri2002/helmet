@@ -16,12 +16,13 @@ class CaruselAdsHome extends StatelessWidget {
   const CaruselAdsHome({super.key, required this.adsData});
 
   void _handleTap() {
-    if (FirebaseAuth.instance.currentUser == null) {
-      _showError('Please login first');
+    HomeController homeController = Get.find<HomeController>();
+    if (homeController.checkLogin() == false) {
+      homeController.pleaseLogin();
       return;
     }
-    if (userModel.addresses[0].latitude == null) {
-      _showError('Please select or add an address first');
+    if (homeController.checkLocation() == false) {
+      homeController.pleaseSelectLocation();
       return;
     }
     log("image ${adsData.image}");

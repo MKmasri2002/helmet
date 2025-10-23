@@ -1,6 +1,6 @@
 class DriverModel {
   String? email;
-  String? fullName;
+  String? name;
   String? id;
   String? imageUrl;
   bool? isActive;
@@ -13,7 +13,7 @@ class DriverModel {
 
   DriverModel({
     this.email,
-    this.fullName,
+    this.name,
     this.id,
     this.imageUrl,
     this.isActive,
@@ -27,7 +27,7 @@ class DriverModel {
 
   DriverModel.fromJson(Map<String, dynamic> json) {
     email = json['email'];
-    fullName = json['fullName'];
+    name = json['name'];
     id = json['id'];
     imageUrl = json['imageUrl'];
     isActive = json['isActive'];
@@ -42,7 +42,7 @@ class DriverModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['email'] = email;
-    data['fullName'] = fullName;
+    data['name'] = name;
     data['id'] = id;
     data['imageUrl'] = imageUrl;
     data['isActive'] = isActive;

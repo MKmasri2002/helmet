@@ -61,7 +61,7 @@ class Component5 extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      driverList.firstWhere((e)=> e.id == ctrl.washDataTripModel.sessions.last.driverId).fullName ?? "",
+                      driverList.firstWhere((e)=> e.id == ctrl.washDataTripModel.sessions.last.driverId).name ?? "",
                       style: const TextStyle(
                         fontFamily: 'IBMPlexSansArabic',
                         fontWeight: FontWeight.w600,
