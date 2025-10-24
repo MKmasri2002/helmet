@@ -212,7 +212,10 @@ class SettingsScreen extends StatelessWidget {
                               MenuItem(
                                 mainText: TranslationData.myCars.tr,
                                 path: Assets.profile5,
-                                onTap: () {},
+                                onTap: () { 
+                Get.toNamed(RoutesString.mycar);
+
+},
                               ),
                               MenuItem(
                                 mainText: TranslationData.discountCodes.tr,

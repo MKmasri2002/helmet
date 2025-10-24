@@ -4,117 +4,127 @@ import 'package:helmet_customer/generated/assets.dart';
 
 class PackageCard extends StatelessWidget {
   final Map<String, dynamic> package;
+  final VoidCallback? onPressed;
 
-  const PackageCard({super.key, required this.package});
+  const PackageCard({super.key, required this.package, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 12.h),
+      padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 12.w),
       child: Container(
-        padding: EdgeInsets.all(12.h),
+        height: 220.h,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.r),
+          borderRadius: BorderRadius.circular(12.r),
           border: Border.all(color: const Color(0xffDBDFE6)),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 6,
+              offset: const Offset(0, 2),
+            ),
+          ],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min, // 🔹 الكرت يتمدد حسب المحتوى فقط
           children: [
             /// Header Row
-            Row(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(3.h),
-                  decoration: BoxDecoration(
-                    color: const Color(0xff29C1F2),
-                    borderRadius: BorderRadius.circular(6.r),
-                  ),
-                  child: Text(
-                    "وفر ${package["discount"]}",
-                    style: TextStyle(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+            Padding(
+              padding: EdgeInsets.all(8.0.h),
+              child: Row(
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 3.h),
+                    decoration: BoxDecoration(
+                      color: const Color(0xff29C1F2),
+                      borderRadius: BorderRadius.circular(6.r),
                     ),
-                  ),
-                ),
-                SizedBox(width: 10.w),
-                Image.asset(Assets.tabby, width: 62.w, height: 21.h),
-                SizedBox(width: 10.w),
-                Image.asset(Assets.tamara, width: 60.w, height: 20.h),
-                const Spacer(),
-                Container(
-                  width: 40.w,
-                  height: 45.h,
-                  decoration: BoxDecoration(
-                    color: const Color(0xff07729D),
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(10.r),
-                      bottomRight: Radius.circular(10.r),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
-            SizedBox(height: 20.h),
-
-            Text(
-              package["title"],
-              style: TextStyle(
-                fontSize: 15.sp,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            SizedBox(height: 8.h),
-
-            Text(
-              package["description"],
-              style: TextStyle(
-                fontSize: 14.sp,
-                color: const Color(0xff8193B3),
-              ),
-            ),
-            SizedBox(height: 12.h),
-
-            Container(
-              width: double.infinity,
-              height: 55.h,
-              decoration: BoxDecoration(
-                color: const Color(0xff0A6082),
-                borderRadius: BorderRadius.circular(8.r),
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8.w),
-                child: Row(
-                  children: [
-                    Text(
-                      package["price"],
+                    child: Text(
+                      "وفر ${package["discount"]}",
                       style: TextStyle(
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(width: 10.w),
-                    Text(
-                      "(${package["unit"]} ريال لكل غسلة)",
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        color: Colors.white,
+                  ),
+                 SizedBox(width: 10.w), Image.asset(Assets.tabby, width: 62.w, height: 21.h), SizedBox(width: 10.w), Image.asset(Assets.tamara, width: 60.w, height: 20.h), const Spacer(),
+                  Container(
+                    width: 40.w,
+                    height: 45.h,
+                    decoration: BoxDecoration(
+                      color: const Color(0xff07729D),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10.r),
+                        bottomRight: Radius.circular(10.r),
                       ),
                     ),
-                    const Spacer(),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.white,
-                        size: 18.sp,
-                      ),
+                  ),
+                ],
+              ),
+            ),
+
+            /// Title & Description
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.w),
+              child: Text(
+                package["title"],
+                style: TextStyle(
+                  fontSize: 15.sp,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+              child: Text(
+                package["description"],
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  color: const Color(0xff8193B3),
+                ),
+              ),
+            ),
+
+            const Spacer(),
+SizedBox(height: 40,),
+            /// Bottom Button
+            Padding(
+              padding: EdgeInsets.all(8.0.h),
+              child: SizedBox(
+                width: double.infinity,
+                height: 50.h,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xff0A6082),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.r),
                     ),
-                  ],
+                  ),
+                  onPressed: onPressed ?? () {},
+                  child: Row(
+                    children: [
+                      Text(
+                        "${package["price"]} ريال",
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const Spacer(),
+                      Text(
+                        "(${package["unit"]} ريال لكل غسلة)",
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          color: Colors.white70,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      const Icon(Icons.arrow_forward_ios, color: Colors.white, size: 18),
+                    ],
+                  ),
                 ),
               ),
             ),

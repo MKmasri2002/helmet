@@ -16,6 +16,7 @@ class sendgifts extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<giftsController>(
       builder: (ctrl) {
+        
         return Directionality(
           textDirection: TextDirection.rtl,
           child: Scaffold(
@@ -89,7 +90,11 @@ class sendgifts extends StatelessWidget {
                     image1: Assets.applepay,
                   ),
                   SizedBox(height: 20),
-                  button(title: "تأكيد و إرسال", onPressed: () {}),
+                  button(
+                      title: "تأكيد و إرسال",
+                      onPressed: () {
+                        ctrl.sendGift(value: "20");
+                      }),
                 ],
               ),
             ),

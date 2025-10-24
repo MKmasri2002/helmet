@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:helmet_customer/views/home/share/mytext.dart';
+import 'package:helmet_customer/generated/assets.dart';
+import 'package:helmet_customer/views/home/share/widget/mytext.dart';
 
 class OntapContainer extends StatelessWidget {
   final String text1;
   final String text2;
-  final IconData icon;
+  final String icon;
   final VoidCallback? onTap;
 
   const OntapContainer({
     super.key,
     required this.text1,
     required this.text2,
-    this.icon = Icons.link,
+   required this.icon ,
     this.onTap,
   });
 
@@ -21,7 +22,7 @@ class OntapContainer extends StatelessWidget {
       onTap: onTap,
       child: Row(
         children: [
-          Icon(icon, color: Colors.blue),
+          ImageIcon(AssetImage(icon), color: Colors.blue),
           const SizedBox(width: 10),
           Expanded(
             child: Column(

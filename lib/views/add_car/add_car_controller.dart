@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -56,6 +58,7 @@ class AddCarController extends GetxController {
   }
 
   void addCar(BuildContext context) async {
+    
     appTools.unFocusKeyboard(context);
     if (plateNumberController.text.isEmpty) {
       Get.snackbar("Error", "Please enter plate number",
@@ -99,5 +102,35 @@ class AddCarController extends GetxController {
       Get.find<BookingController>().update();
       Get.back();
       update();
+  }
+
+
+  ///////////////////////////////////////////////////////////
+   Stream<QuerySnapshot> getUserCarsStream() {
+    String uid = FirebaseAuth.instance.currentUser!.uid;
+    return FirebaseFirestore.instance
+        .collection('car')
+        .where("user_id", isEqualTo: uid)
+        .snapshots();
+  }
+
+  Future<void> deleteCar(String docId) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('car')
+          .doc(docId)
+          .delete();
+      Get.snackbar(
+        "تم الحذف",
+        "تم حذف السيارة بنجاح",
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    } catch (e) {
+      Get.snackbar(
+        "خطأ",
+        "حدث خطأ أثناء حذف السيارة: $e",
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
   }
 }

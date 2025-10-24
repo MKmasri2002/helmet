@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/generated/assets.dart';
+import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/views/gifts/widget/elevatedbutton.dart';
-import 'package:helmet_customer/views/home/share/container.dart';
-import 'package:helmet_customer/views/home/share/mytext.dart';
-import 'package:helmet_customer/views/home/share/ontapcontainer.dart';
+import 'package:helmet_customer/views/home/share/widget/container.dart';
+import 'package:helmet_customer/views/home/share/widget/mytext.dart';
+import 'package:helmet_customer/views/home/share/widget/ontapcontainer.dart';
 
 class Sharepage extends StatelessWidget {
   const Sharepage({super.key});
@@ -64,7 +65,7 @@ class Sharepage extends StatelessWidget {
                   backgroundColor: Colors.white,
                   
                   onPressed: () {
-              // Get.toNamed(RoutesString.sendgifts);
+               Get.toNamed(RoutesString.sendgifts);
                   },
                 ),
                         ],
@@ -92,14 +93,14 @@ class Sharepage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Mytext(
+                         const Mytext(
                             text: "1. متاح للمستخدمين الجدد فقط.",
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
                             color: Color(0xff07729D),
                           ),
-                          SizedBox(height: 6),
-                          Mytext(
+                         const SizedBox(height: 6),
+                        const  Mytext(
                             text: "2. الحد الأقصى 15 ريال لكل حجز.",
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
@@ -118,7 +119,7 @@ class Sharepage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 9),
-                  Padding(
+                const  Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Mytext(
                       text: "خطوات الحصول على الرصيد",
@@ -128,23 +129,25 @@ class Sharepage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 20),
-                  mycontainer(
+                const  mycontainer(
                     bottomShadow: true,
                     padding: const EdgeInsets.all(16),
                     child: OntapContainer(
                       text1: "شارك الرابط الخاص بك",
                       text2:
                           "انسخ الرابط وأرسله لأصدقائك عبر الواتساب أو الرسائل.",
+                          icon: Assets.share,
                     ),
                   ),
                   SizedBox(height: 20),
-                  mycontainer(
+                const  mycontainer(
                     bottomShadow: true,
                     padding: const EdgeInsets.all(16),
                     child: OntapContainer(
+                      
                       text1: "كيف تكسب رصيدك",
                       text2:
-                          "ستحصل على 15 ريال بالمحفظة عند اتمام كل مستخدم جديد اول غسلة.\nسيحصل صديقك على 15 ريال بالمحفظة بعد اتمام اول غسلة.",
+                          "ستحصل على 15 ريال بالمحفظة عند اتمام كل مستخدم جديد اول غسلة.\nسيحصل صديقك على 15 ريال بالمحفظة بعد اتمام اول غسلة.", icon: Assets.person,
                     ),
                   ),
                   SizedBox(height: 20),
