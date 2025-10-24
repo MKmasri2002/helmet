@@ -6,6 +6,7 @@ import 'package:helmet_customer/views/gifts/widget/elevatedbutton.dart';
 import 'package:helmet_customer/views/home/share/widget/container.dart';
 import 'package:helmet_customer/views/home/share/widget/mytext.dart';
 import 'package:helmet_customer/views/home/share/widget/ontapcontainer.dart';
+import 'package:share_plus/share_plus.dart';
 
 class Sharepage extends StatelessWidget {
   const Sharepage({super.key});
@@ -129,7 +130,7 @@ class Sharepage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 20),
-                const  mycontainer(
+                  mycontainer(
                     bottomShadow: true,
                     padding: const EdgeInsets.all(16),
                     child: OntapContainer(
@@ -137,6 +138,12 @@ class Sharepage extends StatelessWidget {
                       text2:
                           "انسخ الرابط وأرسله لأصدقائك عبر الواتساب أو الرسائل.",
                           icon: Assets.share,
+                          onTap: ()  {
+            // ignore: deprecated_member_use
+            Share.share(
+              "📱 تطبيق مميز!\nجرب هذا التطبيق الرائع 😍👇\nhttps://car-user.com/sa/wp-content/uploads/2023/01/%D8%BA%D8%B3%D9%8A%D9%84-%D9%85%D9%86-%D8%A7%D9%84%D8%AE%D8%A7%D8%B1%D8%AC-%D9%88%D8%A7%D9%84%D8%AF%D8%A7%D8%AE%D9%84-%D9%84%D9%84%D8%B3%D9%8A%D8%A7%D8%B1%D8%A9-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%85%D8%A7%D9%85.jpg",
+            );
+          },
                     ),
                   ),
                   SizedBox(height: 20),
