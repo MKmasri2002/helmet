@@ -25,10 +25,10 @@ class Component11 extends StatelessWidget {
           ),
           onPressed: ctrl.lastSessionStatus == "finsh"
               ? () {
-                  ctrl.orderRef
-                      .child('washSessions/${nearestSession!.id}/status')
-                      .set('done');
-                  Get.toNamed('/feedback');
+                  // ctrl.orderRef
+                  //     .child('washSessions/${nearestSession!.id}/status')
+                  //     .set('done');
+                  // Get.toNamed('/feedback');
                 }
               : null,
           child: const Text(

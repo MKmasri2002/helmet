@@ -61,12 +61,12 @@ class RouteClass {
       binding: SplashScreenBinding(),
       transition: Transition.fadeIn,
     ),
-    GetPage(
-      name: RoutesString.reservations,
-      page: () => const ReservationScreen(),
-      binding: ReservationBinding(),
-      transition: Transition.fadeIn,
-    ),
+    // GetPage(
+    //   name: RoutesString.reservations,
+    //   page: () => const ReservationScreen(),
+    //   binding: ReservationBinding(),
+    //   transition: Transition.fadeIn,
+    // ),
     GetPage(
       name: RoutesString.packages,
       page: () => const PackagesPage(),

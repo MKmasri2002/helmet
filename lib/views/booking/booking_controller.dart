@@ -7,7 +7,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:helmet_customer/data/user_repository.dart';
 import 'package:helmet_customer/models/car.dart';
 import 'package:helmet_customer/models/wash_models/wash_items.dart';
-import 'package:helmet_customer/models/wash_models/wash_session.dart';
+
 import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
 import 'package:helmet_customer/views/cart/cart_binding.dart';
@@ -45,13 +45,13 @@ class BookingController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    if (washDataTripModel.washPrice != null) {
-      if (washDataTripModel.washType == 'one_time') {
-        totalPrice = washDataTripModel.washPrice!.toInt();
-      } else {
-        totalPrice = 0;
-      }
-    }
+    // if (washDataTripModel.washPrice != null) {
+    //   if (washDataTripModel.washType == 'one_time') {
+    //     totalPrice = washDataTripModel.washPrice!.toInt();
+    //   } else {
+    //     totalPrice = 0;
+    //   }
+    // }
 
     await getWashItems();
   }
@@ -83,38 +83,38 @@ class BookingController extends GetxController {
 
   /////////////////*******is using for one time package and subsicription*/
   void createOrder() async {
-    if (washDataTripModel.isPaid != null) {
-      log("create order");
-      await setOrderAlreadyPayed();
+    // if (washDataTripModel.isPaid != null) {
+    //   log("create order");
+    //   await setOrderAlreadyPayed();
 
-      return;
-    }
-    if (driverList.isEmpty) {
-      Get.snackbar("Error", "No drivers available in this area",
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red[400],
-          colorText: Colors.white);
-      return;
-    }
+    //   return;
+    // }
+    // if (driverList.isEmpty) {
+    //   Get.snackbar("Error", "No drivers available in this area",
+    //       snackPosition: SnackPosition.BOTTOM,
+    //       backgroundColor: Colors.red[400],
+    //       colorText: Colors.white);
+    //   return;
+    // }
 
-    selectedDateTime = DateTime(
-      selectedDateTime.year,
-      selectedDateTime.month,
-      selectedDateTime.day,
-      selectedTime.hour,
-    );
-    WashSession washSession = WashSession(
-      areaId: userModel.addresses[0].areaId,
-      driverId: driverList[0].id,
-      washTime: fullDate.toString(),
-      status: 'pending',
-    );
-    washSession.cars = selectedCars;
-    washDataTripModel.sessions.add(washSession);
+    // selectedDateTime = DateTime(
+    //   selectedDateTime.year,
+    //   selectedDateTime.month,
+    //   selectedDateTime.day,
+    //   selectedTime.hour,
+    // );
+    // WashSession washSession = WashSession(
+    //   areaId: userModel.addresses[0].areaId,
+    //   driverId: driverList[0].id,
+    //   washTime: fullDate.toString(),
+    //   status: 'pending',
+    // );
+    // washSession.cars = selectedCars;
+    // washDataTripModel.sessions.add(washSession);
 
-    if (washDataTripModel.washCount! > 1) {
-      washDataTripModel.washCount = washDataTripModel.washCount! - 1;
-    }
+    // if (washDataTripModel.washCount! > 1) {
+    //   washDataTripModel.washCount = washDataTripModel.washCount! - 1;
+    // }
 
     Get.to(
       () => const CartScreen(
@@ -131,44 +131,44 @@ class BookingController extends GetxController {
       return;
     }
 
-    WashSession newSession = WashSession(
-      areaId: userModel.addresses[0].areaId,
-      driverId: driverList[0].id,
-      washTime: fullDate.toString(),
-      status: 'pending',
-    );
-    newSession.cars = selectedCars;
-    washDataTripModel.sessions.add(newSession);
+    // WashSession newSession = WashSession(
+    //   areaId: userModel.addresses[0].areaId,
+    //   driverId: driverList[0].id,
+    //   washTime: fullDate.toString(),
+    //   status: 'pending',
+    // );
+    // newSession.cars = selectedCars;
+    // washDataTripModel.sessions.add(newSession);
 
-    selectedDateTime = DateTime(
-      selectedDateTime.year,
-      selectedDateTime.month,
-      selectedDateTime.day,
-      selectedTime.hour,
-    );
-    print(washDataTripModel.sessions.last.status);
-    washDataTripModel.createdAt = DateTime.now().toString();
-    washDataTripModel.userId = userModel.uid;
-    washDataTripModel.endDate = selectedDateTime.toString();
-    if (washDataTripModel.washCount! > 1) {
-      washDataTripModel.decrementWashCount();
-      log("decrement");
-    }
-    print(washDataTripModel.sessions.last.status);
-    await UserRepository.updateSubscriptionOrder(
-        orderId: washDataTripModel.id!,
-        newWashCount: washDataTripModel.remain!,
-        newSession: newSession,
-        cars: selectedCars);
-    print(washDataTripModel.sessions.last.status);
-    await Get.put(HomeController()).getAllUserOrder();
-    print(washDataTripModel.sessions.last.status);
-    Get.back();
-    Get.to(
-      () => const OrderStatusView(),
-      binding: OrderStatusBinding(),
-      arguments: washDataTripModel,
-    );
+    // selectedDateTime = DateTime(
+    //   selectedDateTime.year,
+    //   selectedDateTime.month,
+    //   selectedDateTime.day,
+    //   selectedTime.hour,
+    // );
+    // print(washDataTripModel.sessions.last.status);
+    // washDataTripModel.createdAt = DateTime.now().toString();
+    // washDataTripModel.userId = userModel.uid;
+    // washDataTripModel.endDate = selectedDateTime.toString();
+    // if (washDataTripModel.washCount! > 1) {
+    //   washDataTripModel.decrementWashCount();
+    //   log("decrement");
+    // }
+    // print(washDataTripModel.sessions.last.status);
+    // await UserRepository.updateSubscriptionOrder(
+    //     orderId: washDataTripModel.id!,
+    //     newWashCount: washDataTripModel.remain!,
+    //     newSession: newSession,
+    //     cars: selectedCars);
+    // print(washDataTripModel.sessions.last.status);
+    // await Get.put(HomeController()).getAllUserOrder();
+    // print(washDataTripModel.sessions.last.status);
+    // Get.back();
+    // Get.to(
+    //   () => const OrderStatusView(),
+    //   binding: OrderStatusBinding(),
+    //   arguments: washDataTripModel,
+    // );
   }
 
   Future<void> getWashItems() async {
@@ -195,7 +195,7 @@ class BookingController extends GetxController {
           // save payment response to database
 
           appTools.unFocusKeyboard(Get.context!);
-          await Get.put(HomeController()).getAllUserOrder();
+          // await Get.put(HomeController()).getAllUserOrder();
           createOrder();
           break;
         case PaymentStatus.failed:

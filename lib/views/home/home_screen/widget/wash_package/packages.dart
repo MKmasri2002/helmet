@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/models/wash_models/package_model.dart';
-import 'package:helmet_customer/models/wash_models/order.dart';
+
 import 'package:helmet_customer/views/cart/cart_binding.dart';
 import 'package:helmet_customer/views/cart/cart_screen.dart';
 import 'package:helmet_customer/views/home/home_screen/widget/wash_package/component/component/botoom.dart';
@@ -49,17 +49,18 @@ class Packages extends StatelessWidget {
                         ctrl.pleaseSelectLocation();
                         return;
                       }
-                washDataTripModel = Order(
-                  washType: packages[index].type!,
-                  washPrice: packages[index].price,
-                  washCount: packages[index].count!,
-                  endDate: packages[index].endDate,
-                  washTitleAr: packages[index].nameAr,
-                  washTitleEn: packages[index].nameEn,
-                  createdAt: DateTime.now().toString(),
-                  userId: userModel.uid,
-                );
-                Get.to(() => const CartScreen(), binding: CartBinding());
+              //  fcsf
+              //   // washDataTripModel = Order(
+              //   //   washType: packages[index].type!,
+              //   //   washPrice: packages[index].price,
+              //   //   washCount: packages[index].count!,
+              //   //   endDate: packages[index].endDate,
+              //   //   washTitleAr: packages[index].nameAr,
+              //   //   washTitleEn: packages[index].nameEn,
+              //   //   createdAt: DateTime.now().toString(),
+              //   //   userId: userModel.uid,
+              //   // );
+              //   Get.to(() => const CartScreen(), binding: CartBinding());
               },
               child: Container(
                 margin: const EdgeInsets.symmetric(

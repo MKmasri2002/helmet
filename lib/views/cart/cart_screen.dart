@@ -142,19 +142,19 @@ class CartScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CustomText(
-                        text: washDataTripModel.washType!.tr,
-                        fontSize: 14,
-                        color: Colors.black,
-                      ),
+                      // CustomText(
+                      //   text: washDataTripModel.washType!.tr,
+                      //   fontSize: 14,
+                      //   color: Colors.black,
+                      // ),
                       Row(
                         children: [
-                          CustomText(
-                            text:
-                                washDataTripModel.washPrice!.toStringAsFixed(2),
-                            fontSize: 14,
-                            color: primaryColor,
-                          ),
+                          // CustomText(
+                          //   text:
+                          //       washDataTripModel.washPrice!.toStringAsFixed(2),
+                          //   fontSize: 14,
+                          //   color: primaryColor,
+                          // ),
                           const SizedBox(
                             width: 5,
                           ),
@@ -186,13 +186,13 @@ class CartScreen extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          CustomText(
-                            text: (washDataTripModel.washPrice! * 0.16)
-                                .toStringAsFixed(2),
-                            fontSize: 14,
-                            color: primaryColor,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          // CustomText(
+                          //   text: (washDataTripModel.washPrice! * 0.16)
+                          //       .toStringAsFixed(2),
+                          //   fontSize: 14,
+                          //   color: primaryColor,
+                          //   fontWeight: FontWeight.bold,
+                          // ),
                           const SizedBox(
                             width: 5,
                           ),
@@ -221,13 +221,13 @@ class CartScreen extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          CustomText(
-                            text: (washDataTripModel.washPrice! +
-                                    washDataTripModel.washPrice! * 0.16)
-                                .toStringAsFixed(2),
-                            fontSize: 14,
-                            color: primaryColor,
-                          ),
+                          // CustomText(
+                          //   text: (washDataTripModel.washPrice! +
+                          //           washDataTripModel.washPrice! * 0.16)
+                          //       .toStringAsFixed(2),
+                          //   fontSize: 14,
+                          //   color: primaryColor,
+                          // ),
                           const SizedBox(
                             width: 5,
                           ),

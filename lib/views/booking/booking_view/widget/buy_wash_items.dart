@@ -44,22 +44,22 @@ class BuyWashItems extends StatelessWidget {
                           color: AppColors.primary),
                       onPressed: () {
                         // Logic to decrease quantity
-                        if (item.quantity != null && item.quantity! > 0) {
-                          item.quantity = (item.quantity ?? 1) - 1;
-                          ctrl.totalPrice -= item.price!.toInt();
-                          washDataTripModel.washPrice =
-                              washDataTripModel.washPrice! -
-                                  item.price!.toDouble();
-                        } else {
-                          // Remove item if quantity is 1
-                          if (washItemsAfterFiltering.isNotEmpty) {
-                            washItemsAfterFiltering.removeAt(index);
-                            ctrl.totalPrice -= item.price!.toInt();
-                            washDataTripModel.washPrice =
-                                washDataTripModel.washPrice! -
-                                    item.price!.toDouble();
-                          }
-                        }
+                        // if (item.quantity != null && item.quantity! > 0) {
+                        //   item.quantity = (item.quantity ?? 1) - 1;
+                        //   ctrl.totalPrice -= item.price!.toInt();
+                        //   washDataTripModel.washPrice =
+                        //       washDataTripModel.washPrice! -
+                        //           item.price!.toDouble();
+                        // } else {
+                        //   // Remove item if quantity is 1
+                        //   if (washItemsAfterFiltering.isNotEmpty) {
+                        //     washItemsAfterFiltering.removeAt(index);
+                        //     ctrl.totalPrice -= item.price!.toInt();
+                        //     washDataTripModel.washPrice =
+                        //         washDataTripModel.washPrice! -
+                        //             item.price!.toDouble();
+                        //   }
+                        // }
                         ctrl.update();
                       },
                     ),
@@ -73,8 +73,8 @@ class BuyWashItems extends StatelessWidget {
                         // Logic to increase quantity
                         item.quantity = (item.quantity ?? 0) + 1;
                         ctrl.totalPrice += item.price!.toInt();
-                        washDataTripModel.washPrice =
-                            washDataTripModel.washPrice! + item.price!.toDouble();
+                        // washDataTripModel.washPrice =
+                        //     washDataTripModel.washPrice! + item.price!.toDouble();
                         ctrl.update();
                       },
                     ),

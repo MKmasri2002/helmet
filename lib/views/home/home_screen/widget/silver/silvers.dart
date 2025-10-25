@@ -26,17 +26,17 @@ class Silvers extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (ctrl.userSubscriptionOrders.isNotEmpty) ...[
-                CustomText(
-                  text: TranslationData.currentPackage.tr,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-                const SizedBox(height: 16),
-                HomeScreenCarouselSliderBuilder(
-                    userWashDataTripModel: ctrl.userSubscriptionOrders),
-                const SizedBox(height: 24),
-              ],
+              // if (ctrl.userSubscriptionOrders.isNotEmpty) ...[
+              //   CustomText(
+              //     text: TranslationData.currentPackage.tr,
+              //     fontSize: 18,
+              //     fontWeight: FontWeight.bold,
+              //   ),
+              //   const SizedBox(height: 16),
+              //   HomeScreenCarouselSliderBuilder(
+              //       userWashDataTripModel: ctrl.userSubscriptionOrders),
+              //   const SizedBox(height: 24),
+              // ],
 
               if (ctrl.oneTimePackages.isNotEmpty) ...[
                 OneTimeWash(package: ctrl.oneTimePackages),

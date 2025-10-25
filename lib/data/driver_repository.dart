@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:helmet_customer/models/dirver_model.dart';
-import 'package:helmet_customer/models/wash_models/order.dart' as model;
 
 class DriverRepository {
   static FirebaseFirestore reference =
@@ -25,10 +24,10 @@ class DriverRepository {
     return [];
   }
   //////////////////////////////////////
-  static DatabaseReference ref = FirebaseDatabase.instance.ref("driver");
-  static Future<void> setOrderToDriver(
-      {required String driverId,required String orderId, required model.Order order}) async {
-    await  ref.child(driverId).child("orders").child(orderId)
-        .set(order.toJson());
-  }
+  // static DatabaseReference ref = FirebaseDatabase.instance.ref("driver");
+  // static Future<void> setOrderToDriver(
+  //     {required String driverId,required String orderId, required model.Order order}) async {
+  //   await  ref.child(driverId).child("orders").child(orderId)
+  //       .set(order.toJson());
+  // }
 }

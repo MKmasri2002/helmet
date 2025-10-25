@@ -84,11 +84,11 @@ class PaymentSheet extends StatelessWidget {
                     },
                     title: 'Pay Now'),
               if (ctrl.applePay && Platform.isIOS)
-                ApplePay(
-                    config: PaymentMethods.payWithMoyasarApplePay(
-                        (washDataTripModel.washPrice! +
-                            washDataTripModel.washPrice! * 0.16)),
-                    onPaymentResult: ctrl.onPaymentResult),
+                // ApplePay(
+                //     config: PaymentMethods.payWithMoyasarApplePay(
+                //         (washDataTripModel.washPrice! +
+                //             washDataTripModel.washPrice! * 0.16)),
+                //     onPaymentResult: ctrl.onPaymentResult),
               const SizedBox(height: 32),
             ],
           ),

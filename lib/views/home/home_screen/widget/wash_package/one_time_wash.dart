@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/generated/assets.dart';
 import 'package:helmet_customer/models/wash_models/package_model.dart';
+// import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/theme/app_colors.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
@@ -51,17 +52,8 @@ class OneTimeWash extends StatelessWidget {
                         ctrl.pleaseSelectLocation();
                         return;
                       }
-
-                      washDataTripModel = Order(
-                        washType: package[index].type,
-                        washPrice: package[index].price,
-                        washCount: package[index].count,
-                        endDate: package[index].endDate,
-                        washTitleAr: package[index].nameAr,
-                        washTitleEn: package[index].nameEn,
-                        createdAt: DateTime.now().toString(),
-                        userId: userModel.uid,
-                      );
+                      order = Order();
+                   
                       Get.to(
                           () => const BookingView(
                                 newOrder: false,

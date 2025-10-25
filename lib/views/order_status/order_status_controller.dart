@@ -4,20 +4,20 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:helmet_customer/data/user_repository.dart';
-import 'package:helmet_customer/models/wash_models/order.dart';
+// import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/models/wash_models/wash_items.dart';
-import 'package:helmet_customer/models/wash_models/wash_session.dart';
+// import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 
 class OrderStatusController extends GetxController {
   GoogleMapController? mapController;
-  Order washDataTripModel = Order();
+  // Order washDataTripModel = Order();
   List<WashItemsModel> washItems = [];
   String userAddress = "";
   List<WashItemsModel> washItemsAfterFiltering = [];
   String argument = '';
-  WashSession? currentSession;
+  // WashSession? currentSession;
   String lastSessionStatus = 'pending'; // observable لتحديث الـ UI
 
   late DatabaseReference orderRef;
@@ -53,16 +53,16 @@ class OrderStatusController extends GetxController {
 
   @override
   void onInit() async {
-    washDataTripModel = Get.arguments as Order;
+    // washDataTripModel = Get.arguments as Order;
 
-    lastSessionStatus = nearestSession?.status ?? 'pending';
+    // lastSessionStatus = nearestSession?.status ?? 'pending';
     userAddressMethod();
     super.onInit();
 
-    orderRef = FirebaseDatabase.instance.ref("orders/${washDataTripModel.id}");
-    if(nearestSession != null) {
-      _listenToSessionStatus(nearestSession?.id ?? "");
-    }
+    // orderRef = FirebaseDatabase.instance.ref("orders/${washDataTripModel.id}");
+    // if(nearestSession != null) {
+    //   _listenToSessionStatus(nearestSession?.id ?? "");
+    // }
   }
 
   void _listenToSessionStatus(String sessionId) {

@@ -38,7 +38,7 @@ class OrderStatusView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Component1(),
+                // Component1(),
                 // Component2(),
                 Padding(
                   padding: EdgeInsets.all(15),
@@ -52,10 +52,10 @@ class OrderStatusView extends StatelessWidget {
                       Sperator(),
                       Component4(),
                       Sperator(),
-                      Component5(),
+                      // Component5(),
                       Sperator(),
                       Component6(),
-                      Component7(),
+                      // Component7(),
                       SizedBox(
                         height: 20,
                       ),
