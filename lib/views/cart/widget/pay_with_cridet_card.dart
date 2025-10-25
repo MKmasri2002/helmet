@@ -31,12 +31,12 @@ class PayWithCreditCard extends StatelessWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                // CreditCard(
-                //   config: PaymentMethods.payWithMoyasarCridetCard(
-                //       (washDataTripModel.washPrice! +
-                //           washDataTripModel.washPrice! * 0.16)),
-                //   onPaymentResult:ctrl.onPaymentResult,
-                // ),
+                CreditCard(
+                  config: PaymentMethods.payWithMoyasarCridetCard(
+                      (order.price! +
+                          order.price! * 0.16)),
+                  onPaymentResult:ctrl.onPaymentResult,
+                ),
               ],
             ),
           ),

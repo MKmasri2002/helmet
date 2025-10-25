@@ -72,13 +72,13 @@ class CartController extends GetxController {
        
           log("order set");
 
-        //   washDataTripModel.isPaid = true;
+          
 
-        //   log(washDataTripModel.toString());
-        //  await setOrder();
-        //   appTools.unFocusKeyboard(Get.context!);
+          log(order.toString());
+         await setOrder();
+          appTools.unFocusKeyboard(Get.context!);
 
-        //   await Get.put(HomeController()).getAllUserOrder();
+          // await Get.put(HomeController()).getAllUserOrder();
 
           Get.back();
           Get.back();
@@ -98,18 +98,18 @@ class CartController extends GetxController {
     }
   }
  ////// using one time package*////////////
-  // Future<void> setOrder() async {
-  //   await OrderRepositry.setOrder(order: washDataTripModel);
-  //    userOrder =
-  //         await UserRepository.getUserOrders(userId: userModel.uid!);
-  //     Get.find<HomeController>().update();
-  //   if (washDataTripModel.washType == "one_time") {
-  //     Get.to(() => const OrderStatusView(),
-  //         binding: OrderStatusBinding(), arguments: washDataTripModel);
-  //   }
+  Future<void> setOrder() async {
+    await OrderRepositry.addOrder(order: order);
+    //  userOrder =
+    //       await UserRepository.getUserOrders(userId: userModel.uid!);
+    //   Get.find<HomeController>().update();
+    if (order.type == "one_time") {
+      Get.to(() => const OrderStatusView(),
+          binding: OrderStatusBinding(), arguments: order);
+    }
      
      
-  // }
+  }
 
   void payCridetCard() {
     PaymentConfig paymentConfig = PaymentMethods.payWithMoyasarCridetCard(100);

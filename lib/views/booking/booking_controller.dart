@@ -83,38 +83,21 @@ class BookingController extends GetxController {
 
   /////////////////*******is using for one time package and subsicription*/
   void createOrder() async {
-    // if (washDataTripModel.isPaid != null) {
-    //   log("create order");
-    //   await setOrderAlreadyPayed();
+    
 
-    //   return;
-    // }
-    // if (driverList.isEmpty) {
-    //   Get.snackbar("Error", "No drivers available in this area",
-    //       snackPosition: SnackPosition.BOTTOM,
-    //       backgroundColor: Colors.red[400],
-    //       colorText: Colors.white);
-    //   return;
-    // }
+    selectedDateTime = DateTime(
+      selectedDateTime.year,
+      selectedDateTime.month,
+      selectedDateTime.day,
+      selectedTime.hour,
+    );
+    order.washTime = fullDate.toString();
+    order.cars = selectedCars;
+    
+    
+    userSessions.add(order);
 
-    // selectedDateTime = DateTime(
-    //   selectedDateTime.year,
-    //   selectedDateTime.month,
-    //   selectedDateTime.day,
-    //   selectedTime.hour,
-    // );
-    // WashSession washSession = WashSession(
-    //   areaId: userModel.addresses[0].areaId,
-    //   driverId: driverList[0].id,
-    //   washTime: fullDate.toString(),
-    //   status: 'pending',
-    // );
-    // washSession.cars = selectedCars;
-    // washDataTripModel.sessions.add(washSession);
-
-    // if (washDataTripModel.washCount! > 1) {
-    //   washDataTripModel.washCount = washDataTripModel.washCount! - 1;
-    // }
+    
 
     Get.to(
       () => const CartScreen(
