@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 
 import 'dart:math';
 
@@ -129,4 +128,3 @@ final int length=1;
   }
 }
 
->>>>>>> 1eaded96000c8c18f8c950425fbc9731ae509ff9
