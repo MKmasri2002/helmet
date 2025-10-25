@@ -1,8 +1,32 @@
+import 'package:cloud_firestore/cloud_firestore.dart' hide Order;
 import 'package:firebase_database/firebase_database.dart';
 import 'package:helmet_customer/models/car.dart';
 import 'package:helmet_customer/models/wash_models/order.dart';
 
 class UserRepository {
+  static FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+  static Future<List<Order>> getUserOrders({required String userId}) async{
+    try{
+      final query =await firebaseFirestore
+        .collection('order')
+        .where('user_id', isEqualTo: userId)
+        .get();
+      
+      if(query.docs.isNotEmpty){
+        final List<Order> orders = query.docs.map((doc) {
+          final data = doc.data();
+          final order = Order.fromJson(data);
+          return order;
+        }).toList();
+        return orders;
+      }
+    }catch(e){
+     return [];
+    }
+    return [];
+  }
+
+  ///////////////////////////////////////////////////////////////
   static DatabaseReference ref = FirebaseDatabase.instance.ref("orders");
   ////////////////////////////////<Get User Data>///////////////////////////////////////
   // static Future<List<Order>> getUserOrders({required String userId}) async {
@@ -76,8 +100,6 @@ class UserRepository {
   //   Map<String, dynamic> updateData = {};
 
   //     updateData["remain"] = newWashCount;
-    
-    
 
   //   await ref.child(orderId).update(<String,dynamic>{"remain": newWashCount});
   //   DatabaseReference sessionRef =
@@ -88,7 +110,7 @@ class UserRepository {
   //   DatabaseReference carRef =sessionRef.child('cars').push();
   //   car.id = carRef.key;
   //   await carRef.set(car.toJson());
-     
+
   //    }
   // }
 }

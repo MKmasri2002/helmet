@@ -29,7 +29,7 @@ Subscribe subscribe = Subscribe();
 List<WashItemsModel> washItemsAfterFiltering = [];
 List<Area> areasList = [];
 // List<Order> userOrder = [];
-List<Order> userSessions = [];
+List<Order> userorders = [];
 // List<WashSession> futureSessions = [];
 // WashSession? nearestSession;
 Duration? remainingTime;
@@ -70,7 +70,7 @@ class HomeController extends GetxController {
     await getPackages();
     await getAllAreas();
     /////////////////////
-    // await getAllUserOrder();
+    await getAllUserOrder();
     await getAllDriverInArea();
     // startSessionTimer();
     log(userModel.toString());
@@ -107,24 +107,24 @@ class HomeController extends GetxController {
     update();
   }
 
-  // Future<void> getAllUserOrder() async {
-  //   userOrder.clear();
-  //   userSubscriptionOrders.clear();
-  //   userOneTimeOrders.clear();
+  Future<void> getAllUserOrder() async {
+    userorders.clear();
+    // userSubscriptionOrders.clear();
+    // userOneTimeOrders.clear();
 
-  //   userOrder = await UserRepository.getUserOrders(userId: userModel.uid!);
-  //   if (userOrder.isNotEmpty)
-  //     for (Order order in userOrder) {
-  //       if (order.washType == "subscription") {
-  //         userSubscriptionOrders.add(order);
-  //       } else if (order.washType == "one_time") {
-  //         userOneTimeOrders.add(order);
-  //       }
-  //     }
-  //   getUserSession();
+    userorders = await UserRepository.getUserOrders(userId: userModel.uid!);
+    // if (userOrder.isNotEmpty)
+    //   for (Order order in userOrder) {
+    //     if (order.washType == "subscription") {
+    //       userSubscriptionOrders.add(order);
+    //     } else if (order.washType == "one_time") {
+    //       userOneTimeOrders.add(order);
+    //     }
+    //   }
+    // getUserSession();
 
-  //   update();
-  // }
+    update();
+  }
 
   // void getUserSession() {
   //   userSessions.clear();
