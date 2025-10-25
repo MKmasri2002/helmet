@@ -1,6 +1,11 @@
 import 'package:get/get.dart';
 
 class ReservationController extends GetxController {
+  var showAll = false.obs;
+void toggleShowAll() {
+  showAll.value = !showAll.value;
+  update(); 
+}
   String getTime({required String date}) {
     DateTime parsedDate = DateTime.parse(date);
     String formattedDate =

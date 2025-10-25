@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
+import 'package:helmet_customer/views/add_car/add_car_binding.dart';
+import 'package:helmet_customer/views/add_car/add_car_screen.dart';
 import 'package:helmet_customer/views/address/address_binding.dart';
 import 'package:helmet_customer/views/address/address_screen.dart';
 import 'package:helmet_customer/views/auth/login/login_binding.dart';
@@ -24,6 +26,7 @@ import 'package:helmet_customer/views/home/home_binding.dart';
 import 'package:helmet_customer/views/home/share/share.dart';
 import 'package:helmet_customer/views/home/share/share_binding.dart';
 import 'package:helmet_customer/views/profile/binding/profile_screen_binding.dart';
+import 'package:helmet_customer/views/profile/mycars_screen.dart';
 import 'package:helmet_customer/views/profile/settings_screen.dart';
 import 'package:helmet_customer/views/reservations/binding/reservation_binding.dart';
 import 'package:helmet_customer/views/reservations/screen/reservation_screen.dart';
@@ -37,6 +40,18 @@ import 'package:helmet_customer/views/wallet/wallet_binding.dart';
 
 class RouteClass {
   static List<GetPage> routs = [
+     GetPage(
+      name: RoutesString.mycar,
+      page: () => const Mycarspage(),
+      binding: AddCarBinding(),
+      transition: Transition.fadeIn,
+    ),
+     GetPage(
+      name: RoutesString.addcar,
+      page: () => const AddCarScreen(),
+      binding: AddCarBinding(),
+      transition: Transition.fadeIn,
+    ),
     GetPage(
       name: RoutesString.login,
       page: () => const LoginScreen(),

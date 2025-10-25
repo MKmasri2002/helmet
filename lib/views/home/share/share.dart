@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/generated/assets.dart';
+import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/views/gifts/widget/elevatedbutton.dart';
-import 'package:helmet_customer/views/home/share/container.dart';
-import 'package:helmet_customer/views/home/share/mytext.dart';
-import 'package:helmet_customer/views/home/share/ontapcontainer.dart';
+import 'package:helmet_customer/views/home/share/widget/container.dart';
+import 'package:helmet_customer/views/home/share/widget/mytext.dart';
+import 'package:helmet_customer/views/home/share/widget/ontapcontainer.dart';
+import 'package:share_plus/share_plus.dart';
 
 class Sharepage extends StatelessWidget {
   const Sharepage({super.key});
@@ -64,7 +66,7 @@ class Sharepage extends StatelessWidget {
                   backgroundColor: Colors.white,
                   
                   onPressed: () {
-              // Get.toNamed(RoutesString.sendgifts);
+               Get.toNamed(RoutesString.sendgifts);
                   },
                 ),
                         ],
@@ -92,14 +94,14 @@ class Sharepage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Mytext(
+                         const Mytext(
                             text: "1. متاح للمستخدمين الجدد فقط.",
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
                             color: Color(0xff07729D),
                           ),
-                          SizedBox(height: 6),
-                          Mytext(
+                         const SizedBox(height: 6),
+                        const  Mytext(
                             text: "2. الحد الأقصى 15 ريال لكل حجز.",
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
@@ -118,7 +120,7 @@ class Sharepage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 9),
-                  Padding(
+                const  Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Mytext(
                       text: "خطوات الحصول على الرصيد",
@@ -135,16 +137,24 @@ class Sharepage extends StatelessWidget {
                       text1: "شارك الرابط الخاص بك",
                       text2:
                           "انسخ الرابط وأرسله لأصدقائك عبر الواتساب أو الرسائل.",
+                          icon: Assets.share,
+                          onTap: ()  {
+            // ignore: deprecated_member_use
+            Share.share(
+              "📱 تطبيق مميز!\nجرب هذا التطبيق الرائع 😍👇\nhttps://car-user.com/sa/wp-content/uploads/2023/01/%D8%BA%D8%B3%D9%8A%D9%84-%D9%85%D9%86-%D8%A7%D9%84%D8%AE%D8%A7%D8%B1%D8%AC-%D9%88%D8%A7%D9%84%D8%AF%D8%A7%D8%AE%D9%84-%D9%84%D9%84%D8%B3%D9%8A%D8%A7%D8%B1%D8%A9-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%85%D8%A7%D9%85.jpg",
+            );
+          },
                     ),
                   ),
                   SizedBox(height: 20),
-                  mycontainer(
+                const  mycontainer(
                     bottomShadow: true,
                     padding: const EdgeInsets.all(16),
                     child: OntapContainer(
+                      
                       text1: "كيف تكسب رصيدك",
                       text2:
-                          "ستحصل على 15 ريال بالمحفظة عند اتمام كل مستخدم جديد اول غسلة.\nسيحصل صديقك على 15 ريال بالمحفظة بعد اتمام اول غسلة.",
+                          "ستحصل على 15 ريال بالمحفظة عند اتمام كل مستخدم جديد اول غسلة.\nسيحصل صديقك على 15 ريال بالمحفظة بعد اتمام اول غسلة.", icon: Assets.person,
                     ),
                   ),
                   SizedBox(height: 20),

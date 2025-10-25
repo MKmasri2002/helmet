@@ -86,10 +86,18 @@ class Assets {
   static const String stcpay = 'assets/images/stc_pay.png';
   static const String mastercard = 'assets/images/Mastercard.png';
   static const String applepay = 'assets/images/Apple_PAY.png';
-  static const String reyalblack = 'assets/images/reyalblack.png';
+  static const String reyalblack = 'assets/images/reyalblack2.png';
   static const String givestar = 'assets/images/give-star.png';
   static const String tone = 'assets/images/Tone.png';
    static const String coins = 'assets/images/coins.png';
+      static const String add = 'assets/images/add.png';
+   static const String edit = 'assets/images/edit.png';
+   static const String delete = 'assets/images/delete.png';
+      static const String share = 'assets/images/share.png';
+
+   static const String person = 'assets/images/person.png';
+
+
 
 
 

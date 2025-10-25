@@ -20,6 +20,10 @@ static const String editphone = '/editphone';
 static const String gifts1 = '/gifts1';
 static const String sendgifts = '/sendgifts';
 static const String sharepage = '/sharepage';
+static const String mycar = '/mycar';
+static const String addcar = '/addcar';
+
+
 
 
 
