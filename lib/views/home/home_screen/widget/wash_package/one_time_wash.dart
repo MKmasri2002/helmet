@@ -6,6 +6,7 @@ import 'package:helmet_customer/models/wash_models/package_model.dart';
 // import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/theme/app_colors.dart';
+import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/views/booking/booking_binding.dart';
 import 'package:helmet_customer/views/booking/booking_view/booking_view.dart';
@@ -44,16 +45,39 @@ class OneTimeWash extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
-                      if (ctrl.checkLogin()==false) {
+                      if (ctrl.checkLogin() == false) {
                         ctrl.pleaseLogin();
                         return;
                       }
-                      if (ctrl.checkLocation()==false) {
+                      if (ctrl.checkLocation() == false) {
                         ctrl.pleaseSelectLocation();
                         return;
                       }
-                      order = Order();
-                   
+                      order = Order(
+                        areaId: userModel.addresses
+                            ?.firstWhere(
+                              (addr) => addr.defaultLocation == true,
+                              orElse: () => userModel.addresses!.first,
+                            )
+                            .areaId,
+                        user_id: userModel.uid,
+                        driverId: driverList.firstWhere(  
+                          (driver) => driver.areaId == userModel
+                              .addresses
+                              ?.firstWhere(
+                                (addr) => addr.defaultLocation == true,
+                                orElse: () => userModel.addresses!.first,
+                              )
+                              .areaId,
+                          orElse: () => driverList.first,
+                        ).id,
+                        status: 'pending',
+                        price: package[index].price,
+                        titleAr: package[index].nameAr,
+                        titleEn: package[index].nameEn,
+                        type: 'one_time',
+                      );
+
                       Get.to(
                           () => const BookingView(
                                 newOrder: false,
@@ -65,7 +89,7 @@ class OneTimeWash extends StatelessWidget {
                       padding: const EdgeInsets.all(16),
                       width: MediaQuery.of(context).size.width * 0.7,
                       decoration: BoxDecoration(
-                       color: Colors.white,                     
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(12),
                         boxShadow: [
                           BoxShadow(

@@ -128,12 +128,12 @@ class PaymentMethodWidget extends StatelessWidget {
                   },
                   title: 'Confirm',
                 ),
-              // if (ctrl.applePay && Platform.isAndroid)
-                // ApplePay(
-                //     config: PaymentMethods.payWithMoyasarApplePay(
-                //         (washDataTripModel.washPrice! +
-                //             washDataTripModel.washPrice! * 0.16)),
-                //     onPaymentResult: ctrl.onPaymentResult)
+              if (ctrl.applePay && Platform.isAndroid)
+                ApplePay(
+                    config: PaymentMethods.payWithMoyasarApplePay(
+                        (order.price! +
+                            order.price! * 0.16)),
+                    onPaymentResult: ctrl.onPaymentResult)
             ],
           ),
         );
