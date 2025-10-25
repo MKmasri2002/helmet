@@ -12,6 +12,7 @@ class Order {
   double? price;
   String? titleAr;
   String? titleEn;
+  String? type;
   Order({
     this.areaId,
     this.driverId,
@@ -22,6 +23,7 @@ class Order {
     this.price,
     this.titleAr,
     this.titleEn,
+    this.type,
   });
   Order.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -30,6 +32,11 @@ class Order {
     driverId = json['driverId'];
     washTime = json['washTime'];
     status = json['status'];
+    price = json['price']?.toDouble();
+    titleAr = json['titleAr'];
+    titleEn = json['titleEn'];
+    type = json['type'];
+
   }
   Map<String, dynamic> toJson() {
     Map<String, dynamic> data = {
@@ -39,6 +46,10 @@ class Order {
       'driverId': driverId,
       'washTime': washTime,
       'status': status,
+      'price': price,
+      'titleAr': titleAr,
+      'titleEn': titleEn,
+      'type': type,
     };
     return data;
   }

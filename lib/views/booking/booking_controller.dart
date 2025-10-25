@@ -45,13 +45,13 @@ class BookingController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    // if (washDataTripModel.washPrice != null) {
-    //   if (washDataTripModel.washType == 'one_time') {
-    //     totalPrice = washDataTripModel.washPrice!.toInt();
-    //   } else {
-    //     totalPrice = 0;
-    //   }
-    // }
+    if (order.price != null) {
+      if (order.type == 'one_time') {
+        totalPrice = order.price!.toInt();
+      } else {
+        totalPrice = 0;
+      }
+    }
 
     await getWashItems();
   }
