@@ -29,7 +29,7 @@ Subscribe subscribe = Subscribe();
 List<WashItemsModel> washItemsAfterFiltering = [];
 List<Area> areasList = [];
 // List<Order> userOrder = [];
-// List<WashSession> userSessions = [];
+List<Order> userSessions = [];
 // List<WashSession> futureSessions = [];
 // WashSession? nearestSession;
 Duration? remainingTime;
