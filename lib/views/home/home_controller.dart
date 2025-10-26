@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:core';
 import 'dart:developer';
-import 'package:helmet_customer/models/subscribe.dart' as subModel;
+
 import 'package:cloud_firestore/cloud_firestore.dart' as firestore;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -13,12 +13,11 @@ import 'package:helmet_customer/data/driver_repository.dart';
 import 'package:helmet_customer/data/user_repository.dart';
 import 'package:helmet_customer/data/wash_package_repository.dart';
 import 'package:helmet_customer/models/area/area_model.dart';
-import 'package:helmet_customer/models/dirver_model.dart';
 import 'package:helmet_customer/models/schedule_list.dart';
+import 'package:helmet_customer/models/subscribe.dart';
 import 'package:helmet_customer/models/user_model.dart';
 import 'package:helmet_customer/models/wash_models/package_model.dart';
 // import 'package:helmet_customer/models/wash_models/order.dart';
-import 'package:helmet_customer/models/wash_models/reservation.dart';
 import 'package:helmet_customer/models/wash_models/wash_items.dart';
 import 'package:helmet_customer/models/wash_models/order.dart';
 // import 'package:helmet_customer/models/wash_models/order.dart';
@@ -38,7 +37,7 @@ Duration? remainingTime;
 String? newStatus;
 
 class HomeController extends GetxController {
-List<subModel.Subscribe> subscriptions = [];
+List<Subscribe> subscriptions = [];
 
   List<PackageModel> adsPackages = [];
   List<PackageModel> oneTimePackages = [];
@@ -73,6 +72,7 @@ List<subModel.Subscribe> subscriptions = [];
     await getUserInfo();
     await getPackages();
     await getAllAreas();
+    await getSubscriptions(userModel.uid!);
     ////////////////t
     /////////////////////
     await getAllUserOrder();
@@ -93,7 +93,7 @@ Future<void> getSubscriptions(String userId) async {
       subscriptions = snapshot.docs.map((doc) {
         final data = doc.data();
         data['id'] = doc.id; // حفظ الـ doc id
-        return subModel.Subscribe.fromJson(data);
+        return Subscribe.fromJson(data);
       }).toList();
 
       update(); // تحديث الـ UI
