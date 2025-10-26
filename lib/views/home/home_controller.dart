@@ -4,6 +4,7 @@ import 'dart:core';
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart' as firestore;
+import 'package:cloud_firestore/cloud_firestore.dart' hide Order;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -25,24 +26,27 @@ import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/data/auth_repository.dart';
 
 UserModel userModel = UserModel();
- Order order = Order();
+Order order = Order();
 Subscribe subscribe = Subscribe();
 List<WashItemsModel> washItemsAfterFiltering = [];
 List<Area> areasList = [];
-// List<Order> userOrder = [];
+Order? nearestOrder;
+Duration? remainingTime;
+Timer? _timer;
 List<Order> userOrders = [];
+List<Order> FutureOrders = [];
 // List<WashSession> futureSessions = [];
 // WashSession? nearestSession;
-Duration? remainingTime;
+
 String? newStatus;
 
 class HomeController extends GetxController {
-List<Subscribe> subscriptions = [];
-
+  List<Subscribe> subscriptions = [];
+  StreamSubscription<DocumentSnapshot>? _orderListener;
   List<PackageModel> adsPackages = [];
   List<PackageModel> oneTimePackages = [];
   List<PackageModel> subscriptionPackages = [];
- 
+
   Timer? sessionTimer;
   late DatabaseReference orderRef;
   @override
@@ -51,21 +55,22 @@ List<Subscribe> subscriptions = [];
     // if (nearestSession != null) {
     //   // _listenToSessionStatus(nearestSession?.id ?? "");
     // }
+    startTimer();
     super.onInit();
   }
 
-  // void _listenToSessionStatus(String sessionId) {
-  //   orderRef
-  //       .child("washSessions/$sessionId/status")
-  //       .onValue
-  //       .listen((event) async {
-  //     if (!event.snapshot.exists) return;
-
-  //     newStatus = event.snapshot.value as String;
-  //     if (newStatus == "done") await getAllUserOrder();
-  //     update();
-  //   });
-  // }
+  void startTimer() {
+    _timer?.cancel(); // إذا كان في مؤقت شغال
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (nearestOrder?.washTime != null) {
+        final washTime = DateTime.tryParse(nearestOrder!.washTime!);
+        if (washTime != null) {
+          remainingTime = washTime.difference(DateTime.now());
+          update(); // يحدث الواجهة تلقائيًا
+        }
+      }
+    });
+  }
 
   Future<void> getAllData() async {
     await getUserInfo();
@@ -74,17 +79,19 @@ List<Subscribe> subscriptions = [];
     await getSubscriptions(userModel.uid!);
     await getAllUserOrder();
     await getAllDriverInArea();
+    await getNearestOrderAndListen();
     // startSessionTimer();
     log(userModel.toString());
 
     update();
   }
-Future<void> getSubscriptions(String userId) async {
+
+  Future<void> getSubscriptions(String userId) async {
     try {
       subscriptions.clear();
       var snapshot = await firestore.FirebaseFirestore.instance
-          .collection('subscriptions')
-          .where('userId', isEqualTo: userId)
+          .collection('subscribe')
+          .where('user_id', isEqualTo: userId)
           .get();
 
       subscriptions = snapshot.docs.map((doc) {
@@ -99,7 +106,6 @@ Future<void> getSubscriptions(String userId) async {
     }
   }
 
- 
   Future<void> getUserInfo() async {
     if (FirebaseAuth.instance.currentUser != null) {
       userModel.uid = FirebaseAuth.instance.currentUser!.uid;
@@ -132,60 +138,71 @@ Future<void> getSubscriptions(String userId) async {
   Future<void> getAllUserOrder() async {
     userOrders.clear();
 
-
     userOrders = await UserRepository.getUserOrders(userId: userModel.uid!);
     update();
   }
 
-  // void getUserSession() {
-  //   userSessions.clear();
-  //   // الأفضل تنظف قبل ما تضيف عشان ما تتكرر البيانات
-  //   for (var order in userOrder) {
-  //     userSessions.addAll(order.sessions);
-  //   }
+  Future<void> getNearestOrderAndListen() async {
+    try {
+      final snap = await FirebaseFirestore.instance
+          .collection('order')
+          .where('user_id', isEqualTo: userModel.uid)
+          .get();
+      if (snap.docs.isEmpty) return;
 
-  //   if (userSessions.isEmpty) return;
+      // 2️⃣ تحويل الطلبات إلى Objects
+      FutureOrders.clear();
+      FutureOrders = snap.docs
+          .map((doc) => Order.fromJson(doc.data()))
+          .where((o) => o.status != 'done') // استبعد المنتهية
+          .toList();
 
-  //   // استبعد الجلسات المنتهية
-  //   futureSessions =
-  //       userSessions.where((session) => session.status != 'done').toList();
+      // 3️⃣ ترتيب الطلبات حسب الوقت (الأقرب أولًا)
+      FutureOrders.sort((a, b) {
+        final aTime = DateTime.tryParse(a.washTime ?? '') ?? DateTime(2100);
+        final bTime = DateTime.tryParse(b.washTime ?? '') ?? DateTime(2100);
+        return aTime.compareTo(bTime);
+      });
 
-  //   if (futureSessions.isEmpty) return;
+      if (FutureOrders.isEmpty) {
+        print("✅ لا يوجد طلبات نشطة حالياً");
+        nearestOrder = null;
+        update();
+        return;
+      }
 
-  //   // رتب الجلسات حسب الوقت الأقرب
-  //   futureSessions.sort((a, b) =>
-  //       DateTime.parse(a.washTime!).compareTo(DateTime.parse(b.washTime!)));
+      nearestOrder = FutureOrders.first;
+      update();
 
-  //   final now = DateTime.now();
+      // 4️⃣ إلغاء أي استماع سابق
+      await _orderListener?.cancel();
 
-  //   // أقرب جلسة
-  //   nearestSession = futureSessions.first;
-  //   orderRef = FirebaseDatabase.instance.ref(
-  //       "orders/${userOrder.firstWhere((order) => order.sessions.any((s) => s.id == nearestSession!.id)).id}");
-  //   if (nearestSession!.status == 'pending') {
-  //     final washDateTime = DateTime.parse(nearestSession!.washTime!);
+      // 5️⃣ استماع مباشر لتغييرات هذا الطلب
+      _orderListener = FirebaseFirestore.instance
+          .collection('order')
+          .doc(nearestOrder!.id)
+          .snapshots()
+          .listen((doc) async {
+        if (doc.exists) {
+          final updatedOrder = Order.fromJson(doc.data()!);
+          if (nearestOrder!.status != updatedOrder.status) {
+            nearestOrder = updatedOrder;
+            update();
 
-  //     if (washDateTime.isAfter(now)) {
-  //       remainingTime = washDateTime.difference(now);
-  //     } else {
-  //       nearestSession!.status = 'on_way';
-  //       washDataTripModel = userOrder
-  //           .firstWhere((order) => order.sessions.contains(nearestSession));
-  //       FirebaseDatabase.instance
-  //           .ref(
-  //               "orders/${washDataTripModel.id}/washSessions/${nearestSession!.id}/status")
-  //           .set('on_way');
-  //     }
-  //   }
+            print('🚀 الحالة الجديدة: ${updatedOrder.status}');
 
-  //   update();
-  // }
-
-  // void startSessionTimer() {
-  //   sessionTimer = Timer.periodic(const Duration(seconds: 5), (timer) {
-  //     getUserSession();
-  //   });
-  // }
+            // ✅ إذا صارت Done، انتقل للطلب التالي
+            // if (updatedOrder.status == 'done') {
+            await Future.delayed(const Duration(seconds: 1));
+            await getNearestOrderAndListen(); // يعيد العملية تلقائيًا
+            // }
+          }
+        }
+      });
+    } catch (e) {
+      log("Error getting nearest order: $e");
+    }
+  }
 
   Future<void> getAllDriverInArea() async {
     final List<String> areas_id = [];
@@ -193,10 +210,10 @@ Future<void> getSubscriptions(String userId) async {
       areas_id.add(address.areaId!);
     }
     driverList.clear();
-    driverList = await DriverRepository.getAllDrivers(userId: userModel.uid!, areas_id: areas_id);
-      getAllSchedulesDriver();
-      update();
-    
+    driverList = await DriverRepository.getAllDrivers(
+        userId: userModel.uid!, areas_id: areas_id);
+    getAllSchedulesDriver();
+    update();
   }
 
   void getAllSchedulesDriver() async {

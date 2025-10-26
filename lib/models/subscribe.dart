@@ -7,6 +7,7 @@ class Subscribe {
   double? price;
   String? titleAr;
   String? titleEn;
+  String? type;
 
   Subscribe({
     this.id,
@@ -17,6 +18,7 @@ class Subscribe {
     this.price,
     this.titleAr,
     this.titleEn,
+    this.type,
   });
   Subscribe.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -27,6 +29,7 @@ class Subscribe {
     price = json['price']?.toDouble();
     titleAr = json['title_ar'];
     titleEn = json['title_en'];
+    type = json['type'];
   }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
@@ -38,6 +41,7 @@ class Subscribe {
     data['price'] = price;
     data['title_ar'] = titleAr;
     data['title_en'] = titleEn;
+    data['type'] = type;
     return data;
   }
 }

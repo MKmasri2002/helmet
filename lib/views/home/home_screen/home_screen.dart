@@ -27,18 +27,18 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
 
-          /// الجزء المهم
-          // bottomNavigationBar: Column(
-          //   mainAxisSize: MainAxisSize.min,
-          //   children: [
-          //     if (nearestSession != null) ...[
-          //       if (nearestSession!.status == 'pending') const ButtomSlider(),
-          //       if (nearestSession!.status != 'pending')
-          //         const ButtomWithStatus(),
-          //     ],
-           bottomNavigationBar:   const CustomNavBar(pos: 1),
-          //   ],
-          // ),
+         
+          bottomNavigationBar: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (nearestOrder != null) ...[
+                if (nearestOrder!.status == 'pending') const ButtomSlider(),
+                if (nearestOrder!.status != 'pending')
+                  const ButtomWithStatus(),
+              ],
+        const CustomNavBar(pos: 1),
+            ],
+          ),
         );
       },
     );

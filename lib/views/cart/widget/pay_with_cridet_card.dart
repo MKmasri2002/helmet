@@ -33,9 +33,8 @@ class PayWithCreditCard extends StatelessWidget {
                 ),
                 CreditCard(
                   config: PaymentMethods.payWithMoyasarCridetCard(
-                      (order.price! +
-                          order.price! * 0.16)),
-                  onPaymentResult:ctrl.onPaymentResult,
+                      (ctrl.product.price! + ctrl.product.price! * 0.16)),
+                  onPaymentResult: ctrl.onPaymentResult,
                 ),
               ],
             ),

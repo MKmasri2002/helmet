@@ -3,7 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/data/order_repositry.dart';
+import 'package:helmet_customer/data/subscribe_repositry.dart';
 import 'package:helmet_customer/data/user_repository.dart';
+import 'package:helmet_customer/models/subscribe.dart';
+import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
@@ -14,7 +17,7 @@ import 'package:moyasar/moyasar.dart';
 
 class CartController extends GetxController {
   TextEditingController promoCodeController = TextEditingController();
-
+  dynamic product;
   bool applePay = false;
   bool creditCard = false;
 
@@ -47,9 +50,11 @@ class CartController extends GetxController {
 
   @override
   void onInit() {
+    product = Get.arguments['product'];
     startTimer();
     super.onInit();
   }
+
   ////// using one time package and subsicription*////////////
   void onPaymentResult(result) async {
     if (seconds <= 0) {
@@ -64,18 +69,17 @@ class CartController extends GetxController {
     }
     if (result is PaymentResponse) {
       PaymentResponse paymentResponse = result;
-    
+
       CardPaymentResponseSource sourcePayment = paymentResponse.source;
       log(result.status.toString());
       switch (result.status) {
         case PaymentStatus.paid:
-       
-          log("order set");
-
-          
-
-          log(order.toString());
-         await setOrder();
+          if (product is Order) {
+            await setOrder();
+          } else {
+            await setSubscribe();
+          }
+          await setOrder();
           appTools.unFocusKeyboard(Get.context!);
 
           // await Get.put(HomeController()).getAllUserOrder();
@@ -97,7 +101,8 @@ class CartController extends GetxController {
       }
     }
   }
- ////// using one time package*////////////
+
+  ////// using one time package*////////////
   Future<void> setOrder() async {
     await OrderRepositry.addOrder(order: order);
     //  userOrder =
@@ -107,8 +112,17 @@ class CartController extends GetxController {
       Get.to(() => const OrderStatusView(),
           binding: OrderStatusBinding(), arguments: order);
     }
-     
-     
+  }
+
+  Future<void> setSubscribe() async {
+    await SubscribeRepositry.addSubscription(subscribe: subscribe);
+    //  userOrder =
+    //       await UserRepository.getUserOrders(userId: userModel.uid!);
+    //   Get.find<HomeController>().update();
+    if (order.type == "one_time") {
+      Get.to(() => const OrderStatusView(),
+          binding: OrderStatusBinding(), arguments: order);
+    }
   }
 
   void payCridetCard() {

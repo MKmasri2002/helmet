@@ -14,8 +14,8 @@ import 'package:helmet_customer/widget/primary_button/primary_button.dart';
 import 'package:moyasar/moyasar.dart';
 
 class PaymentMethodWidget extends StatelessWidget {
-  const PaymentMethodWidget({super.key});
-
+  const PaymentMethodWidget({super.key, });
+  
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CartController>(
@@ -131,8 +131,8 @@ class PaymentMethodWidget extends StatelessWidget {
               if (ctrl.applePay && Platform.isAndroid)
                 ApplePay(
                     config: PaymentMethods.payWithMoyasarApplePay(
-                        (order.price! +
-                            order.price! * 0.16)),
+                        (ctrl.product.price! +
+                            ctrl.product.price! * 0.16)),
                     onPaymentResult: ctrl.onPaymentResult)
             ],
           ),

@@ -39,7 +39,7 @@ class CaruselAdsHome extends StatelessWidget {
       Get.to(() => const BookingView(newOrder: true),
           binding: BookingBinding());
     } else {
-      Get.to(() => const CartScreen(), binding: CartBinding());
+      // Get.to(() => const CartScreen(), binding: CartBinding());
     }
   }
 

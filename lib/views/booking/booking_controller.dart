@@ -97,10 +97,11 @@ class BookingController extends GetxController {
     // await OrderRepositry.addOrder(order: order);
 
     Get.to(
-      () => const CartScreen(
+      () => CartScreen(
         showTime: true,
       ),
       binding: CartBinding(),
+      arguments: {'product': order},
     );
   }
 

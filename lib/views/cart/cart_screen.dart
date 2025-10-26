@@ -16,8 +16,10 @@ class CartScreen extends StatelessWidget {
   const CartScreen({
     super.key,
     this.showTime,
+    
   });
   final bool? showTime;
+  
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CartController>(
@@ -143,15 +145,14 @@ class CartScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CustomText(
-                        text: order.type,
+                        text: ctrl.product.type,
                         fontSize: 14,
                         color: Colors.black,
                       ),
                       Row(
                         children: [
                           CustomText(
-                            text:
-                                order.price!.toStringAsFixed(2),
+                            text: ctrl.product.price!.toStringAsFixed(2),
                             fontSize: 14,
                             color: primaryColor,
                           ),
@@ -187,8 +188,7 @@ class CartScreen extends StatelessWidget {
                       Row(
                         children: [
                           CustomText(
-                            text: (order.price! * 0.16)
-                                .toStringAsFixed(2),
+                            text: (ctrl.product.price! * 0.16).toStringAsFixed(2),
                             fontSize: 14,
                             color: primaryColor,
                             fontWeight: FontWeight.bold,
@@ -222,8 +222,7 @@ class CartScreen extends StatelessWidget {
                       Row(
                         children: [
                           CustomText(
-                            text: (order.price! +
-                                    order.price! * 0.16)
+                            text: (ctrl.product.price! + ctrl.product.price! * 0.16)
                                 .toStringAsFixed(2),
                             fontSize: 14,
                             color: primaryColor,
@@ -246,7 +245,7 @@ class CartScreen extends StatelessWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                const PaymentMethodWidget()
+                 PaymentMethodWidget()
               ],
             ),
           ),

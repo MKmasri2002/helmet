@@ -53,18 +53,19 @@ class Packages extends StatelessWidget {
   }
 
   // أنشئ الاشتراك مؤقت
-  Subscribe newSub = Subscribe(
+   subscribe = Subscribe(
     userId: userModel.uid,
     titleAr: packages[index].nameAr,
     titleEn: packages[index].nameEn,
     price: packages[index].price?.toDouble() ?? 0,
     count: packages[index].count.toString(),
     remain: packages[index].count,
+    type: 'package',
     isPaid: false,
   );
 
   // اذهب لصفحة الدفع مع الاشتراك
-  Get.to(() => SubscriptionCartScreen(subscription: newSub), binding: CartBinding());
+        Get.to(() => CartScreen(), binding: CartBinding(),arguments: {'product': subscribe},);
 },
 
 
