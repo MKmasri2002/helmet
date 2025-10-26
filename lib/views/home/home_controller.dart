@@ -30,7 +30,7 @@ Subscribe subscribe = Subscribe();
 List<WashItemsModel> washItemsAfterFiltering = [];
 List<Area> areasList = [];
 // List<Order> userOrder = [];
-List<Order> userorders = [];
+List<Order> userOrders = [];
 // List<WashSession> futureSessions = [];
 // WashSession? nearestSession;
 Duration? remainingTime;
@@ -42,8 +42,7 @@ List<Subscribe> subscriptions = [];
   List<PackageModel> adsPackages = [];
   List<PackageModel> oneTimePackages = [];
   List<PackageModel> subscriptionPackages = [];
-  // List<Order> userSubscriptionOrders = [];
-  // List<Order> userOneTimeOrders = [];
+ 
   Timer? sessionTimer;
   late DatabaseReference orderRef;
   @override
@@ -73,8 +72,6 @@ List<Subscribe> subscriptions = [];
     await getPackages();
     await getAllAreas();
     await getSubscriptions(userModel.uid!);
-    ////////////////t
-    /////////////////////
     await getAllUserOrder();
     await getAllDriverInArea();
     // startSessionTimer();
@@ -133,21 +130,10 @@ Future<void> getSubscriptions(String userId) async {
   }
 
   Future<void> getAllUserOrder() async {
-    userorders.clear();
-    // userSubscriptionOrders.clear();
-    // userOneTimeOrders.clear();
+    userOrders.clear();
 
-    userorders = await UserRepository.getUserOrders(userId: userModel.uid!);
-    // if (userOrder.isNotEmpty)
-    //   for (Order order in userOrder) {
-    //     if (order.washType == "subscription") {
-    //       userSubscriptionOrders.add(order);
-    //     } else if (order.washType == "one_time") {
-    //       userOneTimeOrders.add(order);
-    //     }
-    //   }
-    // getUserSession();
 
+    userOrders = await UserRepository.getUserOrders(userId: userModel.uid!);
     update();
   }
 

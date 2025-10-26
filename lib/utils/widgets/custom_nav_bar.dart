@@ -52,7 +52,7 @@ class CustomNavBar extends StatelessWidget {
           GestureDetector(
             onTap: () {
               if (pos != 2) {
-                Get.offNamed(RoutesString.reservations);
+                Get.toNamed(RoutesString.reservations);
               }
             },
             child: Column(

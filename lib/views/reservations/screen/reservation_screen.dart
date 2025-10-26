@@ -16,12 +16,12 @@ final int length=1;
   Widget build(BuildContext context) {
     return GetBuilder<ReservationController>(builder: (ctrl) {
       final itemsToShow =
-          ctrl.showAll.value ? userorders : userorders.take(length).toList();
+          ctrl.showAll.value ? userOrders : userOrders.take(length).toList();
 
       // for (var session in userSessions) {
       //   print(session.toString());
       // }
-      print(userorders.length);
+      print(userOrders.length);
       print(itemsToShow.length);
       return Scaffold(
         backgroundColor: Colors.white,
@@ -109,7 +109,7 @@ final int length=1;
                 const SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: userorders.length > length || ctrl.showAll.value
+                  child: userOrders.length > length || ctrl.showAll.value
                   ? PrimaryButton(
                     onTap: () {
                       ctrl.toggleShowAll(); // تغيير الحالة لعرض الكل أو عرض مختصر
