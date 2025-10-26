@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:helmet_customer/models/subscribe.dart';
 import 'package:helmet_customer/models/wash_models/package_model.dart';
 
 import 'package:helmet_customer/views/cart/cart_binding.dart';
 import 'package:helmet_customer/views/cart/cart_screen.dart';
+import 'package:helmet_customer/views/home/home_screen/widget/package2pay/cartpage2.dart';
 import 'package:helmet_customer/views/home/home_screen/widget/wash_package/component/component/botoom.dart';
 import 'package:helmet_customer/views/home/home_screen/widget/wash_package/component/component/description.dart';
 import 'package:helmet_customer/views/home/home_screen/widget/wash_package/component/component/image.dart';
@@ -40,28 +42,32 @@ class Packages extends StatelessWidget {
           padding: const EdgeInsets.all(0),
           itemBuilder: (context, index) {
             return GestureDetector(
-              onTap: () {
-                 if (ctrl.checkLogin()==false) {
-                        ctrl.pleaseLogin();
-                        return;
-                      }
-                      if (ctrl.checkLocation()==false) {
-                        ctrl.pleaseSelectLocation();
-                        return;
-                      }
-              //  fcsf
-              //   // washDataTripModel = Order(
-              //   //   washType: packages[index].type!,
-              //   //   washPrice: packages[index].price,
-              //   //   washCount: packages[index].count!,
-              //   //   endDate: packages[index].endDate,
-              //   //   washTitleAr: packages[index].nameAr,
-              //   //   washTitleEn: packages[index].nameEn,
-              //   //   createdAt: DateTime.now().toString(),
-              //   //   userId: userModel.uid,
-              //   // );
-              //   Get.to(() => const CartScreen(), binding: CartBinding());
-              },
+           onTap: () async {
+  if (ctrl.checkLogin() == false) {
+    ctrl.pleaseLogin();
+    return;
+  }
+  if (ctrl.checkLocation() == false) {
+    ctrl.pleaseSelectLocation();
+    return;
+  }
+
+  // أنشئ الاشتراك مؤقت
+  Subscribe newSub = Subscribe(
+    userId: userModel.uid,
+    titleAr: packages[index].nameAr,
+    titleEn: packages[index].nameEn,
+    price: packages[index].price?.toDouble() ?? 0,
+    count: packages[index].count.toString(),
+    remain: packages[index].count,
+    isPaid: false,
+  );
+
+  // اذهب لصفحة الدفع مع الاشتراك
+  Get.to(() => SubscriptionCartScreen(subscription: newSub), binding: CartBinding());
+},
+
+
               child: Container(
                 margin: const EdgeInsets.symmetric(
                   horizontal: 16,

@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
-import 'package:helmet_customer/views/home/home_screen/widget/silver/h_s_carousel_slider_builder.dart';
+import 'package:helmet_customer/views/home/home_controller.dart';
+import 'package:helmet_customer/views/home/home_screen/widget/silver/Subscription_package_widget.dart';
 import 'package:helmet_customer/views/home/home_screen/widget/wash_package/one_time_wash.dart';
 import 'package:helmet_customer/views/home/home_screen/widget/wash_package/packages.dart';
-import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/views/widget/custom_text.dart';
 
 class Silvers extends StatelessWidget {
-  const Silvers({
-    super.key,
-  });
+  const Silvers({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(builder: (ctrl) {
+      final String currUserId =userModel.uid!;
       return Container(
         decoration: const BoxDecoration(
           color: Color(0xffF0FAFF),
@@ -26,23 +26,24 @@ class Silvers extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // if (ctrl.userSubscriptionOrders.isNotEmpty) ...[
-              //   CustomText(
-              //     text: TranslationData.currentPackage.tr,
-              //     fontSize: 18,
-              //     fontWeight: FontWeight.bold,
-              //   ),
-              //   const SizedBox(height: 16),
-              //   HomeScreenCarouselSliderBuilder(
-              //       userWashDataTripModel: ctrl.userSubscriptionOrders),
-              //   const SizedBox(height: 24),
-              // ],
 
+              // ** اعرض الاشتراكات الحالية للمستخدم **
+              if (ctrl.subscriptions.isNotEmpty) ...[
+                CustomText(
+                  text: TranslationData.currentPackage.tr, // أو "Current Subscriptions"
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+                const SizedBox(height: 16),
+SubscriptionWashStream(userId: currUserId),
+                const SizedBox(height: 24),
+              ],
+
+              // ** اعرض الباقات المتاحة للغسلة الواحدة **
               if (ctrl.oneTimePackages.isNotEmpty) ...[
                 OneTimeWash(package: ctrl.oneTimePackages),
                 const SizedBox(height: 24),
               ] else ...[
-                // Debug: Show message when no one-time packages are available
                 Container(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -60,15 +61,14 @@ class Silvers extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
               ],
-              //   Packages(
-              //     packages: ctrl.oneTimePackages,
-              //     title: "One time wash",
-              //   ),
+
+              // ** الباقات الأخرى (مثلاً خطط الاشتراك الجديدة) **
               if (ctrl.subscriptionPackages.isNotEmpty)
                 Packages(
                   packages: ctrl.subscriptionPackages,
                   title: "Economy Plan",
                 ),
+
               SizedBox(height: AppSize.height * 0.1),
             ],
           ),
