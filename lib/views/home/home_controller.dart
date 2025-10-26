@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:core';
 import 'dart:developer';
+import 'package:helmet_customer/models/subscribe.dart' as subModel;
+import 'package:cloud_firestore/cloud_firestore.dart' as firestore;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +38,8 @@ Duration? remainingTime;
 String? newStatus;
 
 class HomeController extends GetxController {
+List<subModel.Subscribe> subscriptions = [];
+
   List<PackageModel> adsPackages = [];
   List<PackageModel> oneTimePackages = [];
   List<PackageModel> subscriptionPackages = [];
@@ -69,6 +73,7 @@ class HomeController extends GetxController {
     await getUserInfo();
     await getPackages();
     await getAllAreas();
+    ////////////////t
     /////////////////////
     await getAllUserOrder();
     await getAllDriverInArea();
@@ -77,7 +82,27 @@ class HomeController extends GetxController {
 
     update();
   }
+Future<void> getSubscriptions(String userId) async {
+    try {
+      subscriptions.clear();
+      var snapshot = await firestore.FirebaseFirestore.instance
+          .collection('subscriptions')
+          .where('userId', isEqualTo: userId)
+          .get();
 
+      subscriptions = snapshot.docs.map((doc) {
+        final data = doc.data();
+        data['id'] = doc.id; // حفظ الـ doc id
+        return subModel.Subscribe.fromJson(data);
+      }).toList();
+
+      update(); // تحديث الـ UI
+    } catch (e) {
+      print('Error getting subscriptions: $e');
+    }
+  }
+
+ 
   Future<void> getUserInfo() async {
     if (FirebaseAuth.instance.currentUser != null) {
       userModel.uid = FirebaseAuth.instance.currentUser!.uid;
