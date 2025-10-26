@@ -4,6 +4,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:helmet_customer/data/order_repositry.dart';
 import 'package:helmet_customer/data/user_repository.dart';
 import 'package:helmet_customer/models/car.dart';
 import 'package:helmet_customer/models/wash_models/wash_items.dart';
@@ -83,8 +84,6 @@ class BookingController extends GetxController {
 
   /////////////////*******is using for one time package and subsicription*/
   void createOrder() async {
-    
-
     selectedDateTime = DateTime(
       selectedDateTime.year,
       selectedDateTime.month,
@@ -93,11 +92,9 @@ class BookingController extends GetxController {
     );
     order.washTime = fullDate.toString();
     order.cars = selectedCars;
-    
-    
-    userorders.add(order);
 
-    
+    userorders.add(order);
+    // await OrderRepositry.addOrder(order: order);
 
     Get.to(
       () => const CartScreen(

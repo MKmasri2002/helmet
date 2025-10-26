@@ -36,21 +36,24 @@ class Order {
     titleAr = json['titleAr'];
     titleEn = json['titleEn'];
     type = json['type'];
+     if (json['cars'] != null) {
+    cars = List<Car>.from(json['cars'].map((x) => Car.fromJson(x)));
+  }
 
   }
   Map<String, dynamic> toJson() {
-    Map<String, dynamic> data = {
-      'id': id,
-      'user_id': user_id,
-      'areaId': areaId,
-      'driverId': driverId,
-      'washTime': washTime,
-      'status': status,
-      'price': price,
-      'titleAr': titleAr,
-      'titleEn': titleEn,
-      'type': type,
-    };
+    final  Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['user_id'] = user_id;
+    data['areaId'] = areaId;
+    data['driverId'] = driverId;
+    data['washTime'] = washTime;
+    data['status'] = status;
+    data['price'] = price;
+    data['titleAr'] = titleAr;
+    data['titleEn'] = titleEn;
+    data['type'] = type;
+    data['cars'] = cars.map((x) => x.toJson()).toList();
     return data;
   }
 
