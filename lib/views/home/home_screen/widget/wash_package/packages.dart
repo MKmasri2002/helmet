@@ -52,21 +52,43 @@ class Packages extends StatelessWidget {
     return;
   }
 
-  // أنشئ الاشتراك مؤقت
-   subscribe = Subscribe(
-    userId: userModel.uid,
-    titleAr: packages[index].nameAr,
-    titleEn: packages[index].nameEn,
-    price: packages[index].price?.toDouble() ?? 0,
-    count: packages[index].count.toString(),
-    remain: packages[index].count,
-    type: 'package',
-    isPaid: false,
-  );
+  // الحصول على التاريخ الحالي بدون الوقت
+  final now = DateTime.now();
+DateTime expiry;
 
-  // اذهب لصفحة الدفع مع الاشتراك
-        Get.to(() => CartScreen(), binding: CartBinding(),arguments: {'product': subscribe},);
+// لو عنوان الباكدج يحتوي "شهر" أو "سنة"
+if (packages[index].nameAr!.contains("شهر") || packages[index].nameEn!.contains("Month")) {
+  expiry = DateTime(now.year, now.month + 1, now.day); // +1 شهر
+} else if (packages[index].nameAr!.contains("سنة") || packages[index].nameEn!.contains("Year")) {
+  expiry = DateTime(now.year + 1, now.month, now.day); // +1 سنة
+} else {
+  expiry = now; // بشكل افتراضي
+}
+
+// إنشاء الاشتراك
+subscribe = Subscribe(
+  userId: userModel.uid,
+  titleAr: packages[index].nameAr,
+  titleEn: packages[index].nameEn,
+  descriptionAr: packages[index].descriptionAr,
+  descriptionEn: packages[index].descriptionEn,
+  price: packages[index].price?.toDouble() ?? 0,
+  count: packages[index].count.toString(),
+  remain: packages[index].count,
+  type: 'package',
+  isPaid: false,
+  date: now,
+  expiryDate: expiry,
+);
+
+  // الذهاب لصفحة الدفع مع الاشتراك
+  Get.to(
+    () => CartScreen(),
+    binding: CartBinding(),
+    arguments: {'product': subscribe},
+  );
 },
+
 
 
               child: Container(

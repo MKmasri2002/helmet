@@ -116,7 +116,7 @@ const Map<String, String> ar = {
   "Add new Location": "اضافة موقع جديد",
   "Choose your Location": "اختيار الموقع",
   "Choose": "اختيار",
-  "Home": "المنزل",
+  "Home": "الرئيسية",
   "Work": "العمل",
   "Other": "اخرى",
   "Add": "اضافة",
@@ -208,7 +208,7 @@ const Map<String, String> ar = {
   TranslationData.sharePackage :"مشاركة الباقة",
   /////////////////////////////////////////////////////////////
   TranslationData.skip: "تخطي",
-  TranslationData.reservation: "حجز",
+  TranslationData.reservation: "حجوزاتي",
   TranslationData.paymentDetails: "تفاصيل الدفع",
   TranslationData.paymentMethod: "طريقة الدفع",
   TranslationData.payWithApplePay: "الدفع باستخدام آبل باي",

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:helmet_customer/generated/assets.dart';
 import 'package:helmet_customer/models/subscribe.dart';
 import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/theme/app_colors.dart';
@@ -13,6 +14,7 @@ import 'package:helmet_customer/views/booking/booking_view/booking_view.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/views/order_status/order_status_binding.dart';
 import 'package:helmet_customer/views/order_status/order_status_view.dart';
+import 'package:helmet_customer/views/widget/text/t2.dart';
 
 class CurrentPackageWidget extends StatelessWidget {
   const CurrentPackageWidget({
@@ -49,14 +51,44 @@ class CurrentPackageWidget extends StatelessWidget {
                     const SizedBox(
                       height: 8,
                     ),
-                    // if (currentOrder.endDate != null)
-                    //   CustomText(
-                    //     text:
-                    //         'End date: ${CustomDate.getDateDDMMYYYYFromMillisecond(DateTime.parse(currentOrder.endDate!).millisecondsSinceEpoch)}',
-                    //     fontSize: 12,
-                    //     fontWeight: FontWeight.w700,
-                    //     color: Colors.grey,
-                    //   ),
+                    if (currentOrder.expiryDate != null)
+                      T2(
+                        text:
+                            'تنتهي في : ${CustomDate.getDateDDMMYYYYFromMillisecond(DateTime.parse(currentOrder.expiryDate!.toString()).millisecondsSinceEpoch)}',
+                      ),
+                      SizedBox(height: 10,),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 10),
+                        decoration: BoxDecoration(
+                          color: const Color(0xff29C1F2),
+                          borderRadius: BorderRadius.circular(
+                              30),
+                        ),
+                        child:const Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            
+                             CustomText(
+                      text: 'مشاركة الباقة',
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                    ),
+                                                SizedBox(width: 8),
+
+                    ImageIcon(
+                              AssetImage(Assets.share),
+                              color: Colors.white,
+                              size: 22,
+                            ),
+                           
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
                 const Spacer(),
@@ -71,15 +103,36 @@ class CurrentPackageWidget extends StatelessWidget {
                 Column(
                   children: [
                     const CustomText(
-                      text: 'Remain',
+                      text: 'باقي',
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
                     ),
-                    CustomText(
-                      text: currentOrder.count.toString(),
-                      fontSize: 32,
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.primary,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CustomText(
+                        text: currentOrder.remain.toString(),
+                        fontSize: 30,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.primary,
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        CustomText(
+                          text: 'من اصل',
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                        ),
+                        SizedBox(
+                          width: 4,
+                        ),
+                        CustomText(
+                          text: currentOrder.count.toString(),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.primary,
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -115,9 +168,8 @@ class CurrentPackageWidget extends StatelessWidget {
                 height: 50,
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: AppColors.primary.withValues(alpha: 0.3),
-                ),
+                    borderRadius: BorderRadius.circular(8),
+                    color: Color(0xffF0FAFF)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
