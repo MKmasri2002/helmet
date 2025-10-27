@@ -33,7 +33,7 @@ class SettingsScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: const Text("حسابي"),
+          title:  Text(TranslationData.account.tr),
           centerTitle: true,
           toolbarHeight: AppSize.height / 7.5,
           titleTextStyle: const TextStyle(
@@ -131,7 +131,7 @@ class SettingsScreen extends StatelessWidget {
                                         Get.toNamed(RoutesString.edit);
                                       },
                                       child: ProfileText(
-                                          text: "تعديل",
+                                          text: TranslationData.edit.tr,
                                           height: 0.25,
                                           fontSize: 16,
                                           color: Color(0xff29C1F2)),
@@ -143,7 +143,7 @@ class SettingsScreen extends StatelessWidget {
                           ),
                           const ProfileDivider(),
                           MenuItem(
-                            mainText: 'اضافة البريد الالكتروني',
+                            mainText: TranslationData.addEmailAddress.tr,
                             path: Assets.profileEmailIcon,
                             onTap: () {
                               Get.toNamed(RoutesString.editemail);

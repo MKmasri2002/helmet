@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/theme/app_colors.dart';
+import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
 import 'package:helmet_customer/views/add_car/add_car_controller.dart';
 import 'package:helmet_customer/views/add_car/widget/choose_brand_car.dart';
@@ -18,7 +19,7 @@ class AddCarScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: const Text('Add Car'),
+          title:  Text(TranslationData.addCar.tr),
           leading: IconButton(
             onPressed: () {
               Get.back();
@@ -35,9 +36,9 @@ class AddCarScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 20),
-                  const Text(
-                    'Choose Your Brand',
-                    style: TextStyle(
+                   Text(
+                    TranslationData.chooseYourBrand.tr,
+                    style:const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -68,9 +69,9 @@ class AddCarScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  const Text(
-                    'Choose Your Model',
-                    style: TextStyle(
+                   Text(
+                   TranslationData.chooseYourModel.tr,
+                    style:const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -106,9 +107,9 @@ class AddCarScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  const Text(
-                    'Car Plate Number',
-                    style: TextStyle(
+                   Text(
+                    TranslationData.carPlateNumber.tr,
+                    style:const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -116,13 +117,13 @@ class AddCarScreen extends StatelessWidget {
                   const SizedBox(height: 8),
                   MainTextField(
                     controller: ctrl.plateNumberController,
-                    hint: 'Enter your car plate number',
+                    hint:  TranslationData.enterYourCarPlateNumber.tr,
                     textInputType: TextInputType.text,
                   ),
                   const SizedBox(height: 20),
-                  const Text(
-                    'Car Color',
-                    style: TextStyle(
+                   Text(
+                    TranslationData.carColor.tr,
+                    style:const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -174,7 +175,7 @@ class AddCarScreen extends StatelessWidget {
                   const SizedBox(height: 24),
                   PrimaryButton(
                     onTap: () => ctrl.addCar(context),
-                    title: 'Add Car',
+                    title: TranslationData.addCar.tr,
                     ),
                   const SizedBox(height: 24),
                 ],

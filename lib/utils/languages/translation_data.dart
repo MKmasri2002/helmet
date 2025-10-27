@@ -91,4 +91,52 @@ class TranslationData {
   //////////////////settings///////////////////////////
   static const String changeLanguage = "change_language";
   static const String receiveNotifications = "receive_notifications";
+  //////////////////////profil/////////////////////
+  static const String updateEmailAddress = "Update_Email_Address";
+  static const String pleaseenterthenewemailaddress =
+      "Please_enter_the_new_email_address";
+  static const String Email = "Email";
+  static const String update = "update";
+  static const String addEmailAddress = "Add_Email_Address";
+  static const String edit = "Edit";
+  static const String profile = "Profile";
+  static const String editAccount = "Edit_Account";
+  static const String firstName = "First_Name";
+  static const String lastName = "Last_Name";
+  static const String dateofBirth = "Date_of_Birth";
+  static const String gender = "Gender";
+    static const String female = "Female";
+  static const String male = "male";
+static const String balance = "Balance";
+static const String apply = "Apply";
+static const String updatePhoneNumber = "Update_Phone_Number";
+static const String enterNewPhoneNumber = "Enter_New_Phone_Number";
+static const String continueBtn = "Continue";
+static const String riyalPerWash = "Riyal_Per_Wash";
+static const String save = "Save";
+static const String silverPackage = "Silver_Package";
+static const String invoices = "Invoices";
+static const String washInternalExternal = "Wash_Internal_External";
+static const String basicPackage = "Basic_Package";
+static const String add = "Add";
+static const String gifts = "Gifts";
+static const String giftDate = "Gift_Date";
+static const String sendGift = "Send_Gift";
+static const String applied = "Applied";
+static const String recipientPhoneNumber = "Recipient_Phone_Number";
+static const String chooseYourCard = "Choose_Your_Designed_Card";
+static const String creditCard = "Credit_Card";
+static const String confirmAndSend = "Confirm_And_Send";
+static const String fiveWashesPerWeek = "Five_Washes_Per_Week";
+static const String twoWashesPerWeek = "Two_Washes_Per_Week";
+static const String home = "Home";
+static const String addCar = "Add_Car";
+static const String chooseYourBrand = "Choose_Your_Brand";
+static const String chooseYourModel = "Choose_Your_Model";
+static const String carPlateNumber = "Car_Plate_Number";
+static const String enterYourCarPlateNumber = "Enter_Your_Car_Plate_Number";
+static const String carColor = "Car_Color";
+
+
+
 }

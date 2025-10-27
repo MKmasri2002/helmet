@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/views/editprofile/edit_controller.dart';
 
 class NameFields extends StatelessWidget {
@@ -13,14 +15,13 @@ class NameFields extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(width: 7,),
           Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                              const  Text(
-                                  "الإسم الاول",
-                                  style: TextStyle(
+                                Text(
+                                  TranslationData.firstName.tr,
+                                  style:const TextStyle(
                                     fontFamily: 'IBM Plex Sans Arabic',
                                     fontWeight: FontWeight.w500,
                                     fontStyle: FontStyle.normal,
@@ -36,7 +37,7 @@ class NameFields extends StatelessWidget {
                                   width: 155,
                                   child: TextFormField(
                                     controller: controller.firstNameController,
-                                    textAlign: TextAlign.right,
+                                    textAlign: TextAlign.start,
                                     style: TextStyle(
                                       fontSize: 16,
                                       color: Colors.grey,
@@ -74,9 +75,9 @@ class NameFields extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                              const  Text(
-                                  "الاسم الثاني",
-                                  style: TextStyle(
+                                Text(
+                                 TranslationData.lastName.tr,
+                                  style:const TextStyle(
                                     fontFamily: 'IBM Plex Sans Arabic',
                                     fontWeight: FontWeight.w500,
                                     fontStyle: FontStyle.normal,
@@ -91,7 +92,7 @@ class NameFields extends StatelessWidget {
                                 SizedBox(
                                   width: 155,
                                   child: TextFormField(
-                                    textAlign: TextAlign.right,
+                                    textAlign: TextAlign.start,
                                    controller: controller.lastNameController,
       
                                     style: TextStyle(

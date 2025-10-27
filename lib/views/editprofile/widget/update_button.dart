@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/views/editprofile/edit_controller.dart';
 
 class UpdateButton extends StatelessWidget {
@@ -18,9 +19,9 @@ class UpdateButton extends StatelessWidget {
         minimumSize: const Size(double.infinity, 55),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
-      child: const Text(
-        "تحديث",
-        style: TextStyle(
+      child:  Text(
+        TranslationData.update.tr,
+        style:const TextStyle(
           fontSize: 18,
           color: Colors.white,
           fontWeight: FontWeight.w600,

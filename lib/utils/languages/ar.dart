@@ -182,6 +182,8 @@ const Map<String, String> ar = {
   "Active quantity": "الكمية المتاحة",
   "you are use all": "لقد استخدمتها جميعها",
   "Next Chance": "المحاولة الاخرى",
+  "Update":"jp]de",
+  TranslationData.update:"تحديث",
   TranslationData.oneTimeWash: "غسلة لمرة واحدة",
   TranslationData.saverPackage: "باقة التوفير",
   TranslationData.saverPackagePrice: "سعر باقة التوفير",
@@ -271,4 +273,49 @@ const Map<String, String> ar = {
   ///////////////Setting////////////////////////
   TranslationData.changeLanguage: "تغيير اللغة",
   TranslationData.receiveNotifications: "تلقي الإشعارات",
+  //////////////////profile///////////////////////
+  TranslationData.updateEmailAddress:"تحديث البريد الالكتروني",
+TranslationData.pleaseenterthenewemailaddress:"يرجى ادخال البريد الالكتروني الجديد",
+TranslationData.addEmailAddress:"اضافة البريد الالكتروني",
+TranslationData.edit:"تعديل",
+TranslationData.profile:"حسابي",
+TranslationData.editAccount:"تعديل الحساب",
+TranslationData.firstName:"الاسم الاول",
+TranslationData.lastName:"الاسم الاخير",
+TranslationData.dateofBirth:"تاريخ الميلاد",
+TranslationData.gender:"الجنس",
+
+TranslationData.female:"أنثى",
+TranslationData.male:"ذكر",
+TranslationData.balance: "الرصيد",
+TranslationData.apply: "تطبيق",
+TranslationData.updatePhoneNumber: "تحديث رقم الجوال",
+TranslationData.enterNewPhoneNumber: "يرجى ادخال رقم الجوال الجديد",
+TranslationData.continueBtn: "متابعة",
+TranslationData.riyalPerWash: "ريال لكل غسلة",
+TranslationData.silverPackage: "الباقه الفضيه",
+TranslationData.invoices: "الفواتير",
+TranslationData.washInternalExternal: "غسلة (داخلي وخارجي)",
+TranslationData.basicPackage: "باقة البيسك",
+TranslationData.gifts: "الهدايا",
+TranslationData.giftDate: "تاريخ الهدايا",
+TranslationData.sendGift: "ارسال هديه",
+TranslationData.applied: "تم تطبيقه",
+TranslationData.recipientPhoneNumber: "رقم جوال المستلم",
+TranslationData.chooseYourCard: "اختر بطاقتك المصممه",
+TranslationData.creditCard: "البطاقه الائتمانيه",
+TranslationData.confirmAndSend: "تاكيد وارسال",
+TranslationData.fiveWashesPerWeek: "خمس غسلات أسبوعيًا لمدة شهر",
+TranslationData.twoWashesPerWeek: "غسلتين أسبوعيًا لمدة شهر",
+TranslationData.addCar: "أضف سيارة",
+TranslationData.chooseYourBrand: "اختر العلامة التجارية",
+TranslationData.chooseYourModel: "اختر الطراز",
+TranslationData.carPlateNumber: "رقم لوحة السيارة",
+TranslationData.enterYourCarPlateNumber: "أدخل رقم لوحة سيارتك",
+TranslationData.carColor: "لون السيارة",
+
+
+
+
+
 };

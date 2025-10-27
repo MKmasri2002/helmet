@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/generated/assets.dart';
+import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/utils/colors/color1.dart';
 
@@ -37,7 +38,7 @@ class CustomNavBar extends StatelessWidget {
                   color: pos == 1 ? primaryColor : baseGreyColor,
                 ),
                 Text(
-                  "الرئيسية",
+                 TranslationData.home.tr,
                   style: TextStyle(
                     fontFamily: 'IBM Plex Sans Arabic',
                     fontSize: 14,
@@ -67,7 +68,7 @@ class CustomNavBar extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "الحجوزات",
+                 TranslationData.reservation.tr,
                   style: TextStyle(
                     fontFamily: 'IBM Plex Sans Arabic',
                     fontSize: 14,
@@ -94,7 +95,7 @@ class CustomNavBar extends StatelessWidget {
                   size: 26,
                 ),
                 Text(
-                  "الهدايا",
+                 TranslationData.gifts.tr,
                   style: TextStyle(
                     fontFamily: 'IBM Plex Sans Arabic',
                     fontSize: 14,
@@ -121,7 +122,7 @@ class CustomNavBar extends StatelessWidget {
                   size: 26,
                 ),
                 Text(
-                  "حسابي",
+                 TranslationData.account.tr,
                   style: TextStyle(
                     fontFamily: 'IBM Plex Sans Arabic',
                     fontSize: 14,
