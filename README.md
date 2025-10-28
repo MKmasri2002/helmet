@@ -37,26 +37,25 @@ A service provider will arrive to the user’s location and wash the vehicle on-
 ## 📱 Screenshots
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/your_image_link_from_issue_1" width="240">
-  <img src="https://user-images.githubusercontent.com/your_image_link_from_issue_2" width="240">
-  <img src="https://user-images.githubusercontent.com/your_image_link_from_issue_3" width="240">
+  <img src="assets/screen_shot/image1.jpg" width="240">
+  <img src="assets/screen_shot/image2.jpg" width="240">
+  <img src="assets/screen_shot/image3.jpg" width="240">
 </p>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/your_image_link_from_issue_4" width="240">
-  <img src="https://user-images.githubusercontent.com/your_image_link_from_issue_5" width="240">
-  <img src="https://user-images.githubusercontent.com/your_image_link_from_issue_6" width="240">
+  <img src="assets/screen_shot/image4.jpg" width="240">
+  <img src="assets/screen_shot/image5.jpg" width="240">
+  <img src="assets/screen_shot/image6.jpg" width="240">
 </p>
-
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/your_image_link_from_issue_7" width="240">
-  <img src="https://user-images.githubusercontent.com/your_image_link_from_issue_8" width="240">
-  <img src="https://user-images.githubusercontent.com/your_image_link_from_issue_9" width="240">
+  <img src="assets/screen_shot/image7.jpg" width="240">
+  <img src="assets/screen_shot/image8.jpg" width="240">
+  <img src="assets/screen_shot/image9.jpg" width="240">
 </p>
-
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/your_image_link_from_issue_10" width="240">
-  <img src="https://user-images.githubusercontent.com/your_image_link_from_issue_11" width="240">
+  <img src="assets/screen_shot/image10.jpg" width="240">
+  <img src="assets/screen_shot/image11.jpg" width="240">
+
 </p>
 
 ---
