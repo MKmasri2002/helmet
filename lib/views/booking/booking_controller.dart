@@ -96,6 +96,7 @@ class BookingController extends GetxController {
     );
     order.washTime = fullDate.toString();
     order.cars = selectedCars;
+    
 
     userOrders.add(order);
     // await OrderRepositry.addOrder(order: order);
