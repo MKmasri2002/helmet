@@ -121,6 +121,7 @@ class BookingView extends StatelessWidget {
                             }
                             
                             ctrl.createOrder();
+                            Get.back();
                           },
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size(100, 60),

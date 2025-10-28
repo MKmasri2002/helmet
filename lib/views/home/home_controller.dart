@@ -52,9 +52,7 @@ class HomeController extends GetxController {
   @override
   void onInit() async {
     await getAllData();
-    // if (nearestSession != null) {
-    //   // _listenToSessionStatus(nearestSession?.id ?? "");
-    // }
+
     startTimer();
     super.onInit();
   }
