@@ -152,7 +152,7 @@ class CartScreen extends StatelessWidget {
                       Row(
                         children: [
                           CustomText(
-                            text: ctrl.product.price!.toStringAsFixed(2),
+text: (ctrl.product.price ?? 0).toStringAsFixed(2),
                             fontSize: 14,
                             color: primaryColor,
                           ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/generated/assets.dart';
+import 'package:helmet_customer/utils/languages/translate.dart';
+import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/utils/widgets/custom_nav_bar.dart';
 import 'package:helmet_customer/views/gifts/gifts/gifts_controller.dart';
 import 'package:helmet_customer/views/gifts/widget/appbar.dart';
@@ -17,12 +19,10 @@ class sendgifts extends StatelessWidget {
     return GetBuilder<giftsController>(
       builder: (ctrl) {
         
-        return Directionality(
-          textDirection: TextDirection.rtl,
-          child: Scaffold(
+        return Scaffold(
             backgroundColor: Colors.white,
             appBar: appbar(
-              text: "إرسال هدية",
+              text:TranslationData.sendGift.tr,
               withleading: true,
               ontap: () => Get.back(),
             ),
@@ -31,11 +31,11 @@ class sendgifts extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 20),
-                  const Padding(
+                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Text(
-                      "رقم جوال المستلم ",
-                      style: TextStyle(
+                      TranslationData.recipientPhoneNumber.tr,
+                      style:const TextStyle(
                         fontFamily: 'IBM Plex Sans Arabic',
                         fontWeight: FontWeight.w600,
                         fontStyle: FontStyle.normal,
@@ -49,11 +49,11 @@ class sendgifts extends StatelessWidget {
                   SizedBox(height: 20),
                   phonetextfield(controller: ctrl.phoneController),
                   SizedBox(height: 30),
-                  const Padding(
+                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Text(
-                      "اختر بطاقتك المصممة",
-                      style: TextStyle(
+                     TranslationData.chooseYourCard.tr,
+                      style:const TextStyle(
                         fontFamily: 'IBM Plex Sans Arabic',
                         fontWeight: FontWeight.w600,
                         fontStyle: FontStyle.normal,
@@ -68,7 +68,7 @@ class sendgifts extends StatelessWidget {
                   mylistview(i: true, price: "2"),
                   SizedBox(height: 40),
                   OptionButton(
-                    title: "البطاقة الاتمانية",
+                    title: TranslationData.creditCard.tr,
                     value: 1,
                     controller: ctrl.option1Controller,
                     image2: Assets.visa,
@@ -91,7 +91,7 @@ class sendgifts extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   button(
-                      title: "تأكيد و إرسال",
+                      title: TranslationData.confirmAndSend.tr,
                       onPressed: () {
                         ctrl.sendGift(value: "20");
                       }),
@@ -99,7 +99,6 @@ class sendgifts extends StatelessWidget {
               ),
             ),
             bottomNavigationBar: const CustomNavBar(pos: 3),
-          ),
         );
       },
     );

@@ -52,6 +52,7 @@ class Packages extends StatelessWidget {
                   return;
                 }
 
+
                 // أنشئ الاشتراك مؤقت
                 subscribe = Subscribe(
                   userId: userModel.uid,
@@ -72,6 +73,7 @@ class Packages extends StatelessWidget {
                   arguments: {'product': subscribe},
                 );
               },
+
               child: Container(
                 margin: const EdgeInsets.symmetric(
                   horizontal: 16,

@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/generated/assets.dart';
-import 'package:helmet_customer/utils/colors/color1.dart';
+import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/views/add_car/add_car_controller.dart';
 
@@ -14,13 +13,11 @@ class Mycarspage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<AddCarController>(
       builder: (ctrl) {
-        return Directionality(
-          textDirection: TextDirection.rtl,
-          child: Scaffold(
+        return  Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
               backgroundColor: Colors.white,
-              title: const Text("سياراتي"),
+              title:  Text(TranslationData.myCars.tr),
               centerTitle: true,
               toolbarHeight: 100,
               titleTextStyle: const TextStyle(
@@ -44,20 +41,38 @@ class Mycarspage extends StatelessWidget {
               ),
               actions: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: InkWell(
-                    onTap: () {
-                      Get.toNamed(RoutesString.addcar);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Image.asset(
-                        Assets.add,
-                        height: 35,
-                        width: 70,
-                      ),
-                    ),
-                  ),
+    padding:const EdgeInsets.symmetric(horizontal: 18, vertical: 20), 
+                child: ElevatedButton(
+  onPressed: () {
+    Get.toNamed(RoutesString.addcar);
+  },
+  style: ElevatedButton.styleFrom(
+    backgroundColor: const Color.fromARGB(255, 223, 240, 248),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8),
+    ),
+    elevation: 1,
+    padding:const EdgeInsets.symmetric(horizontal: 4, vertical: 4), 
+  ),
+  child: Row(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+     
+      Text(
+        TranslationData.add.tr,
+        style: const TextStyle(
+          color: Colors.lightBlue,
+          fontWeight: FontWeight.bold,
+          fontSize: 14,
+        ),
+      ),
+          const  SizedBox(width: 3), 
+
+      const Icon(Icons.add, color: Colors.lightBlue, size: 20),
+    ],
+  ),
+)
+
                 ),
               ],
             ),
@@ -120,7 +135,7 @@ class Mycarspage extends StatelessWidget {
                                     height: 30,
                                   ),
                                 ),
-                                SizedBox(
+                              const  SizedBox(
                                   width: 8,
                                 ),
                                 InkWell(
@@ -142,7 +157,6 @@ class Mycarspage extends StatelessWidget {
                 );
               },
             ),
-          ),
         );
       },
     );

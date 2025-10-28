@@ -15,6 +15,7 @@ import 'package:helmet_customer/views/booking/booking_view/booking_view.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/views/order_status/order_status_binding.dart';
 import 'package:helmet_customer/views/order_status/order_status_view.dart';
+import 'package:helmet_customer/views/widget/text/t2.dart';
 
 class CurrentPackageWidget extends StatelessWidget {
   const CurrentPackageWidget({
@@ -51,6 +52,7 @@ class CurrentPackageWidget extends StatelessWidget {
                     const SizedBox(
                       height: 8,
                     ),
+
                     if (currentOrder.endDate != null)
                       CustomText(
                         text:
@@ -94,6 +96,7 @@ class CurrentPackageWidget extends StatelessWidget {
                             // اختياري: ارتفاع محدد
                           ),
                         ],
+
                       ),
                     ),
                   ],
@@ -109,6 +112,7 @@ class CurrentPackageWidget extends StatelessWidget {
                 ),
                 Column(
                   children: [
+
                     CustomText(
                       text: TranslationData.remain.tr,
                       fontSize: 14,
@@ -119,6 +123,7 @@ class CurrentPackageWidget extends StatelessWidget {
                       fontSize: 32,
                       fontWeight: FontWeight.w700,
                       color: AppColors.primary,
+
                     ),
                     CustomText(
                       text: TranslationData.outOf.tr + ' ${currentOrder.count}',
@@ -160,9 +165,8 @@ class CurrentPackageWidget extends StatelessWidget {
                 height: 50,
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: AppColors.primary.withValues(alpha: 0.3),
-                ),
+                    borderRadius: BorderRadius.circular(8),
+                    color: Color(0xffF0FAFF)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

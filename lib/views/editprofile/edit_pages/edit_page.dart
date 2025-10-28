@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/views/editprofile/edit_controller.dart';
 import 'package:helmet_customer/views/editprofile/widget/date_field.dart';
 import 'package:helmet_customer/views/editprofile/widget/gender_sellector.dart';
@@ -15,13 +16,13 @@ class EditProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(EditController());
 
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
+    return// Directionality(
+     // textDirection: TextDirection.rtl,
+      /*child:*/ Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
               backgroundColor: Colors.white,
-              title: Text("تعديل الحساب"),
+              title: Text(TranslationData.editAccount.tr),
               centerTitle: true,
               toolbarHeight: 72,
               titleTextStyle: const TextStyle(
@@ -60,7 +61,7 @@ class EditProfilePage extends StatelessWidget {
             ),
           ),
         ),
-      ),
+    //  ),
     );
   }
 }

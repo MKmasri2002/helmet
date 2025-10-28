@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:helmet_customer/generated/assets.dart';
+import 'package:helmet_customer/utils/languages/translation_data.dart';
 
 class PackageCard extends StatelessWidget {
   final Map<String, dynamic> package;
@@ -35,13 +37,14 @@ class PackageCard extends StatelessWidget {
               child: Row(
                 children: [
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 3.h),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 6.w, vertical: 3.h),
                     decoration: BoxDecoration(
                       color: const Color(0xff29C1F2),
                       borderRadius: BorderRadius.circular(6.r),
                     ),
                     child: Text(
-                      "وفر ${package["discount"]}",
+                      " ${TranslationData.save.tr} ${package["discount"]}",
                       style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.bold,
@@ -49,7 +52,11 @@ class PackageCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                 SizedBox(width: 10.w), Image.asset(Assets.tabby, width: 62.w, height: 21.h), SizedBox(width: 10.w), Image.asset(Assets.tamara, width: 60.w, height: 20.h), const Spacer(),
+                  SizedBox(width: 10.w),
+                  Image.asset(Assets.tabby, width: 62.w, height: 21.h),
+                  SizedBox(width: 10.w),
+                  Image.asset(Assets.tamara, width: 60.w, height: 20.h),
+                  const Spacer(),
                   Container(
                     width: 40.w,
                     height: 45.h,
@@ -88,7 +95,10 @@ class PackageCard extends StatelessWidget {
             ),
 
             const Spacer(),
-SizedBox(height: 40,),
+            SizedBox(
+              height: 40,
+            ),
+
             /// Bottom Button
             Padding(
               padding: EdgeInsets.all(8.0.h),
@@ -105,24 +115,30 @@ SizedBox(height: 40,),
                   onPressed: onPressed ?? () {},
                   child: Row(
                     children: [
-                      Text(
-                        "${package["price"]} ريال",
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                      Row(
+                        children: [
+                          Text(
+                            "${package["price"]}",
+                            style: TextStyle(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Image.asset(Assets.reyalblack,height: 30,),
+                        ],
                       ),
                       const Spacer(),
                       Text(
-                        "(${package["unit"]} ريال لكل غسلة)",
+                        "(${package["unit"]} ${TranslationData.riyalPerWash.tr})",
                         style: TextStyle(
                           fontSize: 14.sp,
                           color: Colors.white70,
                         ),
                       ),
                       const SizedBox(width: 8),
-                      const Icon(Icons.arrow_forward_ios, color: Colors.white, size: 18),
+                      const Icon(Icons.arrow_forward_ios,
+                          color: Colors.white, size: 18),
                     ],
                   ),
                 ),

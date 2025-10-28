@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/generated/assets.dart';
+import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/views/editprofile/edit_controller.dart';
 
 class GenderSelector extends StatelessWidget {
@@ -13,10 +14,10 @@ class GenderSelector extends StatelessWidget {
     return GetBuilder<EditController>(
       builder: (ctrl) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-         const Text(
-                            "الجنس",
-                            style: TextStyle(
+        children: [         
+          Text(
+                          TranslationData.gender.tr,
+                            style:const TextStyle(
                               fontFamily: 'IBM Plex Sans Arabic',
                               fontWeight: FontWeight.w500,
                               fontStyle: FontStyle.normal,
@@ -31,9 +32,9 @@ class GenderSelector extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              genderOption(ctrl, "ذكر", Assets.man),
+              genderOption(ctrl,TranslationData.male.tr, Assets.man),
               const SizedBox(width: 15),
-              genderOption(ctrl, "أنثى",Assets.woman),
+              genderOption(ctrl, TranslationData.female.tr,Assets.woman),
             ],
           ),
         ],

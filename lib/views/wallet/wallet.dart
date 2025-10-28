@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/generated/assets.dart';
+import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/views/wallet/wallet_controller.dart';
 
 class WalletPage extends StatelessWidget {
@@ -8,16 +9,14 @@ class WalletPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<WalletController>(
       builder: (ctrl) {
-        return Directionality(
-          textDirection: TextDirection.rtl,
-          child: Scaffold(
+        return  Scaffold(
             backgroundColor: Color.fromARGB(255, 255, 255, 255),
             appBar: AppBar(
               backgroundColor: Colors.white,
               elevation: 0,
-              title: const Text(
-                "محفظتي",
-                style: TextStyle(
+              title:  Text(
+               TranslationData.myWallet.tr,
+                style:const TextStyle(
                   fontFamily: 'IBM Plex Sans Arabic',
                   fontWeight: FontWeight.w500,
                   fontStyle: FontStyle.normal,
@@ -63,9 +62,9 @@ class WalletPage extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                           const Text(
-                              'الرصيد',
-                              style: TextStyle(
+                            Text(
+                              TranslationData.balance.tr,
+                              style:const TextStyle(
                                 fontFamily: 'IBM Plex Sans Arabic',
                                 fontWeight: FontWeight.w500,
                                 fontStyle: FontStyle.normal,
@@ -119,7 +118,7 @@ class WalletPage extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        'تطبيق',
+                        TranslationData.apply.tr,
                         style: TextStyle(color: Colors.white, fontSize: 16),
                       ),
                     ),
@@ -127,7 +126,6 @@ class WalletPage extends StatelessWidget {
                 ],
               ),
             ),
-          ),
         );
       },
     );

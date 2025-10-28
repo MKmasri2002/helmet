@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/generated/assets.dart';
+import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/utils/widgets/custom_nav_bar.dart';
 import 'package:helmet_customer/views/gifts/gifts/gifts2.dart';
@@ -19,7 +20,7 @@ class giftspage extends StatelessWidget {
       builder: (ctrl) {
         return Scaffold(
           backgroundColor: Colors.white,
-          appBar: appbar(text: "الحجوزات السابقة"),
+          appBar: appbar(text: TranslationData.gifts.tr),
           body: StreamBuilder<QuerySnapshot>(
             stream: ctrl.getgiftsStream(),
             builder: (context, snapshot) {
@@ -36,7 +37,7 @@ class giftspage extends StatelessWidget {
                 children: [
                   mylistview(),
                   button(
-                    title: "إرسال هدية",
+                    title: TranslationData.sendGift.tr,
                     onPressed: () {
                       Get.toNamed(RoutesString.sendgifts);
                     },
@@ -45,7 +46,7 @@ class giftspage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(14.0),
                     child: Text(
-                      "تاريخ الهدايا",
+                     TranslationData.giftDate.tr,
                       style: TextStyle(
                         fontFamily: 'IBM Plex Sans Arabic',
                         fontWeight: FontWeight.w600,
@@ -131,11 +132,11 @@ class giftspage extends StatelessWidget {
                                       ],
                                     ),
                                   ),
-                                  const Padding(
+                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      "تم تطبيقه",
-                                      style: TextStyle(
+                                      TranslationData.applied.tr,
+                                      style:const TextStyle(
                                         fontFamily: 'IBM Plex Sans Arabic',
                                         fontWeight: FontWeight.w500,
                                         fontSize: 15,

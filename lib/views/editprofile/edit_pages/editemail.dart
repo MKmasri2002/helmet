@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/utils/validation/validations_metod.dart';
 import 'package:helmet_customer/views/editprofile/edit_controller.dart';
 
@@ -12,9 +13,9 @@ class Editemail extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<EditController>(
       builder: (ctrl) {
-        return Directionality(
-          textDirection: TextDirection.rtl,
-          child: Scaffold(
+       // return Directionality(
+        //  textDirection: TextDirection.rtl,
+          return Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
               backgroundColor: Colors.white,
@@ -41,7 +42,8 @@ class Editemail extends StatelessWidget {
                   children: [
                     SizedBox(height: 20),
                     Text(
-                      "تحديث البريد الالكتروني",
+                      TranslationData.updateEmailAddress.tr,
+                      textAlign: TextAlign.start,
                       style: TextStyle(
                         fontFamily: 'IBM Plex Sans Arabic',
                         fontWeight: FontWeight.w500,
@@ -53,7 +55,8 @@ class Editemail extends StatelessWidget {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      "يرجى ادخال البريد الالكتروني الجديد",
+                     TranslationData.pleaseenterthenewemailaddress.tr,
+                      textAlign: TextAlign.start,
                       style: TextStyle(
                         fontFamily: 'IBM Plex Sans Arabic',
                         fontSize: 15,
@@ -63,7 +66,8 @@ class Editemail extends StatelessWidget {
                     ),
                     SizedBox(height: 40),
                     Text(
-                      "البريد الالكتروني",
+                     TranslationData.Email.tr,
+                      textAlign: TextAlign.start,
                       style: TextStyle(
                         fontFamily: 'IBM Plex Sans Arabic',
                         fontWeight: FontWeight.w500,
@@ -71,7 +75,6 @@ class Editemail extends StatelessWidget {
                         height: 0.25,
                         color: Color(0xff121212),
                       ),
-                      textAlign: TextAlign.right,
                     ),
                     SizedBox(height: 20),
                     SizedBox(
@@ -127,7 +130,7 @@ class Editemail extends StatelessWidget {
                           ),
                         ),
                         child: Text(
-                          "تحديث",
+                          TranslationData.update.tr,
                           style: TextStyle(
                             fontFamily: 'IBM Plex Sans Arabic',
                             fontWeight: FontWeight.w500,
@@ -137,23 +140,12 @@ class Editemail extends StatelessWidget {
                         ),
                       ),
                     ),
-                    ElevatedButton(
-  onPressed: () async {
-    try {
-      await FirebaseAuth.instance.signOut();
-      Get.offAllNamed('/login'); // بدّلها بالـ route تبعك
-    } catch (e) {
-      Get.snackbar("خطأ", "فشل تسجيل الخروج: $e");
-    }
-  },
-  child: Text("تسجيل الخروج"),
-)
+                   
 
                   ],
                 ),
               ),
             ),
-          ),
         );
       },
     );

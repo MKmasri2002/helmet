@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/views/fawater/fawater_controller.dart';
 
 class Fawater extends StatelessWidget {
-  final List<String> dates = ["2028-09-03", "2028-09-03", "2028-09-03"];
+  final List<String> dates = ["2028-09-03", "2028-09-03",];
 
-  final List<String> times = ["PM3:05 ", "PM10:05 ", "PM8:0"];
+  final List<String> times = ["PM3:05 ", "PM10:05 ",];
 
   final List<String> titles = [
-    "غسلة (داخلي وخارجي)",
-    " باقة البيسك",
-    "عملية شحن بواسطة بطاقة الدفع",
-  ];
+    TranslationData.washInternalExternal.tr,
+TranslationData.basicPackage.tr,  ];
 
   final List<String> prices = ["119", "119", "10.00"];
 
@@ -19,13 +18,11 @@ class Fawater extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<FawaterController>(
       builder: (ctrl) {
-        return Directionality(
-          textDirection: TextDirection.rtl,
-          child: Scaffold(
+        return  Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
               backgroundColor: Colors.white,
-              title: Text("الفواتير"),
+              title: Text(TranslationData.invoices.tr),
 
               centerTitle: true,
               toolbarHeight: 100,
@@ -150,7 +147,6 @@ class Fawater extends StatelessWidget {
                 },
               ),
             ),
-          ),
         );
       },
     );

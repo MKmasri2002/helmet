@@ -19,9 +19,9 @@ class phonetextfield extends StatelessWidget {
               controller: controller,
               keyboardType: TextInputType.number,
               maxLength: 10,
-              textAlign: TextAlign.right,
+              textAlign: TextAlign.start,
               decoration: InputDecoration(
-                hintText: "مثال 05xxxxxxxxx",
+                hintText: " 05xxxxxxxxx",
                 hintStyle: TextStyle(fontSize: 15, color: Color(0xff8193B3)),
                 prefixIcon: Padding(
                   padding: const EdgeInsets.all(8.0),

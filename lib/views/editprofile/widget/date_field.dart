@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/views/editprofile/edit_controller.dart';
 
 class DateField extends StatelessWidget {
@@ -14,9 +16,9 @@ class DateField extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                        const  Text(
-                            "تاريخ الميلاد",
-                            style: TextStyle(
+                          Text(
+                           TranslationData.dateofBirth.tr,
+                            style:const TextStyle(
                               fontFamily: 'IBM Plex Sans Arabic',
                               fontWeight: FontWeight.w500,
                               fontStyle: FontStyle.normal,
