@@ -42,33 +42,36 @@ class Packages extends StatelessWidget {
           padding: const EdgeInsets.all(0),
           itemBuilder: (context, index) {
             return GestureDetector(
-           onTap: () async {
-  if (ctrl.checkLogin() == false) {
-    ctrl.pleaseLogin();
-    return;
-  }
-  if (ctrl.checkLocation() == false) {
-    ctrl.pleaseSelectLocation();
-    return;
-  }
+              onTap: () async {
+                if (ctrl.checkLogin() == false) {
+                  ctrl.pleaseLogin();
+                  return;
+                }
+                if (ctrl.checkLocation() == false) {
+                  ctrl.pleaseSelectLocation();
+                  return;
+                }
 
-  // أنشئ الاشتراك مؤقت
-   subscribe = Subscribe(
-    userId: userModel.uid,
-    titleAr: packages[index].nameAr,
-    titleEn: packages[index].nameEn,
-    price: packages[index].price?.toDouble() ?? 0,
-    count: packages[index].count.toString(),
-    remain: packages[index].count,
-    type: 'package',
-    isPaid: false,
-  );
+                // أنشئ الاشتراك مؤقت
+                subscribe = Subscribe(
+                  userId: userModel.uid,
+                  titleAr: packages[index].nameAr,
+                  titleEn: packages[index].nameEn,
+                  price: packages[index].price?.toDouble() ?? 0,
+                  count: packages[index].count.toString(),
+                  remain: packages[index].count,
+                  endDate: packages[index].endDate,
+                  type: 'package',
+                  isPaid: false,
+                );
 
-  // اذهب لصفحة الدفع مع الاشتراك
-        Get.to(() => CartScreen(), binding: CartBinding(),arguments: {'product': subscribe},);
-},
-
-
+                // اذهب لصفحة الدفع مع الاشتراك
+                Get.to(
+                  () => CartScreen(),
+                  binding: CartBinding(),
+                  arguments: {'product': subscribe},
+                );
+              },
               child: Container(
                 margin: const EdgeInsets.symmetric(
                   horizontal: 16,
@@ -90,10 +93,8 @@ class Packages extends StatelessWidget {
                         PackageDescription(
                             arContent: packages[index].nameAr!,
                             enContent: packages[index].nameEn!,
-                            arDescription:
-                                packages[index].descriptionAr!,
-                            enDescription:
-                                packages[index].descriptionEn!),
+                            arDescription: packages[index].descriptionAr!,
+                            enDescription: packages[index].descriptionEn!),
                         const SizedBox(
                           width: 16,
                         ),

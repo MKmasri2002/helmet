@@ -119,6 +119,7 @@ class BookingView extends StatelessWidget {
                                   context, const PaymentSheet(), true);
                               return;
                             }
+                            
                             ctrl.createOrder();
                           },
                           style: ElevatedButton.styleFrom(

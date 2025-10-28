@@ -5,8 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:helmet_customer/data/order_repositry.dart';
+import 'package:helmet_customer/data/subscribe_repositry.dart';
 import 'package:helmet_customer/data/user_repository.dart';
 import 'package:helmet_customer/models/car.dart';
+import 'package:helmet_customer/models/subscribe.dart';
+import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/models/wash_models/wash_items.dart';
 
 import 'package:helmet_customer/utils/constants.dart';
@@ -42,12 +45,13 @@ class BookingController extends GetxController {
 
   bool applePay = false;
   bool creditCard = false;
-
+  dynamic product;
   @override
   void onInit() async {
+    product = Get.arguments['product'];
     super.onInit();
     if (order.price != null) {
-      if (order.type == 'one_time') {
+      if (product is Order) {
         totalPrice = order.price!.toInt();
       } else {
         totalPrice = 0;
@@ -95,7 +99,12 @@ class BookingController extends GetxController {
 
     userOrders.add(order);
     // await OrderRepositry.addOrder(order: order);
-
+    if (product is Subscribe) {
+      await OrderRepositry.addOrder(order: order);
+      product.remain--;
+      await SubscribeRepositry.updateSubscription(subscribe: product as Subscribe);
+      return;
+    }
     Get.to(
       () => CartScreen(
         showTime: true,

@@ -10,4 +10,8 @@ class SubscribeRepositry {
     subscribe.isPaid = true;
     await snap.set(subscribe.toJson());
   }
+  static Future<void> updateSubscription({required Subscribe subscribe}) async {
+    final snap = firestore.collection('subscribe').doc(subscribe.id);
+    await snap.update(subscribe.toJson());
+  }
 }

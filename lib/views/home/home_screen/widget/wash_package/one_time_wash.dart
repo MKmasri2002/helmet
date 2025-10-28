@@ -82,7 +82,9 @@ class OneTimeWash extends StatelessWidget {
                           () => const BookingView(
                                 newOrder: false,
                               ),
-                          binding: BookingBinding());
+                          binding: BookingBinding(),
+                          arguments: {'product': order}
+                          );
                     },
                     child: Container(
                       margin: const EdgeInsets.only(right: 12),

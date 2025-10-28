@@ -8,6 +8,7 @@ class Subscribe {
   String? titleAr;
   String? titleEn;
   String? type;
+  String? endDate;
 
   Subscribe({
     this.id,
@@ -19,6 +20,7 @@ class Subscribe {
     this.titleAr,
     this.titleEn,
     this.type,
+    this.endDate,
   });
   Subscribe.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -30,6 +32,7 @@ class Subscribe {
     titleAr = json['title_ar'];
     titleEn = json['title_en'];
     type = json['type'];
+    endDate = json['end_date'];
   }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
@@ -42,6 +45,7 @@ class Subscribe {
     data['title_ar'] = titleAr;
     data['title_en'] = titleEn;
     data['type'] = type;
+    data['end_date'] = endDate;
     return data;
   }
 }

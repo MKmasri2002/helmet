@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:helmet_customer/generated/assets.dart';
 import 'package:helmet_customer/models/subscribe.dart';
 import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/theme/app_colors.dart';
@@ -49,14 +51,51 @@ class CurrentPackageWidget extends StatelessWidget {
                     const SizedBox(
                       height: 8,
                     ),
-                    // if (currentOrder.endDate != null)
-                    //   CustomText(
-                    //     text:
-                    //         'End date: ${CustomDate.getDateDDMMYYYYFromMillisecond(DateTime.parse(currentOrder.endDate!).millisecondsSinceEpoch)}',
-                    //     fontSize: 12,
-                    //     fontWeight: FontWeight.w700,
-                    //     color: Colors.grey,
-                    //   ),
+                    if (currentOrder.endDate != null)
+                      CustomText(
+                        text:
+                            '${TranslationData.endDate.tr} ${CustomDate.getDateDDMMYYYYFromMillisecond(DateTime.parse(currentOrder.endDate!).millisecondsSinceEpoch)}',
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.grey,
+                      ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Container(
+                      width: AppSize.width * 0.35,
+                      height: AppSize.width * 0.13,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          color: Color(0xff29C1F2)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            TranslationData.sharePackage.tr,
+                            style: TextStyle(
+                              color: Color(0xffFFFFFF),
+                              fontFamily: 'IBMPlexSansArabic',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 12,
+                              height: 1.5,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          SvgPicture.asset(
+                            SvgAssets.sharePackage,
+                            fit: BoxFit
+                                .cover, // يحافظ على نسب الصورة ويملأ الـ Container
+                            width: 22.21, // اختياري: عرض محدد
+                            height: 23.29,
+
+                            // اختياري: ارتفاع محدد
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
                 const Spacer(),
@@ -70,16 +109,21 @@ class CurrentPackageWidget extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    const CustomText(
-                      text: 'Remain',
+                    CustomText(
+                      text: TranslationData.remain.tr,
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
                     ),
                     CustomText(
-                      text: currentOrder.count.toString(),
+                      text: currentOrder.remain.toString(),
                       fontSize: 32,
                       fontWeight: FontWeight.w700,
                       color: AppColors.primary,
+                    ),
+                    CustomText(
+                      text: TranslationData.outOf.tr + ' ${currentOrder.count}',
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
                     ),
                   ],
                 ),
@@ -107,6 +151,7 @@ class CurrentPackageWidget extends StatelessWidget {
                   Get.to(
                     () => const BookingView(newOrder: true),
                     binding: BookingBinding(),
+                    arguments: {'product': currentOrder},
                   );
                   return;
                 }

@@ -92,6 +92,7 @@ class HomeController extends GetxController {
       var snapshot = await firestore.FirebaseFirestore.instance
           .collection('subscribe')
           .where('user_id', isEqualTo: userId)
+          .where('remain', isGreaterThan: 0)
           .get();
 
       subscriptions = snapshot.docs.map((doc) {
