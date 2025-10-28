@@ -51,10 +51,11 @@ class HomeController extends GetxController {
   late DatabaseReference orderRef;
   @override
   void onInit() async {
-    await getAllData();
-
-    startTimer();
-    super.onInit();
+  // ضيف هاي
+  await getAllData();
+  startTimer();
+  super.onInit();
+   
   }
 
   void startTimer() {

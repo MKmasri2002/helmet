@@ -1,90 +1,26 @@
-import 'dart:developer';
-
-import 'package:firebase_database/firebase_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart' hide Order;
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:helmet_customer/data/user_repository.dart';
-// import 'package:helmet_customer/models/wash_models/order.dart';
-import 'package:helmet_customer/models/wash_models/wash_items.dart';
-// import 'package:helmet_customer/models/wash_models/order.dart';
-import 'package:helmet_customer/utils/tools/tools.dart';
-import 'package:helmet_customer/views/home/home_controller.dart';
+import 'package:helmet_customer/models/wash_models/order.dart';
+
 
 class OrderStatusController extends GetxController {
   GoogleMapController? mapController;
-  // Order washDataTripModel = Order();
-  List<WashItemsModel> washItems = [];
-  String userAddress = "";
-  List<WashItemsModel> washItemsAfterFiltering = [];
-  String argument = '';
-  // WashSession? currentSession;
-  String lastSessionStatus = 'pending'; // observable لتحديث الـ UI
-
-  late DatabaseReference orderRef;
-  // Define your variables and methods here
-
-  int updateOrderStatus(String status) {
-    if (status.isEmpty) {
-      return 0; // Return an error code
-    }
-    if (status == "completed") {
-      // Perform actions for completed order
-      return 3;
-    }
-
-    if (status == "in_progress") {
-      // Perform actions for in-progress order
-      return 2;
-    }
-    if (status == "active") {
-      // Perform actions for active order
-      return 1;
-    }
-    if (status == "pending") {
-      // Perform actions for pending order
-      return 0;
-    }
-    if (status == "cancelled") {
-      // Perform actions for cancelled order
-      return -1;
-    }
-    return 1; // Return a status code
-  }
+  Order? currentOrder;
+  
+ 
 
   @override
   void onInit() async {
-    // washDataTripModel = Get.arguments as Order;
-
-    // lastSessionStatus = nearestSession?.status ?? 'pending';
-    userAddressMethod();
+    currentOrder = Get.arguments['order'];
     super.onInit();
-
-    // orderRef = FirebaseDatabase.instance.ref("orders/${washDataTripModel.id}");
-    // if(nearestSession != null) {
-    //   _listenToSessionStatus(nearestSession?.id ?? "");
-    // }
   }
-
-  void _listenToSessionStatus(String sessionId) {
-    orderRef
-        .child("washSessions/$sessionId/status")
-        .onValue
-        .listen((event) async {
-      if (!event.snapshot.exists) return;
-
-     lastSessionStatus = event.snapshot.value as String;
-      
-      log("New session status: $lastSessionStatus");
-
-      update();
+  Future<void> updateOrderStatus(String status) async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    await firestore.collection('order').doc(currentOrder!.id).update({
+      'status': status,
     });
-  }
 
-  void userAddressMethod() async {
-    userAddress = await appTools.getAddressFromLatLng(
-      userModel.addresses[0].latitude ?? 0,
-      userModel.addresses[0].longitude ?? 0,
-    );
-    update();
+    update(); 
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:helmet_customer/generated/assets.dart';
 import 'package:helmet_customer/theme/app_size.dart';
+import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/views/order_status/order_status_controller.dart';
 
 class Component4 extends StatelessWidget {
@@ -15,9 +16,9 @@ class Component4 extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: Row(
           children: [
-            const Text(
-              "رقم الحجز  1238764",
-              style: TextStyle(
+            Text(
+              "رقم الحجز :${ctrl.currentOrder!.id}",
+              style: const TextStyle(
                 fontFamily: 'IBMPlexSansArabic',
                 fontWeight: FontWeight.w500,
                 fontSize: 18,
@@ -39,7 +40,7 @@ class Component4 extends StatelessWidget {
               // اختياري: ارتفاع محدد
             ),
             SizedBox(
-              width: AppSize.width * 0.3,
+              width: AppSize.width * 0.05,
             ),
           ],
         ),

@@ -29,7 +29,7 @@ class ButtomWithStatus extends StatelessWidget {
             Get.to(
               () => const OrderStatusView(),
               binding: OrderStatusBinding(),
-              arguments: order,
+               arguments: {'order': nearestOrder}
             );
           } else {
             Get.snackbar(

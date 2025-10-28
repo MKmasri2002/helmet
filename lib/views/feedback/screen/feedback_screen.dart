@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/views/feedback/controller/feedback_controller.dart';
 import 'package:helmet_customer/views/feedback/screen/feedback_screen2.dart';
 
@@ -8,8 +9,8 @@ class FeedbackScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double pageWidth = MediaQuery.of(context).size.width;
-    double pageHeight = MediaQuery.of(context).size.height;
+    double pageWidth = AppSize.width;
+    double pageHeight = AppSize.height;
     return GetBuilder<FeedbackController>(
       builder: (ctrl) {
         return Directionality(

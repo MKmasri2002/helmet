@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
+import 'package:helmet_customer/views/home/home_binding.dart';
+import 'package:helmet_customer/views/home/home_screen/home_screen.dart';
 
 class FeedbackScreen2 extends StatelessWidget {
   const FeedbackScreen2({super.key});
@@ -31,7 +33,8 @@ class FeedbackScreen2 extends StatelessWidget {
             onPressed: () {
               Get.back();
             },
-            icon: const Icon(Icons.arrow_back_ios, color: Colors.black, size: 16),
+            icon:
+                const Icon(Icons.arrow_back_ios, color: Colors.black, size: 16),
           ),
         ),
         body: SafeArea(

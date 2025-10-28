@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:helmet_customer/views/order_status/widget/component1.dart';
+
 import 'package:helmet_customer/views/order_status/widget/component10.dart';
 import 'package:helmet_customer/views/order_status/widget/component11.dart';
 import 'package:helmet_customer/views/order_status/widget/component3.dart';
@@ -52,10 +52,10 @@ class OrderStatusView extends StatelessWidget {
                       Sperator(),
                       Component4(),
                       Sperator(),
-                      // Component5(),
+                      Component5(),
                       Sperator(),
                       Component6(),
-                      // Component7(),
+                     Component7(),
                       SizedBox(
                         height: 20,
                       ),

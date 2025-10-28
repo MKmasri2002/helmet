@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/generated/assets.dart';
+import 'package:helmet_customer/models/subscribe.dart';
 import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/utils/colors/color1.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
@@ -119,9 +120,9 @@ class BookingView extends StatelessWidget {
                                   context, const PaymentSheet(), true);
                               return;
                             }
-                            
+
                             ctrl.createOrder();
-                            Get.back();
+                            if (ctrl.product is Subscribe) Get.back();
                           },
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size(100, 60),

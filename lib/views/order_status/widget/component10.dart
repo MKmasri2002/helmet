@@ -55,33 +55,33 @@ class Component10 extends StatelessWidget {
               thickness: 2,
               height: 30,
             ),
-            // Text(
-            //   ctrl.washDataTripModel.washTitleAr ?? "",
-            //   style: const TextStyle(
-            //     fontFamily: 'IBMPlexSansArabic',
-            //     fontWeight: FontWeight.w600,
-            //     fontSize: 14,
-            //     height: 25 / 14,
-            //     letterSpacing: 0,
-            //     color: Color(0xff121212),
-            //   ),
-            //   textAlign: TextAlign.start,
-            // ),
-            // SizedBox(
-            //   height: AppSize.width * 0.05,
-            // ),
-            // Text(
-            //   ctrl.washDataTripModel.washTitleAr ?? "",
-            //   style: const TextStyle(
-            //     fontFamily: 'IBMPlexSansArabic',
-            //     fontWeight: FontWeight.w500,
-            //     fontSize: 14,
-            //     height: 32 / 16,
-            //     letterSpacing: 0,
-            //     color: Color(0xff29C1F2),
-            //   ),
-            //   textAlign: TextAlign.start,
-            // ),
+            Text(
+              ctrl.currentOrder?.titleAr ?? "",
+              style: const TextStyle(
+                fontFamily: 'IBMPlexSansArabic',
+                fontWeight: FontWeight.w600,
+                fontSize: 14,
+                height: 25 / 14,
+                letterSpacing: 0,
+                color: Color(0xff121212),
+              ),
+              textAlign: TextAlign.start,
+            ),
+            SizedBox(
+              height: AppSize.width * 0.05,
+            ),
+            Text(
+              ctrl.currentOrder?.titleAr ?? "",
+              style: const TextStyle(
+                fontFamily: 'IBMPlexSansArabic',
+                fontWeight: FontWeight.w500,
+                fontSize: 14,
+                height: 32 / 16,
+                letterSpacing: 0,
+                color: Color(0xff29C1F2),
+              ),
+              textAlign: TextAlign.start,
+            ),
             const Text("رقم السجل الضريبي : 14214689124",
                 style: TextStyle(
                   fontFamily: 'IBMPlexSansArabic',

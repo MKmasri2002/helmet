@@ -68,7 +68,7 @@ class ButtomSlider extends StatelessWidget {
                 Get.to(
                   () => const OrderStatusView(),
                   binding: OrderStatusBinding(),
-                  arguments: nearestOrder, // مرر الطلب الحالي مش أول واحد
+                  arguments: {'order': nearestOrder} // مرر الطلب الحالي مش أول واحد
                 );
               },
               style: ElevatedButton.styleFrom(
