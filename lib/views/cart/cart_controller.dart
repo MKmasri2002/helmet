@@ -79,7 +79,6 @@ class CartController extends GetxController {
           } else {
             await setSubscribe();
           }
-          await setOrder();
           appTools.unFocusKeyboard(Get.context!);
 
           // await Get.put(HomeController()).getAllUserOrder();

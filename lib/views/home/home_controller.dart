@@ -149,7 +149,12 @@ class HomeController extends GetxController {
           .collection('order')
           .where('user_id', isEqualTo: userModel.uid)
           .get();
-      if (snap.docs.isEmpty) return;
+      if (snap.docs.isEmpty) {
+        nearestOrder = null;
+        FutureOrders.clear();
+        update();
+        return;
+      }
 
       // 2️⃣ تحويل الطلبات إلى Objects
       FutureOrders.clear();
