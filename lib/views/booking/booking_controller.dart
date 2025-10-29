@@ -8,6 +8,7 @@ import 'package:helmet_customer/data/order_repositry.dart';
 import 'package:helmet_customer/data/subscribe_repositry.dart';
 import 'package:helmet_customer/data/user_repository.dart';
 import 'package:helmet_customer/models/car.dart';
+import 'package:helmet_customer/models/dirver_model.dart';
 import 'package:helmet_customer/models/subscribe.dart';
 import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/models/wash_models/wash_items.dart';
@@ -23,15 +24,12 @@ import 'package:moyasar/moyasar.dart';
 
 class BookingController extends GetxController {
   GoogleMapController? mapController;
-  int totalPrice = 0;
-  // Car selectedCar = Car();
-  // List<CarTypeModel> carTypes = [];
-  // List<CarTypeModel> carTypesAfterFiltering = [];
-  // List<CarSubTypeModel> carSubTypes = [];
-  // List<CarSubTypeModel> carSubTypes2 = [];
-  // List<CarSubTypeModel> carSubTypesAfterFiltering = [];
 
-  // List<Car> myCars = [];
+  List<DriverModel> currentDrivers = [];
+  List<Order> currentOrders = [];
+
+  int totalPrice = 0;
+
   List<Car> selectedCars = [];
   DateTime? fullDate;
   TimeOfDay selectedTime = TimeOfDay.now();
@@ -57,8 +55,25 @@ class BookingController extends GetxController {
         totalPrice = 0;
       }
     }
-
+    await getSchedules();
     await getWashItems();
+  }
+
+  Future<void> getSchedules() async {
+    await getOrdersAndDriversInThisAreaId(
+        areaId: userModel.addresses
+                .firstWhere((ele) => ele.defaultLocation == true)
+                .areaId ??
+            '');
+            
+    update();
+  }
+
+  Future<void> getOrdersAndDriversInThisAreaId({required String areaId}) async {
+    currentDrivers = await UserRepository.getDriversInArea(areaId: areaId);
+    log("Drivers in area $areaId : ${driverList.length}");
+    currentOrders = await OrderRepositry.getOrdersInArea(areaId: areaId);
+    log("Schedules in area $areaId : ${currentOrders.length}");
   }
 
   void selectAndUnSelectCar({required Car car}) {
@@ -96,14 +111,14 @@ class BookingController extends GetxController {
     );
     order.washTime = fullDate.toString();
     order.cars = selectedCars;
-    
 
     userOrders.add(order);
     // await OrderRepositry.addOrder(order: order);
     if (product is Subscribe) {
       await OrderRepositry.addOrder(order: order);
       product.remain--;
-      await SubscribeRepositry.updateSubscription(subscribe: product as Subscribe);
+      await SubscribeRepositry.updateSubscription(
+          subscribe: product as Subscribe);
       return;
     }
     Get.to(

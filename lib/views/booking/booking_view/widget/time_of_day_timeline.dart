@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/theme/app_colors.dart';
+import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/views/booking/booking_controller.dart';
 
 class TimeOfDayTimeline extends StatelessWidget {
@@ -13,7 +14,7 @@ class TimeOfDayTimeline extends StatelessWidget {
     return GetBuilder<BookingController>(builder: (ctrl) {
       return Center(
         child: SizedBox(
-          width: MediaQuery.sizeOf(context).width,
+          width: AppSize.width,
           child: Wrap(
             alignment: WrapAlignment.center,
             spacing: 8.0, // Horizontal spacing between items

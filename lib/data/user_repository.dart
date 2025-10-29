@@ -1,18 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart' hide Order;
 import 'package:firebase_database/firebase_database.dart';
 import 'package:helmet_customer/models/car.dart';
+import 'package:helmet_customer/models/dirver_model.dart';
 import 'package:helmet_customer/models/wash_models/order.dart';
 
 class UserRepository {
   static FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-  static Future<List<Order>> getUserOrders({required String userId}) async{
-    try{
-      final query =await firebaseFirestore
-        .collection('order')
-        .where('user_id', isEqualTo: userId)
-        .get();
-      
-      if(query.docs.isNotEmpty){
+  static Future<List<Order>> getUserOrders({required String userId}) async {
+    try {
+      final query = await firebaseFirestore
+          .collection('order')
+          .where('user_id', isEqualTo: userId)
+          .get();
+
+      if (query.docs.isNotEmpty) {
         final List<Order> orders = query.docs.map((doc) {
           final data = doc.data();
           final order = Order.fromJson(data);
@@ -20,8 +21,8 @@ class UserRepository {
         }).toList();
         return orders;
       }
-    }catch(e){
-     return [];
+    } catch (e) {
+      return [];
     }
     return [];
   }
@@ -83,6 +84,24 @@ class UserRepository {
       } catch (e) {}
     }
 
+    return [];
+  }
+
+  static Future<List<DriverModel>> getDriversInArea(
+      {required String areaId}) async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    QuerySnapshot query = await firestore
+        .collection('driver')
+        .where('area_id', isEqualTo: areaId)
+        .get();
+    if (query.docs.isNotEmpty) {
+      final List<DriverModel> drivers = query.docs.map((doc) {
+        final data = doc.data() as Map<String, dynamic>;
+        final driver = DriverModel.fromJson(data);
+        return driver;
+      }).toList();
+      return drivers;
+    }
     return [];
   }
 
