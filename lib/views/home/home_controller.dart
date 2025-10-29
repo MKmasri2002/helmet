@@ -35,8 +35,7 @@ Duration? remainingTime;
 Timer? _timer;
 List<Order> userOrders = [];
 List<Order> FutureOrders = [];
-// List<WashSession> futureSessions = [];
-// WashSession? nearestSession;
+
 
 String? newStatus;
 

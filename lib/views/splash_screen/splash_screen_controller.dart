@@ -6,6 +6,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:helmet_customer/data/user_repository.dart';
 import 'package:helmet_customer/main.dart';
 import 'package:helmet_customer/models/address/addresses.dart';
 import 'package:helmet_customer/utils/constants.dart';
@@ -77,6 +78,8 @@ class SplashScreenController extends GetxController {
     }
     await Future.delayed(const Duration(seconds: 3));
     if (FirebaseAuth.instance.currentUser != null) {
+      // await UserRepository.(
+      //     userId: FirebaseAuth.instance.currentUser!.uid);
       Get.offAllNamed(RoutesString.home);
       return;
     }
