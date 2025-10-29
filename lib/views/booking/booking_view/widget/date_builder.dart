@@ -16,17 +16,23 @@ class DateBuilder extends StatelessWidget {
           height: 90,
           child: Padding(
             padding: const EdgeInsetsDirectional.only(start: 16),
-            child: DatePicker(
-              DateTime.now(),
-              // initialSelectedDate: DateTime.now(),
-              selectionColor: primaryColor,
-              selectedTextColor: Colors.white,
-              onDateChange: (date) {
+            child: DatePicker(DateTime.now(),
+                // initialSelectedDate: DateTime.now(),
+                selectionColor: primaryColor,
+                selectedTextColor: Colors.white, onDateChange: (date) {
+              bool full = ctrl.isDayFull(date);
+              if (full) {
                 ctrl.selectedDateTime = date;
                 ctrl.didUserSeletedDate = true;
                 ctrl.update();
-              },
-            ),
+                Get.snackbar('غير متاح', 'كل السائقين محجوزين في هذا اليوم');
+              } else {
+                ctrl.selectedDateTime = date;
+                ctrl.didUserSeletedDate = true;
+                ctrl.update();
+                // ctrl.getAvailableTimesForDate(date);
+              }
+            }),
           ),
         );
       },

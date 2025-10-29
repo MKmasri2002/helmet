@@ -65,7 +65,7 @@ class BookingController extends GetxController {
                 .firstWhere((ele) => ele.defaultLocation == true)
                 .areaId ??
             '');
-            
+
     update();
   }
 
@@ -74,6 +74,74 @@ class BookingController extends GetxController {
     log("Drivers in area $areaId : ${driverList.length}");
     currentOrders = await OrderRepositry.getOrdersInArea(areaId: areaId);
     log("Schedules in area $areaId : ${currentOrders.length}");
+  }
+
+  bool isDayFull(DateTime date) {
+    // حجوزات هذا اليوم فقط
+    final todaysOrders = currentOrders.where((order) {
+      final DateTime washTime = DateTime.parse(order.washTime!);
+      return washTime.year == date.year &&
+          washTime.month == date.month &&
+          washTime.day == date.day;
+    }).toList();
+
+    if (currentDrivers.isEmpty) return true;
+
+    // خزن لكل سائق أوقات حجوزاته في هذا اليوم
+    Map<String, List<int>> driverBookingsHours = {};
+
+    for (var order in todaysOrders) {
+      final washTime = DateTime.parse(order.washTime!);
+      driverBookingsHours
+          .putIfAbsent(order.driverId!, () => [])
+          .add(washTime.hour);
+    }
+
+    // ⏰ حدد الساعات المعروضة فقط
+    int startHour = DateTime.now().day == date.day
+        ? DateTime.now().hour + 1
+        : 10; // مثلاً بعد الساعة الحالية
+    int endHour = 23;
+
+    // عدد الساعات الفعلية القابلة للحجز
+    final List<int> activeHours = [
+      for (int h = startHour; h <= endHour; h++) h
+    ];
+
+    // تحقق: هل كل السائقين محجوزين في جميع الساعات المتاحة؟
+    bool allBusy = currentDrivers.every((driver) {
+      final bookedHours = driverBookingsHours[driver.id] ?? [];
+      // إذا السائق حجز كل الساعات من startHour إلى endHour => فل
+      return activeHours.every((h) => bookedHours.contains(h));
+    });
+
+    return allBusy;
+  }
+
+  bool isHourFull(int hour) {
+    // إذا ما في سواقين أصلاً
+    if (currentDrivers.isEmpty) return true;
+
+    // خذ الطلبات اللي بنفس اليوم
+    final todaysOrders = currentOrders.where((order) {
+      final washTime = DateTime.parse(order.washTime!);
+      return washTime.year == selectedDateTime.year &&
+          washTime.month == selectedDateTime.month &&
+          washTime.day == selectedDateTime.day;
+    }).toList();
+
+    // خزن عدد السواقين المشغولين في هذه الساعة
+    Set<String> busyDrivers = {};
+
+    for (var order in todaysOrders) {
+      final washTime = DateTime.parse(order.washTime!);
+      if (washTime.hour == hour) {
+        busyDrivers.add(order.driverId!);
+      }
+    }
+
+    // لو كل السواقين مشغولين بنفس الساعة، فهي "فل"
+    return busyDrivers.length == currentDrivers.length;
   }
 
   void selectAndUnSelectCar({required Car car}) {
