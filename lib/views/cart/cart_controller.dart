@@ -74,7 +74,7 @@ class CartController extends GetxController {
       log(result.status.toString());
       switch (result.status) {
         case PaymentStatus.paid:
-          if (product is Order) {
+          if (product is OrderModel) {
             await setOrder();
           } else {
             await setSubscribe();

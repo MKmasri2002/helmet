@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:helmet_customer/data/car_repository.dart';
 import 'package:helmet_customer/models/car.dart';
 import 'package:helmet_customer/models/cars_model.dart';
+import 'package:helmet_customer/utils/global/global.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
 import 'package:helmet_customer/views/booking/booking_controller.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';

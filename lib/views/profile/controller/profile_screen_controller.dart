@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/models/user_model.dart';
+import 'package:helmet_customer/utils/global/global.dart';
 import 'package:helmet_customer/utils/widgets/custom_dialog.dart';
 import 'package:helmet_customer/utils/widgets/custom_snake_bar.dart';
 import 'package:helmet_customer/data/auth_repository.dart';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:helmet_customer/utils/global/global.dart';
 import 'package:helmet_customer/utils/widgets/custom_nav_bar.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/views/home/home_screen/widget/buttom_slider.dart';
@@ -20,7 +21,7 @@ class HomeScreen extends StatelessWidget {
           body: SafeArea(
             child: CustomScrollView(
               slivers: [
-                SilverAppBar(adsCarusel: adsPackages),
+                SilverAppBar(adsCarusel: packages.where((test)=> test.showInAdds == true).toList(),),
                 const SliverToBoxAdapter(
                   child: Silvers(),
                 ),

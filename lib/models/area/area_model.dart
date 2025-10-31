@@ -1,12 +1,12 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class Area {
+class AreaModel {
   String? id;
   String? name;
   List<LatLng>? location;
-  Area({this.id, this.name, this.location});
+  AreaModel({this.id, this.name, this.location});
 
-  Area.fromJson(Map<String, dynamic> json) {
+  AreaModel.fromJson(Map<String, dynamic> json) {
     
       id = json['id'];
       name = json['name'];

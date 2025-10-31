@@ -7,8 +7,7 @@ import 'package:moyasar/moyasar.dart';
 const String googleApi = "AIzaSyB10bUvev3cL3COPb2EQwiEOVb7jRTszgo";
 
 Rx<AddressModel> currentAddress = AddressModel().obs;
-List<DriverModel> driverList = [DriverModel(areaId: "bK5JJjGIA254lfH9vsRY",
-email: "faisal1@gmail.com", name: "faisal salameh", phoneNumber: "+96279804013",id:"or9R4xqynGYaKvlUbuUTVyaAY4W2",isActive: true,notificationToken: "f8WD3RceRq6itl62xNqEPn:APA91bFkL4B3ULP9bD2Mk1pKudXAGFijPkgF0FvVxJjES8jfG1zV-uB4IinSnExoqV-CpVpky8Hy_yy2v1t7oCvcSz0F5L0Xvp84dhLtwzFfCti2nm35ut0"    )];
+
 List<ScheduleModel> schedulesList = [];
 double screenWidth = 0.0;
 double screenHeight = 0.0;

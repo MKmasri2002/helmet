@@ -4,6 +4,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:helmet_customer/utils/global/global.dart';
 import 'package:helmet_customer/utils/widgets/custom_nav_bar.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/views/reservations/controller/reservation_controller.dart';
@@ -16,12 +17,12 @@ final int length=1;
   Widget build(BuildContext context) {
     return GetBuilder<ReservationController>(builder: (ctrl) {
       final itemsToShow =
-          ctrl.showAll.value ? userOrders : userOrders.take(length).toList();
+          ctrl.showAll.value ? orders : orders.take(length).toList();
 
       // for (var session in userSessions) {
       //   print(session.toString());
       // }
-      print(userOrders.length);
+      print(orders.length);
       print(itemsToShow.length);
       return Scaffold(
         backgroundColor: Colors.white,
@@ -109,7 +110,7 @@ final int length=1;
                 const SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: userOrders.length > length || ctrl.showAll.value
+                  child: orders.length > length || ctrl.showAll.value
                   ? PrimaryButton(
                     onTap: () {
                       ctrl.toggleShowAll(); // تغيير الحالة لعرض الكل أو عرض مختصر

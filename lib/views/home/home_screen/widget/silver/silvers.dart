@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/theme/app_size.dart';
+import 'package:helmet_customer/utils/global/global.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/views/home/home_screen/widget/silver/h_s_carousel_slider_builder.dart';
 import 'package:helmet_customer/views/home/home_screen/widget/wash_package/one_time_wash.dart';
@@ -26,20 +27,27 @@ class Silvers extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (ctrl.subscriptions.isNotEmpty) ...[
+              if (subscriptions.isNotEmpty) ...[
                 CustomText(
                   text: TranslationData.currentPackage.tr,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
                 const SizedBox(height: 16),
-                 HomeScreenCarouselSliderBuilder(
-                     currentSubscriptions: ctrl.subscriptions,),
+                HomeScreenCarouselSliderBuilder(
+                  currentSubscriptions: subscriptions,
+                ),
                 const SizedBox(height: 24),
               ],
 
-              if (oneTimePackages.isNotEmpty) ...[
-                OneTimeWash(package: oneTimePackages),
+              if (packages
+                  .where((test) => test.type == "one_time")
+                  .toList()
+                  .isNotEmpty) ...[
+                OneTimeWash(
+                    package: packages
+                        .where((test) => test.type == "one_time")
+                        .toList()),
                 const SizedBox(height: 24),
               ] else ...[
                 // Debug: Show message when no one-time packages are available
@@ -64,9 +72,15 @@ class Silvers extends StatelessWidget {
               //     packages: ctrl.oneTimePackages,
               //     title: "One time wash",
               //   ),
-              if (subscriptionPackages.isNotEmpty)
+
+              if (packages
+                  .where((test) => test.type == "subscription")
+                  .toList()
+                  .isNotEmpty)
                 Packages(
-                  packages: subscriptionPackages,
+                  packages: packages
+                      .where((test) => test.type == "subscription")
+                      .toList(),
                   title: "Economy Plan",
                 ),
               SizedBox(height: AppSize.height * 0.1),

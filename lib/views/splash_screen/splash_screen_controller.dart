@@ -12,6 +12,7 @@ import 'package:helmet_customer/main.dart';
 import 'package:helmet_customer/models/address/addresses.dart';
 import 'package:helmet_customer/models/wash_models/package_model.dart';
 import 'package:helmet_customer/utils/constants.dart';
+import 'package:helmet_customer/utils/global/global.dart';
 import 'package:helmet_customer/utils/notificatio_manager.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
@@ -85,24 +86,6 @@ class SplashScreenController extends GetxController {
       return;
     }
     Get.offAllNamed(RoutesString.login);
-  }
-
-  Future<void> getAllData() async {
-    await getAllPackages();
-  }
-
-  Future<void> getAllPackages() async {
-    List<PackageModel> packages = await WashPackageRepository.getAllPackage();
-    for (PackageModel package in packages) {
-      if (package.showInAdds == true) {
-        adsPackages.add(package);
-      }
-      if (package.type == "one_time") {
-        oneTimePackages.add(package);
-      } else {
-        subscriptionPackages.add(package);
-      }
-    }
   }
 
   Future<void> getCurrentPosition() async {

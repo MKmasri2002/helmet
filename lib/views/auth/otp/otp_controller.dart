@@ -5,8 +5,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:helmet_customer/models/user_model.dart';
+import 'package:helmet_customer/utils/global/global.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 
@@ -73,48 +74,43 @@ class OtpController extends GetxController {
   //   );
   // }
 
- void verifyOTP(String smsCode) async {
-  log("sms code : $smsCode");
-  PhoneAuthCredential credential = PhoneAuthProvider.credential(
-    verificationId: verificationId,
-    smsCode: smsCode,
-  );
+  void verifyOTP(String smsCode) async {
+    log("sms code : $smsCode");
+    PhoneAuthCredential credential = PhoneAuthProvider.credential(
+      verificationId: verificationId,
+      smsCode: smsCode,
+    );
 
-  UserCredential userCredential = await auth.signInWithCredential(credential);
-  
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
-  
-  
-  final snap= await firestore.collection("user").doc(userCredential.user!.uid).get();
-  if (snap.exists) {
-  
-    final d= snap.data()!;
-    userModel = UserModel.fromJson(d);
+    UserCredential userCredential = await auth.signInWithCredential(credential);
 
-    log('✅ User already exists → synced to Firestore');
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+    final snap =
+        await firestore.collection("user").doc(userCredential.user!.uid).get();
+    if (snap.exists) {
+      final d = snap.data()!;
+      userModel = UserModel.fromJson(d);
+
+      log('✅ User already exists → synced to Firestore');
+    } else {
+      userModel.phone = phone;
+      userModel.uid = FirebaseAuth.instance.currentUser!.uid;
+      userModel.registerDate = DateTime.now().toString();
+      userModel.lastLoginDate = DateTime.now().millisecondsSinceEpoch;
+      userModel.referralCode = FirebaseAuth.instance.currentUser!.uid;
+      userModel.userType = "1";
+      userModel.coins = 0;
+
+      await firestore
+          .collection("user")
+          .doc(userModel.uid)
+          .set(userModel.toJson());
+
+      log("✅ User saved to Realtime & Firestore: ${userModel.toJson()}");
+    }
+    await getAllData();
     Get.offAllNamed(RoutesString.home);
-    return;
   }
-
-  userModel.phone = phone;
-  userModel.uid = FirebaseAuth.instance.currentUser!.uid;
-  userModel.registerDate = DateTime.now().toString();
-  userModel.lastLoginDate = DateTime.now().millisecondsSinceEpoch;
-  userModel.referralCode = FirebaseAuth.instance.currentUser!.uid;
-  userModel.userType = "1";
-  userModel.coins = 0;
-
-  
-
-  await firestore
-      .collection("user")
-      .doc(userModel.uid)
-      .set(userModel.toJson());
-
-  log("✅ User saved to Realtime & Firestore: ${userModel.toJson()}");
-
-  Get.offAllNamed(RoutesString.home);
-}
 
   // Additional methods and properties can be added as needed.
 }

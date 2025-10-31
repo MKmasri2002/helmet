@@ -6,7 +6,7 @@ import 'package:helmet_customer/models/wash_models/order.dart';
 
 class OrderStatusController extends GetxController {
   GoogleMapController? mapController;
-  Order? currentOrder;
+  OrderModel? currentOrder;
   
  
 

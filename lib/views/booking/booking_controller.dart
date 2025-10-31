@@ -13,6 +13,7 @@ import 'package:helmet_customer/models/subscribe.dart';
 import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/models/wash_models/wash_items.dart';
 import 'package:helmet_customer/utils/constants.dart';
+import 'package:helmet_customer/utils/global/global.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
 import 'package:helmet_customer/views/cart/cart_binding.dart';
 import 'package:helmet_customer/views/cart/cart_screen.dart';
@@ -23,7 +24,7 @@ class BookingController extends GetxController {
   GoogleMapController? mapController;
 
   List<DriverModel> currentDrivers = [];
-  List<Order> currentOrders = [];
+  List<OrderModel> currentOrders = [];
 
   int totalPrice = 0;
 
@@ -46,7 +47,7 @@ class BookingController extends GetxController {
     product = Get.arguments['product'];
     super.onInit();
     if (order.price != null) {
-      if (product is Order) {
+      if (product is OrderModel) {
         totalPrice = order.price!.toInt();
       } else {
         totalPrice = 0;
@@ -68,7 +69,7 @@ class BookingController extends GetxController {
 
   Future<void> getOrdersAndDriversInThisAreaId({required String areaId}) async {
     currentDrivers = await UserRepository.getDriversInArea(areaId: areaId);
-    log("Drivers in area $areaId : ${driverList.length}");
+    log("Drivers in area $areaId : ${drivers.length}");
     currentOrders = await OrderRepositry.getOrdersInArea(areaId: areaId);
     log("Schedules in area $areaId : ${currentOrders.length}");
   }
@@ -209,7 +210,7 @@ class BookingController extends GetxController {
     order.washTime = fullDate.toString();
     order.cars = selectedCars;
 
-    userOrders.add(order);
+    orders.add(order);
     
     if (product is Subscribe) {
       await OrderRepositry.addOrder(order: order);

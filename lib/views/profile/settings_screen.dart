@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/generated/assets.dart';
 import 'package:helmet_customer/theme/app_size.dart';
+import 'package:helmet_customer/utils/global/global.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/utils/widgets/custom_nav_bar.dart';
@@ -33,7 +34,7 @@ class SettingsScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title:  Text(TranslationData.account.tr),
+          title: Text(TranslationData.account.tr),
           centerTitle: true,
           toolbarHeight: AppSize.height / 7.5,
           titleTextStyle: const TextStyle(
@@ -212,10 +213,9 @@ class SettingsScreen extends StatelessWidget {
                               MenuItem(
                                 mainText: TranslationData.myCars.tr,
                                 path: Assets.profile5,
-                                onTap: () { 
-                Get.toNamed(RoutesString.mycar);
-
-},
+                                onTap: () {
+                                  Get.toNamed(RoutesString.mycar);
+                                },
                               ),
                               MenuItem(
                                 mainText: TranslationData.discountCodes.tr,

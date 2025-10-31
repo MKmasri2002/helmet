@@ -11,8 +11,8 @@ import 'package:helmet_customer/models/address/addresses.dart';
 import 'package:helmet_customer/models/area/area_model.dart';
 import 'package:helmet_customer/models/user_model.dart';
 import 'package:helmet_customer/utils/constants.dart';
+import 'package:helmet_customer/utils/global/global.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
-import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:maps_toolkit/maps_toolkit.dart' as maps_toolkit;
 
 class AddressBookController extends GetxController {
@@ -50,7 +50,7 @@ class AddressBookController extends GetxController {
     // }
     bool isInArea = false;
 
-    for (Area area in areasList) {
+    for (AreaModel area in areas) {
       List<maps_toolkit.LatLng> locations = [];
 
       for (var loc in area.location!) {

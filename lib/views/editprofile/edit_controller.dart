@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:helmet_customer/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:helmet_customer/utils/global/global.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 
 class EditController extends GetxController {
@@ -28,9 +29,8 @@ class EditController extends GetxController {
   /// 🟢 جلب بيانات المستخدم الحالي من Firestore
   Future<void> loadUserData() async {
     try {
-      User? currentUser = FirebaseAuth.instance.currentUser;
 
-      if (currentUser == null) return;
+      if (FirebaseAuth.instance.currentUser == null) return;
 
      
         firstNameController.text = userModel.name?.split(' ').first ?? '';
@@ -57,8 +57,8 @@ class EditController extends GetxController {
   /// 🟣 تحديث بيانات المستخدم العادية
   Future<void> updateUser() async {
     try {
-      User? currentUser = FirebaseAuth.instance.currentUser;
-      if (currentUser == null) return;
+      
+      if (FirebaseAuth.instance.currentUser == null) return;
 
       userModel.name = "${firstNameController.text} ${lastNameController.text}";
       userModel.gender = selectedGender;

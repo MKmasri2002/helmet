@@ -1,7 +1,7 @@
 import 'package:helmet_customer/models/car.dart';
 import 'package:intl/intl.dart';
 
-class Order {
+class OrderModel {
   String? id;
   String? user_id;
   String? areaId;
@@ -13,7 +13,7 @@ class Order {
   String? titleAr;
   String? titleEn;
   String? type;
-  Order({
+  OrderModel({
     this.areaId,
     this.driverId,
     this.washTime,
@@ -25,7 +25,7 @@ class Order {
     this.titleEn,
     this.type,
   });
-  Order.fromJson(Map<String, dynamic> json) {
+  OrderModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     user_id = json['user_id'];
     areaId = json['areaId'];

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/models/car.dart';
 import 'package:helmet_customer/utils/colors/color1.dart';
+import 'package:helmet_customer/utils/global/global.dart';
 import 'package:helmet_customer/views/widget/custom_text.dart';
 import 'package:helmet_customer/views/add_car/add_car_binding.dart';
 import 'package:helmet_customer/views/add_car/add_car_screen.dart';

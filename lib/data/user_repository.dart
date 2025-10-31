@@ -6,7 +6,7 @@ import 'package:helmet_customer/models/wash_models/order.dart';
 
 class UserRepository {
   static FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-  static Future<List<Order>> getUserOrders({required String userId}) async {
+  static Future<List<OrderModel>> getUserOrders({required String userId}) async {
     try {
       final query = await firebaseFirestore
           .collection('order')
@@ -14,9 +14,9 @@ class UserRepository {
           .get();
 
       if (query.docs.isNotEmpty) {
-        final List<Order> orders = query.docs.map((doc) {
+        final List<OrderModel> orders = query.docs.map((doc) {
           final data = doc.data();
-          final order = Order.fromJson(data);
+          final order = OrderModel.fromJson(data);
           return order;
         }).toList();
         return orders;
