@@ -73,7 +73,6 @@ class HomeController extends GetxController {
         });
 
         if (futureOrders.isEmpty) {
-          print("✅ لا يوجد طلبات نشطة حالياً");
           nearestOrder = null;
           update();
           return;
@@ -97,7 +96,7 @@ class HomeController extends GetxController {
               nearestOrder = updatedOrder;
               update();
 
-              print('🚀 الحالة الجديدة: ${updatedOrder.status}');
+         
 
               // ✅ إذا صارت Done، انتقل للطلب التالي
               // if (updatedOrder.status == 'done') {
