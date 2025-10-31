@@ -56,22 +56,12 @@ class OneTimeWash extends StatelessWidget {
                       }
                       order = OrderModel(
                         areaId: userModel.addresses
-                            ?.firstWhere(
+                            .firstWhere(
                               (addr) => addr.defaultLocation == true,
-                              orElse: () => userModel.addresses!.first,
+                              orElse: () => userModel.addresses.first,
                             )
                             .areaId,
                         user_id: userModel.uid,
-                        driverId: drivers.firstWhere(  
-                          (driver) => driver.areaId == userModel
-                              .addresses
-                              ?.firstWhere(
-                                (addr) => addr.defaultLocation == true,
-                                orElse: () => userModel.addresses!.first,
-                              )
-                              .areaId,
-                          orElse: () => drivers.first,
-                        ).id,
                         status: 'pending',
                         price: package[index].price,
                         titleAr: package[index].nameAr,
