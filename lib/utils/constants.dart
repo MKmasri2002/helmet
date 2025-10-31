@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:helmet_customer/models/address/addresses.dart';
-import 'package:helmet_customer/models/dirver_model.dart';
 import 'package:helmet_customer/models/schedule_list.dart';
 import 'package:moyasar/moyasar.dart';
 
