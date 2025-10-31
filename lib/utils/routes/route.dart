@@ -21,6 +21,8 @@ import 'package:helmet_customer/views/gifts/gifts/gifts2.dart';
 import 'package:helmet_customer/views/gifts/gifts/gifts_binding.dart';
 import 'package:helmet_customer/views/helps/helps.dart';
 import 'package:helmet_customer/views/helps/helps_binding.dart';
+import 'package:helmet_customer/views/home/ahare_packages/ahare_packages.dart';
+import 'package:helmet_customer/views/home/ahare_packages/ahare_packages_binding.dart';
 import 'package:helmet_customer/views/home/home_screen/home_screen.dart';
 import 'package:helmet_customer/views/home/home_binding.dart';
 import 'package:helmet_customer/views/home/share/share.dart';
@@ -163,6 +165,14 @@ class RouteClass {
       binding: ShareBinding(),
       transition: Transition.fadeIn,
     ),
+  GetPage(
+  name: RoutesString.sharepackage,
+  page: () => shareDialog(packageid: Get.parameters['packageid']!),
+  binding: SharePackagesBinding(),
+  transition: Transition.fadeIn,
+),
+
+
 
   ];
 }

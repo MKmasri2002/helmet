@@ -8,10 +8,10 @@ import 'package:helmet_customer/views/gifts/gifts/gifts_controller.dart';
 import 'package:helmet_customer/views/gifts/widget/phonetextfield.dart';
 import 'package:helmet_customer/views/home/ahare_packages/ahare_packages_controller.dart';
 
-class SuccessDialog extends StatelessWidget {
+class shareDialog extends StatelessWidget {
   final String packageid;
 
-  const SuccessDialog({super.key, required this.packageid});
+  const shareDialog({super.key, required this.packageid});
 
   @override
   Widget build(BuildContext context) {

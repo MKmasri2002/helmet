@@ -60,7 +60,7 @@ class SharePackagesController extends GetxController {
           .collection('subscribe')
           .doc(packageid)
           .get();
-      if (docSnap.data()!["remain"] <= numberofwashes.text) {
+      if (docSnap.data()!["remain"] <= int.tryParse(numberofwashes.text.trim())) {
 Get.snackbar("خطأ","عدد الغسلات المتبقية ${docSnap.data()!["remain"]}");
       }
 

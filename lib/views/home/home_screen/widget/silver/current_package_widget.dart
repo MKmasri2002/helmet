@@ -9,6 +9,9 @@ import 'package:helmet_customer/theme/app_colors.dart';
 import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/utils/custom_date.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
+import 'package:helmet_customer/utils/routes/routes_string.dart';
+import 'package:helmet_customer/views/home/ahare_packages/ahare_packages.dart';
+import 'package:helmet_customer/views/home/ahare_packages/ahare_packages_binding.dart';
 import 'package:helmet_customer/views/widget/custom_text.dart';
 import 'package:helmet_customer/views/booking/booking_binding.dart';
 import 'package:helmet_customer/views/booking/booking_view/booking_view.dart';
@@ -52,7 +55,6 @@ class CurrentPackageWidget extends StatelessWidget {
                     const SizedBox(
                       height: 8,
                     ),
-
                     if (currentOrder.endDate != null)
                       CustomText(
                         text:
@@ -64,41 +66,57 @@ class CurrentPackageWidget extends StatelessWidget {
                     SizedBox(
                       height: 8,
                     ),
-                    Container(
-                      width: AppSize.width * 0.35,
-                      height: AppSize.width * 0.13,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(50)),
-                          color: Color(0xff29C1F2)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            TranslationData.sharePackage.tr,
-                            style: TextStyle(
-                              color: Color(0xffFFFFFF),
-                              fontFamily: 'IBMPlexSansArabic',
-                              fontWeight: FontWeight.w600,
-                              fontSize: 12,
-                              height: 1.5,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 8,
-                          ),
-                          SvgPicture.asset(
-                            SvgAssets.sharePackage,
-                            fit: BoxFit
-                                .cover, // يحافظ على نسب الصورة ويملأ الـ Container
-                            width: 22.21, // اختياري: عرض محدد
-                            height: 23.29,
+                GestureDetector(
+  onTap: () {
+    if (FirebaseAuth.instance.currentUser == null) {
+      Get.snackbar(
+        'Error',
+        'Please login first',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+        duration: const Duration(seconds: 3),
+      );
+      return;
+    }
 
-                            // اختياري: ارتفاع محدد
-                          ),
-                        ],
+    // استخدمي Get.toNamed مع parameters
+    Get.toNamed(
+      RoutesString.sharepackage,
+      parameters: {'packageid': currentOrder.id!}, // هنا الباكدج id مباشرة
+    );
+  },
+  child: Container(
+    width: AppSize.width * 0.35,
+    height: AppSize.width * 0.13,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.all(Radius.circular(50)),
+      color: Color(0xff29C1F2),
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          TranslationData.sharePackage.tr,
+          style: TextStyle(
+            color: Colors.white,
+            fontFamily: 'IBMPlexSansArabic',
+            fontWeight: FontWeight.w600,
+            fontSize: 12,
+            height: 1.5,
+          ),
+        ),
+        SizedBox(width: 8),
+        SvgPicture.asset(
+          SvgAssets.sharePackage,
+          width: 22.21,
+          height: 23.29,
+        ),
+      ],
+    ),
+  ),
+)
 
-                      ),
-                    ),
                   ],
                 ),
                 const Spacer(),
@@ -112,7 +130,6 @@ class CurrentPackageWidget extends StatelessWidget {
                 ),
                 Column(
                   children: [
-
                     CustomText(
                       text: TranslationData.remain.tr,
                       fontSize: 14,
@@ -123,7 +140,6 @@ class CurrentPackageWidget extends StatelessWidget {
                       fontSize: 32,
                       fontWeight: FontWeight.w700,
                       color: AppColors.primary,
-
                     ),
                     CustomText(
                       text: TranslationData.outOf.tr + ' ${currentOrder.count}',
