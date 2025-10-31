@@ -7,8 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/data/user_repository.dart';
+import 'package:helmet_customer/data/wash_package_repository.dart';
 import 'package:helmet_customer/main.dart';
 import 'package:helmet_customer/models/address/addresses.dart';
+import 'package:helmet_customer/models/wash_models/package_model.dart';
 import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/notificatio_manager.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
@@ -34,7 +36,7 @@ class SplashScreenController extends GetxController {
     //FirebaseAuth.instance.signOut();
     await checkConnectivity();
     await getCurrentPosition();
-    
+
     try {
       userModel.token = await FirebaseMessaging.instance.getToken() ?? "";
     } catch (e) {
@@ -78,12 +80,29 @@ class SplashScreenController extends GetxController {
     }
     await Future.delayed(const Duration(seconds: 3));
     if (FirebaseAuth.instance.currentUser != null) {
-      // await UserRepository.(
-      //     userId: FirebaseAuth.instance.currentUser!.uid);
+      await getAllData();
       Get.offAllNamed(RoutesString.home);
       return;
     }
     Get.offAllNamed(RoutesString.login);
+  }
+
+  Future<void> getAllData() async {
+    await getAllPackages();
+  }
+
+  Future<void> getAllPackages() async {
+    List<PackageModel> packages = await WashPackageRepository.getAllPackage();
+    for (PackageModel package in packages) {
+      if (package.showInAdds == true) {
+        adsPackages.add(package);
+      }
+      if (package.type == "one_time") {
+        oneTimePackages.add(package);
+      } else {
+        subscriptionPackages.add(package);
+      }
+    }
   }
 
   Future<void> getCurrentPosition() async {

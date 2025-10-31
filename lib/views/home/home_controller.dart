@@ -35,26 +35,24 @@ Duration? remainingTime;
 Timer? _timer;
 List<Order> userOrders = [];
 List<Order> FutureOrders = [];
-
+List<PackageModel> adsPackages = [];
+List<PackageModel> oneTimePackages = [];
+List<PackageModel> subscriptionPackages = [];
 
 String? newStatus;
 
 class HomeController extends GetxController {
   List<Subscribe> subscriptions = [];
   StreamSubscription<DocumentSnapshot>? _orderListener;
-  List<PackageModel> adsPackages = [];
-  List<PackageModel> oneTimePackages = [];
-  List<PackageModel> subscriptionPackages = [];
 
   Timer? sessionTimer;
   late DatabaseReference orderRef;
   @override
   void onInit() async {
-  // ضيف هاي
-  await getAllData();
-  startTimer();
-  super.onInit();
-   
+    // ضيف هاي
+    await getAllData();
+    startTimer();
+    super.onInit();
   }
 
   void startTimer() {
@@ -72,7 +70,7 @@ class HomeController extends GetxController {
 
   Future<void> getAllData() async {
     await getUserInfo();
-    await getPackages();
+    // await getPackages();
     await getAllAreas();
     await getSubscriptions(userModel.uid!);
     await getAllUserOrder();
@@ -114,20 +112,20 @@ class HomeController extends GetxController {
     update();
   }
 
-  Future<void> getPackages() async {
-    List<PackageModel> packages = await WashPackageRepository.getAllPackage();
-    for (PackageModel package in packages) {
-      if (package.showInAdds == true) {
-        adsPackages.add(package);
-      }
-      if (package.type == "one_time") {
-        oneTimePackages.add(package);
-      } else {
-        subscriptionPackages.add(package);
-      }
-    }
-    update();
-  }
+  // Future<void> getPackages() async {
+  //   List<PackageModel> packages = await WashPackageRepository.getAllPackage();
+  //   for (PackageModel package in packages) {
+  //     if (package.showInAdds == true) {
+  //       adsPackages.add(package);
+  //     }
+  //     if (package.type == "one_time") {
+  //       oneTimePackages.add(package);
+  //     } else {
+  //       subscriptionPackages.add(package);
+  //     }
+  //   }
+  //   update();
+  // }
 
   Future<void> getAllAreas() async {
     areasList = await AreaRepository.getAllAreas();

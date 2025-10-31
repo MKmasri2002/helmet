@@ -38,8 +38,8 @@ class Silvers extends StatelessWidget {
                 const SizedBox(height: 24),
               ],
 
-              if (ctrl.oneTimePackages.isNotEmpty) ...[
-                OneTimeWash(package: ctrl.oneTimePackages),
+              if (oneTimePackages.isNotEmpty) ...[
+                OneTimeWash(package: oneTimePackages),
                 const SizedBox(height: 24),
               ] else ...[
                 // Debug: Show message when no one-time packages are available
@@ -64,9 +64,9 @@ class Silvers extends StatelessWidget {
               //     packages: ctrl.oneTimePackages,
               //     title: "One time wash",
               //   ),
-              if (ctrl.subscriptionPackages.isNotEmpty)
+              if (subscriptionPackages.isNotEmpty)
                 Packages(
-                  packages: ctrl.subscriptionPackages,
+                  packages: subscriptionPackages,
                   title: "Economy Plan",
                 ),
               SizedBox(height: AppSize.height * 0.1),
