@@ -55,69 +55,61 @@ class HomeController extends GetxController {
   }
 
   Future<void> getNearestOrderAndListen() async {
-    try {
-      final snap = await FirebaseFirestore.instance
-          .collection('order')
-          .where('user_id', isEqualTo: userModel.uid)
-          .get();
-      if (snap.docs.isEmpty) {
-        nearestOrder = null;
-        futureOrders.clear();
-        update();
-        return;
-      }
-
-      // 2️⃣ تحويل الطلبات إلى Objects
+    if (orders.isEmpty) {
+      nearestOrder = null;
       futureOrders.clear();
-      futureOrders = snap.docs
-          .map((doc) => OrderModel.fromJson(doc.data()))
-          .where((o) => o.status != 'done') // استبعد المنتهية
-          .toList();
-
-      // 3️⃣ ترتيب الطلبات حسب الوقت (الأقرب أولًا)
-      futureOrders.sort((a, b) {
-        final aTime = DateTime.tryParse(a.washTime ?? '') ?? DateTime(2100);
-        final bTime = DateTime.tryParse(b.washTime ?? '') ?? DateTime(2100);
-        return aTime.compareTo(bTime);
-      });
-
-      if (futureOrders.isEmpty) {
-        print("✅ لا يوجد طلبات نشطة حالياً");
-        nearestOrder = null;
-        update();
-        return;
-      }
-
-      nearestOrder = futureOrders.first;
       update();
+      return;
+    } else {
+      try {
+        futureOrders.clear();
+        futureOrders = orders
+            .where((o) => o.status != 'done') 
+            .toList();
+        futureOrders.sort((a, b) {
+          final aTime = DateTime.tryParse(a.washTime ?? '') ?? DateTime(2100);
+          final bTime = DateTime.tryParse(b.washTime ?? '') ?? DateTime(2100);
+          return aTime.compareTo(bTime);
+        });
 
-      // 4️⃣ إلغاء أي استماع سابق
-      await _orderListener?.cancel();
-
-      // 5️⃣ استماع مباشر لتغييرات هذا الطلب
-      _orderListener = FirebaseFirestore.instance
-          .collection('order')
-          .doc(nearestOrder!.id)
-          .snapshots()
-          .listen((doc) async {
-        if (doc.exists) {
-          final updatedOrder = OrderModel.fromJson(doc.data()!);
-          if (nearestOrder!.status != updatedOrder.status) {
-            nearestOrder = updatedOrder;
-            update();
-
-            print('🚀 الحالة الجديدة: ${updatedOrder.status}');
-
-            // ✅ إذا صارت Done، انتقل للطلب التالي
-            // if (updatedOrder.status == 'done') {
-            await Future.delayed(const Duration(seconds: 1));
-            await getNearestOrderAndListen(); // يعيد العملية تلقائيًا
-            // }
-          }
+        if (futureOrders.isEmpty) {
+          print("✅ لا يوجد طلبات نشطة حالياً");
+          nearestOrder = null;
+          update();
+          return;
         }
-      });
-    } catch (e) {
-      log("Error getting nearest order: $e");
+
+        nearestOrder = futureOrders.first;
+        update();
+
+        // 4️⃣ إلغاء أي استماع سابق
+        await _orderListener?.cancel();
+
+        // 5️⃣ استماع مباشر لتغييرات هذا الطلب
+        _orderListener = FirebaseFirestore.instance
+            .collection('order')
+            .doc(nearestOrder!.id)
+            .snapshots()
+            .listen((doc) async {
+          if (doc.exists) {
+            final updatedOrder = OrderModel.fromJson(doc.data()!);
+            if (nearestOrder!.status != updatedOrder.status) {
+              nearestOrder = updatedOrder;
+              update();
+
+              print('🚀 الحالة الجديدة: ${updatedOrder.status}');
+
+              // ✅ إذا صارت Done، انتقل للطلب التالي
+              // if (updatedOrder.status == 'done') {
+              await Future.delayed(const Duration(seconds: 1));
+              await getNearestOrderAndListen(); // يعيد العملية تلقائيًا
+              // }
+            }
+          }
+        });
+      } catch (e) {
+        log("Error getting nearest order: $e");
+      }
     }
   }
 
