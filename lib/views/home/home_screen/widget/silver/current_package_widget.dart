@@ -14,9 +14,7 @@ import 'package:helmet_customer/views/widget/custom_text.dart';
 import 'package:helmet_customer/views/booking/booking_binding.dart';
 import 'package:helmet_customer/views/booking/booking_view/booking_view.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
-import 'package:helmet_customer/views/order_status/order_status_binding.dart';
-import 'package:helmet_customer/views/order_status/order_status_view.dart';
-import 'package:helmet_customer/views/widget/text/t2.dart';
+
 
 class CurrentPackageWidget extends StatelessWidget {
   const CurrentPackageWidget({
@@ -164,7 +162,7 @@ class CurrentPackageWidget extends StatelessWidget {
                         titleAr: currentOrder.titleAr,
                         titleEn:currentOrder.titleEn,
                         type: currentOrder.type,
-                        
+
                       );
 
                 if (currentOrder.remain! > 0) {
