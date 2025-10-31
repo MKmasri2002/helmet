@@ -34,7 +34,7 @@ class TimeOfDayTimeline extends StatelessWidget {
                 int hour = hours[index];
 
                 // ⛔️ 1. لا تعرض الساعات الماضية في نفس اليوم
-                if (DateTime.now().hour > hour &&
+                if (DateTime.now().hour >= hour &&
                     DateTime.now().day == ctrl.selectedDateTime.day) {
                   return const SizedBox.shrink();
                 }

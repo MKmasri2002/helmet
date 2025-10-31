@@ -14,6 +14,7 @@ import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/models/wash_models/wash_items.dart';
 import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/global/global.dart';
+import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
 import 'package:helmet_customer/views/cart/cart_binding.dart';
 import 'package:helmet_customer/views/cart/cart_screen.dart';
@@ -117,28 +118,25 @@ class BookingController extends GetxController {
   }
 
   bool isHourFull(int hour) {
-    // إذا ما في سواقين أصلاً
     if (currentDrivers.isEmpty) return true;
 
-    // خذ الطلبات اللي بنفس اليوم
     final todaysOrders = currentOrders.where((order) {
-      final washTime = DateTime.parse(order.washTime!);
+      final washTime = DateTime.parse(order.washTime!).toLocal(); // 🔹 مهم جدًا
       return washTime.year == selectedDateTime.year &&
           washTime.month == selectedDateTime.month &&
           washTime.day == selectedDateTime.day;
     }).toList();
 
-    // خزن عدد السواقين المشغولين في هذه الساعة
     Set<String> busyDrivers = {};
 
     for (var order in todaysOrders) {
-      final washTime = DateTime.parse(order.washTime!);
+      final washTime =
+          DateTime.parse(order.washTime!).toLocal(); // 🔹 تأكد إنها local
       if (washTime.hour == hour) {
         busyDrivers.add(order.driverId!);
       }
     }
 
-    // لو كل السواقين مشغولين بنفس الساعة، فهي "فل"
     return busyDrivers.length == currentDrivers.length;
   }
 
@@ -197,7 +195,6 @@ class BookingController extends GetxController {
     return null;
   }
 
-
   void createOrder() async {
     selectedDateTime = DateTime(
       selectedDateTime.year,
@@ -210,24 +207,25 @@ class BookingController extends GetxController {
     order.washTime = fullDate.toString();
     order.cars = selectedCars;
 
-    orders.add(order);
-    
     if (product is Subscribe) {
+      
+      orders.add(order);
+      print(orders.length);
       await OrderRepositry.addOrder(order: order);
       product.remain--;
       await SubscribeRepositry.updateSubscription(
           subscribe: product as Subscribe);
-      return;
+      Get.offAllNamed(RoutesString.home);
+    } else {
+      Get.to(
+        () => CartScreen(
+          showTime: true,
+        ),
+        binding: CartBinding(),
+        arguments: {'product': order},
+      );
     }
-    Get.to(
-      () => CartScreen(
-        showTime: true,
-      ),
-      binding: CartBinding(),
-      arguments: {'product': order},
-    );
   }
-
 
   Future<void> getWashItems() async {
     final DatabaseReference collectionReference =

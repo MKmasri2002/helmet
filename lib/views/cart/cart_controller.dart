@@ -8,7 +8,9 @@ import 'package:helmet_customer/data/user_repository.dart';
 import 'package:helmet_customer/models/subscribe.dart';
 import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/utils/constants.dart';
+import 'package:helmet_customer/utils/global/global.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
+import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/views/order_status/order_status_binding.dart';
@@ -76,6 +78,7 @@ class CartController extends GetxController {
         case PaymentStatus.paid:
           if (product is OrderModel) {
             await setOrder();
+            orders.add(order);
           } else {
             await setSubscribe();
           }
@@ -83,10 +86,7 @@ class CartController extends GetxController {
 
           // await Get.put(HomeController()).getAllUserOrder();
 
-          Get.back();
-          Get.back();
-          Get.back();
-          Get.back();
+          Get.offAllNamed(RoutesString.home);
           break;
         case PaymentStatus.failed:
           // handle failure.
@@ -104,13 +104,7 @@ class CartController extends GetxController {
   ////// using one time package*////////////
   Future<void> setOrder() async {
     await OrderRepositry.addOrder(order: order);
-    //  userOrder =
-    //       await UserRepository.getUserOrders(userId: userModel.uid!);
-    //   Get.find<HomeController>().update();
-    if (order.type == "one_time") {
-      Get.to(() => const OrderStatusView(),
-          binding: OrderStatusBinding(), arguments: order);
-    }
+    
   }
 
   Future<void> setSubscribe() async {

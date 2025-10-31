@@ -8,6 +8,7 @@ import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/theme/app_colors.dart';
 import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/utils/custom_date.dart';
+import 'package:helmet_customer/utils/global/global.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/views/home/ahare_packages/ahare_packages.dart';
@@ -16,9 +17,6 @@ import 'package:helmet_customer/views/widget/custom_text.dart';
 import 'package:helmet_customer/views/booking/booking_binding.dart';
 import 'package:helmet_customer/views/booking/booking_view/booking_view.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
-import 'package:helmet_customer/views/order_status/order_status_binding.dart';
-import 'package:helmet_customer/views/order_status/order_status_view.dart';
-import 'package:helmet_customer/views/widget/text/t2.dart';
 
 class CurrentPackageWidget extends StatelessWidget {
   const CurrentPackageWidget({
@@ -80,6 +78,7 @@ class CurrentPackageWidget extends StatelessWidget {
       return;
     }
 
+<<<<<<< HEAD
     // استخدمي Get.toNamed مع parameters
     Get.toNamed(
       RoutesString.sharepackage,
@@ -117,6 +116,13 @@ class CurrentPackageWidget extends StatelessWidget {
   ),
 )
 
+=======
+                            // اختياري: ارتفاع محدد
+                          ),
+                        ],
+                      ),
+                    ),
+>>>>>>> 69b8b8d9d89233d491c0fc0dda1a3b86a90f084e
                   ],
                 ),
                 const Spacer(),
@@ -166,7 +172,20 @@ class CurrentPackageWidget extends StatelessWidget {
                       duration: const Duration(seconds: 3));
                   return;
                 }
-                //  washDataTripModel = currentOrder;
+                order = OrderModel(
+                  areaId: userModel.addresses
+                      .firstWhere(
+                        (addr) => addr.defaultLocation == true,
+                        orElse: () => userModel.addresses.first,
+                      )
+                      .areaId,
+                  user_id: userModel.uid,
+                  status: 'pending',
+                  price: currentOrder.price,
+                  titleAr: currentOrder.titleAr,
+                  titleEn: currentOrder.titleEn,
+                  type: currentOrder.type,
+                );
 
                 if (currentOrder.remain! > 0) {
                   Get.to(

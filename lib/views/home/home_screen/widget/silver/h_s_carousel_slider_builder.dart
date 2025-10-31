@@ -1,12 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:helmet_customer/models/subscribe.dart';
 import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/views/home/home_screen/widget/silver/current_package_widget.dart';
 
-
 class HomeScreenCarouselSliderBuilder extends StatelessWidget {
-  final List currentSubscriptions;
-  const HomeScreenCarouselSliderBuilder({super.key, required this.currentSubscriptions});
+  final List<Subscribe> currentSubscriptions;
+  const HomeScreenCarouselSliderBuilder(
+      {super.key, required this.currentSubscriptions});
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +20,14 @@ class HomeScreenCarouselSliderBuilder extends StatelessWidget {
         initialPage: 0,
         enableInfiniteScroll: false,
         scrollDirection: Axis.horizontal,
-        
       ),
       itemCount: currentSubscriptions.length,
       itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
-        if (currentSubscriptions[itemIndex].count == 0) {
+        if (currentSubscriptions[itemIndex].remain! <= 0) {
           return const SizedBox.shrink();
         }
         return CurrentPackageWidget(
-          currentOrder: currentSubscriptions[itemIndex]
-        );
+            currentOrder: currentSubscriptions[itemIndex]);
       },
     );
   }
