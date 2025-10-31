@@ -15,7 +15,6 @@ import 'package:helmet_customer/views/booking/booking_binding.dart';
 import 'package:helmet_customer/views/booking/booking_view/booking_view.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 
-
 class CurrentPackageWidget extends StatelessWidget {
   const CurrentPackageWidget({
     super.key,
@@ -51,7 +50,6 @@ class CurrentPackageWidget extends StatelessWidget {
                     const SizedBox(
                       height: 8,
                     ),
-
                     if (currentOrder.endDate != null)
                       CustomText(
                         text:
@@ -95,7 +93,6 @@ class CurrentPackageWidget extends StatelessWidget {
                             // اختياري: ارتفاع محدد
                           ),
                         ],
-
                       ),
                     ),
                   ],
@@ -111,7 +108,6 @@ class CurrentPackageWidget extends StatelessWidget {
                 ),
                 Column(
                   children: [
-
                     CustomText(
                       text: TranslationData.remain.tr,
                       fontSize: 14,
@@ -122,7 +118,6 @@ class CurrentPackageWidget extends StatelessWidget {
                       fontSize: 32,
                       fontWeight: FontWeight.w700,
                       color: AppColors.primary,
-
                     ),
                     CustomText(
                       text: TranslationData.outOf.tr + ' ${currentOrder.count}',
@@ -150,20 +145,19 @@ class CurrentPackageWidget extends StatelessWidget {
                   return;
                 }
                 order = OrderModel(
-                        areaId: userModel.addresses
-                            .firstWhere(
-                              (addr) => addr.defaultLocation == true,
-                              orElse: () => userModel.addresses.first,
-                            )
-                            .areaId,
-                        user_id: userModel.uid,
-                        status: 'pending',
-                        price: currentOrder.price,
-                        titleAr: currentOrder.titleAr,
-                        titleEn:currentOrder.titleEn,
-                        type: currentOrder.type,
-
-                      );
+                  areaId: userModel.addresses
+                      .firstWhere(
+                        (addr) => addr.defaultLocation == true,
+                        orElse: () => userModel.addresses.first,
+                      )
+                      .areaId,
+                  user_id: userModel.uid,
+                  status: 'pending',
+                  price: currentOrder.price,
+                  titleAr: currentOrder.titleAr,
+                  titleEn: currentOrder.titleEn,
+                  type: currentOrder.type,
+                );
 
                 if (currentOrder.remain! > 0) {
                   Get.to(
