@@ -10,14 +10,6 @@ class SharePackagesController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    phoneController.addListener(() {
-      update();
-    });
-  }
-
-  void phone(String c) {
-    phoneController.text = c;
-    update();
   }
 
   Future<void> checkphone({required String packageid}) async {
@@ -34,7 +26,6 @@ class SharePackagesController extends GetxController {
         return;
       }
 
-      // 🔍 البحث عن المستخدم المستقبل بناءً على رقم الهاتف
       final userSnap = await FirebaseFirestore.instance
           .collection('user')
           .where('phone', isEqualTo: phone)
@@ -46,23 +37,22 @@ class SharePackagesController extends GetxController {
         return;
       }
 
-      final receiverId = userSnap.docs.first.id;
-
-      // 📝 إضافة الهدية إلى قاعدة البيانات
-      // await FirebaseFirestore.instance.collection('gifts').add({
-      //   "senderId": currentUser.uid,
-      //   "receiverId": receiverId,
-      //   "value": value,
-      //   "date": Timestamp.now(),
-      // });
+     // final receiverId = userSnap.docs.first.id;
 
       final docSnap = await FirebaseFirestore.instance
           .collection('subscribe')
           .doc(packageid)
           .get();
-      if (docSnap.data()!["remain"] <= int.tryParse(numberofwashes.text.trim())) {
-Get.snackbar("خطأ","عدد الغسلات المتبقية ${docSnap.data()!["remain"]}");
+
+      final remain = docSnap.data()?["remain"] ?? 0;
+      final entered = int.tryParse(numberofwashes.text.trim()) ?? 0;
+
+      if (entered > remain) {
+        Get.snackbar("خطأ", "عدد الغسلات المدخلة أكبر من المتبقية ($remain)");
+        return;
       }
+
+      // TODO: تنفيذ عملية المشاركة الفعلية هنا
 
       Get.snackbar("تم الإرسال", "تم إرسال البكج بنجاح 🎁");
     } catch (e) {

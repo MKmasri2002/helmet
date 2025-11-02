@@ -165,12 +165,15 @@ class RouteClass {
       binding: ShareBinding(),
       transition: Transition.fadeIn,
     ),
-  GetPage(
+GetPage(
   name: RoutesString.sharepackage,
-  page: () => shareDialog(packageid: Get.parameters['packageid']!),
+  page: () => ShareDialog(
+    packageid: Get.parameters['packageid'] ?? '',
+  ),
   binding: SharePackagesBinding(),
   transition: Transition.fadeIn,
 ),
+
 
 
 

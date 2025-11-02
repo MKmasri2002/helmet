@@ -23,7 +23,9 @@ class CurrentPackageWidget extends StatelessWidget {
     super.key,
     required this.currentOrder,
   });
+
   final Subscribe currentOrder;
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(builder: (ctrl) {
@@ -35,7 +37,9 @@ class CurrentPackageWidget extends StatelessWidget {
           top: 16,
         ),
         decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(16)),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+        ),
         child: Column(
           children: [
             Row(
@@ -50,9 +54,7 @@ class CurrentPackageWidget extends StatelessWidget {
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                     ),
-                    const SizedBox(
-                      height: 8,
-                    ),
+                    const SizedBox(height: 8),
                     if (currentOrder.endDate != null)
                       CustomText(
                         text:
@@ -61,68 +63,60 @@ class CurrentPackageWidget extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                         color: Colors.grey,
                       ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                GestureDetector(
-  onTap: () {
-    if (FirebaseAuth.instance.currentUser == null) {
-      Get.snackbar(
-        'Error',
-        'Please login first',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-        duration: const Duration(seconds: 3),
-      );
-      return;
-    }
+                    const SizedBox(height: 8),
 
-<<<<<<< HEAD
-    // استخدمي Get.toNamed مع parameters
-    Get.toNamed(
-      RoutesString.sharepackage,
-      parameters: {'packageid': currentOrder.id!}, // هنا الباكدج id مباشرة
-    );
-  },
-  child: Container(
-    width: AppSize.width * 0.35,
-    height: AppSize.width * 0.13,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.all(Radius.circular(50)),
-      color: Color(0xff29C1F2),
-    ),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          TranslationData.sharePackage.tr,
-          style: TextStyle(
-            color: Colors.white,
-            fontFamily: 'IBMPlexSansArabic',
-            fontWeight: FontWeight.w600,
-            fontSize: 12,
-            height: 1.5,
-          ),
-        ),
-        SizedBox(width: 8),
-        SvgPicture.asset(
-          SvgAssets.sharePackage,
-          width: 22.21,
-          height: 23.29,
-        ),
-      ],
-    ),
-  ),
-)
+                    /// زر الشير بعد التعديل فقط 👇👇
+                    GestureDetector(
+                      onTap: () {
+                        if (FirebaseAuth.instance.currentUser == null) {
+                          Get.snackbar(
+                            'Error',
+                            'Please login first',
+                            snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: Colors.red,
+                            colorText: Colors.white,
+                            duration: const Duration(seconds: 3),
+                          );
+                          return;
+                        }
 
-=======
-                            // اختياري: ارتفاع محدد
-                          ),
-                        ],
+                        // التنقل مع تمرير packageid والـ binding
+                       Get.toNamed(
+  RoutesString.sharepackage,
+  parameters: {'packageid': currentOrder.id!},
+);
+
+                      },
+                      child: Container(
+                        width: AppSize.width * 0.35,
+                        height: AppSize.width * 0.13,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          color: Color(0xff29C1F2),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              TranslationData.sharePackage.tr,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'IBMPlexSansArabic',
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12,
+                                height: 1.5,
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            SvgPicture.asset(
+                              SvgAssets.sharePackage,
+                              width: 22.21,
+                              height: 23.29,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
->>>>>>> 69b8b8d9d89233d491c0fc0dda1a3b86a90f084e
                   ],
                 ),
                 const Spacer(),
@@ -131,9 +125,7 @@ class CurrentPackageWidget extends StatelessWidget {
                   width: 1,
                   color: AppColors.primary,
                 ),
-                const SizedBox(
-                  width: 16,
-                ),
+                const SizedBox(width: 16),
                 Column(
                   children: [
                     CustomText(
@@ -148,30 +140,31 @@ class CurrentPackageWidget extends StatelessWidget {
                       color: AppColors.primary,
                     ),
                     CustomText(
-                      text: TranslationData.outOf.tr + ' ${currentOrder.count}',
+                      text: TranslationData.outOf.tr +
+                          ' ${currentOrder.count}',
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
                     ),
                   ],
                 ),
-                const SizedBox(
-                  width: 16,
-                ),
+                const SizedBox(width: 16),
               ],
             ),
-            const SizedBox(
-              height: 16,
-            ),
+            const SizedBox(height: 16),
             GestureDetector(
               onTap: () {
                 if (FirebaseAuth.instance.currentUser == null) {
-                  Get.snackbar('Error', 'Please login first',
-                      snackPosition: SnackPosition.BOTTOM,
-                      backgroundColor: Colors.red,
-                      colorText: Colors.white,
-                      duration: const Duration(seconds: 3));
+                  Get.snackbar(
+                    'Error',
+                    'Please login first',
+                    snackPosition: SnackPosition.BOTTOM,
+                    backgroundColor: Colors.red,
+                    colorText: Colors.white,
+                    duration: const Duration(seconds: 3),
+                  );
                   return;
                 }
+
                 order = OrderModel(
                   areaId: userModel.addresses
                       .firstWhere(
@@ -200,16 +193,18 @@ class CurrentPackageWidget extends StatelessWidget {
                 height: 50,
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Color(0xffF0FAFF)),
+                  borderRadius: BorderRadius.circular(8),
+                  color: const Color(0xffF0FAFF),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomText(
-                        text: TranslationData.usePackage.tr,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.primary),
+                      text: TranslationData.usePackage.tr,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.primary,
+                    ),
                     const Icon(
                       Icons.arrow_forward_ios,
                       color: AppColors.primary,
