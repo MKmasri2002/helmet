@@ -11,8 +11,8 @@ import 'package:helmet_customer/utils/custom_date.dart';
 import 'package:helmet_customer/utils/global/global.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
-import 'package:helmet_customer/views/ahare_packages/share_package_screen.dart';
-import 'package:helmet_customer/views/ahare_packages/share_package_binding.dart';
+import 'package:helmet_customer/views/share_packages/share_package_screen.dart';
+import 'package:helmet_customer/views/share_packages/share_package_binding.dart';
 import 'package:helmet_customer/views/widget/custom_text.dart';
 import 'package:helmet_customer/views/booking/booking_binding.dart';
 import 'package:helmet_customer/views/booking/booking_view/booking_view.dart';
@@ -77,7 +77,8 @@ class CurrentPackageWidget extends StatelessWidget {
                           return;
                         }
 
-                        Get.toNamed(RoutesString.sharePackage);
+                        Get.toNamed(RoutesString.sharePackage,
+                            arguments: {'packageId': currentOrder.id});
                       },
                       child: Container(
                         width: AppSize.width * 0.35,
