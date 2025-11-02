@@ -22,7 +22,7 @@ static const String sendgifts = '/sendgifts';
 static const String sharepage = '/sharepage';
 static const String mycar = '/mycar';
 static const String addcar = '/addcar';
-static const String sharepackage = '/sharepackage';
+static const String sharePackage = '/share_package';
 
 
 

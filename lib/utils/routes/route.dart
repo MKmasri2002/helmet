@@ -21,8 +21,8 @@ import 'package:helmet_customer/views/gifts/gifts/gifts2.dart';
 import 'package:helmet_customer/views/gifts/gifts/gifts_binding.dart';
 import 'package:helmet_customer/views/helps/helps.dart';
 import 'package:helmet_customer/views/helps/helps_binding.dart';
-import 'package:helmet_customer/views/home/ahare_packages/ahare_packages.dart';
-import 'package:helmet_customer/views/home/ahare_packages/ahare_packages_binding.dart';
+import 'package:helmet_customer/views/ahare_packages/share_package_screen.dart';
+import 'package:helmet_customer/views/ahare_packages/share_package_binding.dart';
 import 'package:helmet_customer/views/home/home_screen/home_screen.dart';
 import 'package:helmet_customer/views/home/home_binding.dart';
 import 'package:helmet_customer/views/home/share/share.dart';
@@ -42,13 +42,13 @@ import 'package:helmet_customer/views/wallet/wallet_binding.dart';
 
 class RouteClass {
   static List<GetPage> routs = [
-     GetPage(
+    GetPage(
       name: RoutesString.mycar,
       page: () => const Mycarspage(),
       binding: AddCarBinding(),
       transition: Transition.fadeIn,
     ),
-     GetPage(
+    GetPage(
       name: RoutesString.addcar,
       page: () => const AddCarScreen(),
       binding: AddCarBinding(),
@@ -90,9 +90,9 @@ class RouteClass {
       binding: PackagesBinding(),
       transition: Transition.fadeIn,
     ),
-     GetPage(
+    GetPage(
       name: RoutesString.wallet,
-      page: () =>  WalletPage(),
+      page: () => WalletPage(),
       binding: WalletBinding(),
       transition: Transition.fadeIn,
     ),
@@ -108,7 +108,7 @@ class RouteClass {
       binding: EditBinding(),
       transition: Transition.fadeIn,
     ),
-     GetPage(
+    GetPage(
       name: RoutesString.editphone,
       page: () => EditPhone(),
       binding: EditBinding(),
@@ -126,56 +126,47 @@ class RouteClass {
       binding: FeedbackBinding(),
       transition: Transition.fadeIn,
     ),
-
     GetPage(
       name: RoutesString.addressBook,
       page: () => AddressBookScreen(),
       binding: AddressBookBinding(),
       transition: Transition.fadeIn,
     ),
-
-
-     GetPage(
+    GetPage(
       name: RoutesString.fawater,
       page: () => Fawater(),
       binding: FawaterBinding(),
       transition: Transition.fadeIn,
     ),
-     GetPage(
+    GetPage(
       name: RoutesString.helps,
       page: () => HelpPage(),
       binding: HelpsBinding(),
       transition: Transition.fadeIn,
     ),
-     GetPage(
+    GetPage(
       name: RoutesString.gifts1,
       page: () => giftspage(),
       binding: giftsBinding(),
       transition: Transition.fadeIn,
     ),
-     GetPage(
+    GetPage(
       name: RoutesString.sendgifts,
       page: () => sendgifts(),
       binding: giftsBinding(),
       transition: Transition.fadeIn,
     ),
- GetPage(
+    GetPage(
       name: RoutesString.sharepage,
       page: () => const Sharepage(),
       binding: ShareBinding(),
       transition: Transition.fadeIn,
     ),
-GetPage(
-  name: RoutesString.sharepackage,
-  page: () => ShareDialog(
-    packageid: Get.parameters['packageid'] ?? '',
-  ),
-  binding: SharePackagesBinding(),
-  transition: Transition.fadeIn,
-),
-
-
-
-
+    GetPage(
+      name: RoutesString.sharePackage,
+      page: () => SharePackageScreen(),
+      binding: SharePackagesBinding(),
+      transition: Transition.fadeIn,
+    ),
   ];
 }

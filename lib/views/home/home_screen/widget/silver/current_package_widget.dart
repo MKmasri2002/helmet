@@ -11,8 +11,8 @@ import 'package:helmet_customer/utils/custom_date.dart';
 import 'package:helmet_customer/utils/global/global.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
-import 'package:helmet_customer/views/home/ahare_packages/ahare_packages.dart';
-import 'package:helmet_customer/views/home/ahare_packages/ahare_packages_binding.dart';
+import 'package:helmet_customer/views/ahare_packages/share_package_screen.dart';
+import 'package:helmet_customer/views/ahare_packages/share_package_binding.dart';
 import 'package:helmet_customer/views/widget/custom_text.dart';
 import 'package:helmet_customer/views/booking/booking_binding.dart';
 import 'package:helmet_customer/views/booking/booking_view/booking_view.dart';
@@ -68,23 +68,16 @@ class CurrentPackageWidget extends StatelessWidget {
                     /// زر الشير بعد التعديل فقط 👇👇
                     GestureDetector(
                       onTap: () {
-                        if (FirebaseAuth.instance.currentUser == null) {
-                          Get.snackbar(
-                            'Error',
-                            'Please login first',
-                            snackPosition: SnackPosition.BOTTOM,
-                            backgroundColor: Colors.red,
-                            colorText: Colors.white,
-                            duration: const Duration(seconds: 3),
-                          );
+                        if (ctrl.checkLogin() == false) {
+                          ctrl.pleaseLogin();
+                          return;
+                        }
+                        if (ctrl.checkLocation() == false) {
+                          ctrl.pleaseSelectLocation();
                           return;
                         }
 
-                        // التنقل مع تمرير packageid والـ binding
-                        Get.toNamed(
-                          RoutesString.sharepackage,
-                          parameters: {'packageid': currentOrder.id!},
-                        );
+                        Get.toNamed(RoutesString.sharePackage);
                       },
                       child: Container(
                         width: AppSize.width * 0.35,

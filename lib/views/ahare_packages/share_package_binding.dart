@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:helmet_customer/views/gifts/gifts/gifts_controller.dart';
-import 'package:helmet_customer/views/home/ahare_packages/ahare_packages_controller.dart';
+import 'package:helmet_customer/views/ahare_packages/share_package_controller.dart';
 
 class SharePackagesBinding extends Bindings {
   @override
