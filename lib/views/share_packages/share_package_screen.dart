@@ -89,7 +89,7 @@ class SharePackageScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                    TextField(
-                      controller: ctrl.phoneController,
+                      controller: ctrl.numberOfWashes,
                       keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                         labelText: 'عدد الغسلات',
