@@ -35,7 +35,7 @@ class SharePackagesController extends GetxController {
       Get.snackbar("خطأ", "لا يمكنك ارسال عدد باقات اكبر من المتوفر لك");
       return;
     }
-    addPackage(phone, washes);
+    await addPackage(phone, washes);
 
     Get.snackbar("نجاح", "تم التحديث بنجاح");
     return;
@@ -52,12 +52,24 @@ class SharePackagesController extends GetxController {
     if (snap.docs.isNotEmpty) {
       final user = UserModel.fromJson(snap.docs.first.data());
       final id = user.uid!;
-      Subscribe s = subscriptions.firstWhere((test) => test.id == packageId);
-      s.remain = washes;
-      final doc = FirebaseFirestore.instance.collection("subscribe").doc();
-      s.id = doc.id;
-      await doc.set(s.toJson());
       final index = subscriptions.indexWhere((sub) => sub.id == packageId);
+       final doc = FirebaseFirestore.instance.collection("subscribe").doc();
+      Subscribe s = new Subscribe(
+        count: subscriptions[index].count,
+        descriptionAr: subscriptions[index].descriptionAr,
+        descriptionEn: subscriptions[index].descriptionEn,
+        endDate: subscriptions[index].endDate,
+        isPaid: subscriptions[index].isPaid,
+        type: subscriptions[index].type,
+        price: subscriptions[index].price,
+        remain: washes,
+        titleAr: subscriptions[index].titleAr,
+        titleEn: subscriptions[index].titleEn, 
+        id: doc.id,
+        userId: user.uid!
+      );
+      await doc.set(s.toJson());
+      
       if (index != -1) {
         subscriptions[index].remain = (subscriptions[index].remain! - washes);
         await FirebaseFirestore.instance
@@ -69,6 +81,7 @@ class SharePackagesController extends GetxController {
         // 🔹 غيّرها للقيمة الجديدة
       }
     }
+    
     return false;
   }
 
