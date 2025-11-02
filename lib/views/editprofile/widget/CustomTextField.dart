@@ -7,14 +7,14 @@ class CustomTextField extends StatelessWidget {
   final String hint;
   final String? Function(String?)? validator;
   final TextInputType? keyboardType;
-
+  final bool? withpre;
   const CustomTextField({
     super.key,
     required this.controller,
     required this.label,
     required this.hint,
     this.validator,
-    this.keyboardType,
+    this.keyboardType, this.withpre=false,
   });
 
   @override
@@ -50,14 +50,16 @@ class CustomTextField extends StatelessWidget {
                 fontSize: 15,
                 color: Color(0xff8193B3),
               ),
-              prefixIcon: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Image.asset(
-                 Assets.flag,
-                  height: 24,
-                  width: 24,
-                ),
-              ),
+            prefixIcon: withpre == false
+                  ? Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.asset(
+                        Assets.flag,
+                        height: 24,
+                        width: 24,
+                      ),
+                    )
+                  : null,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: const BorderSide(

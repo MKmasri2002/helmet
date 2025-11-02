@@ -79,7 +79,7 @@ class SharePackageScreen extends StatelessWidget {
 
                     // عدد الباقات
                     const Text(
-                      "Number of washes",
+                      "عدد الغسلات",
                       style: TextStyle(
                         fontFamily: 'IBM Plex Sans Arabic',
                         fontWeight: FontWeight.w600,
@@ -88,11 +88,16 @@ class SharePackageScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    CustomTextField(
-                      controller: ctrl.numberOfWashes,
-                      label: "",
-                      hint: "Enter number",
-                      keyboardType: TextInputType.number,
+                   TextField(
+                      controller: ctrl.phoneController,
+                      keyboardType: TextInputType.phone,
+                      decoration: InputDecoration(
+                        labelText: 'عدد الغسلات',
+                        prefixIcon: const Icon(Icons.local_car_wash),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
                     ),
 
                     const SizedBox(height: 30),
