@@ -81,11 +81,10 @@ class CurrentPackageWidget extends StatelessWidget {
                         }
 
                         // التنقل مع تمرير packageid والـ binding
-                       Get.toNamed(
-  RoutesString.sharepackage,
-  parameters: {'packageid': currentOrder.id!},
-);
-
+                        Get.toNamed(
+                          RoutesString.sharepackage,
+                          parameters: {'packageid': currentOrder.id!},
+                        );
                       },
                       child: Container(
                         width: AppSize.width * 0.35,
@@ -140,8 +139,7 @@ class CurrentPackageWidget extends StatelessWidget {
                       color: AppColors.primary,
                     ),
                     CustomText(
-                      text: TranslationData.outOf.tr +
-                          ' ${currentOrder.count}',
+                      text: TranslationData.outOf.tr + ' ${currentOrder.count}',
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
                     ),
