@@ -93,7 +93,7 @@ class sendgifts extends StatelessWidget {
                   button(
                       title: TranslationData.confirmAndSend.tr,
                       onPressed: () {
-                        ctrl.sendGift(value: "20");
+                      ctrl.sendGift();
                       }),
                 ],
               ),
