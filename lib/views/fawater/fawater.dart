@@ -14,7 +14,7 @@ TranslationData.basicPackage.tr,  ];
 
   final List<String> prices = ["119", "119", "10.00"];
 
-  const Fawater({super.key});
+   Fawater({super.key});
 
   @override
   Widget build(BuildContext context) {
