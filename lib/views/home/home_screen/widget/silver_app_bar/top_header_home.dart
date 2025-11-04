@@ -5,8 +5,6 @@ import 'package:helmet_customer/generated/assets.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/views/widget/custom_text.dart';
-import 'package:helmet_customer/views/address/address_binding.dart';
-import 'package:helmet_customer/views/address/address_screen.dart';
 
 class TopHeaderHome extends StatelessWidget {
   const TopHeaderHome({super.key});

@@ -95,7 +95,7 @@ class PackageCard extends StatelessWidget {
             ),
 
             const Spacer(),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
 

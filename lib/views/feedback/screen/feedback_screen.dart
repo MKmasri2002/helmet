@@ -356,7 +356,7 @@ class FeedbackScreen extends StatelessWidget {
                                                                     ),
                                                                   ),
                                                                 ),
-                                                                child: Text(
+                                                                child: const Text(
                                                                   "تأكيد",
                                                                   style:
                                                                       TextStyle(

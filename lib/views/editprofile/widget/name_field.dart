@@ -32,32 +32,32 @@ class NameFields extends StatelessWidget {
                                   ),
                                   textAlign: TextAlign.right,
                                 ),
-                                SizedBox(height: 20),
+                                const SizedBox(height: 20),
                                 SizedBox(
                                   width: 155,
                                   child: TextFormField(
                                     controller: controller.firstNameController,
                                     textAlign: TextAlign.start,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 16,
                                       color: Colors.grey,
                                     ),
                                     decoration: InputDecoration(
-                                      contentPadding: EdgeInsets.symmetric(
+                                      contentPadding: const EdgeInsets.symmetric(
                                         vertical: 15,
                                         horizontal: 12,
                                       ),
-                                      hintStyle: TextStyle(fontSize: 14),
+                                      hintStyle: const TextStyle(fontSize: 14),
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(8),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: Colors.grey,
                                           width: 1.0,
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(8),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: Colors.grey,
                                           width: 1.0,
                                         ),
@@ -67,7 +67,7 @@ class NameFields extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
           
           const SizedBox(width: 7),
           // اسم العائلة
@@ -88,33 +88,33 @@ class NameFields extends StatelessWidget {
                                   ),
                                   textAlign: TextAlign.right,
                                 ),
-                                SizedBox(height: 20),
+                                const SizedBox(height: 20),
                                 SizedBox(
                                   width: 155,
                                   child: TextFormField(
                                     textAlign: TextAlign.start,
                                    controller: controller.lastNameController,
       
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 16,
                                       color: Colors.grey,
                                     ),
                                     decoration: InputDecoration(
-                                      contentPadding: EdgeInsets.symmetric(
+                                      contentPadding: const EdgeInsets.symmetric(
                                         vertical: 15,
                                         horizontal: 12,
                                       ),
-                                      hintStyle: TextStyle(fontSize: 14),
+                                      hintStyle: const TextStyle(fontSize: 14),
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(8),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: Colors.grey,
                                           width: 1.0,
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(8),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: Colors.grey,
                                           width: 1.0,
                                         ),

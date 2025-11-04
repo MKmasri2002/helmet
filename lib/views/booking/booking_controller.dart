@@ -218,7 +218,7 @@ class BookingController extends GetxController {
       Get.offAllNamed(RoutesString.home);
     } else {
       Get.to(
-        () => CartScreen(
+        () => const CartScreen(
           showTime: true,
         ),
         binding: CartBinding(),

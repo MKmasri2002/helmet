@@ -40,7 +40,7 @@ class EditProfilePage extends StatelessWidget {
                   Get.find<ProfileScreenController>().update();
                   Get.back();
                 },
-                icon: Icon(Icons.arrow_back_ios, color: Colors.black, size: 16),
+                icon: const Icon(Icons.arrow_back_ios, color: Colors.black, size: 16),
               ),
             ),
         body: SafeArea(

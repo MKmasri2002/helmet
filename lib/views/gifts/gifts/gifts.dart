@@ -14,6 +14,8 @@ import 'package:helmet_customer/views/gifts/widget/listview.dart';
 import 'package:intl/intl.dart';
 
 class giftspage extends StatelessWidget {
+  const giftspage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<giftsController>(
@@ -35,19 +37,19 @@ class giftspage extends StatelessWidget {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  mylistview(),
+                  const mylistview(),
                   button(
                     title: TranslationData.sendGift.tr,
                     onPressed: () {
                       Get.toNamed(RoutesString.sendgifts);
                     },
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.all(14.0),
                     child: Text(
                      TranslationData.giftDate.tr,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: 'IBM Plex Sans Arabic',
                         fontWeight: FontWeight.w600,
                         fontStyle: FontStyle.normal,
@@ -97,22 +99,22 @@ class giftspage extends StatelessWidget {
                                       children: [
                                         Text(
                                           dateString,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 14,
-                                            color: const Color(0xff8193B3),
+                                            color: Color(0xff8193B3),
                                           ),
                                         ),
-                                        SizedBox(height: 8),
+                                        const SizedBox(height: 8),
                                         Row(
                                           children: [
                                             Text(
                                               gift["value"],
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.bold,
                                                 fontFamily:
                                                     'IBM Plex Sans Arabic',
-                                                color: const Color.fromARGB(
+                                                color: Color.fromARGB(
                                                   255,
                                                   0,
                                                   0,
@@ -120,7 +122,7 @@ class giftspage extends StatelessWidget {
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(width: 3),
+                                            const SizedBox(width: 3),
                                             Image.asset(
                                               Assets.reyalblack,
                                               width: 24,

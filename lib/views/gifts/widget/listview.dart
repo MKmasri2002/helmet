@@ -43,20 +43,20 @@ class mylistview extends StatelessWidget {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: Color(0xffF1D840),
+                            color: const Color(0xffF1D840),
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 price,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 16,
                                   fontFamily: 'IBM Plex Sans Arabic',
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              SizedBox(width: 4),
+                              const SizedBox(width: 4),
                               Image.asset(
                                Assets.reyalblack,
                                 width: 16,

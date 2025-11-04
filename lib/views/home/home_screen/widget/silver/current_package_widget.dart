@@ -133,7 +133,7 @@ class CurrentPackageWidget extends StatelessWidget {
                       color: AppColors.primary,
                     ),
                     CustomText(
-                      text: TranslationData.outOf.tr + ' ${currentOrder.count}',
+                      text: '${TranslationData.outOf.tr} ${currentOrder.count}',
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
                     ),

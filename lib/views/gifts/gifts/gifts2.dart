@@ -30,7 +30,7 @@ class sendgifts extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                    Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Text(
@@ -46,9 +46,9 @@ class sendgifts extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   phonetextfield(controller: ctrl.phoneController),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                    Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Text(
@@ -64,9 +64,9 @@ class sendgifts extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
-                  mylistview(i: true, price: "2"),
-                  SizedBox(height: 40),
+                  const SizedBox(height: 20),
+                  const mylistview(i: true, price: "2"),
+                  const SizedBox(height: 40),
                   OptionButton(
                     title: TranslationData.creditCard.tr,
                     value: 1,
@@ -75,21 +75,21 @@ class sendgifts extends StatelessWidget {
                     image3: Assets.mastercard,
                     image1: Assets.mada,
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   OptionButton(
                     title: "Stc Pay ",
                     value: 2,
                     controller: ctrl.option1Controller,
                     image1: Assets.stcpay,
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   OptionButton(
                     title: "Apple Pay",
                     value: 3,
                     controller: ctrl.option1Controller,
                     image1: Assets.applepay,
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   button(
                       title: TranslationData.confirmAndSend.tr,
                       onPressed: () {

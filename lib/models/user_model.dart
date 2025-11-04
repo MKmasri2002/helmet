@@ -1,6 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:helmet_customer/models/address/addresses.dart';
 import 'package:helmet_customer/models/car.dart';
 
 class UserModel {

@@ -55,13 +55,13 @@ Future<void> getAllUserOrder() async {
 }
 Future<void> getAllDriverInArea() async {
     
-    final List<String> areas_id = [];
+    final List<String> areasId = [];
     for (var address in userModel.addresses) {
-      areas_id.add(address.areaId!);
+      areasId.add(address.areaId!);
     }
     
     drivers = await DriverRepository.getAllDrivers(
-        userId: userModel.uid!, areas_id: areas_id);
+        userId: userModel.uid!, areas_id: areasId);
   
   }
 

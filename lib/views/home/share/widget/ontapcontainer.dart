@@ -32,7 +32,7 @@ class OntapContainer extends StatelessWidget {
                   text: text1,
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xff0A3347),
+                  color: const Color(0xff0A3347),
                 ),
                 const SizedBox(height: 7),
                 Mytext(text: text2, fontSize: 15, color: Colors.grey),

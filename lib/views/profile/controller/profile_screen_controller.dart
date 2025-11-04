@@ -10,11 +10,6 @@ import 'package:helmet_customer/views/home/home_controller.dart';
 
 class ProfileScreenController extends GetxController {
 
-  @override
-  void onInit() {
-    super.onInit();
-    //getUserInfo();
-  }
 
   void getUserInfo() async {
   final currentUser = FirebaseAuth.instance.currentUser

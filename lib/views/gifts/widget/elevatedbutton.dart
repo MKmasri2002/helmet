@@ -23,7 +23,7 @@ class button extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
-              backgroundColor:backgroundColor!=null ? backgroundColor :const Color.fromARGB(255, 74, 197, 237),
+              backgroundColor:backgroundColor ?? const Color.fromARGB(255, 74, 197, 237),
             ),
             child: Text(
               title,
@@ -34,7 +34,7 @@ class button extends StatelessWidget {
                 fontSize: 18,
                 height: 0.25,
                 letterSpacing: 0,
-                color: textcolor!= null? textcolor: Colors.white,
+                color: textcolor ?? Colors.white,
               ),
             ),
           ),

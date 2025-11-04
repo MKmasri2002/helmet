@@ -54,7 +54,7 @@ class SharePackagesController extends GetxController {
       final id = user.uid!;
       final index = subscriptions.indexWhere((sub) => sub.id == packageId);
        final doc = FirebaseFirestore.instance.collection("subscribe").doc();
-      Subscribe s = new Subscribe(
+      Subscribe s = Subscribe(
         count: subscriptions[index].count,
         descriptionAr: subscriptions[index].descriptionAr,
         descriptionEn: subscriptions[index].descriptionEn,

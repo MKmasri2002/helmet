@@ -6,16 +6,12 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:helmet_customer/data/user_repository.dart';
-import 'package:helmet_customer/data/wash_package_repository.dart';
 import 'package:helmet_customer/main.dart';
 import 'package:helmet_customer/models/address/addresses.dart';
-import 'package:helmet_customer/models/wash_models/package_model.dart';
 import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/global/global.dart';
 import 'package:helmet_customer/utils/notificatio_manager.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
-import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:video_player/video_player.dart';
 

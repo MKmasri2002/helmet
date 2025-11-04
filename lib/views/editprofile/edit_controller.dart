@@ -1,10 +1,8 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:helmet_customer/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:helmet_customer/utils/global/global.dart';
-import 'package:helmet_customer/views/home/home_controller.dart';
 
 class EditController extends GetxController {
   final firstNameController = TextEditingController();

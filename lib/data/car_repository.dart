@@ -12,7 +12,7 @@ class CarRepository {
 
       if (querySnapshot.docs.isNotEmpty) {
         final List<Car> cars = querySnapshot.docs.map((doc) {
-          final data = doc.data() as Map<String, dynamic>;
+          final data = doc.data();
           return Car.fromJson(data);
         }).toList();
         return cars;

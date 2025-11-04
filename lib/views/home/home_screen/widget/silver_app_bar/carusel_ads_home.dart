@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/models/wash_models/package_model.dart';
@@ -7,8 +6,6 @@ import 'package:helmet_customer/models/wash_models/package_model.dart';
 import 'package:helmet_customer/theme/app_size.dart';
 import 'package:helmet_customer/views/booking/booking_binding.dart';
 import 'package:helmet_customer/views/booking/booking_view/booking_view.dart';
-import 'package:helmet_customer/views/cart/cart_binding.dart';
-import 'package:helmet_customer/views/cart/cart_screen.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
 
 class CaruselAdsHome extends StatelessWidget {

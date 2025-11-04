@@ -1,15 +1,12 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:helmet_customer/models/user_model.dart';
 import 'package:helmet_customer/utils/global/global.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
-import 'package:helmet_customer/views/home/home_controller.dart';
 
 class OtpController extends GetxController {
   var data = Get.arguments;

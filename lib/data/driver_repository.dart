@@ -12,7 +12,7 @@ class DriverRepository {
 
       if (querySnapshot.docs.isNotEmpty) {
         final List<DriverModel> drivers = querySnapshot.docs.map((doc) {
-          final data = doc.data() as Map<String, dynamic>;
+          final data = doc.data();
           return DriverModel.fromJson(data);
         }).toList();
         return drivers;

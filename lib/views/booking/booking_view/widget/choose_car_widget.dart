@@ -10,7 +10,6 @@ import 'package:helmet_customer/views/widget/custom_text.dart';
 import 'package:helmet_customer/views/add_car/add_car_binding.dart';
 import 'package:helmet_customer/views/add_car/add_car_screen.dart';
 import 'package:helmet_customer/views/booking/booking_controller.dart';
-import 'package:helmet_customer/views/home/home_controller.dart';
 
 class ChooseCarsWidget extends StatelessWidget {
   const ChooseCarsWidget({

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:helmet_customer/theme/app_colors.dart';
 import 'package:helmet_customer/views/booking/booking_controller.dart';
-import 'package:helmet_customer/views/home/home_controller.dart';
 
 class BuyWashItems extends StatelessWidget {
   const BuyWashItems({super.key});

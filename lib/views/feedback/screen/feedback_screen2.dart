@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:helmet_customer/utils/routes/routes_string.dart';
-import 'package:helmet_customer/views/home/home_binding.dart';
-import 'package:helmet_customer/views/home/home_screen/home_screen.dart';
 
 class FeedbackScreen2 extends StatelessWidget {
   const FeedbackScreen2({super.key});

@@ -5,12 +5,14 @@ import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/views/wallet/wallet_controller.dart';
 
 class WalletPage extends StatelessWidget {
+  const WalletPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<WalletController>(
       builder: (ctrl) {
         return  Scaffold(
-            backgroundColor: Color.fromARGB(255, 255, 255, 255),
+            backgroundColor: const Color.fromARGB(255, 255, 255, 255),
             appBar: AppBar(
               backgroundColor: Colors.white,
               elevation: 0,
@@ -46,19 +48,19 @@ class WalletPage extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
 
                   SizedBox(
                     height: 130,
                     width: 400,
                     child: Container(
-                      padding: EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: Color(0xff07729D),
+                        color: const Color(0xff07729D),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Padding(
-                        padding:  EdgeInsets.all(8.0),
+                        padding:  const EdgeInsets.all(8.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -74,7 +76,7 @@ class WalletPage extends StatelessWidget {
                                 color: Color.fromARGB(255, 255, 255, 255),
                               ),
                             ),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             Row(
                               children: [
                              const   Text(
@@ -89,7 +91,7 @@ class WalletPage extends StatelessWidget {
                                     color: Color.fromARGB(255, 255, 255, 255),
                                   ),
                                 ),
-                                SizedBox(width: 10,),
+                                const SizedBox(width: 10,),
                                 Image.asset(
                                  Assets.reyalwhite,
                                   width: 25,
@@ -104,7 +106,7 @@ class WalletPage extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
 
                   SizedBox(
                     height: 50,
@@ -112,14 +114,14 @@ class WalletPage extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xff29C1F2).withAlpha(125),
+                        backgroundColor: const Color(0xff29C1F2).withAlpha(125),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
                       child: Text(
                         TranslationData.apply.tr,
-                        style: TextStyle(color: Colors.white, fontSize: 16),
+                        style: const TextStyle(color: Colors.white, fontSize: 16),
                       ),
                     ),
                   ),

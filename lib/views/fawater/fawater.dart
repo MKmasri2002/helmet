@@ -14,6 +14,8 @@ TranslationData.basicPackage.tr,  ];
 
   final List<String> prices = ["119", "119", "10.00"];
 
+  const Fawater({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<FawaterController>(
@@ -42,7 +44,7 @@ TranslationData.basicPackage.tr,  ];
                   onPressed: () {
                     Get.back();
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_back_ios,
                     color: Colors.black,
                     size: 16,
@@ -77,25 +79,25 @@ TranslationData.basicPackage.tr,  ];
                                     children: [
                                       Text(
                                         times[index],
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 14,
-                                          color: const Color(0xff8193B3),
+                                          color: Color(0xff8193B3),
                                         ),
                                       ),
-                                      SizedBox(width: 5),
+                                      const SizedBox(width: 5),
                                       Text(
                                         dates[index],
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 14,
-                                          color: const Color(0xff8193B3),
+                                          color: Color(0xff8193B3),
                                         ),
                                       ),
                                     ],
                                   ),
-                                  SizedBox(height: 5),
+                                  const SizedBox(height: 5),
                                   Text(
                                     titles[index],
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 17,
                                       color: Color(0xff29C1F2),
                                       fontFamily: 'IBM Plex Sans Arabic',
@@ -107,12 +109,12 @@ TranslationData.basicPackage.tr,  ];
                                     children: [
                                       Text(
                                         prices[index],
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
                                           fontFamily: 'IBM Plex Sans Arabic',
 
-                                          color: const Color.fromARGB(
+                                          color: Color.fromARGB(
                                             255,
                                             0,
                                             0,
@@ -120,7 +122,7 @@ TranslationData.basicPackage.tr,  ];
                                           ),
                                         ),
                                       ),
-                                      SizedBox(width: 5),
+                                      const SizedBox(width: 5),
                                       // Image.asset(
                                       //   "assets/images/Riyal.png",
                                       //   width: 30,
@@ -136,7 +138,7 @@ TranslationData.basicPackage.tr,  ];
                               padding: const EdgeInsets.all(8.0),
                               child: IconButton(
                                 onPressed: () {},
-                                icon: Icon(Icons.arrow_forward_ios),
+                                icon: const Icon(Icons.arrow_forward_ios),
                               ),
                             ),
                           ],

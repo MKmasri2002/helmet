@@ -67,7 +67,7 @@ class Packages extends StatelessWidget {
 
                 // اذهب لصفحة الدفع مع الاشتراك
                 Get.to(
-                  () => CartScreen(),
+                  () => const CartScreen(),
                   binding: CartBinding(),
                   arguments: {'product': subscribe},
                 );

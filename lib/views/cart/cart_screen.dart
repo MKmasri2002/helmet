@@ -245,7 +245,7 @@ class CartScreen extends StatelessWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                 PaymentMethodWidget()
+                 const PaymentMethodWidget()
               ],
             ),
           ),

@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -11,7 +10,6 @@ import 'package:helmet_customer/models/cars_model.dart';
 import 'package:helmet_customer/utils/global/global.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
 import 'package:helmet_customer/views/booking/booking_controller.dart';
-import 'package:helmet_customer/views/home/home_controller.dart';
 
 class AddCarController extends GetxController {
   CarsModel carsModel = CarsModel();

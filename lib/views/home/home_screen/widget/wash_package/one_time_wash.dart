@@ -6,7 +6,6 @@ import 'package:helmet_customer/models/wash_models/package_model.dart';
 // import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/models/wash_models/order.dart';
 import 'package:helmet_customer/theme/app_colors.dart';
-import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/global/global.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/views/booking/booking_binding.dart';

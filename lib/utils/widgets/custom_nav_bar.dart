@@ -117,7 +117,7 @@ class CustomNavBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                ImageIcon(
-                AssetImage(Assets.profile),
+                const AssetImage(Assets.profile),
                   color: pos == 4 ? primaryColor : baseGreyColor,
                   size: 26,
                 ),

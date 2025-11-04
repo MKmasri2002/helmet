@@ -28,7 +28,7 @@ class GenderSelector extends StatelessWidget {
                             ),
                             textAlign: TextAlign.right,
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

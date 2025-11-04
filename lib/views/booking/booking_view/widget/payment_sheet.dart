@@ -2,14 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
 import 'package:helmet_customer/views/widget/custom_text.dart';
 import 'package:helmet_customer/views/booking/booking_controller.dart';
 import 'package:helmet_customer/views/booking/booking_view/widget/pay_with_cridet_card_booking.dart';
-import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/widget/primary_button/primary_button.dart';
-import 'package:moyasar/moyasar.dart';
 
 class PaymentSheet extends StatelessWidget {
   const PaymentSheet({super.key});

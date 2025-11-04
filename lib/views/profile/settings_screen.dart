@@ -96,7 +96,7 @@ class SettingsScreen extends StatelessWidget {
                                   ProfileText(
                                       text: userModel.name ?? "لا يوجد",
                                       height: 0.25),
-                                  SizedBox(height: 15),
+                                  const SizedBox(height: 15),
                                   const Row(
                                     children: [
                                       // Image.asset(
@@ -111,7 +111,7 @@ class SettingsScreen extends StatelessWidget {
                               ),
                               const Spacer(),
                               Padding(
-                                padding: EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8.0),
                                 child: Row(
                                   children: [
                                     // InkWell(
@@ -135,7 +135,7 @@ class SettingsScreen extends StatelessWidget {
                                           text: TranslationData.edit.tr,
                                           height: 0.25,
                                           fontSize: 16,
-                                          color: Color(0xff29C1F2)),
+                                          color: const Color(0xff29C1F2)),
                                     ),
                                   ],
                                 ),

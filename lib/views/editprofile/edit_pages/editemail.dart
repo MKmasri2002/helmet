@@ -25,7 +25,7 @@ class Editemail extends StatelessWidget {
                   onPressed: () {
                     Get.back();
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_back_ios,
                     color: Colors.black,
                     size: 16,
@@ -40,11 +40,11 @@ class Editemail extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Text(
                       TranslationData.updateEmailAddress.tr,
                       textAlign: TextAlign.start,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: 'IBM Plex Sans Arabic',
                         fontWeight: FontWeight.w500,
                         fontStyle: FontStyle.normal,
@@ -53,22 +53,22 @@ class Editemail extends StatelessWidget {
                         color: Color(0xff121212),
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                      TranslationData.pleaseenterthenewemailaddress.tr,
                       textAlign: TextAlign.start,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: 'IBM Plex Sans Arabic',
                         fontSize: 15,
                         height: 1.5,
                         color: Color(0xff8193B3),
                       ),
                     ),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     Text(
                      TranslationData.Email.tr,
                       textAlign: TextAlign.start,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: 'IBM Plex Sans Arabic',
                         fontWeight: FontWeight.w500,
                         fontSize: 14,
@@ -76,7 +76,7 @@ class Editemail extends StatelessWidget {
                         color: Color(0xff121212),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     SizedBox(
                       width: 340,
                       child: TextFormField(
@@ -87,20 +87,20 @@ class Editemail extends StatelessWidget {
                           filled: true,
                           fillColor: Colors.white,
                           hintText: "user@gmail.com",
-                          hintStyle: TextStyle(
+                          hintStyle: const TextStyle(
                             fontSize: 15,
                             color: Color(0xff8193B3),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Color(0xff29C1F2),
                               width: 1.0,
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Color(0xff29C1F2),
                               width: 1.0,
                             ),
@@ -108,7 +108,7 @@ class Editemail extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 25),
+                    const SizedBox(height: 25),
                     SizedBox(
                       height: 50,
                       width: 330,
@@ -131,7 +131,7 @@ class Editemail extends StatelessWidget {
                         ),
                         child: Text(
                           TranslationData.update.tr,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontFamily: 'IBM Plex Sans Arabic',
                             fontWeight: FontWeight.w500,
                             fontSize: 18,

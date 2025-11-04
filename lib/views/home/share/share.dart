@@ -19,14 +19,14 @@ class Sharepage extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: Mytext(text: "شارك واربح", color: Colors.black, fontSize: 18),
+          title: const Mytext(text: "شارك واربح", color: Colors.black, fontSize: 18),
           leading: Padding(
             padding: const EdgeInsets.all(20),
             child: IconButton(
               onPressed: () {
                 Get.back();
               },
-              icon: Icon(Icons.arrow_back_ios, color: Colors.black, size: 16),
+              icon: const Icon(Icons.arrow_back_ios, color: Colors.black, size: 16),
             ),
           ),
         ),
@@ -41,7 +41,7 @@ class Sharepage extends StatelessWidget {
                   mycontainer(
                     height: 330,
                     width: 300,
-                    backgroundColor: Color(0xff29C1F2),
+                    backgroundColor: const Color(0xff29C1F2),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
@@ -49,12 +49,12 @@ class Sharepage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Image.asset(Assets.coins),
-                          Mytext(
+                          const Mytext(
                             text: "اربح 15 ريال مع كل غسلة!",
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
-                          Mytext(
+                          const Mytext(
                             text:
                                 "شارك اصدقائك تطبيق هملت واحصل 15 ريال لكل\nمستخدم جديد أتم حجزه بإستخدام الرابط الخاص بك",
                             fontSize: 15,
@@ -62,7 +62,7 @@ class Sharepage extends StatelessWidget {
                           ),
                           button(
                   title: "إرسال هدية",
-                  textcolor: Color(0xff29C1F2),
+                  textcolor: const Color(0xff29C1F2),
                   backgroundColor: Colors.white,
                   
                   onPressed: () {
@@ -73,9 +73,9 @@ class Sharepage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 14),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  const SizedBox(height: 14),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Mytext(
                       text: "الشروط والاحكام",
                       fontSize: 15,
@@ -83,25 +83,25 @@ class Sharepage extends StatelessWidget {
                       color: Colors.black,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   mycontainer(
-                    backgroundColor: Color(0xffF0FAFF),
+                    backgroundColor: const Color(0xffF0FAFF),
                     borderColor: Colors.blue.shade200,
                     bottomShadow: false,
                     padding: const EdgeInsets.all(12),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                         const Mytext(
+                         Mytext(
                             text: "1. متاح للمستخدمين الجدد فقط.",
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
                             color: Color(0xff07729D),
                           ),
-                         const SizedBox(height: 6),
-                        const  Mytext(
+                         SizedBox(height: 6),
+                        Mytext(
                             text: "2. الحد الأقصى 15 ريال لكل حجز.",
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
@@ -119,9 +119,9 @@ class Sharepage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 9),
+                  const SizedBox(height: 9),
                 const  Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(8.0),
                     child: Mytext(
                       text: "خطوات الحصول على الرصيد",
                       fontSize: 15,
@@ -129,7 +129,7 @@ class Sharepage extends StatelessWidget {
                       color: Color.fromARGB(255, 0, 0, 0),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   mycontainer(
                     bottomShadow: true,
                     padding: const EdgeInsets.all(16),
@@ -146,10 +146,10 @@ class Sharepage extends StatelessWidget {
           },
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                 const  mycontainer(
                     bottomShadow: true,
-                    padding: const EdgeInsets.all(16),
+                    padding: EdgeInsets.all(16),
                     child: OntapContainer(
                       
                       text1: "كيف تكسب رصيدك",
@@ -157,7 +157,7 @@ class Sharepage extends StatelessWidget {
                           "ستحصل على 15 ريال بالمحفظة عند اتمام كل مستخدم جديد اول غسلة.\nسيحصل صديقك على 15 ريال بالمحفظة بعد اتمام اول غسلة.", icon: Assets.person,
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),

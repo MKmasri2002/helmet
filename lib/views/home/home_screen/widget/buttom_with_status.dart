@@ -51,11 +51,11 @@ class ButtomWithStatus extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 20),
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: Row(
                     children: [
-                      const Text(
+                      Text(
                         "جايك بالطريق",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -64,9 +64,9 @@ class ButtomWithStatus extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
-                      const Spacer(),
-                      const Image(image: AssetImage(Assets.iconCar)),
-                      const SizedBox(
+                      Spacer(),
+                      Image(image: AssetImage(Assets.iconCar)),
+                      SizedBox(
                         width: 10,
                       ),
                       // Text(

@@ -98,7 +98,7 @@ class RouteClass {
     ),
     GetPage(
       name: RoutesString.edit,
-      page: () => EditProfilePage(),
+      page: () => const EditProfilePage(),
       binding: EditBinding(),
       transition: Transition.fadeIn,
     ),
@@ -110,7 +110,7 @@ class RouteClass {
     ),
     GetPage(
       name: RoutesString.editphone,
-      page: () => EditPhone(),
+      page: () => const EditPhone(),
       binding: EditBinding(),
       transition: Transition.fadeIn,
     ),
@@ -122,13 +122,13 @@ class RouteClass {
     ),
     GetPage(
       name: RoutesString.feedback,
-      page: () => FeedbackScreen(),
+      page: () => const FeedbackScreen(),
       binding: FeedbackBinding(),
       transition: Transition.fadeIn,
     ),
     GetPage(
       name: RoutesString.addressBook,
-      page: () => AddressBookScreen(),
+      page: () => const AddressBookScreen(),
       binding: AddressBookBinding(),
       transition: Transition.fadeIn,
     ),
@@ -152,7 +152,7 @@ class RouteClass {
     ),
     GetPage(
       name: RoutesString.sendgifts,
-      page: () => sendgifts(),
+      page: () => const sendgifts(),
       binding: giftsBinding(),
       transition: Transition.fadeIn,
     ),
@@ -164,7 +164,7 @@ class RouteClass {
     ),
     GetPage(
       name: RoutesString.sharePackage,
-      page: () => SharePackageScreen(),
+      page: () => const SharePackageScreen(),
       binding: SharePackagesBinding(),
       transition: Transition.fadeIn,
     ),
