@@ -162,11 +162,11 @@ class RouteClass {
       binding: ShareBinding(),
       transition: Transition.fadeIn,
     ),
-    GetPage(
-      name: RoutesString.sharePackage,
-      page: () => const SharePackageScreen(),
-      binding: SharePackagesBinding(),
-      transition: Transition.fadeIn,
-    ),
+    // GetPage(
+    //   name: RoutesString.sharePackage,
+    //   page: () => const SharePackageScreen(),
+    //   binding: SharePackagesBinding(),
+    //   transition: Transition.fadeIn,
+    // ),
   ];
 }
