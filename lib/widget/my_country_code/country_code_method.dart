@@ -26,6 +26,8 @@ class CountryCodeMethod extends GetxController {
     maxLength: 0,
   ).obs;
 
+
+
   void setCountryCode(int indexPath) {
     mainCountryCode.value = countries[indexPath];
     log(mainCountryCode.value.code);
@@ -71,7 +73,7 @@ Future<void> showCustomBottomSheet(
     enableDrag: false,
     elevation: 5,
     isScrollControlled: true,
-    backgroundColor: Colors.white.withValues(alpha:0.3),
+    backgroundColor: Colors.white.withValues(alpha: 0.3),
     context: context,
     isDismissible: isDismissible,
     builder: (BuildContext newContext) => SingleChildScrollView(

@@ -12,6 +12,8 @@ import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/global/global.dart';
 import 'package:helmet_customer/utils/notificatio_manager.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
+import 'package:helmet_customer/widget/my_country_code/countries.dart';
+import 'package:helmet_customer/widget/my_country_code/country_code_method.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:video_player/video_player.dart';
 
@@ -29,6 +31,12 @@ class SplashScreenController extends GetxController {
     videoController.setVolume(0.0); // Mute video on start
     videoController.play();
     videoInitialized = true;
+    for (int i = 0; i < nadCountries.length; i++) {
+      if (nadCountries[i].code == 'SA') {
+        mainCountryCode.value = nadCountries[i];
+        break;
+      }
+    }
     update();
     //FirebaseAuth.instance.signOut();
     await checkConnectivity();

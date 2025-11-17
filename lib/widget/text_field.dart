@@ -50,6 +50,7 @@ class MainTextField extends StatelessWidget {
   final Function(String)? onFieldSubmitted;
   @override
   Widget build(BuildContext context) => TextFormField(
+        maxLength: maxLength,
         scrollPadding: EdgeInsets.only(
           bottom: MediaQuery.of(context).viewInsets.bottom + 300,
         ),
@@ -104,8 +105,8 @@ class MainTextField extends StatelessWidget {
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(
-              color: AppColors.defaultBlack,
-              width: 1.2,
+              color: AppColors.primary,
+              width: 1.5,
             ),
             borderRadius: BorderRadius.circular(12.0),
           ),

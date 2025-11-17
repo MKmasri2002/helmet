@@ -25,25 +25,7 @@ class CallCountryCodeIcon extends GetView<CountryCodeMethod> {
                 myCountryCodeMethod.flagWidget(
                   mainCountryCode.value,
                 ),
-                Headline5(
-                  title: mainCountryCode.value.dialCode,
-                ),
-                const Icon(
-                  Icons.keyboard_arrow_down_rounded,
-                  size: 20,
-                  color: Colors.black,
-                ),
-                Container(
-                  margin: const EdgeInsetsDirectional.fromSTEB(
-                    8,
-                    0,
-                    8,
-                    0,
-                  ),
-                  height: 26,
-                  width: 1,
-                  color: Colors.grey.withValues(alpha:0.3),
-                ),
+                
               ],
             ),
           ),

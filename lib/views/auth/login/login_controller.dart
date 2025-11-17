@@ -12,6 +12,8 @@ class LoginController extends GetxController {
   bool isLoading = false;
   final GlobalKey<FormState> loginForm = GlobalKey<FormState>();
   FirebaseAuth auth = FirebaseAuth.instance;
+  final TextEditingController phoneController = TextEditingController();
+  final RegExp onlyNumberFormatter = RegExp(r'^[0-9]+$');
   // Example method to generate a random OTP
   void sendOTP(String phoneNumber) async {
     // Check if the phone number is valid
