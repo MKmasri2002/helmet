@@ -30,6 +30,7 @@ void notLoggedInDialog(){
                           Text("You are not login yet, are you want to login now?".tr,
                             textAlign: TextAlign.center,
                             style: TextStyle(
+                              fontFamily: 'IBMPlexSansArabic',
                               color: textColor,
                               fontWeight: FontWeight.bold,
                               fontSize: 25,

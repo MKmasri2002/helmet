@@ -63,6 +63,7 @@ class Mycarspage extends StatelessWidget {
         style: const TextStyle(
           color: Colors.lightBlue,
           fontWeight: FontWeight.bold,
+          fontFamily: 'IBMPlexSansArabic',
           fontSize: 14,
         ),
       ),

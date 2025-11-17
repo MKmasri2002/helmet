@@ -16,6 +16,7 @@ void customSnakeBar(
       message,
       textAlign: TextAlign.center,
       style: const TextStyle(
+        fontFamily: 'IBMPlexSansArabic',
         fontSize: 15,
         fontWeight: FontWeight.bold,
         color: Colors.white,

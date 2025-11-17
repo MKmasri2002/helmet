@@ -9,6 +9,7 @@ class T2 extends StatelessWidget {
     return Text(
       text,
       style: const TextStyle(
+          fontFamily: 'IBMPlexSansArabic',
           fontWeight: FontWeight.w400,
           color: Color(0xff8193B3),
           fontSize: 14,

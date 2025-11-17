@@ -52,6 +52,7 @@ class MyApp extends StatelessWidget {
             color: Color.fromARGB(255, 91, 185, 96),
             fontSize: 38.8,
             fontWeight: FontWeight.bold,
+            fontFamily: 'IBMPlexSansArabic',
           ),
         ),
       ),

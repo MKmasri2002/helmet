@@ -195,7 +195,7 @@ const Map<String, String> ar = {
   TranslationData.phoneNumber: "رقم الهاتف",
   TranslationData.fromCreateAccount: "بمجرد انشاء حساب في هِلمِت فإنك توافق على",
   TranslationData.enterYourPhoneNumberToCreateAccount:
-      "أدخل رقم جوالك و سحل دخولك الأن مع هلمت",
+      "أدخل رقم جوالك وسجل دخولك الآن مع هِــلـمِـت",
   TranslationData.termsAndConditions: "الشروط والأحكام",
   TranslationData.privacyPolicy: "سياسة الخصوصية",
   TranslationData.continueAsVistor: "متابعة كزائر",

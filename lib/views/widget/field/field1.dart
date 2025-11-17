@@ -78,10 +78,11 @@ class TextFormField1 extends StatelessWidget {
             color: Colors.grey.shade600,
             fontWeight: FontWeight.w400,
             fontSize: 14,
+            fontFamily: 'IBMPlexSansArabic',
           ),
           labelText: labelText,
         ),
-        style: const TextStyle(color: Colors.black, fontSize: 18),
+        style: const TextStyle(color: Colors.black, fontSize: 18, fontFamily: 'IBMPlexSansArabic'),
       ),
     );
   }

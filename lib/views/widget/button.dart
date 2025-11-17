@@ -39,6 +39,7 @@ class Button extends StatelessWidget {
             text!,
             textAlign: TextAlign.center,
             style: TextStyle(
+              fontFamily: 'IBMPlexSansArabic',
               color: textColor ?? Colors.white,
               fontSize: fontSize,
               fontWeight: fontWeight,

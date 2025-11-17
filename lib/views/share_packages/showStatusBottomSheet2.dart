@@ -16,8 +16,8 @@ void showStatusBottomSheet2(
       return Container(
         width: MediaQuery.of(context).size.width,
         height: 300,
-        padding: EdgeInsets.all(20),
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.all(20),
+        decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(25),
@@ -32,7 +32,7 @@ void showStatusBottomSheet2(
               width: 120,
               height: 120,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
               mainText,
               textAlign: TextAlign.center,
@@ -40,9 +40,10 @@ void showStatusBottomSheet2(
                 color: color,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
+                fontFamily: 'IBMPlexSansArabic',
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
           ],
         ),
       );

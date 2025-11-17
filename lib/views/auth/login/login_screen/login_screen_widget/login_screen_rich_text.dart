@@ -13,13 +13,13 @@ class LoginScreenRichText extends StatelessWidget {
     return Text.rich(
       TextSpan(
         text: TranslationData.fromCreateAccount.tr,
-        style: const TextStyle(fontSize: 14, color: Colors.black),
+        style: const TextStyle(fontSize: 14, color: Colors.black, fontFamily: 'IBMPlexSansArabic'),
         children: [
           TextSpan(
             text:
                 ' ${TranslationData.termsAndConditions.tr}.',
             style:  const TextStyle(
-                color: AppColors.primary, fontWeight: FontWeight.bold),
+                color: AppColors.primary, fontWeight: FontWeight.bold, fontFamily: 'IBMPlexSansArabic'),
             recognizer: TapGestureRecognizer()
               ..onTap = () => Get.to(() => const WebViewPage()),
           ),

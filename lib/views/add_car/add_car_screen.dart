@@ -41,6 +41,7 @@ class AddCarScreen extends StatelessWidget {
                     style:const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
+                      fontFamily: 'IBMPlexSansArabic',
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -69,11 +70,12 @@ class AddCarScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                   Text(
-                   TranslationData.chooseYourModel.tr,
+                  Text(
+                    TranslationData.chooseYourModel.tr,
                     style:const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
+                      fontFamily: 'IBMPlexSansArabic',
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -112,6 +114,7 @@ class AddCarScreen extends StatelessWidget {
                     style:const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
+                      fontFamily: 'IBMPlexSansArabic',
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -126,6 +129,7 @@ class AddCarScreen extends StatelessWidget {
                     style:const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
+                      fontFamily: 'IBMPlexSansArabic',
                     ),
                   ),
                   const SizedBox(height: 8),

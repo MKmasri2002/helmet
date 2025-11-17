@@ -23,7 +23,8 @@ class PrivacyPolicyScreenAr extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
-                      color: baseWhiteColor
+                      color: baseWhiteColor,
+                      fontFamily: 'IBMPlexSansArabic'
                   ),
                   textAlign: TextAlign.right,
                 ),
@@ -32,7 +33,7 @@ class PrivacyPolicyScreenAr extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               'تطبيق "Helmet" يلتزم بحماية خصوصية مستخدميه. هذه السياسة تشمل كيفية جمعنا، استخدامنا، وكشفنا لمعلوماتك الشخصية.',
-              style: TextStyle(fontSize: 16,color: baseWhiteColor),
+              style: TextStyle(fontSize: 16,color: baseWhiteColor, fontFamily: 'IBMPlexSansArabic'),
               textAlign: TextAlign.right,
             ),
             const SizedBox(height: 20),
@@ -111,7 +112,8 @@ class PrivacyPolicyScreenAr extends StatelessWidget {
       style: TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.bold,
-          color: baseWhiteColor
+          color: baseWhiteColor,
+          fontFamily: 'IBMPlexSansArabic'
       ),
       textAlign: TextAlign.right,
     );
@@ -120,7 +122,7 @@ class PrivacyPolicyScreenAr extends StatelessWidget {
   Widget buildSectionText(String text) {
     return Text(
       text,
-      style: TextStyle(fontSize: 16,color: baseWhiteColor),
+      style: TextStyle(fontSize: 16,color: baseWhiteColor, fontFamily: 'IBMPlexSansArabic'),
       textAlign: TextAlign.right,
     );
   }

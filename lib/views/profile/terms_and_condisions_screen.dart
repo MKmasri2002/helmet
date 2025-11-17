@@ -22,7 +22,8 @@ class TermsAndConditionsScreen extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black),
+                      color: Colors.black,
+                      fontFamily: 'IBMPlexSansArabic'),
                 ),
               ],
             ),
@@ -32,12 +33,13 @@ class TermsAndConditionsScreen extends StatelessWidget {
               style: TextStyle(
                   fontSize: 16,
                   fontStyle: FontStyle.italic,
-                  color: baseWhiteColor),
+                  color: baseWhiteColor,
+                  fontFamily: 'IBMPlexSansArabic'),
             ),
             const SizedBox(height: 20),
             Text(
               'Welcome to Helmet! These Terms and Conditions ("Terms") govern your access to and use of our fitness tracker app ("App"). By using Helmet, you agree to comply with and be bound by these Terms. If you do not agree to these Terms, please refrain from using the App.',
-              style: TextStyle(fontSize: 16, color: baseWhiteColor),
+              style: TextStyle(fontSize: 16, color: baseWhiteColor, fontFamily: 'IBMPlexSansArabic'),
             ),
             const SizedBox(height: 20),
             _buildSectionTitle('1. Acceptance of Terms'),
@@ -112,14 +114,14 @@ class TermsAndConditionsScreen extends StatelessWidget {
     return Text(
       title,
       style: TextStyle(
-          fontSize: 18, fontWeight: FontWeight.bold, color: baseWhiteColor),
+          fontSize: 18, fontWeight: FontWeight.bold, color: baseWhiteColor, fontFamily: 'IBMPlexSansArabic'),
     );
   }
 
   Widget _buildSectionText(String text) {
     return Text(
       text,
-      style: TextStyle(fontSize: 16, color: baseWhiteColor),
+      style: TextStyle(fontSize: 16, color: baseWhiteColor, fontFamily: 'IBMPlexSansArabic'),
     );
   }
 }

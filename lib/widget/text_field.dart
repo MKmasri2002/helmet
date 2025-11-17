@@ -75,6 +75,7 @@ class MainTextField extends StatelessWidget {
         textAlign: textAlign ?? TextAlign.start,
         style: const TextStyle(
           fontSize: 16,
+          fontFamily: 'IBMPlexSansArabic',
         ),
         obscureText: obscureText ?? false,
         mouseCursor: MouseCursor.defer,
@@ -125,6 +126,7 @@ class MainTextField extends StatelessWidget {
             color: Colors.grey.shade600,
             fontWeight: FontWeight.w400,
             fontSize: 14,
+            fontFamily: 'IBMPlexSansArabic',
           ),
         ),
       );

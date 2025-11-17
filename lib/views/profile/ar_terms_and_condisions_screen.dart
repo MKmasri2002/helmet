@@ -22,7 +22,8 @@ class TermsAndConditionsScreenAr extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
-                      color: baseWhiteColor),
+                      color: baseWhiteColor,
+                      fontFamily: 'IBMPlexSansArabic'),
                   textAlign: TextAlign.right,
                 ),
               ],
@@ -33,13 +34,14 @@ class TermsAndConditionsScreenAr extends StatelessWidget {
               style: TextStyle(
                   fontSize: 16,
                   fontStyle: FontStyle.italic,
-                  color: baseWhiteColor),
+                  color: baseWhiteColor,
+                  fontFamily: 'IBMPlexSansArabic'),
               textAlign: TextAlign.right,
             ),
             const SizedBox(height: 20),
             Text(
               'مرحبًا بك في تطبيق Helmet! تحكم هذه الشروط والأحكام ("الشروط") وصولك واستخدامك لتطبيقنا الخاص بتتبع اللياقة البدنية ("التطبيق"). باستخدام تطبيق Helmet، فإنك توافق على الالتزام بهذه الشروط. إذا كنت لا توافق على هذه الشروط، يرجى الامتناع عن استخدام التطبيق.',
-              style: TextStyle(fontSize: 16, color: baseWhiteColor),
+              style: TextStyle(fontSize: 16, color: baseWhiteColor, fontFamily: 'IBMPlexSansArabic'),
               textAlign: TextAlign.right,
             ),
             const SizedBox(height: 20),
@@ -115,7 +117,7 @@ class TermsAndConditionsScreenAr extends StatelessWidget {
     return Text(
       title,
       style: TextStyle(
-          fontSize: 18, fontWeight: FontWeight.bold, color: baseWhiteColor),
+          fontSize: 18, fontWeight: FontWeight.bold, color: baseWhiteColor, fontFamily: 'IBMPlexSansArabic'),
       textAlign: TextAlign.right,
     );
   }
@@ -123,7 +125,7 @@ class TermsAndConditionsScreenAr extends StatelessWidget {
   Widget buildSectionText(String text) {
     return Text(
       text,
-      style: TextStyle(fontSize: 16, color: baseWhiteColor),
+      style: TextStyle(fontSize: 16, color: baseWhiteColor, fontFamily: 'IBMPlexSansArabic'),
       textAlign: TextAlign.right,
     );
   }

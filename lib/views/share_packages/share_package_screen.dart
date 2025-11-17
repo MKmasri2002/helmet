@@ -38,12 +38,12 @@ void showSharePackageBottomSheet(BuildContext context, String packageId) {
                       height: 4,
                       margin: const EdgeInsets.only(bottom: 16),
                       decoration: BoxDecoration(
-                        color: Color(0xff29C1F2),
+                        color: const Color(0xff29C1F2),
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Padding(
@@ -52,8 +52,8 @@ void showSharePackageBottomSheet(BuildContext context, String packageId) {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Padding(
-                          padding: const EdgeInsets.all(0.0),
-                          child: const Text(
+                          padding: EdgeInsets.all(0.0),
+                          child: Text(
                             "شارك باقتك!",
                             style: TextStyle(
                               color: Colors.black,
@@ -73,7 +73,7 @@ void showSharePackageBottomSheet(BuildContext context, String packageId) {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
                   Padding(
@@ -103,10 +103,10 @@ void showSharePackageBottomSheet(BuildContext context, String packageId) {
                   ),
                   const SizedBox(height: 40),
                   const Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    padding: EdgeInsets.symmetric(horizontal: 10.0),
                     child: Text(
                       "عدد الغسلات يلي حاب تشاركه",
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'IBM Plex Sans Arabic',
                         fontWeight: FontWeight.w600,
                         fontStyle: FontStyle.normal,
@@ -126,7 +126,7 @@ void showSharePackageBottomSheet(BuildContext context, String packageId) {
                         hintText: "",
                         width: 210,
                         sufixtext: "غسلة",
-                        textStyle: TextStyle( fontSize: 20, color: Color(0xff29C1F2), fontWeight: FontWeight.bold, ), 
+                        textStyle: const TextStyle( fontSize: 20, color: Color(0xff29C1F2), fontWeight: FontWeight.bold, fontFamily: 'IBMPlexSansArabic', ), 
                       ),
                       CircularIconButton(
                         icon: Icons.remove,
@@ -160,7 +160,7 @@ void showSharePackageBottomSheet(BuildContext context, String packageId) {
     imageAsset: result['success'] == true
         ? 'assets/images/true.png'
         : 'assets/images/false.png',
-    color: result['success'] == true ? Color(0xff00C069) : Colors.red,
+    color: result['success'] == true ? const Color(0xff00C069) : Colors.red,
   );
 },
                   ),

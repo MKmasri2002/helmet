@@ -25,6 +25,7 @@ class CustomText extends StatelessWidget {
     return Text(
       text ?? '',
       style: TextStyle(
+        fontFamily: 'IBMPlexSansArabic',
         fontWeight: fontWeight,
         fontSize: fontSize,
         color: color,

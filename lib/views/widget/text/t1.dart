@@ -10,6 +10,7 @@ class T1 extends StatelessWidget {
     return Text(
       text,
       style: const TextStyle(
+          fontFamily: 'IBMPlexSansArabic',
           fontWeight: FontWeight.bold,
           color: AppColors.black,
           fontSize: 20,

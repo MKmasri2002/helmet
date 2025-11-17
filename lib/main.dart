@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
                 colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
                 useMaterial3: true,
-                fontFamily: 'Cairo',
+                fontFamily: 'IBMPlexSansArabic',
                 scaffoldBackgroundColor: Colors.white,
                 appBarTheme: const AppBarTheme(backgroundColor: Colors.white)),
             localizationsDelegates: const [

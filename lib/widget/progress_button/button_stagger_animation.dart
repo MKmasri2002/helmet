@@ -76,7 +76,7 @@ class ButtonStaggerAnimation extends StatelessWidget {
         width: widthAnimation.value,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            textStyle: const TextStyle(fontSize: 20),
+            textStyle: const TextStyle(fontSize: 20, fontFamily: 'IBMPlexSansArabic'),
             backgroundColor: color,
             shape: RoundedRectangleBorder(
               borderRadius: borderRadiusAnimation.value,

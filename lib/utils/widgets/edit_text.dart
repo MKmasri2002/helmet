@@ -103,12 +103,16 @@ class CustomEditText extends StatelessWidget {
           fillColor: Colors.white,
           hintText: hintText,
           hintStyle: TextStyle(
+            fontFamily: 'IBMPlexSansArabic',
             color: Colors.grey.shade600,
             fontWeight: FontWeight.w400,
             fontSize: 14,
           ),
         ),
-        style: TextStyle(color: textColor ?? Colors.black, fontSize: fontSize),
+        style: TextStyle(
+            fontFamily: 'IBMPlexSansArabic',
+            color: textColor ?? Colors.black,
+            fontSize: fontSize),
       ),
     );
   }

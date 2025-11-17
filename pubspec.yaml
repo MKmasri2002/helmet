@@ -90,12 +90,11 @@ flutter:
   fonts:
     - family: IBMPlexSansArabic
       fonts:
-        - asset: assets/fonts/IBMPlexSansArabic-Bold.ttf
-    - family: Cairo
-      fonts:
-        - asset: assets/fonts/IBMPlexSansArabic-Medium.ttf
-    - family: Cairo
-      fonts:
         - asset: assets/fonts/IBMPlexSansArabic-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/IBMPlexSansArabic-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/IBMPlexSansArabic-Bold.ttf
+          weight: 700
         
 

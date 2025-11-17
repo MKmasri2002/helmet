@@ -121,7 +121,7 @@ class WalletPage extends StatelessWidget {
                       ),
                       child: Text(
                         TranslationData.apply.tr,
-                        style: const TextStyle(color: Colors.white, fontSize: 16),
+                        style: const TextStyle(color: Colors.white, fontSize: 16, fontFamily: 'IBMPlexSansArabic'),
                       ),
                     ),
                   ),

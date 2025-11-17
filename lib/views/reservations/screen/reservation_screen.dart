@@ -97,6 +97,7 @@ final int length=1;
                                   style: const TextStyle(
                                     fontSize: 14,
                                     color: Color(0xff8193B3),
+                                    fontFamily: 'IBMPlexSansArabic',
                                   ),
                                 ),
                               ],

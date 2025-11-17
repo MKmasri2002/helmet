@@ -21,14 +21,15 @@ class PrivacyPolicyScreen extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
-                      color: baseWhiteColor),
+                      color: baseWhiteColor,
+                      fontFamily: 'IBMPlexSansArabic'),
                 ),
               ],
             ),
             const SizedBox(height: 10),
             Text(
               '[App Name] ("Helmet") is committed to protecting your privacy. This policy explains how we collect, use, and disclose your personal information.',
-              style: TextStyle(fontSize: 16, color: baseWhiteColor),
+              style: TextStyle(fontSize: 16, color: baseWhiteColor, fontFamily: 'IBMPlexSansArabic'),
             ),
             const SizedBox(height: 20),
             buildSectionTitle('Why We Collect Your Information'),
@@ -104,14 +105,14 @@ class PrivacyPolicyScreen extends StatelessWidget {
     return Text(
       title,
       style: TextStyle(
-          fontSize: 18, fontWeight: FontWeight.bold, color: baseWhiteColor),
+          fontSize: 18, fontWeight: FontWeight.bold, color: baseWhiteColor, fontFamily: 'IBMPlexSansArabic'),
     );
   }
 
   Widget buildSectionText(String text) {
     return Text(
       text,
-      style: TextStyle(fontSize: 16, color: baseWhiteColor),
+      style: TextStyle(fontSize: 16, color: baseWhiteColor, fontFamily: 'IBMPlexSansArabic'),
     );
   }
 }

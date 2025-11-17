@@ -49,6 +49,7 @@ class PackageCard extends StatelessWidget {
                         fontSize: 12.sp,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
+                        fontFamily: 'IBMPlexSansArabic',
                       ),
                     ),
                   ),
@@ -80,6 +81,7 @@ class PackageCard extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 15.sp,
                   fontWeight: FontWeight.w500,
+                  fontFamily: 'IBMPlexSansArabic',
                 ),
               ),
             ),
@@ -90,6 +92,7 @@ class PackageCard extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 14.sp,
                   color: const Color(0xff8193B3),
+                  fontFamily: 'IBMPlexSansArabic',
                 ),
               ),
             ),
@@ -123,6 +126,7 @@ class PackageCard extends StatelessWidget {
                               fontSize: 16.sp,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
+                              fontFamily: 'IBMPlexSansArabic',
                             ),
                           ),
                           Image.asset(Assets.reyalblack,height: 30,),
@@ -134,6 +138,7 @@ class PackageCard extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 14.sp,
                           color: Colors.white70,
+                          fontFamily: 'IBMPlexSansArabic',
                         ),
                       ),
                       const SizedBox(width: 8),

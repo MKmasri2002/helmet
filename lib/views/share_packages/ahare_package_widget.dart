@@ -31,10 +31,10 @@ class CustompackageTextField extends StatelessWidget {
           controller: controller,
           textAlign: TextAlign.start,
           style:
-              textStyle ?? const TextStyle(fontSize: 16, color: Colors.black),
+              textStyle ?? const TextStyle(fontSize: 16, color: Colors.black, fontFamily: 'IBMPlexSansArabic'),
           decoration: InputDecoration(
             hintText: hintText ?? "",
-            hintStyle: const TextStyle(fontSize: 15, color: Color(0xff8193B3)),
+            hintStyle: const TextStyle(fontSize: 15, color: Color(0xff8193B3), fontFamily: 'IBMPlexSansArabic'),
             suffix: sufixtext != null
                 ? Padding(
                     padding: const EdgeInsets.only(right: 8.0),
@@ -43,6 +43,7 @@ class CustompackageTextField extends StatelessWidget {
                       style: const TextStyle(
                         color: AppColors.defaultDeactivatedColor,
                         fontSize: 13,
+                        fontFamily: 'IBMPlexSansArabic',
                       ),
                     ),
                   )
