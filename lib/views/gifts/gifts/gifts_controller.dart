@@ -16,6 +16,7 @@ class giftsController extends GetxController {
   int selected = 0;
   String? title;
   String? name;
+  double? price;
 
   @override
   void onInit() {
@@ -35,9 +36,12 @@ class giftsController extends GetxController {
     update();
   }
 
-  void chooseCard({required String title, required String name}) {
+  void chooseCard(
+      {required String title, required String name, required double price}) {
     this.name = name;
     this.title = title;
+    this.price = price;
+
     Get.snackbar("نجاح", "تم اختيار الهدية");
   }
 
@@ -76,6 +80,7 @@ class giftsController extends GetxController {
           "senderId": currentUser.uid,
           "receiverId": receiverId,
           "title": title,
+          "price": price,
           "date": Timestamp.now(),
         });
         if (name == "اشتراك شهري") {
@@ -83,7 +88,7 @@ class giftsController extends GetxController {
             userId: receiverId,
             titleAr: "اشتراك شهري",
             titleEn: "Monthly Subscription",
-            price: 199.99,
+            price: 499.99,
             count: "10",
             remain: 10,
             type: 'package',
@@ -94,14 +99,12 @@ class giftsController extends GetxController {
             binding: CartBinding(),
             arguments: {'product': subscribe},
           );
-      Get.snackbar("تم الإرسال", "تم إرسال الهدية بنجاح ");
-
+          Get.snackbar("تم الإرسال", "تم إرسال الهدية بنجاح ");
         } else {
           Get.snackbar("خطأ", "لم يتم اختيار الهديه");
           return;
         }
       }
-
     } catch (e) {
       Get.snackbar("خطأ", "حدث خطأ أثناء الإرسال: $e");
     }
@@ -129,7 +132,7 @@ class giftsController extends GetxController {
     String uid = FirebaseAuth.instance.currentUser!.uid;
     return FirebaseFirestore.instance
         .collection('gifts')
-        .where("receiverId", isEqualTo: uid)
+        .where("senderId", isEqualTo: uid)
         .snapshots();
   }
 

@@ -146,6 +146,10 @@ class Assets {
   static const String tabby = 'assets/images/tabby.png';
   static const String man = 'assets/images/man.png';
   static const String woman = 'assets/images/woman.png';
+    static const String sharepackageblack = 'assets/images/share-01.png';
+        static const String reyalblack1 = 'assets/images/Saudi_Riyal_Symbol 1.png';
+
+    
 }
 
 class SvgAssets {

@@ -1,137 +1,176 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:helmet_customer/theme/app_colors.dart';
-import 'package:helmet_customer/theme/app_size.dart';
+import 'package:helmet_customer/generated/assets.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/views/editprofile/widget/CustomTextField.dart';
+import 'package:helmet_customer/views/gifts/widget/elevatedbutton.dart';
+import 'package:helmet_customer/views/share_packages/ahare_package_widget.dart';
 import 'package:helmet_customer/views/share_packages/share_package_controller.dart';
+import 'package:helmet_customer/views/share_packages/showStatusBottomSheet2.dart';
 
-class SharePackageScreen extends StatelessWidget {
-  const SharePackageScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return GetBuilder<SharePackagesController>(
-      init: SharePackagesController(), // تأكد إنها تنشأ أول مرة
-      builder: (ctrl) {
-        return Scaffold(
-          backgroundColor: Colors.grey[200],
-          appBar: AppBar(
-            
+void showSharePackageBottomSheet(BuildContext context, String packageId) {
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true, // 🔹 يسمح للشيت يطلع فوق الكيبورد
+    backgroundColor: Colors.transparent,
+    builder: (context) {
+      return Padding(
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
           ),
-          body: SafeArea(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
-              child: Container(
-                width: AppSize.width,
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 8,
-                      offset: Offset(0, 3),
-                    )
-                  ],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Center(
-                      child: Text(
-                        "Share Package",
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                        ),
+          child: GetBuilder<SharePackagesController>(
+            init: SharePackagesController(packageId),
+            builder: (controller) {
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: Container(
+                      width: 50,
+                      height: 4,
+                      margin: const EdgeInsets.only(bottom: 16),
+                      decoration: BoxDecoration(
+                        color: Color(0xff29C1F2),
+                        borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                    const SizedBox(height: 30),
-
-                    // رقم الهاتف
-                    Text(
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Padding(
+                          padding: const EdgeInsets.all(0.0),
+                          child: const Text(
+                            "شارك باقتك!",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'IBMPlexSansArabic',
+                              fontWeight: FontWeight.w600,
+                              fontSize: 20,
+                              height: 1.5,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Image.asset(
+                          Assets.sharepackageblack,
+                          width: 27.21,
+                          height: 27.29,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Text(
                       TranslationData.recipientPhoneNumber.tr,
                       style: const TextStyle(
                         fontFamily: 'IBM Plex Sans Arabic',
                         fontWeight: FontWeight.w600,
+                        fontStyle: FontStyle.normal,
                         fontSize: 14,
+                        height: 0.25,
+                        letterSpacing: 0,
                         color: Color(0xff121212),
                       ),
                     ),
-                    const SizedBox(height: 8),
-                    TextField(
-                      controller: ctrl.phoneController,
-                      keyboardType: TextInputType.phone,
-                      decoration: InputDecoration(
-                        labelText: 'رقم الهاتف',
-                        hintText: 'مثال: 0791234567',
-                        prefixIcon: const Icon(Icons.phone),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      maxLength: 10,
+                  ),
+                  const SizedBox(height: 20),
+                  CustompackageTextField(
+                    controller: controller.phoneController,
+                    hintText: "05xxxxxxxxx",
+                    prefixIcon: Image.asset(
+                      Assets.flag,
+                      height: 24,
+                      width: 24,
                     ),
-
-                    const SizedBox(height: 20),
-
-                    // عدد الباقات
-                    const Text(
-                      "عدد الغسلات",
-                      style: TextStyle(
+                  ),
+                  const SizedBox(height: 40),
+                  const Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Text(
+                      "عدد الغسلات يلي حاب تشاركه",
+                      style: const TextStyle(
                         fontFamily: 'IBM Plex Sans Arabic',
                         fontWeight: FontWeight.w600,
+                        fontStyle: FontStyle.normal,
                         fontSize: 14,
+                        height: 0.25,
+                        letterSpacing: 0,
                         color: Color(0xff121212),
                       ),
                     ),
-                    const SizedBox(height: 8),
-                   TextField(
-                      controller: ctrl.numberOfWashes,
-                      keyboardType: TextInputType.phone,
-                      decoration: InputDecoration(
-                        labelText: 'عدد الغسلات',
-                        prefixIcon: const Icon(Icons.local_car_wash),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      CustompackageTextField(
+                        controller: controller.numberOfWashes,
+                        hintText: "",
+                        width: 210,
+                        sufixtext: "غسلة",
+                        textStyle: TextStyle( fontSize: 20, color: Color(0xff29C1F2), fontWeight: FontWeight.bold, ), 
                       ),
-                    ),
+                      CircularIconButton(
+                        icon: Icons.remove,
+                        onPressed: () {
+                          controller.decrementWashes();
+                        },
+                      ),
+                      CircularIconButton(
+                        icon: Icons.add,
+                        onPressed: () {
+                          controller.incrementWashes();
+                        },
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 35),
+                  button(
+                    title: "مشاركة الباقة",
+                    onPressed: () async {
+  final result = await controller.sendPackage(); // نفذ الفنكشن وانتظر النتيجة
 
-                    const SizedBox(height: 30),
-
-                    // زر الإرسال
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor:
-                            WidgetStateProperty.all(AppColors.boldTextColor),
-                        shape: WidgetStateProperty.all(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                        ),
-                        minimumSize: WidgetStateProperty.all(
-                          const Size(double.infinity, 50),
-                        ),
-                      ),
-                      onPressed: ctrl.sendPackage,
-                      child: const Text(
-                        "Send",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        );
-      },
-    );
+  // إذا فيه Bottom Sheet مفتوح، اغلقه
+  if (Navigator.canPop(context)) {
+    Navigator.pop(context);
   }
+
+  // عرض Bottom Sheet حسب النتيجة
+  showStatusBottomSheet2(
+    context,
+    mainText: result["message"] ?? 'حدث خطأ',
+    imageAsset: result['success'] == true
+        ? 'assets/images/true.png'
+        : 'assets/images/false.png',
+    color: result['success'] == true ? Color(0xff00C069) : Colors.red,
+  );
+},
+                  ),
+                  const SizedBox(height: 20),
+                ],
+              );
+            },
+          ),
+        ),
+      );
+    },
+  );
 }

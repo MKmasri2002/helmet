@@ -5,6 +5,7 @@ import 'package:helmet_customer/utils/languages/translate.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/utils/widgets/custom_nav_bar.dart';
 import 'package:helmet_customer/views/gifts/gifts/gifts_controller.dart';
+import 'package:helmet_customer/views/gifts/gifts/listview.dart';
 import 'package:helmet_customer/views/gifts/widget/appbar.dart';
 import 'package:helmet_customer/views/gifts/widget/elevatedbutton.dart';
 import 'package:helmet_customer/views/gifts/widget/listview.dart';
@@ -65,7 +66,7 @@ class sendgifts extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  const mylistview(i: true, price: "2"),
+                  const mylistviewgift(i: true, price: "2"),
                   const SizedBox(height: 40),
                   OptionButton(
                     title: TranslationData.creditCard.tr,

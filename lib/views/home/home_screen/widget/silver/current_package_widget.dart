@@ -77,8 +77,7 @@ class CurrentPackageWidget extends StatelessWidget {
                           return;
                         }
 
-                        Get.toNamed(RoutesString.sharePackage,
-                            arguments: {'packageId': currentOrder.id});
+                        showSharePackageBottomSheet(context,currentOrder.id!);
                       },
                       child: Container(
                         width: AppSize.width * 0.35,

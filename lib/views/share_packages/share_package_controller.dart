@@ -7,40 +7,72 @@ import 'package:helmet_customer/utils/global/global.dart';
 
 class SharePackagesController extends GetxController {
   final phoneController = TextEditingController();
-  final numberOfWashes = TextEditingController();
-  String? packageId;
+  TextEditingController numberOfWashes = TextEditingController();
+  final String? packageId;
+
+  SharePackagesController(this.packageId);
 
   @override
   void onInit() {
-    packageId = Get.arguments['packageId'];
+    // packageId = Get.arguments['packageId'];
+    numberOfWashes.text = "0";
     super.onInit();
   }
 
-  // تابع بسيط لتجريب القيم
-  Future<void> sendPackage() async {
-    final phone = phoneController.text.trim();
-    final washes = int.tryParse(numberOfWashes.text.trim()) ?? -1;
-
-    if (phone.isEmpty || washes <= -1) {
-      Get.snackbar('خطأ', 'يرجى تعبئة جميع الحقول');
-      return;
+  /// زيادة العدد بواحد
+  void incrementWashes() {
+    int current = int.tryParse(numberOfWashes.text) ?? 0;
+    if (current < 10) {
+      current++;
+      numberOfWashes.text = current.toString();
+      update(); // لتحديث الـ UI إذا كان يستخدم GetBuilder
     }
+  }
+
+  /// نقصان العدد بواحد
+  void decrementWashes() {
+    int current = int.tryParse(numberOfWashes.text) ?? 0;
+    if (current > 0) {
+      current--;
+      numberOfWashes.text = current.toString();
+      update(); // لتحديث الـ UI
+    }
+  }
+
+  // تابع بسيط لتجريب القيم
+  Future<Map<String, dynamic>> sendPackage() async {
+    final phone = phoneController.text.trim();
+    final washes = int.tryParse(numberOfWashes.text.trim()) ?? 0;
+
+    if (phone.isEmpty || washes <= 0) {
+      return {
+        'success': false,
+        'message': 'يجب تعبئة جميع الحقول',
+      };
+    }
+
     final userExist = await isUserExsist(phone);
     if (!userExist) {
-      Get.snackbar("خطأ", "لا يوجد مستخم مسجل بالتطبيق للرقم الذي ادخلته");
-      return;
+      return {
+        'success': false,
+        'message': 'لا يوجد مستخدم مسجل بالتطبيق للرقم الذي ادخلته',
+      };
     }
+
     final differnt = isNumberGiftLessOrEqualeToRemain(packageId!, washes);
     if (!differnt) {
-      Get.snackbar("خطأ", "لا يمكنك ارسال عدد باقات اكبر من المتوفر لك");
-      return;
+      return {
+        'success': false,
+        'message': 'لا يمكنك ارسال عدد باقات أكبر من المتوفر لك',
+      };
     }
+
     await addPackage(phone, washes);
 
-    Get.snackbar("نجاح", "تم التحديث بنجاح");
-    return;
-
-    // هون تقدر تكمل المنطق (إرسال البيانات للسيرفر أو الفايرستور مثلاً)
+    return {
+      'success': true,
+      'message': 'تمت مشاركة ${washes ?? ""} من غسلاتك مع\n${phone ??''}',
+    };
   }
 
   Future<bool> addPackage(String phone, int washes) async {
@@ -49,12 +81,14 @@ class SharePackagesController extends GetxController {
         .where('phone', isEqualTo: phone)
         .limit(1)
         .get();
+
     if (snap.docs.isNotEmpty) {
       final user = UserModel.fromJson(snap.docs.first.data());
       final id = user.uid!;
       final index = subscriptions.indexWhere((sub) => sub.id == packageId);
-       final doc = FirebaseFirestore.instance.collection("subscribe").doc();
-      Subscribe s = Subscribe(
+      final doc = FirebaseFirestore.instance.collection("subscribe").doc();
+
+      Subscribe s = new Subscribe(
         count: subscriptions[index].count,
         descriptionAr: subscriptions[index].descriptionAr,
         descriptionEn: subscriptions[index].descriptionEn,
@@ -64,12 +98,13 @@ class SharePackagesController extends GetxController {
         price: subscriptions[index].price,
         remain: washes,
         titleAr: subscriptions[index].titleAr,
-        titleEn: subscriptions[index].titleEn, 
+        titleEn: subscriptions[index].titleEn,
         id: doc.id,
         userId: user.uid!
       );
+
       await doc.set(s.toJson());
-      
+
       if (index != -1) {
         subscriptions[index].remain = (subscriptions[index].remain! - washes);
         await FirebaseFirestore.instance
@@ -81,7 +116,6 @@ class SharePackagesController extends GetxController {
         // 🔹 غيّرها للقيمة الجديدة
       }
     }
-    
     return false;
   }
 
