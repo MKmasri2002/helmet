@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 import 'package:helmet_customer/views/auth/otp/otp_binding.dart';
 import 'package:helmet_customer/views/auth/otp/otp_view.dart';
 import 'package:helmet_customer/utils/widgets/custom_snake_bar.dart';
+import 'package:helmet_customer/widget/my_country_code/country_code_method.dart';
 
 class LoginController extends GetxController {
-
   String phone = "";
   bool isLoading = false;
   final GlobalKey<FormState> loginForm = GlobalKey<FormState>();
@@ -16,20 +16,22 @@ class LoginController extends GetxController {
   final RegExp onlyNumberFormatter = RegExp(r'^[0-9]+$');
   // Example method to generate a random OTP
   void sendOTP(String phoneNumber) async {
+    // remeve zero at the start if exists
+    if (phoneNumber.startsWith('0')) {
+      phoneNumber = phoneNumber.substring(1);
+    }
     // Check if the phone number is valid
-
     isLoading = true;
     update();
-    if (phoneNumber.isEmpty) {
-      customSnakeBar(message: "Please enter a valid phone number".tr);
+    if (phoneController.text.isEmpty) {
+      // customSnakeBar(message: "Please enter a valid phone number".tr);
       isLoading = false;
       update();
       return;
     }
-    // Show a progress dialog or loading indicator
-    //customProgressDialog(cancelable: true);
+    log("Sending OTP to: ${mainCountryCode.value.dialCode}${phoneController.text}");
     await auth.verifyPhoneNumber(
-      phoneNumber: "+962$phoneNumber",
+      phoneNumber: "${mainCountryCode.value.dialCode}${phoneController.text}",
       timeout: const Duration(seconds: 60),
       verificationCompleted: (PhoneAuthCredential credential) async {
         // Auto-resolved, optional
@@ -65,19 +67,5 @@ class LoginController extends GetxController {
     update();
   }
 
-  // void onClickGoogle() {
-  //   customSnakeBar(message: "Soon".tr);
-  // }
 
-  // void onClickApple() {
-  //   customSnakeBar(message: "Soon".tr);
-  // }
-
-  // void onClickSignUp() {
-  //   Get.offAllNamed(RoutesString.createAccount);
-  // }
-
-  // void onClickForgotPassword() {
-  //   Get.toNamed(RoutesString.forgotPassword);
-  // }
 }

@@ -55,6 +55,7 @@ class DefaultFirebaseOptions {
     appId: '1:848649324101:android:bd3c9e645f66427c72052c',
     messagingSenderId: '848649324101',
     projectId: 'helmet-dac17',
+    databaseURL: 'https://helmet-dac17-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'helmet-dac17.firebasestorage.app',
   );
 
@@ -63,6 +64,7 @@ class DefaultFirebaseOptions {
     appId: '1:848649324101:ios:c6a4949960623ab072052c',
     messagingSenderId: '848649324101',
     projectId: 'helmet-dac17',
+    databaseURL: 'https://helmet-dac17-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'helmet-dac17.firebasestorage.app',
     iosBundleId: 'com.helmet.customer.app',
   );

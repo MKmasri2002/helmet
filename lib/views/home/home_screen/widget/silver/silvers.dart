@@ -37,7 +37,6 @@ class Silvers extends StatelessWidget {
                 HomeScreenCarouselSliderBuilder(
                   currentSubscriptions: subscriptions,
                 ),
-                const SizedBox(height: 24),
               ],
 
               if (packages

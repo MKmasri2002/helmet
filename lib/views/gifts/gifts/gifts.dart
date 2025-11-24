@@ -5,15 +5,15 @@ import 'package:helmet_customer/generated/assets.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/utils/widgets/custom_nav_bar.dart';
-import 'package:helmet_customer/views/gifts/gifts/gifts_binding.dart';
 import 'package:helmet_customer/views/gifts/gifts/gifts_controller.dart';
 import 'package:helmet_customer/views/gifts/gifts/listview.dart';
 import 'package:helmet_customer/views/gifts/widget/appbar.dart';
 import 'package:helmet_customer/views/gifts/widget/elevatedbutton.dart';
-import 'package:helmet_customer/views/gifts/widget/listview.dart';
 import 'package:intl/intl.dart';
 
 class giftspage extends StatelessWidget {
+  const giftspage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<giftsController>(
@@ -26,7 +26,7 @@ class giftspage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // 🔹 أولاً: الليست
-                mylistviewgift(),
+                const mylistviewgift(),
 
                 // 🔹 ثانيًا: الزر
                 button(
@@ -164,7 +164,9 @@ class giftspage extends StatelessWidget {
               ],
             ),
           ),
-          bottomNavigationBar: const CustomNavBar(pos: 3),
+          bottomNavigationBar: const SizedBox(
+            height: 100,
+            child: CustomNavBar(pos: 3)),
         );
       },
     );

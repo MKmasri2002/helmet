@@ -8,7 +8,6 @@ import 'package:helmet_customer/views/home/home_screen/widget/buttom_with_status
 import 'package:helmet_customer/views/home/home_screen/widget/silver_app_bar/silver_app_bar.dart';
 import 'package:helmet_customer/views/home/home_screen/widget/silver/silvers.dart';
 
-
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -21,24 +20,25 @@ class HomeScreen extends StatelessWidget {
           body: SafeArea(
             child: CustomScrollView(
               slivers: [
-                SilverAppBar(adsCarusel: packages.where((test)=> test.showInAdds == true).toList(),),
+                SilverAppBar(
+                  adsCarusel: packages
+                      .where((test) => test.showInAdds == true)
+                      .toList(),
+                ),
                 const SliverToBoxAdapter(
                   child: Silvers(),
                 ),
               ],
             ),
           ),
-
-         
           bottomNavigationBar: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               if (nearestOrder != null) ...[
                 if (nearestOrder!.status == 'pending') const ButtomSlider(),
-                if (nearestOrder!.status != 'pending')
-                  const ButtomWithStatus(),
+                if (nearestOrder!.status != 'pending') const ButtomWithStatus(),
               ],
-        const CustomNavBar(pos: 1),
+              const CustomNavBar(pos: 1),
             ],
           ),
         );

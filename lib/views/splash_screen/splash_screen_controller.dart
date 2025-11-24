@@ -65,12 +65,14 @@ class SplashScreenController extends GetxController {
     if (!connectivityResult.contains(ConnectivityResult.mobile) &&
         !connectivityResult.contains(ConnectivityResult.wifi)) {
       // Mobile network available.
-      Get.snackbar('No Internet Connection',
-          'Please check your internet connection and try again.',
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-          duration: const Duration(seconds: 3));
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.snackbar('No Internet Connection',
+            'Please check your internet connection and try again.',
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+            colorText: Colors.white,
+            duration: const Duration(seconds: 3));
+      });
       return;
     }
     //await FirebaseMessaging.instance.requestPermission();
@@ -81,7 +83,9 @@ class SplashScreenController extends GetxController {
       token = await FirebaseMessaging.instance.getToken();
       log('✅ FCM Token: $token');
     } catch (e) {
-      Get.snackbar('error', e.toString());
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.snackbar('error', e.toString());
+      });
     }
     await Future.delayed(const Duration(seconds: 3));
     if (FirebaseAuth.instance.currentUser != null) {

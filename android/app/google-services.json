@@ -52,75 +52,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:848649324101:android:3817acbeff9f9b6672052c",
-        "android_client_info": {
-          "package_name": "com.helmet.customer"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyB10bUvev3cL3COPb2EQwiEOVb7jRTszgo"
-        },
-        {
-          "current_key": "AIzaSyD9_sVwengBudgebAXl90UhX2dwNL4Yrqs"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:848649324101:android:d89959b3a96612d972052c",
         "android_client_info": {
           "package_name": "com.helmet.drover"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyB10bUvev3cL3COPb2EQwiEOVb7jRTszgo"
-        },
-        {
-          "current_key": "AIzaSyD9_sVwengBudgebAXl90UhX2dwNL4Yrqs"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:848649324101:android:3b2ddfe74af1c0bb72052c",
-        "android_client_info": {
-          "package_name": "com.maz.ldjobs.goldensteps"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyB10bUvev3cL3COPb2EQwiEOVb7jRTszgo"
-        },
-        {
-          "current_key": "AIzaSyD9_sVwengBudgebAXl90UhX2dwNL4Yrqs"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:848649324101:android:a9d3e23501c280d272052c",
-        "android_client_info": {
-          "package_name": "com.maz.ldjobs.helmet_customer"
         }
       },
       "oauth_client": [],

@@ -14,54 +14,57 @@ class EditProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(EditController());
 
-    return// Directionality(
-     // textDirection: TextDirection.rtl,
-      /*child:*/ Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-              backgroundColor: Colors.white,
-              title: Text(TranslationData.editAccount.tr),
-              centerTitle: true,
-              toolbarHeight: 72,
-              titleTextStyle: const TextStyle(
-                fontFamily: 'IBM Plex Sans Arabic',
-                fontWeight: FontWeight.w500,
-                fontStyle: FontStyle.normal,
-                fontSize: 16,
-                height: 1.5,
-                letterSpacing: 0,
-                color: Color(0xff121212),
-              ),
-
-              leading: IconButton(
-                onPressed: () {
-                  Get.find<ProfileScreenController>().update();
-                  Get.back();
-                },
-                icon: const Icon(Icons.arrow_back_ios, color: Colors.black, size: 16),
+    return GetBuilder<EditController>(
+      builder: (controller) {
+        return Scaffold(
+            backgroundColor: Colors.white,
+            appBar: AppBar(
+                  backgroundColor: Colors.white,
+                  title: Text(TranslationData.editAccount.tr),
+                  centerTitle: true,
+                  toolbarHeight: 72,
+                  titleTextStyle: const TextStyle(
+                    fontFamily: 'IBM Plex Sans Arabic',
+                    fontWeight: FontWeight.w500,
+                    fontStyle: FontStyle.normal,
+                    fontSize: 16,
+                    height: 1.5,
+                    letterSpacing: 0,
+                    color: Color(0xff121212),
+                  ),
+        
+                  leading: IconButton(
+                    onPressed: () {
+                      Get.find<ProfileScreenController>().update();
+                      // add unfocus keyboard
+                      FocusScope.of(context).unfocus();
+                      Get.back();
+                    },
+                    icon: const Icon(Icons.arrow_back_ios, color: Colors.black, size: 16),
+                  ),
+                ),
+            body: SafeArea(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  children: [
+                                    const SizedBox(height: 10),
+        
+                    NameFields(controller: controller),
+                    const SizedBox(height: 30),
+                    DateField(controller: controller),
+                    const SizedBox(height: 40),
+                    GenderSelector(controller: controller),
+                    const SizedBox(height: 45),
+                    UpdateButton(controller: controller),
+                  ],
+                ),
               ),
             ),
-        body: SafeArea(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              children: [
-                                const SizedBox(height: 10),
-
-                NameFields(controller: controller),
-                const SizedBox(height: 30),
-                DateField(controller: controller),
-                const SizedBox(height: 40),
-                GenderSelector(controller: controller),
-                const SizedBox(height: 45),
-                UpdateButton(controller: controller),
-              ],
-            ),
-          ),
-        ),
-    //  ),
+        //  ),
+        );
+      }
     );
   }
 }

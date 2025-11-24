@@ -8,25 +8,9 @@ import 'package:helmet_customer/views/setting/controller/setting_controller.dart
 import 'package:helmet_customer/widget/change_language.dart';
 
 class SettingScreen extends StatelessWidget {
-  List<String> setting = [
-    "تغيير اللغة",
-    "سياسات الخصوصة",
-    "الشروط والاحكام",
-    "تلقي الاشعارات",
-  ];
-  List<String> icon = [
-    "assets/images/language-skill.png",
-    "assets/images/secur.png",
-    "assets/images/tag.png",
-    "assets/images/notification-03.png",
-  ];
-
-  SettingScreen({super.key});
+  const SettingScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
-    double sizebox20 = h * 0.02;
     return GetBuilder<SettingController>(
       builder: (ctrl) {
         return Scaffold(
@@ -35,7 +19,6 @@ class SettingScreen extends StatelessWidget {
             backgroundColor: Colors.white,
             title: const Text("الاعدادات"),
             centerTitle: true,
-            toolbarHeight: h / 7.5,
             titleTextStyle: const TextStyle(
               fontFamily: 'IBM Plex Sans Arabic',
               fontWeight: FontWeight.w500,
@@ -49,72 +32,37 @@ class SettingScreen extends StatelessWidget {
               onPressed: () {
                 Get.back();
               },
-              icon: Icon(
-                Icons.arrow_back_ios,
+              icon: const Icon(
+                Icons.arrow_back_ios_new,
                 color: Colors.black,
-                size: 16,
-                textDirection: Get.locale?.languageCode == 'ar'
-                    ? TextDirection.rtl
-                    : TextDirection.ltr,
               ),
             ),
           ),
-          body: SingleChildScrollView(
-            child: Container(
-              padding: EdgeInsets.all(h * .02),
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Center(
-                    child: Container(
-                      width: w * .9,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(
-                          color: const Color.fromARGB(
-                            255,
-                            193,
-                            192,
-                            192,
-                          ).withAlpha(150),
-                          width: .5,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(h * .02),
-                        child: Column(
-                          children: [
-                            MenuItem(
-                                mainText: TranslationData.changeLanguage.tr,
-                                path: Assets.changeLanguage,
-                                onTap: () {
-                                  appTools.showCustomBottomSheet(
-                                    context,
-                                    const ChangeLanguage(),
-                                    true,
-                                  );
-                                }),
-                            MenuItem(
-                              mainText: TranslationData.privacyPolicy.tr,
-                              path: Assets.privacyPoliciy,
-                              onTap: () {},
-                            ),
-                            MenuItem(
-                              mainText: TranslationData.termsAndConditions.tr,
-                              path: Assets.termsAndConditions,
-                              onTap: () {},
-                            ),
-                            MenuItem(
-                              mainText: TranslationData.receiveNotifications.tr,
-                              path: Assets.receivwNotifications,
-                              onTap: () {},
-                              isNotification: true,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                  MenuItem(
+                      mainText: TranslationData.changeLanguage.tr,
+                      path: Assets.changeLanguage,
+                      onTap: () {
+                        appTools.showCustomBottomSheet(
+                          context,
+                          const ChangeLanguage(),
+                          true,
+                        );
+                      }),
+                  MenuItem(
+                    mainText: TranslationData.privacyPolicy.tr,
+                    path: Assets.privacyPoliciy,
+                    onTap: () {},
+                  ),
+                  MenuItem(
+                    mainText: TranslationData.termsAndConditions.tr,
+                    path: Assets.termsAndConditions,
+                    onTap: () {},
                   ),
                 ],
               ),

@@ -49,6 +49,7 @@ class MyApp extends StatelessWidget {
             ],
             locale: const Locale("ar"),
             translations: Translation(),
+            initialRoute: '/',
             getPages: RouteClass.routs,
             builder: (context, child) {
               AppSize.init(

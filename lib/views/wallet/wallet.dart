@@ -30,17 +30,14 @@ class WalletPage extends StatelessWidget {
               ),
               centerTitle: true,
               toolbarHeight: 100,
-              leading: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: IconButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back_ios,
-                    color: Colors.black,
-                    size: 18,
-                  ),
+              leading: IconButton(
+                onPressed: () {
+                  Get.back();
+                },
+                icon: const Icon(
+                  Icons.arrow_back_ios_new,
+                  color: Colors.black,
+                  size: 18,
                 ),
               ),
             ),
@@ -80,7 +77,7 @@ class WalletPage extends StatelessWidget {
                             Row(
                               children: [
                              const   Text(
-                                  '299.00',
+                                  '0.00',
                                   style: TextStyle(
                                     fontFamily: 'IBM Plex Sans Arabic',
                                     fontWeight: FontWeight.w500,
@@ -108,23 +105,23 @@ class WalletPage extends StatelessWidget {
 
                   const SizedBox(height: 30),
 
-                  SizedBox(
-                    height: 50,
-                    width: 400,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xff29C1F2).withAlpha(125),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      child: Text(
-                        TranslationData.apply.tr,
-                        style: const TextStyle(color: Colors.white, fontSize: 16, fontFamily: 'IBMPlexSansArabic'),
-                      ),
-                    ),
-                  ),
+                  // SizedBox(
+                  //   height: 50,
+                  //   width: 400,
+                  //   child: ElevatedButton(
+                  //     onPressed: () {},
+                  //     style: ElevatedButton.styleFrom(
+                  //       backgroundColor: const Color(0xff29C1F2).withAlpha(125),
+                  //       shape: RoundedRectangleBorder(
+                  //         borderRadius: BorderRadius.circular(10),
+                  //       ),
+                  //     ),
+                  //     child: Text(
+                  //       TranslationData.apply.tr,
+                  //       style: const TextStyle(color: Colors.white, fontSize: 16, fontFamily: 'IBMPlexSansArabic'),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),

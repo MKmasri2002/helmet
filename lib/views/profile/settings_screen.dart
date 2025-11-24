@@ -7,26 +7,11 @@ import 'package:helmet_customer/utils/global/global.dart';
 import 'package:helmet_customer/utils/languages/translation_data.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/utils/widgets/custom_nav_bar.dart';
-import 'package:helmet_customer/views/editprofile/edit_controller.dart';
-import 'package:helmet_customer/views/home/home_controller.dart';
 import 'package:helmet_customer/views/profile/controller/profile_screen_controller.dart';
 
 class SettingsScreen extends StatelessWidget {
-  SettingsScreen({super.key});
+  const SettingsScreen({super.key});
 
-  List<String> icon = [
-    "assets/images/1.png",
-    "assets/images/2.png",
-    "assets/images/3.png",
-    "assets/images/4.png",
-    "assets/images/5.png",
-    "assets/images/6.png",
-    "assets/images/7.png",
-    "assets/images/8.png",
-    "assets/images/9.png",
-    "assets/images/10.png",
-    "assets/images/11.png",
-  ];
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProfileScreenController>(builder: (ctrl) {
@@ -55,7 +40,6 @@ class SettingsScreen extends StatelessWidget {
               children: [
                 Center(
                   child: Container(
-                    height: AppSize.height / 3,
                     width: AppSize.width * .9,
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -94,19 +78,8 @@ class SettingsScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   ProfileText(
-                                      text: userModel.name ?? "لا يوجد",
-                                      height: 0.25),
+                                      text: userModel.name ?? "", height: 0.25),
                                   const SizedBox(height: 15),
-                                  const Row(
-                                    children: [
-                                      // Image.asset(
-                                      //   "assets/images/Icon.png",
-                                      //   width: 24,
-                                      //   height: 24,
-                                      // ),
-                                      ProfileText(text: "3.5", height: 0.25),
-                                    ],
-                                  ),
                                 ],
                               ),
                               const Spacer(),
@@ -114,19 +87,6 @@ class SettingsScreen extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Row(
                                   children: [
-                                    // InkWell(
-                                    //   onTap: () {
-                                    //     // Get.to(
-                                    //     //   () => editpage(),
-                                    //     //   binding: EditBinding(),
-                                    //     // );
-                                    //   },
-                                    //   // child: Image.asset(
-                                    //   //   "assets/images/edit.png",
-                                    //   //   width: 24,
-                                    //   //   height: 24,
-                                    //   // ),
-                                    // ),
                                     TextButton(
                                       onPressed: () {
                                         Get.toNamed(RoutesString.edit);
@@ -143,13 +103,13 @@ class SettingsScreen extends StatelessWidget {
                             ],
                           ),
                           const ProfileDivider(),
-                          MenuItem(
-                            mainText: TranslationData.addEmailAddress.tr,
-                            path: Assets.profileEmailIcon,
-                            onTap: () {
-                              Get.toNamed(RoutesString.editemail);
-                            },
-                          ),
+                          // MenuItem(
+                          //   mainText: TranslationData.addEmailAddress.tr,
+                          //   path: Assets.profileEmailIcon,
+                          //   onTap: () {
+                          //     Get.toNamed(RoutesString.editemail);
+                          //   },
+                          // ),
                           MenuItem(
                             mainText: userModel.phone ?? "",
                             path: Assets.profilePhoneIcon,
@@ -185,24 +145,24 @@ class SettingsScreen extends StatelessWidget {
                           padding: EdgeInsets.all(AppSize.height * .02),
                           child: Column(
                             children: [
-                              MenuItem(
-                                mainText: TranslationData
-                                    .freeBalanceForYouAndYourFriend.tr,
-                                subText: TranslationData.whenShareTheApp.tr,
-                                path: Assets.profile1,
-                                onTap: () {},
-                              ),
-                              MenuItem(
-                                mainText: TranslationData.vision.tr,
-                                path: Assets.profile2,
-                                onTap: () {},
-                              ),
-                              MenuItem(
-                                mainText:
-                                    TranslationData.joinAsServiceProvider.tr,
-                                path: Assets.profile3,
-                                onTap: () {},
-                              ),
+                              // MenuItem(
+                              //   mainText: TranslationData
+                              //       .freeBalanceForYouAndYourFriend.tr,
+                              //   subText: TranslationData.whenShareTheApp.tr,
+                              //   path: Assets.profile1,
+                              //   onTap: () {},
+                              // ),
+                              // MenuItem(
+                              //   mainText: TranslationData.vision.tr,
+                              //   path: Assets.profile2,
+                              //   onTap: () {},
+                              // ),
+                              // MenuItem(
+                              //   mainText:
+                              //       TranslationData.joinAsServiceProvider.tr,
+                              //   path: Assets.profile3,
+                              //   onTap: () {},
+                              // ),
                               MenuItem(
                                 mainText: TranslationData.myWallet.tr,
                                 path: Assets.profile4,
@@ -217,11 +177,11 @@ class SettingsScreen extends StatelessWidget {
                                   Get.toNamed(RoutesString.mycar);
                                 },
                               ),
-                              MenuItem(
-                                mainText: TranslationData.discountCodes.tr,
-                                path: Assets.profile6,
-                                onTap: () {},
-                              ),
+                              // MenuItem(
+                              //   mainText: TranslationData.discountCodes.tr,
+                              //   path: Assets.profile6,
+                              //   onTap: () {},
+                              // ),
                               MenuItem(
                                 mainText: TranslationData.bills.tr,
                                 path: Assets.profile7,
@@ -236,11 +196,11 @@ class SettingsScreen extends StatelessWidget {
                                   Get.toNamed(RoutesString.settings);
                                 },
                               ),
-                              MenuItem(
-                                mainText: TranslationData.activatePackages.tr,
-                                path: Assets.profile9,
-                                onTap: () {},
-                              ),
+                              // MenuItem(
+                              //   mainText: TranslationData.activatePackages.tr,
+                              //   path: Assets.profile9,
+                              //   onTap: () {},
+                              // ),
                               MenuItem(
                                 mainText: TranslationData.packages.tr,
                                 path: Assets.profile10,
@@ -276,7 +236,8 @@ class SettingsScreen extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar: const CustomNavBar(pos: 4),
+        bottomNavigationBar:
+            const SizedBox(height: 100, child: CustomNavBar(pos: 4)),
       );
     });
   }
