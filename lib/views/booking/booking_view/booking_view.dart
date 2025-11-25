@@ -13,7 +13,7 @@ import 'package:helmet_customer/views/booking/booking_view/widget/buy_wash_items
 import 'package:helmet_customer/views/booking/booking_view/widget/choose_car_widget.dart';
 import 'package:helmet_customer/views/booking/booking_view/widget/date_builder.dart';
 import 'package:helmet_customer/views/booking/booking_view/widget/payment_sheet.dart';
-import 'package:helmet_customer/views/booking/booking_view/widget/time_of_day_timeline.dart';
+import 'package:helmet_customer/views/booking/booking_view/widget/time_slot_selector.dart';
 
 class BookingView extends StatelessWidget {
   const BookingView({
@@ -49,7 +49,10 @@ class BookingView extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      if (ctrl.didUserSeletedDate) const TimeOfDayTimeline(),
+                      // New time slot selector with morning/evening periods
+                      if (ctrl.didUserSeletedDate) const TimeSlotSelector(),
+                      // Old time selector (can be removed or kept as fallback)
+                      // if (ctrl.didUserSeletedDate) const TimeOfDayTimeline(),
                       const SizedBox(
                         height: 20,
                       ),

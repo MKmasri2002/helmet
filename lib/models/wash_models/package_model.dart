@@ -1,6 +1,8 @@
 class PackageModel {
+  final bool? active;
   final int? count;
   final String? currency;
+  final String? currencySymbol;
   final String? descriptionAr;
   final String? descriptionEn;
   final String? endDate;
@@ -16,8 +18,10 @@ class PackageModel {
   final String? type;
   final String? imageAdds;
   PackageModel({
+    this.active,
     this.count,
     this.currency,
+    this.currencySymbol,
     this.descriptionAr,
     this.descriptionEn,
     this.endDate,
@@ -36,8 +40,10 @@ class PackageModel {
 
   factory PackageModel.fromJson(Map<String, dynamic> json) {
     return PackageModel(
+      active: json['active'] ?? true,
       count: json['count'] ?? 0,
-      currency: json['currency'] ?? '',
+      currency: json['currency'] ?? 'SAR',
+      currencySymbol: json['currencySymbol'] ?? 'SR',
       descriptionAr: json['descriptionAr'] ?? '',
       descriptionEn: json['descriptionEn'] ?? '',
       endDate: json['endDate'] ?? '',
@@ -55,12 +61,36 @@ class PackageModel {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      'active': active,
+      'count': count,
+      'currency': currency,
+      'currencySymbol': currencySymbol,
+      'descriptionAr': descriptionAr,
+      'descriptionEn': descriptionEn,
+      'endDate': endDate,
+      'image': image,
+      'imageAdds': imageAdds,
+      'nameAr': nameAr,
+      'nameEn': nameEn,
+      'percentage': percentage,
+      'price': price,
+      'sale': sale,
+      'salePrice': salePrice,
+      'showInAdds': showInAdds,
+      'type': type,
+    };
+  }
+
   @override
   String toString() {
     final sb = StringBuffer();
     sb.writeln('PackageModel {');
+    sb.writeln('  active: $active');
     sb.writeln('  count: $count');
     sb.writeln('  currency: $currency');
+    sb.writeln('  currencySymbol: $currencySymbol');
     sb.writeln('  descriptionAr: $descriptionAr');
     sb.writeln('  descriptionEn: $descriptionEn');
     sb.writeln('  endDate: $endDate');
@@ -74,6 +104,7 @@ class PackageModel {
     sb.writeln('  salePrice: $salePrice');
     sb.writeln('  showInAdds: $showInAdds');
     sb.writeln('  type: $type');
+    sb.writeln('  imageAdds: $imageAdds');
     sb.writeln('}');
     return sb.toString();
   }

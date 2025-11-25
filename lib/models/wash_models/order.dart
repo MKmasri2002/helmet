@@ -13,6 +13,9 @@ class OrderModel {
   String? titleAr;
   String? titleEn;
   String? type;
+  String? location; // Customer location/address
+  String? customerName; // For booking compatibility
+  String? serviceType; // Additional service type info
   OrderModel({
     this.areaId,
     this.driverId,
@@ -24,6 +27,9 @@ class OrderModel {
     this.titleAr,
     this.titleEn,
     this.type,
+    this.location,
+    this.customerName,
+    this.serviceType,
   });
   OrderModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -36,6 +42,9 @@ class OrderModel {
     titleAr = json['titleAr'];
     titleEn = json['titleEn'];
     type = json['type'];
+    location = json['location'];
+    customerName = json['customerName'];
+    serviceType = json['serviceType'];
      if (json['cars'] != null) {
     cars = List<Car>.from(json['cars'].map((x) => Car.fromJson(x)));
   }
@@ -53,6 +62,9 @@ class OrderModel {
     data['titleAr'] = titleAr;
     data['titleEn'] = titleEn;
     data['type'] = type;
+    data['location'] = location;
+    data['customerName'] = customerName;
+    data['serviceType'] = serviceType;
     data['cars'] = cars.map((x) => x.toJson()).toList();
     return data;
   }

@@ -49,11 +49,11 @@ class Component5 extends StatelessWidget {
             Row(
               children: [
                 CircleAvatar(
-                  backgroundImage: drivers
+                  backgroundImage: driversList
                               .firstWhere((e) => e.id == ctrl.currentOrder?.driverId)
                               .imageUrl !=
                           null
-                      ? NetworkImage(drivers
+                      ? NetworkImage(driversList
                               .firstWhere((e) => e.id == ctrl.currentOrder?.driverId)
                               .imageUrl ??
                           "")
@@ -67,7 +67,7 @@ class Component5 extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      drivers
+                      driversList
                               .firstWhere((e) => e.id == ctrl.currentOrder?.driverId)
                               .name ??
                           "",
@@ -115,7 +115,7 @@ class Component5 extends StatelessWidget {
                     ]),
                     Text(
                       //  washDataTripModel.driverPhone ?? "",
-                      drivers
+                      driversList
                               .firstWhere((e) => e.id == ctrl.currentOrder?.driverId)
                               .phoneNumber ??
                           "",

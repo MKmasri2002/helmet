@@ -16,6 +16,7 @@ import 'package:helmet_customer/utils/constants.dart';
 import 'package:helmet_customer/utils/global/global.dart';
 import 'package:helmet_customer/utils/routes/routes_string.dart';
 import 'package:helmet_customer/utils/tools/tools.dart';
+import 'package:helmet_customer/utils/time_slot_manager.dart';
 import 'package:helmet_customer/views/cart/cart_binding.dart';
 import 'package:helmet_customer/views/cart/cart_screen.dart';
 import 'package:helmet_customer/views/home/home_controller.dart';
@@ -39,6 +40,10 @@ class BookingController extends GetxController {
   bool didUserSeletedCar = false;
   bool didUserSeletedDate = false;
   List<WashItemsModel> washItems = [];
+  
+  // Time slot management
+  List<TimeSlot> availableTimeSlots = [];
+  TimePeriod selectedPeriod = TimePeriod.all;
 
   bool applePay = false;
   bool creditCard = false;
@@ -70,7 +75,7 @@ class BookingController extends GetxController {
 
   Future<void> getOrdersAndDriversInThisAreaId({required String areaId}) async {
     currentDrivers = await UserRepository.getDriversInArea(areaId: areaId);
-    log("Drivers in area $areaId : ${drivers.length}");
+    log("Drivers in area $areaId : ${driversList.length}");
     currentOrders = await OrderRepositry.getOrdersInArea(areaId: areaId);
     log("Schedules in area $areaId : ${currentOrders.length}");
   }
@@ -241,6 +246,57 @@ class BookingController extends GetxController {
     }).catchError((error) {
       log("Error getting wash items: $error");
     });
+  }
+
+  /// Generate and load time slots for selected date and period
+  void loadTimeSlotsForDate({TimePeriod? period}) {
+    selectedPeriod = period ?? TimePeriod.all;
+    
+    availableTimeSlots = TimeSlotManager.generateTimeSlots(
+      date: selectedDateTime,
+      drivers: currentDrivers,
+      existingBookings: currentOrders,
+      period: selectedPeriod,
+    );
+    
+    log('Generated ${availableTimeSlots.length} time slots for $selectedPeriod');
+    update();
+  }
+
+  /// Get time slots filtered by period
+  List<TimeSlot> getTimeSlotsByPeriod(TimePeriod period) {
+    return availableTimeSlots.where((slot) => slot.period == period).toList();
+  }
+
+  /// Get only available time slots
+  List<TimeSlot> getAvailableTimeSlots() {
+    return TimeSlotManager.getAvailableSlots(availableTimeSlots);
+  }
+
+  /// Get available slots count for each period
+  Map<TimePeriod, int> getAvailableSlotsPerPeriod() {
+    return TimeSlotManager.getAvailableSlotsCount(availableTimeSlots);
+  }
+
+  /// Select time slot
+  void selectTimeSlot(TimeSlot slot) {
+    if (!slot.isAvailable) return;
+    
+    selectedTime = TimeOfDay(hour: slot.hour, minute: slot.minute);
+    didUserSeletedDateOfDay = true;
+    fullDate = DateTime(
+      selectedDateTime.year,
+      selectedDateTime.month,
+      selectedDateTime.day,
+      slot.hour,
+      slot.minute,
+    );
+    update();
+  }
+
+  /// Change period filter (morning/evening/all)
+  void changePeriodFilter(TimePeriod period) {
+    loadTimeSlotsForDate(period: period);
   }
 
   void onPaymentResult(result) async {

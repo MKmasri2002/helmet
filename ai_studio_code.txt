@@ -1,0 +1,505 @@
+/// FILENAME: app_models.dart
+///
+/// README:
+/// This file contains all the data models used in the Helmet Car Wash application.
+/// It includes Dart classes with `fromJson` and `toJson` methods for easy integration
+/// with Firebase Firestore or REST APIs.
+///
+/// USAGE:
+/// 1. Copy this file into your Flutter project (e.g., lib/models/app_models.dart).
+/// 2. Import it: import 'package:your_app/models/app_models.dart';
+/// 3. Parse JSON: final user = Driver.fromJson(jsonMap);
+///
+/// EXAMPLE - LATLNG LIST CONVERSION:
+///
+/// // JSON Input:
+/// // {
+/// //   "name": "Downtown Zone",
+/// //   "coordinates": [
+/// //     { "latitude": 31.9539, "longitude": 35.9106 },
+/// //     { "latitude": 31.9565, "longitude": 35.9180 }
+/// //   ]
+/// // }
+///
+/// // Dart Code:
+/// final zone = Zone.fromJson(jsonMap);
+/// print(zone.coordinates[0].latitude); // 31.9539
+
+// ==============================================================================
+// ENUMS
+// ==============================================================================
+
+enum DriverStatus { ACTIVE, SUSPENDED, OFF_DUTY }
+
+enum BookingStatus { PENDING, IN_PROGRESS, COMPLETED, CANCELLED }
+
+// ==============================================================================
+// 1. COORDINATE MODEL
+// ==============================================================================
+
+/// Represents a geographic point. Used inside Zone models.
+class Coordinate {
+  final double latitude;
+  final double longitude;
+
+  Coordinate({required this.latitude, required this.longitude});
+
+  factory Coordinate.fromJson(Map<String, dynamic> json) {
+    return Coordinate(
+      latitude: (json['latitude'] as num).toDouble(),
+      longitude: (json['longitude'] as num).toDouble(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'latitude': latitude,
+      'longitude': longitude,
+    };
+  }
+}
+
+// ==============================================================================
+// 2. ZONE (SERVICE AREA) MODEL
+// ==============================================================================
+
+/// Represents a polygon service area on the map.
+/// Used in: CoverageView (Admin), Map (Mobile App)
+class Zone {
+  final String id;
+  final String name;
+  final List<Coordinate> coordinates;
+
+  Zone({
+    required this.id,
+    required this.name,
+    required this.coordinates,
+  });
+
+  /*
+   JSON Example:
+   {
+     "id": "z1",
+     "name": "Downtown Core",
+     "coordinates": [
+       { "latitude": 31.95, "longitude": 35.91 },
+       { "latitude": 31.96, "longitude": 35.92 }
+     ]
+   }
+  */
+  factory Zone.fromJson(Map<String, dynamic> json, {String? id}) {
+    return Zone(
+      id: id ?? json['id'] ?? '',
+      name: json['name'] ?? '',
+      coordinates: (json['coordinates'] as List<dynamic>?)
+              ?.map((e) => Coordinate.fromJson(e))
+              .toList() ??
+          [],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'coordinates': coordinates.map((e) => e.toJson()).toList(),
+    };
+  }
+}
+
+// ==============================================================================
+// 3. WASH PACKAGE MODEL
+// ==============================================================================
+
+/// Represents a wash package or subscription offer.
+/// Used in: PackagesView (Admin), Store Screen (Mobile App)
+class WashPackage {
+  final String id;
+  final bool active;
+  final int count;
+  final String currency;
+  final String currencySymbol;
+  final String descriptionAr;
+  final String descriptionEn;
+  final String endDate; // ISO 8601 String
+  final String image;
+  final String imageAdds; // Banner image
+  final String nameAr;
+  final String nameEn;
+  final double percentage; // Discount %
+  final double price;
+  final bool sale;
+  final double salePrice;
+  final bool showInAdds;
+  final String type; // e.g., 'one_time', 'subscription'
+
+  WashPackage({
+    required this.id,
+    required this.active,
+    required this.count,
+    required this.currency,
+    required this.currencySymbol,
+    required this.descriptionAr,
+    required this.descriptionEn,
+    required this.endDate,
+    required this.image,
+    required this.imageAdds,
+    required this.nameAr,
+    required this.nameEn,
+    required this.percentage,
+    required this.price,
+    required this.sale,
+    required this.salePrice,
+    required this.showInAdds,
+    required this.type,
+  });
+
+  /*
+   JSON Example:
+   {
+     "active": true,
+     "count": 1,
+     "currency": "SAR",
+     "currencySymbol": "SR",
+     "descriptionEn": "Premium exterior wash.",
+     "descriptionAr": "غسيل خارجي ممتاز",
+     "endDate": "2025-07-11T05:32:20.926Z",
+     "image": "https://...",
+     "price": 50.0,
+     "sale": true,
+     "salePrice": 40.0,
+     "type": "one_time"
+   }
+  */
+  factory WashPackage.fromJson(Map<String, dynamic> json, {String? id}) {
+    return WashPackage(
+      id: id ?? json['id'] ?? '',
+      active: json['active'] ?? true,
+      count: json['count'] ?? 1,
+      currency: json['currency'] ?? 'SAR',
+      currencySymbol: json['currencySymbol'] ?? 'SR',
+      descriptionAr: json['descriptionAr'] ?? '',
+      descriptionEn: json['descriptionEn'] ?? '',
+      endDate: json['endDate'] ?? '',
+      image: json['image'] ?? '',
+      imageAdds: json['imageAdds'] ?? '',
+      nameAr: json['nameAr'] ?? '',
+      nameEn: json['nameEn'] ?? '',
+      percentage: (json['percentage'] as num?)?.toDouble() ?? 0.0,
+      price: (json['price'] as num?)?.toDouble() ?? 0.0,
+      sale: json['sale'] ?? false,
+      salePrice: (json['salePrice'] as num?)?.toDouble() ?? 0.0,
+      showInAdds: json['showInAdds'] ?? false,
+      type: json['type'] ?? 'one_time',
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'active': active,
+      'count': count,
+      'currency': currency,
+      'currencySymbol': currencySymbol,
+      'descriptionAr': descriptionAr,
+      'descriptionEn': descriptionEn,
+      'endDate': endDate,
+      'image': image,
+      'imageAdds': imageAdds,
+      'nameAr': nameAr,
+      'nameEn': nameEn,
+      'percentage': percentage,
+      'price': price,
+      'sale': sale,
+      'salePrice': salePrice,
+      'showInAdds': showInAdds,
+      'type': type,
+    };
+  }
+}
+
+// ==============================================================================
+// 4. SCHEDULE MODELS (NESTED)
+// ==============================================================================
+
+class BreakTime {
+  final String start; // HH:mm
+  final String end;   // HH:mm
+
+  BreakTime({required this.start, required this.end});
+
+  factory BreakTime.fromJson(Map<String, dynamic> json) {
+    return BreakTime(
+      start: json['start'] ?? '00:00',
+      end: json['end'] ?? '00:00',
+    );
+  }
+
+  Map<String, dynamic> toJson() => {'start': start, 'end': end};
+}
+
+class DaySchedule {
+  final bool active;
+  final String startTime;
+  final String endTime;
+  final List<BreakTime> breaks;
+
+  DaySchedule({
+    required this.active,
+    required this.startTime,
+    required this.endTime,
+    required this.breaks,
+  });
+
+  factory DaySchedule.fromJson(Map<String, dynamic> json) {
+    return DaySchedule(
+      active: json['active'] ?? false,
+      startTime: json['startTime'] ?? '09:00',
+      endTime: json['endTime'] ?? '17:00',
+      breaks: (json['breaks'] as List<dynamic>?)
+              ?.map((e) => BreakTime.fromJson(e))
+              .toList() ??
+          [],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'active': active,
+      'startTime': startTime,
+      'endTime': endTime,
+      'breaks': breaks.map((e) => e.toJson()).toList(),
+    };
+  }
+}
+
+// ==============================================================================
+// 5. DRIVER MODEL
+// ==============================================================================
+
+class AssignedArea {
+  final String areaId;
+  final String name;
+
+  AssignedArea({required this.areaId, required this.name});
+
+  factory AssignedArea.fromJson(Map<String, dynamic> json) {
+    return AssignedArea(
+      areaId: json['areaId'] ?? '',
+      name: json['name'] ?? '',
+    );
+  }
+
+  Map<String, dynamic> toJson() => {'areaId': areaId, 'name': name};
+}
+
+/// Represents a fleet driver.
+/// Used in: FleetView (Admin), Driver App (Mobile)
+class Driver {
+  final String id;
+  final String name;
+  final String phone;
+  final String email;
+  final String licensePlate;
+  final DriverStatus status;
+  final double rating;
+  final int totalWashes;
+  final String avatarUrl;
+  final String? suspensionStart;
+  final String? suspensionEnd;
+  final AssignedArea? assignedArea;
+  final Map<String, DaySchedule>? schedule; // Key: monday, tuesday...
+
+  Driver({
+    required this.id,
+    required this.name,
+    required this.phone,
+    required this.email,
+    required this.licensePlate,
+    required this.status,
+    required this.rating,
+    required this.totalWashes,
+    required this.avatarUrl,
+    this.suspensionStart,
+    this.suspensionEnd,
+    this.assignedArea,
+    this.schedule,
+  });
+
+  /*
+   JSON Example:
+   {
+     "name": "Alex Johnson",
+     "email": "alex@helmet.com",
+     "status": "Active",
+     "assignedArea": { "areaId": "z1", "name": "Downtown" }
+   }
+  */
+  factory Driver.fromJson(Map<String, dynamic> json, {String? id}) {
+    // Parse Status Enum
+    DriverStatus parseStatus(String? val) {
+      switch (val) {
+        case 'Active': return DriverStatus.ACTIVE;
+        case 'Suspended': return DriverStatus.SUSPENDED;
+        default: return DriverStatus.OFF_DUTY;
+      }
+    }
+
+    // Parse Schedule Map
+    Map<String, DaySchedule>? parseSchedule(Map<String, dynamic>? jsonSched) {
+      if (jsonSched == null) return null;
+      Map<String, DaySchedule> result = {};
+      jsonSched.forEach((key, value) {
+        result[key] = DaySchedule.fromJson(value);
+      });
+      return result;
+    }
+
+    return Driver(
+      id: id ?? json['id'] ?? '',
+      name: json['name'] ?? '',
+      phone: json['phone'] ?? '',
+      email: json['email'] ?? '',
+      licensePlate: json['licensePlate'] ?? '',
+      status: parseStatus(json['status']),
+      rating: (json['rating'] as num?)?.toDouble() ?? 5.0,
+      totalWashes: json['totalWashes'] ?? 0,
+      avatarUrl: json['avatarUrl'] ?? '',
+      suspensionStart: json['suspensionStart'],
+      suspensionEnd: json['suspensionEnd'],
+      assignedArea: json['assignedArea'] != null
+          ? AssignedArea.fromJson(json['assignedArea'])
+          : null,
+      schedule: parseSchedule(json['schedule'] as Map<String, dynamic>?),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    String statusToString(DriverStatus s) {
+      switch (s) {
+        case DriverStatus.ACTIVE: return 'Active';
+        case DriverStatus.SUSPENDED: return 'Suspended';
+        case DriverStatus.OFF_DUTY: return 'Off-Duty';
+      }
+    }
+
+    return {
+      'name': name,
+      'phone': phone,
+      'email': email,
+      'licensePlate': licensePlate,
+      'status': statusToString(status),
+      'rating': rating,
+      'totalWashes': totalWashes,
+      'avatarUrl': avatarUrl,
+      'suspensionStart': suspensionStart,
+      'suspensionEnd': suspensionEnd,
+      'assignedArea': assignedArea?.toJson(),
+      'schedule': schedule?.map((k, v) => MapEntry(k, v.toJson())),
+    };
+  }
+}
+
+// ==============================================================================
+// 6. BOOKING MODEL
+// ==============================================================================
+
+/// Represents a customer service request.
+/// Used in: ScheduleView (Admin), Booking History (Mobile)
+class Booking {
+  final String id;
+  final String customerName;
+  final String? driverId;
+  final String date; // ISO Date "YYYY-MM-DD"
+  final String time; // "09:00 AM"
+  final String serviceType;
+  final BookingStatus status;
+  final String location;
+
+  Booking({
+    required this.id,
+    required this.customerName,
+    this.driverId,
+    required this.date,
+    required this.time,
+    required this.serviceType,
+    required this.status,
+    required this.location,
+  });
+
+  factory Booking.fromJson(Map<String, dynamic> json, {String? id}) {
+    BookingStatus parseStatus(String? val) {
+      switch (val) {
+        case 'Completed': return BookingStatus.COMPLETED;
+        case 'In-Progress': return BookingStatus.IN_PROGRESS;
+        case 'Cancelled': return BookingStatus.CANCELLED;
+        default: return BookingStatus.PENDING;
+      }
+    }
+
+    return Booking(
+      id: id ?? json['id'] ?? '',
+      customerName: json['customerName'] ?? '',
+      driverId: json['driverId'],
+      date: json['date'] ?? '',
+      time: json['time'] ?? '',
+      serviceType: json['serviceType'] ?? '',
+      status: parseStatus(json['status']),
+      location: json['location'] ?? '',
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    String statusToString(BookingStatus s) {
+      switch (s) {
+        case BookingStatus.COMPLETED: return 'Completed';
+        case BookingStatus.IN_PROGRESS: return 'In-Progress';
+        case BookingStatus.CANCELLED: return 'Cancelled';
+        case BookingStatus.PENDING: return 'Pending';
+      }
+    }
+
+    return {
+      'customerName': customerName,
+      'driverId': driverId,
+      'date': date,
+      'time': time,
+      'serviceType': serviceType,
+      'status': statusToString(status),
+      'location': location,
+    };
+  }
+}
+
+// ==============================================================================
+// 7. REVIEW MODEL
+// ==============================================================================
+
+/// Represents feedback left by a customer for a driver.
+/// Used in: FleetView (Driver Profile)
+class Review {
+  final String id;
+  final String customerName;
+  final double rating;
+  final String comment;
+  final String date;
+  final String? serviceType;
+
+  Review({
+    required this.id,
+    required this.customerName,
+    required this.rating,
+    required this.comment,
+    required this.date,
+    this.serviceType,
+  });
+
+  factory Review.fromJson(Map<String, dynamic> json, {String? id}) {
+    return Review(
+      id: id ?? json['id'] ?? '',
+      customerName: json['customerName'] ?? 'Anonymous',
+      rating: (json['rating'] as num?)?.toDouble() ?? 0.0,
+      comment: json['comment'] ?? '',
+      date: json['date'] ?? '',
+      serviceType: json['serviceType'],
+    );
+  }
+}
