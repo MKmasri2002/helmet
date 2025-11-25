@@ -145,14 +145,16 @@ class CurrentPackageWidget extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 if (FirebaseAuth.instance.currentUser == null) {
-                  Get.snackbar(
-                    'Error',
-                    'Please login first',
-                    snackPosition: SnackPosition.BOTTOM,
-                    backgroundColor: Colors.red,
-                    colorText: Colors.white,
-                    duration: const Duration(seconds: 3),
-                  );
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    Get.snackbar(
+                      'Error',
+                      'Please login first',
+                      snackPosition: SnackPosition.BOTTOM,
+                      backgroundColor: Colors.red,
+                      colorText: Colors.white,
+                      duration: const Duration(seconds: 3),
+                    );
+                  });
                   return;
                 }
 

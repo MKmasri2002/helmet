@@ -19,13 +19,15 @@ class NotificationManagement {
           Get.put(() => OrderStatusController());
           // Get.find<OrderStatusController>().washDataTripModel;
         }
-        Get.snackbar(
-          message.notification?.title ?? "Notification",
-          message.notification?.body ?? "You have a new notification",
-          snackPosition: SnackPosition.TOP,
-          duration: const Duration(seconds: 3),
-          backgroundColor: Colors.white,
-        );
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          Get.snackbar(
+            message.notification?.title ?? "Notification",
+            message.notification?.body ?? "You have a new notification",
+            snackPosition: SnackPosition.TOP,
+            duration: const Duration(seconds: 3),
+            backgroundColor: Colors.white,
+          );
+        });
       },
     );
   }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -45,21 +47,31 @@ class OneTimeWash extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
-                      if (ctrl.checkLogin() == false) {
-                        ctrl.pleaseLogin();
+                      log('OneTimeWash tapped');
+                      
+                      // Check if user has any addresses
+                      if (userModel.addresses.isEmpty) {
+                        Future.delayed(Duration.zero, () {
+                          Get.snackbar(
+                            'Error',
+                            'Please add an address first',
+                            snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: Colors.red,
+                            colorText: Colors.white,
+                            duration: const Duration(seconds: 3),
+                          );
+                        });
                         return;
                       }
-                      if (ctrl.checkLocation() == false) {
-                        ctrl.pleaseSelectLocation();
-                        return;
-                      }
+                      
+                      // Find default address or use first available
+                      final selectedAddress = userModel.addresses.firstWhere(
+                        (addr) => addr.defaultLocation == true,
+                        orElse: () => userModel.addresses.first,
+                      );
+                      
                       order = OrderModel(
-                        areaId: userModel.addresses
-                            .firstWhere(
-                              (addr) => addr.defaultLocation == true,
-                              orElse: () => userModel.addresses.first,
-                            )
-                            .areaId,
+                        areaId: selectedAddress.areaId,
                         user_id: userModel.uid,
                         status: 'pending',
                         price: package[index].price,

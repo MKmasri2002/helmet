@@ -60,30 +60,38 @@ class AddCarController extends GetxController {
     
     appTools.unFocusKeyboard(context);
     if (plateNumberController.text.isEmpty) {
-      Get.snackbar("Error", "Please enter plate number",
-          snackPosition: SnackPosition.BOTTOM);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.snackbar("Error", "Please enter plate number",
+            snackPosition: SnackPosition.BOTTOM);
+      });
       return;
     }
     if (selectedBrand == "Select Brand") {
-      Get.snackbar("Error", "Please select brand",
-          snackPosition: SnackPosition.BOTTOM);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.snackbar("Error", "Please select brand",
+            snackPosition: SnackPosition.BOTTOM);
+      });
       return;
     }
     if (selectedModel == "Select Model") {
-      Get.snackbar("Error", "Please select model",
-          snackPosition: SnackPosition.BOTTOM);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.snackbar("Error", "Please select model",
+            snackPosition: SnackPosition.BOTTOM);
+      });
       return;
     }
     if (selectedColorHex == "Select Color") {
-      Get.snackbar("Error", "Please select color",
-          snackPosition: SnackPosition.BOTTOM);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.snackbar("Error", "Please select color",
+            snackPosition: SnackPosition.BOTTOM);
+      });
       return;
     }
     // Add car to the firestore database
     // the local database will be users/uid/cars/id/add car
     Car newCar = Car(
         id: "",
-        user_id: userModel.uid,
+        userId: userModel.uid,
         plateNumber: plateNumberController.text,  
         brand: selectedBrand,
         model: selectedModel,
@@ -119,17 +127,21 @@ class AddCarController extends GetxController {
           .collection('car')
           .doc(docId)
           .delete();
-      Get.snackbar(
-        "تم الحذف",
-        "تم حذف السيارة بنجاح",
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.snackbar(
+          "تم الحذف",
+          "تم حذف السيارة بنجاح",
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      });
     } catch (e) {
-      Get.snackbar(
-        "خطأ",
-        "حدث خطأ أثناء حذف السيارة: $e",
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.snackbar(
+          "خطأ",
+          "حدث خطأ أثناء حذف السيارة: $e",
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      });
     }
   }
 }

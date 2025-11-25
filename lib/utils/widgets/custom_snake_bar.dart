@@ -9,23 +9,25 @@ void customSnakeBar(
     color = Colors.red;
   }
   title = title.replaceAll("\n", " ");
-  Get.snackbar(
-    title,
-    message,
-    messageText: Text(
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    Get.snackbar(
+      title,
       message,
-      textAlign: TextAlign.center,
-      style: const TextStyle(
-        fontFamily: 'IBMPlexSansArabic',
-        fontSize: 15,
-        fontWeight: FontWeight.bold,
-        color: Colors.white,
+      messageText: Text(
+        message,
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          fontFamily: 'IBMPlexSansArabic',
+          fontSize: 15,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
       ),
-    ),
-    colorText: Colors.white,
-    padding: const EdgeInsets.all(10),
-    borderRadius: 20,
-    backgroundColor: color,
-    snackPosition: SnackPosition.BOTTOM,
-  );
+      colorText: Colors.white,
+      padding: const EdgeInsets.all(10),
+      borderRadius: 20,
+      backgroundColor: color,
+      snackPosition: SnackPosition.BOTTOM,
+    );
+  });
 }

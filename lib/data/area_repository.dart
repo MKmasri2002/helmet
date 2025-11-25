@@ -14,6 +14,7 @@ class AreaRepository {
       if (querySnapshot.docs.isNotEmpty) {
         final List<AreaModel> areas = querySnapshot.docs.map((doc) {
           final data = doc.data() as Map<String, dynamic>;
+          data['id'] = doc.id;
           return AreaModel.fromJson(data);
         }).toList();
         return areas;

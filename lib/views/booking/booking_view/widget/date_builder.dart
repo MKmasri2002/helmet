@@ -25,7 +25,9 @@ class DateBuilder extends StatelessWidget {
                 ctrl.selectedDateTime = date;
                 ctrl.didUserSeletedDate = true;
                 ctrl.update();
-                Get.snackbar('غير متاح', 'كل السائقين محجوزين في هذا اليوم');
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  Get.snackbar('غير متاح', 'كل السائقين محجوزين في هذا اليوم');
+                });
               } else {
                 ctrl.selectedDateTime = date;
                 ctrl.didUserSeletedDate = true;

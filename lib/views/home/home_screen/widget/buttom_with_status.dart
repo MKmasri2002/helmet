@@ -32,11 +32,13 @@ class ButtomWithStatus extends StatelessWidget {
                arguments: {'order': nearestOrder}
             );
           } else {
-            Get.snackbar(
-              "تنبيه",
-              "لا يوجد طلب مرتبط بهذه الجلسة",
-              snackPosition: SnackPosition.BOTTOM,
-            );
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              Get.snackbar(
+                "تنبيه",
+                "لا يوجد طلب مرتبط بهذه الجلسة",
+                snackPosition: SnackPosition.BOTTOM,
+              );
+            });
           }
         },
         child: Container(

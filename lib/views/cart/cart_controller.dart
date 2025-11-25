@@ -58,13 +58,15 @@ class CartController extends GetxController {
   ////// using one time package and subsicription*////////////
   void onPaymentResult(result) async {
     if (seconds <= 0) {
-      Get.snackbar(
-        TranslationData.error.tr,
-        TranslationData.timeExpired.tr,
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.snackbar(
+          TranslationData.error.tr,
+          TranslationData.timeExpired.tr,
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      });
       return;
     }
     if (result is PaymentResponse) {

@@ -113,13 +113,15 @@ class PaymentMethodWidget extends StatelessWidget {
                 PrimaryButton(
                   onTap: () {
                     if (ctrl.seconds <= 0) {
-                      Get.snackbar(
-                        TranslationData.error.tr,
-                        TranslationData.timeExpired.tr,
-                        snackPosition: SnackPosition.BOTTOM,
-                        backgroundColor: Colors.red,
-                        colorText: Colors.white,
-                      );
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        Get.snackbar(
+                          TranslationData.error.tr,
+                          TranslationData.timeExpired.tr,
+                          snackPosition: SnackPosition.BOTTOM,
+                          backgroundColor: Colors.red,
+                          colorText: Colors.white,
+                        );
+                      });
                       return;
                     }
                     appTools.showCustomBottomSheet(

@@ -3,22 +3,22 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class AreaModel {
   String? id;
   String? name;
-  List<LatLng>? location;
-  AreaModel({this.id, this.name, this.location});
+  List<LatLng>? coordinates;
+  AreaModel({this.id, this.name, this.coordinates});
 
   AreaModel.fromJson(Map<String, dynamic> json) {
     
       id = json['id'];
       name = json['name'];
-      if(json['location'] != null)
+      if(json['coordinates'] != null)
       {
-        location = (json['location'] as List<dynamic>)
+        coordinates = (json['coordinates'] as List<dynamic>)
             .map(
               (e) => LatLng(e['latitude'] as double, e['longitude'] as double),
             )
             .toList();
       }else{
-        location = [];
+        coordinates = [];
       }          
   }
 
@@ -26,8 +26,8 @@ class AreaModel {
     return {
       'id': id,
       'name': name,
-      'location':
-          location?.map((e) {
+      'coordinates':
+          coordinates?.map((e) {
             return {'latitude': e.latitude, 'longitude': e.longitude};
           }).toList(),
     };

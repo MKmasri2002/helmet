@@ -42,7 +42,9 @@ class EditController extends GetxController {
         update();
       }
      catch (e) {
-      Get.snackbar("خطأ", "حدث خطأ أثناء جلب بيانات المستخدم: $e");
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.snackbar("خطأ", "حدث خطأ أثناء جلب بيانات المستخدم: $e");
+      });
     }
   }
 
@@ -67,9 +69,13 @@ class EditController extends GetxController {
           .doc(userModel.uid)
           .update(userModel.toJson());
 
-      Get.snackbar('تم بنجاح', 'تم تحديث البيانات بنجاح');
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.snackbar('تم بنجاح', 'تم تحديث البيانات بنجاح');
+      });
     } catch (e) {
-      Get.snackbar('خطأ', 'حدث خطأ أثناء حفظ التغييرات: $e');
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.snackbar('خطأ', 'حدث خطأ أثناء حفظ التغييرات: $e');
+      });
     }
     update();
   }
@@ -85,7 +91,9 @@ class EditController extends GetxController {
           .doc(user.uid)
           .update({'email': newEmail});
 
-      Get.snackbar("تم التأكيد", "تم تخزين البريد الإلكتروني بنجاح");
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.snackbar("تم التأكيد", "تم تخزين البريد الإلكتروني بنجاح");
+      });
     }
   }
   Future<void> confirmphone() async {
@@ -98,7 +106,9 @@ class EditController extends GetxController {
           .doc(user.uid)
           .update({'phone': newphone});
 
-      Get.snackbar("تم التأكيد", "تم تخزين رقم الهاتف بنجاح");
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.snackbar("تم التأكيد", "تم تخزين رقم الهاتف بنجاح");
+      });
     }
   }
 }

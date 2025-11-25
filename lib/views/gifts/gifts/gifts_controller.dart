@@ -42,7 +42,9 @@ class giftsController extends GetxController {
     this.title = title;
     this.price = price;
 
-    Get.snackbar("نجاح", "تم اختيار الهدية");
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.snackbar("نجاح", "تم اختيار الهدية");
+    });
   }
 
   /// 🔹 إرسال هدية وتخزينها في Firestore
@@ -50,13 +52,17 @@ class giftsController extends GetxController {
     try {
       final currentUser = FirebaseAuth.instance.currentUser;
       if (currentUser == null) {
-        Get.snackbar("خطأ", "المستخدم الحالي غير مسجل الدخول");
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          Get.snackbar("خطأ", "المستخدم الحالي غير مسجل الدخول");
+        });
         return;
       }
 
       final phone = phoneController.text.trim();
       if (phone.isEmpty) {
-        Get.snackbar("خطأ", "الرجاء إدخال رقم هاتف المستقبل");
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          Get.snackbar("خطأ", "الرجاء إدخال رقم هاتف المستقبل");
+        });
         return;
       }
 
@@ -68,7 +74,9 @@ class giftsController extends GetxController {
           .get();
 
       if (userSnap.docs.isEmpty) {
-        Get.snackbar("خطأ", "لم يتم العثور على مستخدم بهذا الرقم");
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          Get.snackbar("خطأ", "لم يتم العثور على مستخدم بهذا الرقم");
+        });
         return;
       }
 
@@ -95,18 +103,24 @@ class giftsController extends GetxController {
             isPaid: true,
           );
           Get.to(
-            () => CartScreen(),
+            () => const CartScreen(),
             binding: CartBinding(),
             arguments: {'product': subscribe},
           );
-          Get.snackbar("تم الإرسال", "تم إرسال الهدية بنجاح ");
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            Get.snackbar("تم الإرسال", "تم إرسال الهدية بنجاح ");
+          });
         } else {
-          Get.snackbar("خطأ", "لم يتم اختيار الهديه");
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            Get.snackbar("خطأ", "لم يتم اختيار الهديه");
+          });
           return;
         }
       }
     } catch (e) {
-      Get.snackbar("خطأ", "حدث خطأ أثناء الإرسال: $e");
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.snackbar("خطأ", "حدث خطأ أثناء الإرسال: $e");
+      });
     }
   }
 
@@ -123,7 +137,9 @@ class giftsController extends GetxController {
 
       return query.docs.map((doc) => doc.data()).toList();
     } catch (e) {
-      Get.snackbar("خطأ", "تعذر جلب الهدايا: $e");
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.snackbar("خطأ", "تعذر جلب الهدايا: $e");
+      });
       return [];
     }
   }

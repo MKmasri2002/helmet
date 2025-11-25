@@ -41,14 +41,16 @@ class CaruselAdsHome extends StatelessWidget {
   }
 
   void _showError(String message) {
-    Get.snackbar(
-      'Error',
-      message,
-      snackPosition: SnackPosition.BOTTOM,
-      backgroundColor: Colors.red,
-      colorText: Colors.white,
-      duration: const Duration(seconds: 3),
-    );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Get.snackbar(
+        'Error',
+        message,
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+        duration: const Duration(seconds: 3),
+      );
+    });
   }
 
   @override

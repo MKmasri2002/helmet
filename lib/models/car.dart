@@ -1,6 +1,6 @@
 class Car {
   String? id;
-  String? user_id;
+  String? userId;
   String? brand;
   String? color;
   String? model;
@@ -9,7 +9,7 @@ class Car {
 
   Car(
       {this.id,
-      this.user_id,
+      this.userId,
       this.brand,
       this.color,
       this.model,
@@ -18,7 +18,7 @@ class Car {
 
   Car.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    user_id = json['user_id'];
+    userId = json['user_id'];
     brand = json['brand'];
     color = json['color'];
     model = json['model'];
@@ -29,7 +29,7 @@ class Car {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
-    data['user_id'] = user_id;
+    data['user_id'] = userId;
     data['brand'] = brand;
     data['color'] = color;
     data['model'] = model;
@@ -43,7 +43,7 @@ class Car {
     final sb = StringBuffer();
     sb.writeln('car {');
     sb.writeln('  id: $id');
-    sb.writeln('  user_id: $user_id');
+    sb.writeln('  user_id: $userId');
     sb.writeln('  brand: $brand');
     sb.writeln('  color: $color');
     sb.writeln('  model: $model');

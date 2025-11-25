@@ -53,7 +53,7 @@ class AddressBookController extends GetxController {
     for (AreaModel area in areas) {
       List<maps_toolkit.LatLng> locations = [];
 
-      for (var loc in area.location!) {
+      for (var loc in area.coordinates!) {
         locations.add(maps_toolkit.LatLng(loc.latitude, loc.longitude));
       }
       isInArea = maps_toolkit.PolygonUtil.containsLocation(
@@ -68,11 +68,13 @@ class AddressBookController extends GetxController {
     }
     if (!isInArea) {
       Get.back();
-      Get.snackbar(
-        'Error',
-        'This address is out of our service area',
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Get.snackbar(
+          'Error',
+          'This address is out of our service area',
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      });
       return;
     }
     docRef.set(address.toJson());
